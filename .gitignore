@@ -9,8 +9,7 @@ docs/.python-verion
 docs/.DS_Store
 
 *.pyc
-build/
-cerf.egg-info/
+ebook.egg-info/
 dist/
 
 # pycharm
