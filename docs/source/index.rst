@@ -29,12 +29,19 @@ Testing out a codeblock
 
    ebook.plot_experimental_design()
 
+Testing out a note
+==================
+
+.. note::
+  Keep track of the latest in programming solutions on the `Water Programming <https://waterprogramming.wordpress.com/>`_ blog!
+
+
 
 Chapters
 ========
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 2
 
   1.0_Introduction
 
