@@ -1,3 +1,6 @@
+# jupyter
+notebooks/.ipynb_checkpoints/
+
 # pyenv
 .python-version
 docs/.python-verion
