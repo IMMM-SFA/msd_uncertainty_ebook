@@ -1,0 +1,6 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Diagnostic Modeling Overview and Perspectives}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Overview of model diagnostics}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Perspectives on diagnostic model evaluation}{7}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Indices and tables}{9}{chapter.3}%

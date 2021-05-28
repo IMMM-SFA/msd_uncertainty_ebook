@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'ebook'
+project = 'Addressing Uncertainty in MultiSector Dynamics Research'
 copyright = '2021, Battelle Memorial Institute'
-author = 'Battelle Memorial Institute'
+author = 'Patrick M. Reed, ...'
 
 # The full version, including alpha/beta/rc tags
 release = 'v0.1.0'

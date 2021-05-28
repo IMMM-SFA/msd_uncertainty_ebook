@@ -8,18 +8,11 @@
 Addressing Uncertainty in MultiSector Dynamics Research
 =======================================================
 
-
-.. include:: preface.rst
-.. include:: examples.rst
-
-
-Contents
-========
-
 .. toctree::
   :maxdepth: 2
 
   1.0_Introduction
+  2.0_diagnostic_modeling_overview_and_perspectives
 
 
 Indices and tables
