@@ -11,8 +11,8 @@ Another key value is the effective sample size (ESS). Due to the Markovian prope
 
 Many MCMC algorithms exist, with varying strengths and weaknesses, discussed below. For example, some require more tuning to improve the ESS than others. All of these algorithms involve the evaluation of the model at various parameter settings. Once a Markov chain is constructed and deemed to suitably represent the posterior distribution, parameter values can be sampled from it with replacement as a proxy for directly sampling from the posterior.
 
-..include:: 6.7.3.1_metropolis_hastings.rst
+.. include:: 6.7.3.1_metropolis_hastings.rst
 
-..include:: 6.7.3.2_gibbs_sampling.rst
+.. include:: 6.7.3.2_gibbs_sampling.rst
 
-..include:: 6.7.3.3_hamiltonian_monte_carlo.rst
+.. include:: 6.7.3.3_hamiltonian_monte_carlo.rst

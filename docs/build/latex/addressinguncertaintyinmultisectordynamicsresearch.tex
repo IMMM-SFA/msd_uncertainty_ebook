@@ -397,6 +397,359 @@ The reader should also be aware that the estimates of computational intensity th
 \section{Software Toolkits}
 \label{\detokenize{3_sensitivity_analysis_the_basics:software-toolkits}}
 
+\chapter{Sensitivity Analysis: Diagnostic \& Exploratory Modeling}
+\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:sensitivity-analysis-diagnostic-exploratory-modeling}}\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling::doc}}
+
+\section{Understanding Errors: What Is Controlling Model Performance?}
+\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:understanding-errors-what-is-controlling-model-performance}}
+
+\section{Consequential Dynamics: What is Controlling Model Behaviors of Interest?}
+\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:consequential-dynamics-what-is-controlling-model-behaviors-of-interest}}
+
+\section{Consequential Scenarios: What is Controlling Consequential Outcomes?}
+\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:consequential-scenarios-what-is-controlling-consequential-outcomes}}
+
+\chapter{Uncertainty Quantification: The Basics}
+\label{\detokenize{5_uncertainty_quantification_the_basics:uncertainty-quantification-the-basics}}\label{\detokenize{5_uncertainty_quantification_the_basics::doc}}
+\sphinxAtStartPar
+As described in the previous sections, uncertainty characterization (UC) can be defined as exploratory modeling where alternative hypotheses for the co\sphinxhyphen{}evolutionary dynamics of influences, stressors, as well as path\sphinxhyphen{}dependent changes in the form and function of systems are explored (Marchau et al., 2019). UC exploratory modeling has a consistent focus on the assumptions, structural model forms, alternative parameterizations, and input data sets that are used to characterize the behavioral space of one or more models. The focus of UC is not to exactly quantify and predict probabilistic likelihoods for all possible quantities, but instead to inform which modeling choices yield the most consequential behavioral changes or outcomes, especially when considering deeply uncertain, scenario\sphinxhyphen{}informed projections (Moallemi et al., 2020b; Walker et al., 2013).
+
+\sphinxAtStartPar
+In comparison, uncertainty quantification (UQ) refers to the representation of uncertainties using probability distributions. The act of quantification requires specific assumptions about distributional forms and likelihoods, which may be more or less justified depending on prior information about the system or model behavior (Frankignoul and Hasselmann, 1977; Zellner and Tian, 1964). Without this justification, alternative specifications may yield substantially different inferences.
+
+
+\section{Why is Uncertainty Quantification Important for Understanding MultiSector System Dynamics?}
+\label{\detokenize{5_uncertainty_quantification_the_basics:why-is-uncertainty-quantification-important-for-understanding-multisector-system-dynamics}}
+
+\section{Uncertainty Quantification for Exploratory Modeling}
+\label{\detokenize{5_uncertainty_quantification_the_basics:uncertainty-quantification-for-exploratory-modeling}}
+
+\section{Bayesian Uncertainty Quantification}
+\label{\detokenize{5_uncertainty_quantification_the_basics:bayesian-uncertainty-quantification}}
+
+\section{Uncertainty Quantification Under (Deep) Uncertainty}
+\label{\detokenize{5_uncertainty_quantification_the_basics:uncertainty-quantification-under-deep-uncertainty}}
+
+\section{Integrating Model Diagnostics and Uncertainty Quantification}
+\label{\detokenize{5_uncertainty_quantification_the_basics:integrating-model-diagnostics-and-uncertainty-quantification}}
+
+\chapter{Uncertainty Quantification: A Tool For Capturing Risks \& Extremes}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:uncertainty-quantification-a-tool-for-capturing-risks-extremes}}\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes::doc}}
+
+\section{Understanding Risk: How Probable Are Extreme Events?}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:understanding-risk-how-probable-are-extreme-events}}
+
+\section{Understanding Tails: Statistical Modeling of Extreme Events}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:understanding-tails-statistical-modeling-of-extreme-events}}
+
+\section{How to Choose an Appropriate Method?}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:how-to-choose-an-appropriate-method}}
+
+\section{How to Select a Prior Distribution?}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:how-to-select-a-prior-distribution}}
+
+\section{Posterior Predictive Checking}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:posterior-predictive-checking}}
+
+\section{Model Selection and Comparison}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:model-selection-and-comparison}}
+
+\section{What are Common Methods?}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:what-are-common-methods}}
+\sphinxAtStartPar
+There are many  methods to quantify  uncertainty. Each  method has advantages and disadvantages for a particular analysis. Here we focus on parametric uncertainty quantification, as a discussion of structural uncertainty quantification is beyond  the scope of this review. Moreover, we prefer to think about structural uncertainty from the perspective of exploratory modeling and deep uncertainty, rather than from the perspective of quantification and selection or averaging.
+
+\sphinxAtStartPar
+Uncertainty quantification methods can be broadly classified as Markov Chain Monte Carlo (MCMC) approaches, particle\sphinxhyphen{}based approaches, and emulation\sphinxhyphen{}based approaches, though there are some hybrid methods. Several of the most common approaches for uncertainty quantification are described below. In all cases, the computational and conceptual challenges associated with parametric uncertainty quantification grow rapidly with the number of model parameters. As noted in the prior sections, sensitivity analyses are useful for dimensionality reduction prior to conducting parametric uncertainty quantification. Both factor fixing and factor prioritization can be used to limit the number of parameters which are treated as uncertain.
+
+
+\subsection{Scenario Discovery}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:scenario-discovery}}
+
+\subsection{Pre\sphinxhyphen{}calibration/GLUE}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:pre-calibration-glue}}
+
+\subsection{Markov Chain Monte Carlo}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:markov-chain-monte-carlo}}
+\sphinxAtStartPar
+Markov chain Monte Carlo (MCMC) is a “gold standard” approach to full uncertainty quantification. MCMC refers to a category of algorithms which systematically sample from a target distribution (in this case, the posterior distribution) by constructing a Markov chain. MCMC algorithms rely on the mixing properties of the resulting Markov chain to guarantee asymptotic convergence to the posterior distribution, as the chain is constructed so that the posterior is its stationary distribution. It should be stressed that this guarantee exists only asymptotically. Studies use heuristics to test for signs of misconvergence and to assess the skill of the approximation (xx)
+
+\sphinxAtStartPar
+MCMC algorithms begin with the choice of some initial value for the Markov chain. This value can be randomly determined, or can be some other quantity such as a maximum likelihood or maximum a posteriori estimates. While the Markov chain will eventually converge to the posterior regardless of the choice of initial value, the amount of time required to escape the transient dynamics of the Markov chain is dependent on this value. Typically, transient samples are discarded as burn\sphinxhyphen{}in, as they may skew the sample distribution if the burn\sphinxhyphen{}in is relatively long compared to the number of iterations spent exploring the posterior, though this practice is not universal and has been questioned by some statisticians (Geyer, 2011). However, when not discarding the transient area, the chain must be run for a larger number of iterations to ensure that these samples do not bias the sample distribution.
+
+\sphinxAtStartPar
+Diagnosing the convergence of the Markov chain to the posterior is more art than science, relying on heuristics and judgement. One example heuristic is to run many Markov chains from different initial conditions, ideally well\sphinxhyphen{}dispersed across the parameter space; one may be able to conclude that the chains have not yet converged if the resulting marginal parameter distributions are sufficiently different when plotted. The Gelman\sphinxhyphen{}Rubin diagnostic formalizes this idea by comparing the within\sphinxhyphen{}chain and pooled variances of multiple chains (Gelman and Rubin, 1992). The ratio of these two quantities, called the potential scale reduction factor, can diagnose a lack of convergence if it is sufficiently far from 1 (typically using a threshold such as 1.1 or 1.05). Thus, it is generally good practice to use several MCMC runs to facilitate the diagnoses of non\sphinxhyphen{}convergence.
+
+\sphinxAtStartPar
+Another key value is the effective sample size (ESS). Due to the Markovian property, the samples obtained using MCMC are autocorrelated, and therefore not independent. As a result, the number of samples obtained using MCMC are not directly useful when interpreting the extent of exploration (or computing quantities such as the Monte Carlo standard error (Flegal et al., 2008)). For example, it may not be appropriate to draw inferences about tail properties for a small  ESS.
+
+\sphinxAtStartPar
+Many MCMC algorithms exist, with varying strengths and weaknesses, discussed below. For example, some require more tuning to improve the ESS than others. All of these algorithms involve the evaluation of the model at various parameter settings. Once a Markov chain is constructed and deemed to suitably represent the posterior distribution, parameter values can be sampled from it with replacement as a proxy for directly sampling from the posterior.
+
+
+\subsubsection{Metropolis\sphinxhyphen{}Hastings}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:metropolis-hastings}}
+
+\subsubsection{Gibbs Sampling}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:gibbs-sampling}}
+
+\subsubsection{Hamiltonian Monte Carlo}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:hamiltonian-monte-carlo}}
+
+\subsection{Particle\sphinxhyphen{}based Methods}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:particle-based-methods}}
+
+\section{What are Example Software Implementations?}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:what-are-example-software-implementations}}
+\sphinxAtStartPar
+There exist many software platforms to implement uncertainty assessment. Each implementation is built upon a specific programming language including, but not limited to R, Python, C++, Fortran, MATLAB, and Julia. Two key considerations are the user’s preferred programming language and the computer model’s native code. For instance, a computer model running in C++ may be better suited for a software implementation based on the same language. For inconsistencies, please see the discussion on wrappers below.
+
+\sphinxAtStartPar
+Here, we present an overview of popular packages inherent to R, Python, and Julia. The user is free to code the UQ implementation without incorporating these existing packages; however, it may require more effort to code the pertinent subroutines (e.g., MCMC and building surrogate models). Uncertainty quantification for computer models typically operates within the Bayesian framework (see What are Common Methods?). Each implementation includes a mechanism that enables Bayesian inference using MCMC, Gaussian process emulation, or Sequential Monte Carlo. We focus on a subset of the common approaches.
+
+
+\subsection{Markov Chain Monte Carlo with the True Model}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:markov-chain-monte-carlo-with-the-true-model}}
+
+\subsection{Markov Chain Monte Carlo with Surrogate Models}
+\label{\detokenize{6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes:markov-chain-monte-carlo-with-surrogate-models}}
+
+\chapter{Conclusion}
+\label{\detokenize{7_conclusion:conclusion}}\label{\detokenize{7_conclusion::doc}}
+\sphinxAtStartPar
+As noted in the Introduction (Section 1.0), the computational and conceptual challenges of the multi\sphinxhyphen{}model, transdisciplinary workflows that characterize ambitious projects such as IM3 have limited UC and UQ analyses. Moreover, the very nature and purpose of modeling and diagnostic model evaluation can have very diverse philosophical framings depending on the disciplines involved (see Figure 1 and Section 2.0). The guidance provided in this text  can be used to frame consistent and rigorous experimental designs for better understanding the consequences and insights from our modeling choices when seeking to capture complex human\sphinxhyphen{}natural systems. The progression of sections of this text provide a thorough introduction of the concepts and definitions of diagnostic model evaluation, sensitivity analysis, UC, and UQ. In addition, we comprehensively discuss how specific modeling objectives and applications should guide the selection of appropriate techniques; broadly, these can include model diagnostics, in\sphinxhyphen{}depth analysis of the behavior of the abstracted system, and projections under conditions of deep uncertainty. This text also contains a detailed presentation of the main sensitivity analysis, UC, and UQ analysis methods and a discussion of their features and main limitations. Readers are also provided with an overview of computer tools and platforms that have been developed and could be considered in addressing IM3 scientific questions. The appendices of this text include a terminology glossary of the key concepts as well as example test cases and scripts to showcase various UC related capabilities.
+
+\sphinxAtStartPar
+Although we distinguish the UC and UQ model diagnostics, the reader should note that we suggest an overall consistent approach to both in this text by emphasizing “exploratory modeling” (see review add citation). Although data support, model complexity, and computational limits strongly distinguish the feasibility and appropriateness of the UC and UQ diagnostic tools (e.g., see Figure 18), we overall recommend that modelers view their work through the lens of cycles of learning. Iterative and deliberative exploration of model\sphinxhyphen{}based hypotheses and inferences for transdisciplinary teams is non\sphinxhyphen{}trivial and ultimately critical for mapping where innovations or insights are most consequential. Overall, we recommend approaching modeling with an openness to the diverse disciplinary perspectives such as those mirrored by the IM3 family of models in a progression from evaluating models relative to observed history to advanced formalized analyses to make inferences on multi\sphinxhyphen{}sector, multi\sphinxhyphen{}scale vulnerabilities and resilience. Exploratory modeling approaches can help fashion experiments with large numbers of alternative hypotheses on the co\sphinxhyphen{}evolutionary dynamics of influences, stressors, as well as path\sphinxhyphen{}dependent changes in the form and function of coupled human\sphinxhyphen{}natural systems (Weaver et al., 2013). This text guides the reader through the use of sensitivity analysis and uncertainty methods across the diverse perspectives that have shaped modern diagnostic and exploratory modeling.
+
+
+\chapter{References}
+\label{\detokenize{8_references:references}}\label{\detokenize{8_references::doc}}
+\sphinxAtStartPar
+Akaike, H., 1978. On the Likelihood of a Time Series Model. J. R. Stat. Soc. Ser. Stat. 27, 217\textendash{}235. \sphinxurl{https://doi.org/10.2307/2988185}
+Akaike, H., 1974. A new look at the statistical model identification. IEEE Trans. Autom. Control 19, 716\textendash{}723. \sphinxurl{https://doi.org/10.1109/TAC.1974.1100705}
+Anderson, B., Borgonovo, E., Galeotti, M., Roson, R., 2014. Uncertainty in Climate Change Modeling: Can Global Sensitivity Analysis Be of Help? Risk Anal. 34, 271\textendash{}293. \sphinxurl{https://doi.org/10.1111/risa.12117}
+Annan, J.D., Hargreaves, J.C., 2004. Efficient parameter estimation for a highly chaotic system. Tellus A 56, 520\textendash{}526. \sphinxurl{https://doi.org/10.1111/j.1600-0870.2004.00073.x}
+Bakker, A.M.R., Wong, T.E., Ruckert, K.L., Keller, K., 2017. Sea\sphinxhyphen{}level projections representing the deeply uncertain contribution of the West Antarctic ice sheet. Sci Rep 7, 3880. \sphinxurl{https://doi.org/10.1038/s41598-017-04134-5}
+Bankes, S., 1993. Exploratory Modeling for Policy Analysis. Oper. Res. 41, 435\textendash{}449. \sphinxurl{https://doi.org/10.1287/opre.41.3.435}
+Barlas, Y., 1996. Formal aspects of model validity and validation in system dynamics. Syst. Dyn. Rev. J. Syst. Dyn. Soc. 12, 183\textendash{}210.
+Barlas, Y., Carpenter, S., 1990. Philosophical roots of model validation: Two paradigms. Syst. Dyn. Rev. 6, 148\textendash{}166. \sphinxurl{https://doi.org/10.1002/sdr.4260060203}
+Bastos, L.S., O’Hagan, A., 2009. Diagnostics for Gaussian Process Emulators. Technometrics 51, 425\textendash{}438. \sphinxurl{https://doi.org/10.1198/TECH.2009.08019}
+Batouli, M., Mostafavi, A., 2018. Multiagent Simulation for Complex Adaptive Modeling of Road Infrastructure Resilience to Sea\sphinxhyphen{}Level Rise. Comput.\sphinxhyphen{}Aided Civ. Infrastruct. Eng. 33, 393\textendash{}410. \sphinxurl{https://doi.org/10.1111/mice.12348}
+Bayes, T., 1763. An Essay towards Solving a Problem in the Doctrine of Chance. Philos. Trans. R. Soc. Lond. 53, 370\textendash{}418.
+Betancourt, M., 2017. A Conceptual Introduction to Hamiltonian Monte Carlo. ArXiv StatME.
+Beven, K., 2002. Towards a coherent philosophy for modelling the environment. Proc. R. Soc. Lond. Ser. Math. Phys. Eng. Sci. 458, 2465\textendash{}2484. \sphinxurl{https://doi.org/10.1098/rspa.2002.0986}
+Beven, K., 1993. Prophecy, reality and uncertainty in distributed hydrological modelling. Adv. Water Resour., Research Perspectives in Hydrology 16, 41\textendash{}51. \sphinxurl{https://doi.org/10.1016/0309-1708(93)90028-E}
+Beven, K., Binley, A., 1992. The future of distributed models: Model calibration and uncertainty prediction. Hydrol. Process. 6, 279\textendash{}298. \sphinxurl{https://doi.org/10.1002/hyp.3360060305}
+Beven, K., Freer, J., 2001. Equifinality, data assimilation, and uncertainty estimation in mechanistic modelling of complex environmental systems using the GLUE methodology. J Hydrol.
+Beven, K.J., 2018. On hypothesis testing in hydrology: Why falsification of models is still a really good idea. WIREs Water 5, e1278. \sphinxurl{https://doi.org/10.1002/wat2.1278}
+Bobée, B., 1975. The Log Pearson type 3 distribution and its application in hydrology. Water Resour Res 11, 681\textendash{}689. \sphinxurl{https://doi.org/10.1029/WR011i005p00681}
+Bobée, B., Rasmussen, P.F., 1995. Recent advances in flood frequency analysis. Rev Geophys 33, 1111\textendash{}1116. \sphinxurl{https://doi.org/10.1029/95RG00287}
+Borgomeo, E., Farmer, C.L., Hall, J.W., 2015. Numerical rivers: A synthetic streamflow generator for water resources vulnerability assessments. Water Resour. Res. 51, 5382\textendash{}5405. \sphinxurl{https://doi.org/10.1002/2014WR016827}
+Borgonovo, E., 2010. Sensitivity analysis with finite changes: An application to modified EOQ models. Eur. J. Oper. Res. 200, 127\textendash{}138.
+Borgonovo, E., Plischke, E., 2016. Sensitivity analysis: A review of recent advances. Eur. J. Oper. Res. 248, 869\textendash{}887. \sphinxurl{https://doi.org/10.1016/j.ejor.2015.06.032}
+Boukouvalas, A., Sykes, P., Cornford, D., Maruri\sphinxhyphen{}Aguilar, H., 2014. Bayesian Precalibration of a Large Stochastic Microsimulation Model. IEEE Trans Intell Transp Syst 15, 1337\textendash{}1347. \sphinxurl{https://doi.org/10.1109/tits.2014.2304394}
+Box, G.E., Hunter, J.S., 1961. The 2 k—p fractional factorial designs. Technometrics 3, 311\textendash{}351.
+Bryant, B.P., Lempert, R.J., 2010. Thinking inside the box: A participatory, computer\sphinxhyphen{}assisted approach to scenario discovery. Technol. Forecast. Soc. Change 77, 34\textendash{}49. \sphinxurl{https://doi.org/10.1016/j.techfore.2009.08.002}
+Budescu, D.V., Broomell, S.B., Lempert, R.J., Keller, K., 2014. Aided and unaided decisions with imprecise probabilities in the domain of losses. EURO J. Decis. Process. 2, 31\textendash{}62. \sphinxurl{https://doi.org/10.1007/s40070-013-0023-4}
+Bürkner, P.\sphinxhyphen{}C., Gabry, J., Vehtari, A., 2019. Approximate leave\sphinxhyphen{}future\sphinxhyphen{}out cross\sphinxhyphen{}validation for Bayesian time series models. ArXiv StatME.
+Burnham, K.P., Anderson, D.R., 2004. Multimodel Inference: Understanding AIC and BIC in Model Selection. Sociol Methods Res 33, 261\textendash{}304. \sphinxurl{https://doi.org/10.1177/0049124104268644}
+Burnham, K.P., Anderson, D.R., 2001. Kullback\sphinxhyphen{}Leibler information as a basis for strong inference in ecological studies. Wildl Res 28, 111\textendash{}119. \sphinxurl{https://doi.org/10.1071/wr99107}
+Cao, Y., Li, B., 2019. Assessing models for estimation and methods for uncertainty quantification for spatial return levels. Environmetrics 30, e2508.
+Cash, D.W., Clark, W.C., Alcock, F., Dickson, N.M., Eckley, N., Guston, D.H., Jäger, J., Mitchell, R.B., 2003. Knowledge systems for sustainable development. Proc. Natl. Acad. Sci. 100, 8086\textendash{}8091.
+Ciccazzo, A., Pillo, G.D., Latorre, V., 2014. Support vector machines for surrogate modeling of electronic circuits. Neural Comput. Appl. 24, 69\textendash{}76. \sphinxurl{https://doi.org/10.1007/s00521-013-1509-5}
+Coles, S., Bawa, J., Trenner, L., Dorazio, P., 2001. An introduction to statistical modeling of extreme values. Springer.
+Cooke, R.M., 1991. Experts in uncertainty:  Opinion and subjective probability in science, Experts in uncertainty:  Opinion and subjective probability in science. Oxford University Press, New York, NY, US.
+Coronese, M., Lamperti, F., Keller, K., Chiaromonte, F., Roventini, A., 2019. Evidence for sharp increase in the economic damages of extreme natural disasters. Proc Natl Acad Sci U A 201907826. \sphinxurl{https://doi.org/10.1073/pnas.1907826116}
+Cukier, R.I., Fortuin, C.M., Shuler, K.E., Petschek, A.G., Schaibly, J.H., 1973. Study of the sensitivity of coupled reaction systems to uncertainties in rate coefficients. I Theory. J. Chem. Phys. 59, 3873\textendash{}3878. \sphinxurl{https://doi.org/10.1063/1.1680571}
+Currin, C., Mitchell, T., Morris, M., Ylvisaker, D., 1991. Bayesian Prediction of Deterministic Functions, with Applications to the Design and Analysis of Computer Experiments. J Am Stat Assoc 86, 953\textendash{}963. \sphinxurl{https://doi.org/10.1080/01621459.1991.10475138}
+Dalal, I.L., Stefan, D., Harwayne\sphinxhyphen{}Gidansky, J., 2008. Low discrepancy sequences for Monte Carlo simulations on reconfigurable platforms, in: 2008 International Conference on Application\sphinxhyphen{}Specific Systems, Architectures and Processors. Presented at the 2008 International Conference on Application\sphinxhyphen{}Specific Systems, Architectures and Processors, pp. 108\textendash{}113. \sphinxurl{https://doi.org/10.1109/ASAP.2008.4580163}
+DeConto, R.M., Pollard, D., 2016. Contribution of Antarctica to past and future sea\sphinxhyphen{}level rise. Nature 531, 591\textendash{}597. \sphinxurl{https://doi.org/10.1038/nature17145}
+Del Moral, P., Doucet, A., Jasra, A., 2006. Sequential Monte Carlo samplers. J R Stat Soc Ser. B Stat Methodol 68, 411\textendash{}436. \sphinxurl{https://doi.org/10.1111/j.1467-9868.2006.00553.x}
+Demarta, S., McNeil, A.J., 2005. The t copula and related copulas. Int. Stat. Rev. 73, 111\textendash{}129.
+Doucet, A., Freitas, N., Gordon, N., 2001. An Introduction to Sequential Monte Carlo Methods. Seq. Monte Carlo Methods Pract. 3\textendash{}14. \sphinxurl{https://doi.org/10.1007/978-1-4757-3437-9\_1}
+Doucet, A., Godsill, S., Andrieu, C., 2000. On sequential Monte Carlo sampling methods for Bayesian filtering. Stat Comput 10, 197\textendash{}208. \sphinxurl{https://doi.org/10.1023/A:1008935410038}
+Eason, J., Cremaschi, S., 2014. Adaptive sequential sampling for surrogate model generation with artificial neural networks. Comput. Chem. Eng. 68, 220\textendash{}232. \sphinxurl{https://doi.org/10.1016/j.compchemeng.2014.05.021}
+Edwards, N.R., Cameron, D., Rougier, J., 2011. Precalibrating an intermediate complexity climate model. Clim Dyn 37, 1469\textendash{}1482. \sphinxurl{https://doi.org/10.1007/s00382-010-0921-0}
+Eker, S., Rovenskaya, E., Obersteiner, M., Langan, S., 2018. Practice and perspectives in the validation of resource management models. Nat. Commun. 9, 1\textendash{}10. \sphinxurl{https://doi.org/10.1038/s41467-018-07811-9}
+El Adlouni, S., Bobée, B., Ouarda, T.B.M.J., 2008. On the tails of extreme event distributions in hydrology. J Hydrol 355, 16\textendash{}33. \sphinxurl{https://doi.org/10.1016/j.jhydrol.2008.02.011}
+Ellsberg, D., 1961. Risk, Ambiguity, and the Savage Axioms. Q J Econ 75, 643\textendash{}669. \sphinxurl{https://doi.org/10.2307/1884324}
+Elsawah, S., Filatova, T., Jakeman, A.J., Kettner, A.J., Zellner, M.L., Athanasiadis, I.N., Hamilton, S.H., Axtell, R.L., Brown, D.G., Gilligan, J.M., Janssen, M.A., Robinson, D.T., Rozenberg, J., Ullah, I.I.T., Lade, S.J., 2020. Eight grand challenges in socio\sphinxhyphen{}environmental systems modeling. Socio\sphinxhyphen{}Environ. Syst. Model. 2, 16226\textendash{}16226. \sphinxurl{https://doi.org/10.18174/sesmo.2020a16226}
+Evensen, G., 1994. Sequential data assimilation with a nonlinear quasi\sphinxhyphen{}geostrophic model using Monte Carlo methods to forecast error statistics. J. Geophys. Res. Oceans 99, 10143\textendash{}10162. \sphinxurl{https://doi.org/10.1029/94JC00572}
+Ferdous, M.R., Wesselink, A., Brandimarte, L., Di Baldassarre, G., Rahman, M.M., 2019. The levee effect along the Jamuna River in Bangladesh. Water Int 44, 496\textendash{}519. \sphinxurl{https://doi.org/10.1080/02508060.2019.1619048}
+Field, C.B., Barros, V.R., Dokken, D.J., Mach, K.J., Mastrandrea, M.D., Bilir, T.E., Chatterjee, M., Ebi, K.L., Estrada, Y.O., Genova, R.C., Girma, B., Kissel, E.S., Levy, A.N., MacCracken, S., Mastrandrea, P.R., White, L.L., 2014. Summary for Policymakers, in: Climate Change 2014: Impacts, Adaptation, and Vulnerability. Part A: Global and Sectoral Aspects. Contribution of Working Group II to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change. Cambridge University Press, Cambridge, United Kingdom, and New York, NY, USA, pp. 1\textendash{}32.
+Fisher, R.A., 1960. The design of experiments. Oliver and Boyd, Edinburgh, Scotland, UK.
+Flegal, J.M., Haran, M., Jones, G.L., 2008. Markov Chain Monte Carlo: Can We Trust the Third Significant Figure? Stat Sci 23, 250\textendash{}260. \sphinxurl{https://doi.org/10.1214/08-STS257}
+Frankignoul, C., Hasselmann, K., 1977. Stochastic climate models, Part II Application to sea\sphinxhyphen{}surface temperature anomalies and thermocline variability. Tell’Us 29, 289\textendash{}305. \sphinxurl{https://doi.org/10.3402/tellusa.v29i4.11362}
+Fuller, R.W., Wong, T.E., Keller, K., 2017. Probabilistic inversion of expert assessments to inform projections about Antarctic ice sheet responses. PLoS One 12, e0190115. \sphinxurl{https://doi.org/10.1371/journal.pone.0190115}
+Gao, L., Bryan, B.A., Nolan, M., Connor, J.D., Song, X., Zhao, G., 2016. Robust global sensitivity analysis under deep uncertainty via scenario analysis. Environ. Model. Softw. 76, 154\textendash{}166. \sphinxurl{https://doi.org/10.1016/j.envsoft.2015.11.001}
+Gelfand, A.E., Hills, S.E., Racine\sphinxhyphen{}Poon, A., Adrian F. M. Smith, 1990. Illustration of Bayesian Inference in Normal Data Models Using Gibbs Sampling. J Am Stat Assoc 85, 972\textendash{}985. \sphinxurl{https://doi.org/10.2307/2289594}
+Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., Rubin, D.B., 2013. Bayesian Data Analysis, Third. ed. CRC Press.
+Gelman, A., Hwang, J., Vehtari, A., 2014. Understanding predictive information criteria for Bayesian models. Stat Comput 24, 997\textendash{}1016. \sphinxurl{https://doi.org/10.1007/s11222-013-9416-2}
+Gelman, A., Meng, X.\sphinxhyphen{}L., Stern, H., 1996. Posterior predictive assessment of model fitness via realized discrepancies. Stat Sin 6, 733\textendash{}760.
+Gelman, A., Rubin, D.B., 1992. Inference from Iterative Simulation Using Multiple Simulations. Stat Sci 7, 457\textendash{}511. \sphinxurl{https://doi.org/10.1214/ss/1177011136}
+Gelman, A., Shalizi, C.R., 2013. Philosophy and the practice of Bayesian statistics. Br J Math Stat Psychol 66, 8\textendash{}38. \sphinxurl{https://doi.org/10.1111/j.2044-8317.2011.02037.x}
+Gelman, A., Simpson, D., Betancourt, M., 2017. The Prior Can Often Only Be Understood in the Context of the Likelihood. Entropy 19, 555. \sphinxurl{https://doi.org/10.3390/e19100555}
+Geman, S., Geman, D., 1984. Stochastic relaxation, Gibbs distributions, and the Bayesian restoration of images. IEEE Trans Pattern Anal Mach Intell 6, 721\textendash{}741. \sphinxurl{https://doi.org/10.1109/tpami.1984.4767596}
+Geyer, C.J., 2011. Introduction to Markov Chain Monte Carlo, in: Brooks, S., Gelman, A., Jones, G.L., Meng, X.\sphinxhyphen{}L. (Eds.), Handbook of Markov Chain Monte Carlo. Chapman \& Hall/CRC, Boca Raton, FL, pp. 3\textendash{}48.
+Geyer, C.J., Johnson, L.T., 2013. mcmc: Markov Chain Monte Carlo. R Package Version 0 9\sphinxhyphen{}2 URL HttpCRAN R\sphinxhyphen{}Proj. Orgpackage Mcmc.
+Ghanem, R.G., Spanos, P.D., 1991. Spectral stochastic finite\sphinxhyphen{}element formulation for reliability analysis. J Eng Mech 117, 2351\textendash{}2372.
+Goodman, J., Weare, J., 2010. Ensemble samplers with affine invariance. Commun. Appl. Math. Comput. Sci. 5, 65\textendash{}80. \sphinxurl{https://doi.org/10.2140/camcos.2010.5.65}
+Gordon, N.J., Salmond, D.J., Smith, A.F.M., 1993. Novel approach to nonlinear/non\sphinxhyphen{}Gaussian Bayesian state estimation. IEE Proc. F Radar Signal Process. 140, 107\textendash{}113. \sphinxurl{https://doi.org/10.1049/ip-f-2.1993.0015}
+Gorissen, D., De Tommasi, L., Crombecq, K., Dhaene, T., 2009. Sequential modeling of a low noise amplifier with neural networks and active learning. Neural Comput. Appl. 18, 485\textendash{}494. \sphinxurl{https://doi.org/10.1007/s00521-008-0223-1}
+Gupta, H.V., Clark, M.P., Vrugt, J.A., Abramowitz, G., Ye, M., 2012. Towards a comprehensive assessment of model structural adequacy. Water Resour. Res. 48. \sphinxurl{https://doi.org/10.1029/2011WR011044}
+Gupta, H.V., Sorooshian, S., Yapo, P.O., 1998. Toward improved calibration of hydrologic models: Multiple and noncommensurable measures of information. Water Resour. Res. 34, 751\textendash{}763. \sphinxurl{https://doi.org/10.1029/97WR03495}
+Gupta, H.V., Wagener, T., Liu, Y., 2008. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. Hydrol. Process. Int. J. 22, 3802\textendash{}3813.
+Hadjimichael, A., Quinn, J., Reed, P., 2020. Advancing Diagnostic Model Evaluation to Better Understand Water Shortage Mechanisms in Institutionally Complex River Basins. Water Resour. Res. 56, e2020WR028079. \sphinxurl{https://doi.org/10.1029/2020WR028079}
+Haer, T., Husby, T.G., Botzen, W.J.W., Aerts, J.C.J.H., 2020. The safe development paradox: An agent\sphinxhyphen{}based model for flood risk under climate change in the European Union. Glob Env. Change 60, 102009. \sphinxurl{https://doi.org/10.1016/j.gloenvcha.2019.102009}
+Haimes, Y.Y., 2018. Risk Modeling of Interdependent Complex Systems of Systems: Theory and Practice. Risk Anal. 38, 84\textendash{}98. \sphinxurl{https://doi.org/10.1111/risa.12804}
+Hall, J.W., Lempert, R.J., Keller, K., Hackbarth, A., Mijere, C., McInerney, D.J., 2012. Robust climate policies under uncertainty: A comparison of robust decision making and info\sphinxhyphen{}gap methods. Risk Anal. 32, 1657\textendash{}1672. \sphinxurl{https://doi.org/10.1111/j.1539-6924.2012.01802.x}
+Hamm, N.A.S., Hall, J.W., Anderson, M.G., 2006. Variance\sphinxhyphen{}based sensitivity analysis of the probability of hydrologically induced slope instability. Comput. Geosci. 32, 803\textendash{}817. \sphinxurl{https://doi.org/10.1016/j.cageo.2005.10.007}
+Han, Y., Ash, K., Mao, L., Peng, Z.\sphinxhyphen{}R., 2020. An agent\sphinxhyphen{}based model for community flood adaptation under uncertain sea\sphinxhyphen{}level rise. Clim Change. \sphinxurl{https://doi.org/10.1007/s10584-020-02802-6}
+Hastings, W.K., 1970. Monte Carlo Sampling Methods Using Markov Chains and Their Applications. Biometrika 57, 97\textendash{}109. \sphinxurl{https://doi.org/10.2307/2334940}
+Helbing, D., 2013. Globally networked risks and how to respond. Nature 497, 51\textendash{}59. \sphinxurl{https://doi.org/10.1038/nature12047}
+Helton, J.C., Johnson, J.D., Sallaberry, C.J., Storlie, C.B., 2006. Survey of sampling\sphinxhyphen{}based methods for uncertainty and sensitivity analysis. Reliab. Eng. Syst. Saf., The Fourth International Conference on Sensitivity Analysis of Model Output (SAMO 2004) 91, 1175\textendash{}1209. \sphinxurl{https://doi.org/10.1016/j.ress.2005.11.017}
+Herman, J.D., Reed, P.M., Wagener, T., 2013. Time\sphinxhyphen{}varying sensitivity analysis clarifies the effects of watershed model formulation on model behavior. Water Resour. Res. 49, 1400\textendash{}1414. \sphinxurl{https://doi.org/10.1002/wrcr.20124}
+Herman, J.D., Zeff, H.B., Lamontagne, J.R., Reed, P.M., Characklis, G.W., 2016. Synthetic Drought Scenario Generation to Support Bottom\sphinxhyphen{}Up Water Supply Vulnerability Assessments. J. Water Resour. Plan. Manag. 142, 04016050. \sphinxurl{https://doi.org/10.1061/(ASCE)WR.1943-5452.0000701}
+Herrera, M., Natarajan, S., Coley, D.A., Kershaw, T., Ramallo\sphinxhyphen{}González, A.P., Eames, M., Fosas, D., Wood, M., 2017. A review of current and future weather data for building simulation. Build. Serv. Eng. Res. Technol. 38, 602\textendash{}627. \sphinxurl{https://doi.org/10.1177/0143624417705937}
+Hoffman, M.D., Gelman, A., 2014. The No\sphinxhyphen{}U\sphinxhyphen{}Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo. J Mach Learn Res 15, 1593\textendash{}1623.
+Houtekamer, P.L., Mitchell, H.L., 1998. Data Assimilation Using an Ensemble Kalman Filter Technique. Mon. Weather Rev. 126, 796\textendash{}811. \sphinxurl{https://doi.org/10.1175/1520-0493(1998})126\textless{}0796:DAUAEK\textgreater{}2.0.CO;2
+Hu, L., Keller, C.A., Long, M.S., Sherwen, T., Auer, B., Da Silva, A., Nielsen, J.E., Pawson, S., Thompson, M.A., Trayanov, A.L., Travis, K.R., Grange, S.K., Evans, M.J., Jacob, D.J., 2018. Global simulation of tropospheric chemistry at 12.5 km resolution: performance and evaluation of the GEOS\sphinxhyphen{}Chem chemical module (v10\sphinxhyphen{}1) within the NASA GEOS Earth system model (GEOS\sphinxhyphen{}5 ESM). Geosci Model Dev 11, 4603\textendash{}4620. \sphinxurl{https://doi.org/10.5194/gmd-11-4603-2018}
+Hu, Y.\sphinxhyphen{}M., Hendry, M., Heng, I.S., 2014. Efficient Exploration of Multi\sphinxhyphen{}Modal Posterior Distributions. ArXiv Astro\sphinxhyphen{}PhIM.
+Hurrell, J.W., Holland, M.M., Gent, P.R., Ghan, S., Kay, J.E., Kushner, P.J., Lamarque, J.\sphinxhyphen{}F., Large, W.G., Lawrence, D., Lindsay, K., Lipscomb, W.H., Long, M.C., Mahowald, N., Marsh, D.R., Neale, R.B., Rasch, P., Vavrus, S., Vertenstein, M., Bader, D., Collins, W.D., Hack, J.J., Kiehl, J., Marshall, S., 2013. The Community Earth System Model: A Framework for Collaborative Research. Bull Am Meteorol Soc 94, 1339\textendash{}1360. \sphinxurl{https://doi.org/10.1175/BAMS-D-12-00121.1}
+Hurvich, C.M., Tsai, C.\sphinxhyphen{}L., 1989. Regression and time series model selection in small samples. Biometrika 76, 297\textendash{}307.
+Iooss, B., Boussouf, L., Feuillard, V., Marrel, A., 2010. Numerical studies of the metamodel fitting and validation processes. Int. J. Adv. Syst. Meas. 3, 11\textendash{}21.
+Jaynes, E.T., 2003. Probability Theory: The Logic of Science. Cambridge University Press.
+Jin, R., Chen, W., Sudjianto, A., 2008. An Efficient Algorithm for Constructing Optimal Design of Computer Experiments. Presented at the ASME 2003 International Design Engineering Technical Conferences and Computers and Information in Engineering Conference, American Society of Mechanical Engineers Digital Collection, pp. 545\textendash{}554. \sphinxurl{https://doi.org/10.1115/DETC2003/DAC-48760}
+Johnson, D.R., Fischbach, J.R., Ortiz, D.S., 2013. Estimating Surge\sphinxhyphen{}Based Flood Risk with the Coastal Louisiana Risk Assessment Model. J Coast Res 109\textendash{}126. \sphinxurl{https://doi.org/10.2112/si\_67\_8}
+Kandlikar, M., Risbey, J., Dessai, S., 2005. Representing and communicating deep uncertainty in climate\sphinxhyphen{}change assessments. C R Geosci 337, 443\textendash{}455.
+Kasmalkar, I.G., Serafin, K.A., Miao, Y., Bick, I.A., Ortolano, L., Ouyang, D., Suckale, J., 2020. When floods hit the road: Resilience to flood\sphinxhyphen{}related traffic disruption in the San Francisco Bay Area and beyond. Sci Adv 6, eaba2423. \sphinxurl{https://doi.org/10.1126/sciadv.aba2423}
+Kass, R.E., Raftery, A.E., 1995. Bayes Factors. J Am Stat Assoc 90, 773\textendash{}795. \sphinxurl{https://doi.org/10.1080/01621459.1995.10476572}
+Keller, K., McInerney, D., 2008. The dynamics of learning about a climate threshold. Clim Dyn 30, 321\textendash{}332. \sphinxurl{https://doi.org/10.1007/s00382-007-0290-5}
+Kennedy, M.C., O’Hagan, A., 2001. Bayesian calibration of computer models. J R Stat Soc Ser. B Stat Methodol 63, 425\textendash{}464. \sphinxurl{https://doi.org/10.1111/1467-9868.00294}
+Kirsch, B.R., Characklis, G.W., Zeff, H.B., 2013. Evaluating the Impact of Alternative Hydro\sphinxhyphen{}Climate Scenarios on Transfer Agreements: Practical Improvement for Generating Synthetic Streamflows. J. Water Resour. Plan. Manag. 139, 396\textendash{}406. \sphinxurl{https://doi.org/10.1061/(ASCE)WR.1943-5452.0000287}
+Kleindorfer, G.B., O’Neill, L., Ganeshan, R., 1998. Validation in simulation: Various positions in the philosophy of science. Manag. Sci. 44, 1087\textendash{}1099.
+Koutsoyiannis, D., 2004. Statistics of extremes and estimation of extreme rainfall: I. Theoretical investigation/Statistiques de valeurs extrêmes et estimation de précipitations extrêmes: I. Recherche théorique. Hydrol. Sci. J. 49.
+Kraan, B.C., Cooke, R.M., 2000. Uncertainty in compartmental models for hazardous materials \sphinxhyphen{} a case study. J Hazard Mater 71, 253\textendash{}268. \sphinxurl{https://doi.org/10.1016/S0304-3894(99)00082-5}
+Kucherenko, S., Albrecht, D., Saltelli, A., 2015. Exploring multi\sphinxhyphen{}dimensional spaces: a Comparison of Latin Hypercube and Quasi Monte Carlo Sampling Techniques. ArXiv150502350 Stat.
+Kullback, S., Leibler, R.A., 1951. On Information and Sufficiency. Ann Math Stat 22, 79\textendash{}86. \sphinxurl{https://doi.org/10.1214/aoms/1177729694}
+Kumar, P., 2011. Typology of hydrologic predictability. Water Resour. Res. 47. \sphinxurl{https://doi.org/10.1029/2010WR009769}
+Kwakkel, J.H., Walker, W.E., Haasnoot, M., 2016. Coping with the Wickedness of Public Policy Problems: Approaches for Decision Making under Deep Uncertainty. J. Water Resour. Plan. Manag. 142, 01816001. \sphinxurl{https://doi.org/10.1061/(ASCE)WR.1943-5452.0000626}
+Lamontagne, J.R., Reed, P.M., Link, R., Calvin, K.V., Clarke, L.E., Edmonds, J.A., 2018. Large Ensemble Analytic Framework for Consequence\sphinxhyphen{}Driven Discovery of Climate Change Scenarios. Earths Future 6, 488\textendash{}504. \sphinxurl{https://doi.org/10.1002/2017EF000701}
+Lamontagne, J.R., Stedinger, J.R., 2018. Generating Synthetic Streamflow Forecasts with Specified Precision. J. Water Resour. Plan. Manag. 144, 04018007. \sphinxurl{https://doi.org/10.1061/(ASCE)WR.1943-5452.0000915}
+Landeg, O., Whitman, G., Walker\sphinxhyphen{}Springett, K., Butler, C., Bone, A., Kovats, S., 2019. Coastal flooding and frontline health care services: challenges for flood risk resilience in the English health care system. J Health Serv Res Policy 24, 219\textendash{}228. \sphinxurl{https://doi.org/10.1177/1355819619840672}
+Lee, B.S., Haran, M., Fuller, R., Pollard, D., Keller, K., 2020. A Fast Particle\sphinxhyphen{}Based Approach for Calibrating a 3\sphinxhyphen{}D Model of the Antarctic Ice Sheet. Ann. Appl. Stat. in the press.
+Lee, B.S., Haran, M., Keller, K., 2017. Multidecadal Scale Detection Time for Potentially Increasing Atlantic Storm Surges in a Warming Climate. Geophys Res Lett 44, 10,617\sphinxhyphen{}10,623. \sphinxurl{https://doi.org/10.1002/2017GL074606}
+Lempert, R.J., 2002. A new decision sciences for complex systems. Proc. Natl. Acad. Sci. 99, 7309\textendash{}7313. \sphinxurl{https://doi.org/10.1073/pnas.082081699}
+Liu, J., West, M., 2001. Combined Parameter and State Estimation in Simulation\sphinxhyphen{}Based Filtering, in: Doucet, A., de Freitas, N., Gordon, N. (Eds.), Sequential Monte Carlo Methods in Practice. Springer New York, New York, NY, pp. 197\textendash{}223. \sphinxurl{https://doi.org/10.1007/978-1-4757-3437-9\_10}
+Liu, X., Guillas, S., 2017. Dimension Reduction for Gaussian Process Emulation: An Application to the Influence of Bathymetry on Tsunami Heights. SIAMASA J Uncertain. Quantif. 5, 787\textendash{}812. \sphinxurl{https://doi.org/10.1137/16M1090648}
+Lorenz, E.N., 1963. Deterministic Nonperiodic Flow. J Atmos Sci 20, 130\textendash{}141. \sphinxurl{https://doi.org/10.1175/1520-0469(1963})020\textless{}0130:DNF\textgreater{}2.0.CO;2
+Loucks, D.P., Beek, E. van, 2017. Water Resource Systems Planning and Management: An Introduction to Methods, Models, and Applications. Springer International Publishing.
+Lukacs, P.M., Burnham, K.P., Anderson, D.R., 2010. Model selection bias and Freedman’s paradox. Ann Inst Stat Math 62, 117\textendash{}125. \sphinxurl{https://doi.org/10.1007/s10463-009-0234-4}
+Makowski, D., Wallach, D., Tremblay, M., 2002. Using a Bayesian approach to parameter estimation; comparison of the GLUE and MCMC methods. Agronomie 22, 191\textendash{}203.
+Maniyar, D.M., Cornford, D., Boukouvalas, A., 2007. Dimensionality Reduction in the Emulator Setting (No. NCRG/2007/005). Neural Computing Research Group.
+Marchau, V.A.W.J., Walker, W.E., Bloemen, P.J.T.M., Popper, S.W. (Eds.), 2019. Decision Making under Deep Uncertainty: From Theory to Practice. Springer International Publishing. \sphinxurl{https://doi.org/10.1007/978-3-030-05252-2}
+Martin, A.D., 2010. MCMCpack: Markov chain Monte Carlo (MCMC) Package. R package version 1.0\sphinxhyphen{}7. HttpCRAN R\sphinxhyphen{}Proj. Orgpackage MCMCpack.
+Massmann, C., Wagener, T., Holzmann, H., 2014. A new approach to visualizing time\sphinxhyphen{}varying sensitivity indices for environmental model diagnostics across evaluation time\sphinxhyphen{}scales. Environ. Model. Softw. 51, 190\textendash{}194. \sphinxurl{https://doi.org/10.1016/j.envsoft.2013.09.033}
+Matthews, P., 1993. A slowly mixing Markov chain with implications for Gibbs sampling. Stat Probab Lett 17, 231\textendash{}236. \sphinxurl{https://doi.org/10.1016/0167-7152(93)90172-F}
+McInerney, D., Keller, K., 2008. Economically optimal risk reduction strategies in the face of uncertain climate thresholds. Clim Change 91, 29\textendash{}41. \sphinxurl{https://doi.org/10.1007/s10584-006-9137-z}
+McKay, M.D., Beckman, R.J., Conover, W.J., 1979. A Comparison of Three Methods for Selecting Values of Input Variables in the Analysis of Output from a Computer Code. Technometrics 21, 239\textendash{}245. \sphinxurl{https://doi.org/10.2307/1268522}
+Medda, S., Bhar, K.K., 2019. Comparison of single\sphinxhyphen{}site and multi\sphinxhyphen{}site stochastic models for streamflow generation. Appl. Water Sci. 9, 67.
+Metropolis, N., Rosenbluth, A.W., Rosenbluth, M.N., Teller, A.H., Teller, E., 1953. Equation of State Calculations by Fast Computing Machines. J Chem Phys 21, 1087\textendash{}1092. \sphinxurl{https://doi.org/10.1063/1.1699114}
+Metropolis, N., Ulam, S., 1949. The Monte Carlo Method. J. Am. Stat. Assoc. 44, 335\textendash{}341. \sphinxurl{https://doi.org/10.1080/01621459.1949.10483310}
+Milly, P.C.D., Betancourt, J., Falkenmark, M., Hirsch, R.M., Kundzewicz, Z.W., Lettenmaier, D.P., Stouffer, R.J., 2008. Stationarity is dead: Whither water management? Science 319, 573\textendash{}574. \sphinxurl{https://doi.org/10.1126/science.1151915}
+Moallemi, E.A., Kwakkel, J., de Haan, F.J., Bryan, B.A., 2020a. Exploratory modeling for analyzing coupled human\sphinxhyphen{}natural systems under uncertainty. Glob. Environ. Change 65, 102186. \sphinxurl{https://doi.org/10.1016/j.gloenvcha.2020.102186}
+Moallemi, E.A., Zare, F., Reed, P.M., Elsawah, S., Ryan, M.J., Bryan, B.A., 2020b. Structuring and evaluating decision support processes to enhance the robustness of complex human\textendash{}natural systems. Environ. Model. Softw. 123, 104551. \sphinxurl{https://doi.org/10.1016/j.envsoft.2019.104551}
+Montgomery, D.C., 2017. Design and analysis of experiments. John Wiley \& Sons.
+Morgan, M.G., Keith, D.W., 2008. Improving the way we think about projecting future energy use and emissions of carbon dioxide. Clim Change 90, 189\textendash{}215. \sphinxurl{https://doi.org/10.1007/s10584-008-9458-1}
+Morris, M.D., 1991. Factorial Sampling Plans for Preliminary Computational Experiments. Technometrics 33, 161\textendash{}174. \sphinxurl{https://doi.org/10.1080/00401706.1991.10484804}
+Morris, M.D., Mitchell, T.J., 1995. Exploratory designs for computational experiments. J. Stat. Plan. Inference 43, 381\textendash{}402. \sphinxurl{https://doi.org/10.1016/0378-3758(94)00035-T}
+National Research Council, 2014. Convergence: facilitating transdisciplinary integration of life sciences, physical sciences, engineering, and beyond. National Academies Press, Washington, D.C., USA.
+Naylor, T.H., Finger, J.M., 1967. Verification of computer simulation models. Manag. Sci. 14, B\sphinxhyphen{}92.
+Neal, R.M., 2011. MCMC Using Hamiltonian Dynamics, in: Brooks, S., Gelman, A., Jones, G.L., Meng, X.\sphinxhyphen{}L. (Eds.), Handbook of Markov Chain Monte Carlo, Handbooks of Modern Statistical Methods. CRC Press, Boca Raton, FL, pp. 113\textendash{}162.
+Nearing, G.S., Ruddell, B.L., Bennett, A.R., Prieto, C., Gupta, H.V., 2020. Does Information Theory Provide a New Paradigm for Earth Science? Hypothesis Testing. Water Resour. Res. 56, e2019WR024918. \sphinxurl{https://doi.org/10.1029/2019WR024918}
+Nelder, J.A., Wedderburn, R.W.M., 1972. Generalized Linear Models. J R Stat Soc Ser A 135, 370\textendash{}384. \sphinxurl{https://doi.org/10.2307/2344614}
+Norton, J., 2015. An introduction to sensitivity assessment of simulation models. Environ. Model. Softw. 69, 166\textendash{}174. \sphinxurl{https://doi.org/10.1016/j.envsoft.2015.03.020}
+Oddo, P.C., Lee, B.S., Garner, G.G., Srikrishnan, V., Reed, P.M., Forest, C.E., Keller, K., 2017. Deep Uncertainties in Sea\sphinxhyphen{}Level Rise and Storm Surge Projections: Implications for Coastal Flood Risk Management. Risk Anal. \sphinxurl{https://doi.org/10.1111/risa.12888}
+O’Neill, B.C., Crutzen, P., Grübler, A., Duong, M.H., Keller, K., Kolstad, C., Koomey, J., Lange, A., Obersteiner, M., Oppenheimer, M., Pepper, W., Sanderson, W., Schlesinger, M., Treich, N., Ulph, A., Webster, M., Wilson, C., 2006. Learning and climate change. Clim Policy 6, 585\textendash{}589. \sphinxurl{https://doi.org/10.1080/14693062.2006.9685623}
+Oppenheimer, M., O’Neill, B.C., Webster, M., 2008. Negative learning. Clim Change 89, 155\textendash{}172. \sphinxurl{https://doi.org/10.1007/s10584-008-9405-1}
+Oreskes, N., Shrader\sphinxhyphen{}Frechette, K., Belitz, K., 1994. Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences. Science 263, 641\textendash{}646. \sphinxurl{https://doi.org/10.1126/science.263.5147.641}
+Park, J.\sphinxhyphen{}S., 1994. Optimal Latin\sphinxhyphen{}hypercube designs for computer experiments. J. Stat. Plan. Inference 39, 95\textendash{}111. \sphinxurl{https://doi.org/10.1016/0378-3758(94)90115-5}
+Pianosi, F., Beven, K., Freer, J., Hall, J.W., Rougier, J., Stephenson, D.B., Wagener, T., 2016. Sensitivity analysis of environmental models: A systematic review with practical workflow. Environ. Model. Softw. 79, 214\textendash{}232. \sphinxurl{https://doi.org/10.1016/j.envsoft.2016.02.008}
+Pollard, D., DeConto, R.M., 2012. Description of a hybrid ice sheet\sphinxhyphen{}shelf model, and application to Antarctica. Geosci. Model Dev. 5, 1273\textendash{}1295. \sphinxurl{https://doi.org/10.5194/gmd-5-1273-2012}
+Pruett, W.A., Hester, R.L., 2016. The Creation of Surrogate Models for Fast Estimation of Complex Model Outcomes. PLOS ONE 11, e0156574. \sphinxurl{https://doi.org/10.1371/journal.pone.0156574}
+Ragulina, G., Reitan, T., 2017. Generalized extreme value shape parameter and its nature for extreme precipitation using long time series and the Bayesian approach. Hydrol. Sci. J. 62, 863\textendash{}879.
+Rakovec, O., Hill, M.C., Clark, M.P., Weerts, A.H., Teuling, A.J., Uijlenhoet, R., 2014. Distributed Evaluation of Local Sensitivity Analysis (DELSA), with application to hydrologic models. Water Resour. Res. 50, 409\textendash{}426. \sphinxurl{https://doi.org/10.1002/2013WR014063}
+Rasmussen, D.J., Buchanan, M.K., Kopp, R.E., Oppenheimer, M., 2020. A flood damage allowance framework for coastal protection with deep uncertainty in sea‐level rise. Earths Future. \sphinxurl{https://doi.org/10.1029/2019EF001340}
+Robert, C.P., 2007. The Bayesian choice: from decision\sphinxhyphen{}theoretic foundations to computational implementation, 2nd ed. Springer, New York.
+Rohmer, J., Le Cozannet, G., Manceau, J.\sphinxhyphen{}C., 2019. Addressing ambiguity in probabilistic assessments of future coastal flooding using possibility distributions. Clim Change. \sphinxurl{https://doi.org/10.1007/s10584-019-02443-4}
+Ruckert, K.L., Shaffer, G., Pollard, D., Guan, Y., Wong, T.E., Forest, C.E., Keller, K., 2017. Assessing the Impact of Retreat Mechanisms in a Simple Antarctic Ice Sheet Model Using Bayesian Calibration. PLoS One 12, e0170052. \sphinxurl{https://doi.org/10.1371/journal.pone.0170052}
+Ruckert, K.L., Srikrishnan, V., Keller, K., 2019. Characterizing the deep uncertainties surrounding coastal flood hazard projections: A case study for Norfolk, VA. Sci Rep 9, 11373. \sphinxurl{https://doi.org/10.1038/s41598-019-47587-6}
+Sacks, J., Welch, W.J., Mitchell, T.J., Wynn, H.P., 1989. Design and Analysis of Computer Experiments. Stat Sci 4, 409\textendash{}423.
+Saltelli, A., 2002. Making best use of model evaluations to compute sensitivity indices. Comput. Phys. Commun. 145, 280\textendash{}297.
+Saltelli, A., Aleksankina, K., Becker, W., Fennell, P., Ferretti, F., Holst, N., Li, S., Wu, Q., 2019. Why so many published sensitivity analyses are false: A systematic review of sensitivity analysis practices. Environ. Model. Softw. 114, 29\textendash{}39. \sphinxurl{https://doi.org/10.1016/j.envsoft.2019.01.012}
+Saltelli, A., Annoni, P., 2010. How to avoid a perfunctory sensitivity analysis. Environ. Model. Softw. 25, 1508\textendash{}1517. \sphinxurl{https://doi.org/10.1016/j.envsoft.2010.04.012}
+Saltelli, A., Funtowicz, S., 2014. When all models are wrong. Issues Sci. Technol. 30, 79\textendash{}85.
+Saltelli, A., Ratto, M., Andres, T., Campolongo, F., Cariboni, J., Gatelli, D., Saisana, M., Tarantola, S., 2008. Global Sensitivity Analysis: The Primer, 1 edition. ed. Wiley\sphinxhyphen{}Interscience, Chichester, England; Hoboken, NJ.
+Saltelli, A., Stark, P.B., Becker, W., Stano, P., 2015. Climate models as economic guides scientific challenge or quixotic quest? Issues Sci. Technol. 31, 79\textendash{}84.
+Saltelli, A., Tarantola, S., 2002. On the relative importance of input factors in mathematical models: safety assessment for nuclear waste disposal. J. Am. Stat. Assoc. 97, 702\textendash{}709.
+Saltelli, A., Tarantola, S., Campolongo, F., Ratto, M., 2004. Sensitivity Analysis in Practice: A Guide to Assessing Scientific Models. John Wiley \& Sons.
+Saltelli, A., Tarantola, S., Chan, K.P.\sphinxhyphen{}S., 1999. A Quantitative Model\sphinxhyphen{}Independent Method for Global Sensitivity Analysis of Model Output. Technometrics 41, 39\textendash{}56. \sphinxurl{https://doi.org/10.1080/00401706.1999.10485594}
+Schlather, M., 2002. Models for stationary max\sphinxhyphen{}stable random fields. Extremes 5, 33\textendash{}44.
+Schwarz, G., 1978. Estimating the Dimension of a Model. Ann Stat 6, 461\textendash{}464. \sphinxurl{https://doi.org/10.1214/aos/1176344136}
+Shafii, M., Tolson, B., Matott, L.S., 2014. Uncertainty\sphinxhyphen{}based multi\sphinxhyphen{}criteria calibration of rainfall\sphinxhyphen{}runoff models: a comparative study. Stoch Env. Res Risk Assess 28, 1493\textendash{}1510. \sphinxurl{https://doi.org/10.1007/s00477-014-0855-x}
+Shibata, R., 1989. Statistical Aspects of Model Selection, in: Willems, J.C. (Ed.), From Data to Model. Springer Berlin Heidelberg, Berlin, Heidelberg, pp. 215\textendash{}240. \sphinxurl{https://doi.org/10.1007/978-3-642-75007-6\_5}
+Sibley Heather M., Vroman Noah D., Shewbridge Scott E., 2017. Quantitative Risk\sphinxhyphen{}Informed Design of Levees. Geo\sphinxhyphen{}Risk 2017 76\textendash{}90. \sphinxurl{https://doi.org/10.1061/9780784480717.008}
+Sminchisescu, C., Welling, M., Hinton, G., 2003. A mode\sphinxhyphen{}hopping MCMC sampler. Technical Report CSRG\sphinxhyphen{}478, University of Toronto, submitted to Machine ….
+Sobol, I.M., 2001. Global sensitivity indices for nonlinear mathematical models and their Monte Carlo estimates. Math. Comput. Simul. 55, 271\textendash{}280. \sphinxurl{https://doi.org/10.1016/S0378-4754(00)00270-6}
+Sobol, I.M., 1976. Uniformly distributed sequences with an additional uniform property. USSR Comput. Math. Math. Phys. 16, 236\textendash{}242.
+Sobol’, I.M., 1967. On the distribution of points in a cube and the approximate evaluation of integrals. USSR Comput. Math. Math. Phys. 7, 86\textendash{}112. \sphinxurl{https://doi.org/10.1016/0041-5553(67)90144-9}
+Spear, R.C., Hornberger, G.M., 1980. Eutrophication in peel inlet—II. Identification of critical uncertainties via generalized sensitivity analysis. Water Res. 14, 43\textendash{}49. \sphinxurl{https://doi.org/10.1016/0043-1354(80)90040-8}
+Spiegelhalter, D.J., Best, N.G., Carlin, B.P., Van Der Linde, A., 2002. Bayesian measures of model complexity and fit. J R Stat Soc Ser. B Stat Methodol 64, 583\textendash{}639. \sphinxurl{https://doi.org/10.1111/1467-9868.00353}
+Srikrishnan, V, Alley, R.B., Keller, K., 2019. Investing in Science and Using the Results to Improve Climate Risk Management. EOS.
+Srikrishnan, Vivek, Guan, Y., Tol, R.S.J., Keller, K., 2019. Fossil fuel resources, decarbonization, and economic growth drive the feasibility of Paris climate targets. ArXiv StatAP.
+Sriver, R.L., Lempert, R.J., Wikman\sphinxhyphen{}Svahn, P., Keller, K., 2018. Characterizing uncertain sea\sphinxhyphen{}level rise projections to support investment decisions. PLoS One 13, e0190641. \sphinxurl{https://doi.org/10.1371/journal.pone.0190641}
+Stedinger, J.R., Vogel, R.M., Lee, S.U., Batchelder, R., 2008. Appraisal of the generalized likelihood uncertainty estimation (GLUE) method: APPRAISAL OF THE GLUE METHOD. Water Resour Res 44, 191. \sphinxurl{https://doi.org/10.1029/2008WR006822}
+Steinschneider, S., Wi, S., Brown, C., 2015. The integrated effects of climate and hydrologic uncertainty on future flood risk assessments. Hydrol. Process. 29, 2823\textendash{}2839. \sphinxurl{https://doi.org/10.1002/hyp.10409}
+Stone, M., 1977. An Asymptotic Equivalence of Choice of Model by Cross\sphinxhyphen{}Validation and Akaike’s Criterion. J R Stat Soc Ser. B Stat Methodol 39, 44\textendash{}47.
+Surowiec, I., Vikström, L., Hector, G., Johansson, E., Vikström, C., Trygg, J., 2017. Generalized Subset Designs in Analytical Chemistry. Anal. Chem. 89, 6491\textendash{}6497. \sphinxurl{https://doi.org/10.1021/acs.analchem.7b00506}
+Tang, B., 1993. Orthogonal Array\sphinxhyphen{}Based Latin Hypercubes. J. Am. Stat. Assoc. 88, 1392\textendash{}1397. \sphinxurl{https://doi.org/10.1080/01621459.1993.10476423}
+Tang, Y., Reed, P., Wagener, T., Werkhoven, K. van, 2007. Comparing sensitivity analysis methods to advance lumped watershed model identification and evaluation. Hydrol. Earth Syst. Sci. 11, 793\textendash{}817. \sphinxurl{https://doi.org/10.5194/hess-11-793-2007}
+Toulmin, S., 1977. From form to function: philosophy and history of science in the 1950s and now. Daedalus 143\textendash{}162.
+Urban, N.M., Keller, K., 2010. Probabilistic hindcasts and projections of the coupled climate, carbon cycle and Atlantic meridional overturning circulation system: A Bayesian fusion of century\sphinxhyphen{}scale observations with a simple model. Tellus A 62, 737\textendash{}750.
+Van Oort, N., 2011. Service reliability and urban public transport design.
+Van Schepdael, A., Carlier, A., Geris, L., 2016. Sensitivity Analysis by Design of Experiments, in: Geris, L., Gomez\sphinxhyphen{}Cabrero, D. (Eds.), Uncertainty in Biology: A Computational Modeling Approach, Studies in Mechanobiology, Tissue Engineering and Biomaterials. Springer International Publishing, Cham, pp. 327\textendash{}366. \sphinxurl{https://doi.org/10.1007/978-3-319-21296-8\_13}
+van Vuuren, D.P., Edmonds, J., Kainuma, M., Riahi, K., Thomson, A., Hibbard, K., Hurtt, G.C., Kram, T., Krey, V., Lamarque, J.\sphinxhyphen{}F., Masui, T., Meinshausen, M., Nakicenovic, N., Smith, S.J., Rose, S.K., 2011. The representative concentration pathways: an overview. Clim Change 109, 5. \sphinxurl{https://doi.org/10.1007/s10584-011-0148-z}
+Vega‐Westhoff, B., Sriver, R.L., Hartin, C.A., Wong, T.E., Keller, K., 2019. Impacts of Observational Constraints Related to Sea Level on Estimates of Climate Sensitivity. Earths Future. \sphinxurl{https://doi.org/10.1029/2018EF001082}
+Vehtari, A., Gelman, A., Gabry, J., 2017. Practical Bayesian model evaluation using leave\sphinxhyphen{}one\sphinxhyphen{}out cross\sphinxhyphen{}validation and WAIC. Stat Comput 27, 1413\textendash{}1432.
+Vihola, M., 2012. Robust adaptive Metropolis algorithm with coerced acceptance rate. Stat Comput 22, 997\textendash{}1008. \sphinxurl{https://doi.org/10.1007/s11222-011-9269-5}
+Vogel, R.M., 2017. Stochastic watershed models for hydrologic risk management. Water Secur. 1, 28\textendash{}35. \sphinxurl{https://doi.org/10.1016/j.wasec.2017.06.001}
+Vogel, R.M., Stedinger, J.R., 1988. The value of stochastic streamflow models in overyear reservoir design applications. Water Resour. Res. 24, 1483\textendash{}1490. \sphinxurl{https://doi.org/10.1029/WR024i009p01483}
+Vousdoukas, M.I., Bouziotas, D., Giardino, A., Bouwer, L.M., Mentaschi, L., Voukouvalas, E., Feyen, L., 2018. Understanding epistemic uncertainty in large\sphinxhyphen{}scale coastal flood risk assessment for present and future climates. Nat Hazards Earth Syst Sci 18, 2127\textendash{}2142. \sphinxurl{https://doi.org/10.5194/nhess-18-2127-2018}
+Vrugt, J.A., Beven, K.J., 2018. Embracing equifinality with efficiency: Limits of Acceptability sampling using the DREAM(LOA) algorithm. J Hydrol 559, 954\textendash{}971. \sphinxurl{https://doi.org/10.1016/j.jhydrol.2018.02.026}
+Walker, W., Haasnoot, M., Kwakkel, J., Walker, W.E., Haasnoot, M., Kwakkel, J.H., 2013. Adapt or Perish: A Review of Planning Approaches for Adaptation under Deep Uncertainty. Sustainability 5, 955\textendash{}979. \sphinxurl{https://doi.org/10.3390/su5030955}
+Walker, W.E., Harremoës, P., Rotmans, J., Sluijs, J.P. van der, Asselt, M.B.A. van, Janssen, P., Krauss, M.P.K. von, 2003. Defining Uncertainty: A Conceptual Basis for Uncertainty Management in Model\sphinxhyphen{}Based Decision Support. Integr. Assess. 4, 5\textendash{}17. \sphinxurl{https://doi.org/10.1076/iaij.4.1.5.16466}
+Walker, W.E., Lempert, R.J., Kwakkel, J.H., 2013. Deep Uncertainty, in: Gass, S.I., Fu, M.C. (Eds.), Encyclopedia of Operations Research and Management Science. Springer US, pp. 395\textendash{}402. \sphinxurl{https://doi.org/10.1007/978-1-4419-1153-7\_1140}
+Watanabe, S., 2010. Asymptotic Equivalence of Bayes Cross Validation and Widely Applicable Information Criterion in Singular Learning Theory. J Mach Learn Res 11, 3571\textendash{}3594.
+Weaver, C.P., Lempert, R.J., Brown, C., Hall, J.A., Revell, D., Sarewitz, D., 2013. Improving the contribution of climate model information to decision making: the value and demands of robust decision frameworks. Wiley Interdiscip. Rev. Clim. Change 4, 39\textendash{}60. \sphinxurl{https://doi.org/10.1002/wcc.202}
+White, D.D., Wutich, A., Larson, K.L., Gober, P., Lant, T., Senneville, C., 2010. Credibility, salience, and legitimacy of boundary objects: water managers’ assessment of a simulation model in an immersive decision theater. Sci. Public Policy 37, 219\textendash{}232. \sphinxurl{https://doi.org/10.3152/030234210X497726}
+Wilks, D.S., Wilby, R.L., 1999. The weather generation game: a review of stochastic weather models. Prog. Phys. Geogr. 23, 329\textendash{}357.
+Wirtz, D., Nowak, W., 2017. The rocky road to extended simulation frameworks covering uncertainty, inversion, optimization and control. Environ. Model. Softw. 93, 180\textendash{}192. \sphinxurl{https://doi.org/10.1016/j.envsoft.2016.10.003}
+Wolff, C., Nikoletopoulos, T., Hinkel, J., Vafeidis, A.T., 2020. Future urban development exacerbates coastal exposure in the Mediterranean. Sci Rep 10, 14420. \sphinxurl{https://doi.org/10.1038/s41598-020-70928-9}
+Wong, T.E., Keller, K., 2017. Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earths Future 5, 1015\textendash{}1026. \sphinxurl{https://doi.org/10.1002/2017EF000607}
+Wong, T.E., Klufas, A., Srikrishnan, V., Keller, K., 2018. Neglecting model structural uncertainty underestimates upper tails of flood hazard. Env. Res Lett 13, 074019. \sphinxurl{https://doi.org/10.1088/1748-9326/aacb3d}
+Xian, S., Lin, N., Kunreuther, H., 2017. Optimal house elevation for reducing flood\sphinxhyphen{}related losses. J Hydrol 548, 63\textendash{}74. \sphinxurl{https://doi.org/10.1016/j.jhydrol.2017.02.057}
+Xiu, D., Karniadakis, G.E., 2002. The Wiener\textendash{}Askey Polynomial Chaos for Stochastic Differential Equations. SIAM J. Sci. Comput. 24, 619\textendash{}644. \sphinxurl{https://doi.org/10.1137/S1064827501387826}
+Zarekarizi, M., Srikrishnan, V., Keller, K., 2020. Neglecting Uncertainties Biases House\sphinxhyphen{}Elevation Decisions to Manage Riverine Flood Risks. Nat Commun. \sphinxurl{https://doi.org/10.1038/s41467-020-19188-9}
+Zaremba, S.K., 1968. The mathematical basis of Monte Carlo and quasi\sphinxhyphen{}Monte Carlo methods. SIAM Rev. 10, 303\textendash{}314.
+Zellner, A., Tian, G.C., 1964. Bayesian analysis of the regression model with autocorrelated errors. J Am Stat Assoc 763\textendash{}778.
+Zhang, X., Che, L., Shahidehpour, M., Alabdulwahab, A.S., Abusorrah, A., 2015. Reliability\sphinxhyphen{}based optimal planning of electricity and natural gas interconnections for multiple energy hubs. IEEE Trans Smart Grid 8, 1658\textendash{}1667.
+Zscheischler, J., Martius, O., Westra, S., Bevacqua, E., Raymond, C., Horton, R.M., van den Hurk, B., AghaKouchak, A., Jézéquel, A., Mahecha, M.D., Maraun, D., Ramos, A.M., Ridder, N.N., Thiery, W., Vignotto, E., 2020. A typology of compound weather and climate events. Nat. Rev. Earth Environ. 1\textendash{}15. \sphinxurl{https://doi.org/10.1038/s43017-020-0060-z}
+
+
+\chapter{Glossary}
+\label{\detokenize{9_glossary:glossary}}\label{\detokenize{9_glossary::doc}}
+
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}
 \item {} 

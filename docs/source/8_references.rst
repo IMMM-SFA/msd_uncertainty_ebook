@@ -2,10 +2,7 @@
 References
 **********
 
-.. target-notes::
-
-  .. _Akaike, H., 1978. On the Likelihood of a Time Series Model. J. R. Stat. Soc. Ser. Stat. 27, 217–235. https://doi.org/10.2307/2988185
-
+Akaike, H., 1978. On the Likelihood of a Time Series Model. J. R. Stat. Soc. Ser. Stat. 27, 217–235. https://doi.org/10.2307/2988185
 Akaike, H., 1974. A new look at the statistical model identification. IEEE Trans. Autom. Control 19, 716–723. https://doi.org/10.1109/TAC.1974.1100705
 Anderson, B., Borgonovo, E., Galeotti, M., Roson, R., 2014. Uncertainty in Climate Change Modeling: Can Global Sensitivity Analysis Be of Help? Risk Anal. 34, 271–293. https://doi.org/10.1111/risa.12117
 Annan, J.D., Hargreaves, J.C., 2004. Efficient parameter estimation for a highly chaotic system. Tellus A 56, 520–526. https://doi.org/10.1111/j.1600-0870.2004.00073.x
@@ -169,7 +166,7 @@ Saltelli, A., 2002. Making best use of model evaluations to compute sensitivity 
 Saltelli, A., Aleksankina, K., Becker, W., Fennell, P., Ferretti, F., Holst, N., Li, S., Wu, Q., 2019. Why so many published sensitivity analyses are false: A systematic review of sensitivity analysis practices. Environ. Model. Softw. 114, 29–39. https://doi.org/10.1016/j.envsoft.2019.01.012
 Saltelli, A., Annoni, P., 2010. How to avoid a perfunctory sensitivity analysis. Environ. Model. Softw. 25, 1508–1517. https://doi.org/10.1016/j.envsoft.2010.04.012
 Saltelli, A., Funtowicz, S., 2014. When all models are wrong. Issues Sci. Technol. 30, 79–85.
-Saltelli, A., Ratto, M., Andres, T., Campolongo, F., Cariboni, J., Gatelli, D., Saisana, M., Tarantola, S., 2008. Global Sensitivity Analysis: The Primer, 1 edition. ed. Wiley-Interscience, Chichester, England ; Hoboken, NJ.
+Saltelli, A., Ratto, M., Andres, T., Campolongo, F., Cariboni, J., Gatelli, D., Saisana, M., Tarantola, S., 2008. Global Sensitivity Analysis: The Primer, 1 edition. ed. Wiley-Interscience, Chichester, England; Hoboken, NJ.
 Saltelli, A., Stark, P.B., Becker, W., Stano, P., 2015. Climate models as economic guides scientific challenge or quixotic quest? Issues Sci. Technol. 31, 79–84.
 Saltelli, A., Tarantola, S., 2002. On the relative importance of input factors in mathematical models: safety assessment for nuclear waste disposal. J. Am. Stat. Assoc. 97, 702–709.
 Saltelli, A., Tarantola, S., Campolongo, F., Ratto, M., 2004. Sensitivity Analysis in Practice: A Guide to Assessing Scientific Models. John Wiley & Sons.
