@@ -8,18 +8,18 @@
 Addressing Uncertainty in MultiSector Dynamics Research
 =======================================================
 
-
-.. include:: preface.rst
-.. include:: examples.rst
-
-
-Contents
-========
-
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 4
 
-  1.0_Introduction
+  1_introduction
+  2_diagnostic_modeling_overview_and_perspectives
+  3_sensitivity_analysis_the_basics
+  4_sensitivity_analysis_diagnostic_and_exploratory_modeling
+  5_uncertainty_quantification_the_basics
+  6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes
+  7_conclusion
+  8_references
+  9_glossary
 
 
 Indices and tables

@@ -1,0 +1,10 @@
+What are Example Software Implementations?
+##########################################
+
+There exist many software platforms to implement uncertainty assessment. Each implementation is built upon a specific programming language including, but not limited to R, Python, C++, Fortran, MATLAB, and Julia. Two key considerations are the user’s preferred programming language and the computer model’s native code. For instance, a computer model running in C++ may be better suited for a software implementation based on the same language. For inconsistencies, please see the discussion on wrappers below.
+
+Here, we present an overview of popular packages inherent to R, Python, and Julia. The user is free to code the UQ implementation without incorporating these existing packages; however, it may require more effort to code the pertinent subroutines (e.g., MCMC and building surrogate models). Uncertainty quantification for computer models typically operates within the Bayesian framework (see What are Common Methods?). Each implementation includes a mechanism that enables Bayesian inference using MCMC, Gaussian process emulation, or Sequential Monte Carlo. We focus on a subset of the common approaches.
+
+.. include:: 6.8.1_markov_chain_monte_carlo_with_the_true_model.rst
+
+.. include:: 6.8.2_markov_chain_monte_carlo_with_surrogate_models.rst

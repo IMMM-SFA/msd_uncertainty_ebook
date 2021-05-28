@@ -4,18 +4,18 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Addressing Uncertainty in MultiSector Dynamics Research &#8212; ebook v0.1.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Addressing Uncertainty in MultiSector Dynamics Research &#8212; Addressing Uncertainty in MultiSector Dynamics Research v0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction" href="1.0_Introduction.html" />
+    <link rel="next" title="Introduction" href="1_introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,83 +32,98 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="addressing-uncertainty-in-multisector-dynamics-research">
+  <section id="addressing-uncertainty-in-multisector-dynamics-research">
 <h1>Addressing Uncertainty in MultiSector Dynamics Research<a class="headerlink" href="#addressing-uncertainty-in-multisector-dynamics-research" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="preface">
-<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="audience">
-<h3>Audience<a class="headerlink" href="#audience" title="Permalink to this headline">¶</a></h3>
-<p>Information about the target audience</p>
-</div>
-<div class="section" id="how-to-use-this-book">
-<h3>How to use this book<a class="headerlink" href="#how-to-use-this-book" title="Permalink to this headline">¶</a></h3>
-<p>Information on how to use this book</p>
-</div>
-<div class="section" id="installing-the-msd-uncertainty-ebook-python-package">
-<h3>Installing the <code class="code docutils literal notranslate"><span class="pre">msd_uncertainty_ebook</span></code> Python package<a class="headerlink" href="#installing-the-msd-uncertainty-ebook-python-package" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install msd_uncertainty_ebook
-</pre></div>
-</div>
-</div>
-<div class="section" id="acknowledgements">
-<h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h3>
-<p>We acknowledge…</p>
-</div>
-</div>
-</div>
-<div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="using-mathjax">
-<h2>Using mathjax<a class="headerlink" href="#using-mathjax" title="Permalink to this headline">¶</a></h2>
-<p>The <strong>first-order sensitivity index</strong> indicates the percent of model output variance contributed by a factor individually (i.e., the effect of varying <em>x</em><sub>i</sub>alone) and is obtained using the following (Saltelli, 2002a; Sobol, 2001):</p>
-<div class="math notranslate nohighlight">
-\[S_i^1 = \frac{V_{x_i} [E_{x\sim_i} (x_i)]}{V(y)}\]</div>
-<p>with <em>E</em> and <em>V</em> denoting the expected value and the variance, respectively.</p>
-</div>
-<div class="section" id="building-a-codeblock">
-<h2>Building a codeblock<a class="headerlink" href="#building-a-codeblock" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">ebook</span>
-
- <span class="n">ebook</span><span class="o">.</span><span class="n">plot_experimental_design</span><span class="p">()</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="testing-out-a-note">
-<h2>Testing out a note<a class="headerlink" href="#testing-out-a-note" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Keep track of the latest in programming solutions on the <a class="reference external" href="https://waterprogramming.wordpress.com/">Water Programming</a> blog!</p>
-</div>
-</div>
-<div class="section" id="insert-a-figure-with-a-caption">
-<h2>Insert a figure with a caption<a class="headerlink" href="#insert-a-figure-with-a-caption" title="Permalink to this headline">¶</a></h2>
-<p>Be sure to add your figure into ‘msd_uncertainty_ebook/docs/source/_static’</p>
-<blockquote>
-<div><div class="figure align-center" id="id1">
-<a class="reference internal image-reference" href="_images/im3.png"><img alt="IM3 logo" src="_images/im3.png" style="width: 100px;" /></a>
-<p class="caption"><span class="caption-text">This is my caption.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div></blockquote>
-</div>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1.0_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">Diagnostic Modeling Overview and Perspectives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics">Overview of model diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html#perspectives-on-diagnostic-model-evaluation">Perspectives on diagnostic model evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">Sensitivity Analysis: The Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#global-versus-local-sensitivity">Global Versus Local Sensitivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#why-perform-sensitivity-analysis">Why Perform Sensitivity Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#sensitivity-analysis-applications-for-model-evaluation-and-fidelity-testing">Sensitivity Analysis Applications for Model Evaluation and Fidelity Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#sensitivity-analysis-applications-for-exploratory-modeling-and-scenario-discovery">Sensitivity Analysis Applications for Exploratory Modeling and Scenario Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#design-of-experiments">Design of Experiments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#one-at-a-time-oat">One-At-a-Time (OAT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#full-and-fractional-factorial-sampling">Full and Fractional Factorial Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#latin-hypercube-lh-sampling">Latin Hypercube (LH) Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#low-discrepancy-sequences">Low-Discrepancy Sequences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#other-types-of-sampling">Other types of sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#synthetic-generation-of-input-time-series">Synthetic generation of input time series</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#sensitivity-analysis-methods">Sensitivity Analysis Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#derivative-based-methods">Derivative-based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#elementary-effect-methods">Elementary Effect Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#regression-based-methods">Regression-based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#regional-sensitivity-analysis">Regional Sensitivity Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#variance-based-methods">Variance-based Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#analysis-of-variance-anova">Analysis of Variance (ANOVA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#moment-independent-density-based-methods">Moment-Independent (Density-Based) Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#how-to-choose-a-sensitivity-analysis-method-model-traits-and-dimensionality">How To Choose A Sensitivity Analysis Method: Model Traits And Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html#software-toolkits">Software Toolkits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#understanding-errors-what-is-controlling-model-performance">Understanding Errors: What Is Controlling Model Performance?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest">Consequential Dynamics: What is Controlling Model Behaviors of Interest?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-scenarios-what-is-controlling-consequential-outcomes">Consequential Scenarios: What is Controlling Consequential Outcomes?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html">Uncertainty Quantification: The Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html#why-is-uncertainty-quantification-important-for-understanding-multisector-system-dynamics">Why is Uncertainty Quantification Important for Understanding MultiSector System Dynamics?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html#uncertainty-quantification-for-exploratory-modeling">Uncertainty Quantification for Exploratory Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html#bayesian-uncertainty-quantification">Bayesian Uncertainty Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html#uncertainty-quantification-under-deep-uncertainty">Uncertainty Quantification Under (Deep) Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html#integrating-model-diagnostics-and-uncertainty-quantification">Integrating Model Diagnostics and Uncertainty Quantification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html">Uncertainty Quantification: A Tool For Capturing Risks &amp; Extremes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#understanding-risk-how-probable-are-extreme-events">Understanding Risk: How Probable Are Extreme Events?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#understanding-tails-statistical-modeling-of-extreme-events">Understanding Tails: Statistical Modeling of Extreme Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#how-to-choose-an-appropriate-method">How to Choose an Appropriate Method?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#how-to-select-a-prior-distribution">How to Select a Prior Distribution?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#posterior-predictive-checking">Posterior Predictive Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#model-selection-and-comparison">Model Selection and Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#what-are-common-methods">What are Common Methods?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#scenario-discovery">Scenario Discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#pre-calibration-glue">Pre-calibration/GLUE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#markov-chain-monte-carlo">Markov Chain Monte Carlo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#metropolis-hastings">Metropolis-Hastings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#gibbs-sampling">Gibbs Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#hamiltonian-monte-carlo">Hamiltonian Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#particle-based-methods">Particle-based Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#what-are-example-software-implementations">What are Example Software Implementations?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#markov-chain-monte-carlo-with-the-true-model">Markov Chain Monte Carlo with the True Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html#markov-chain-monte-carlo-with-surrogate-models">Markov Chain Monte Carlo with Surrogate Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7_conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_glossary.html">Glossary</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
+<section id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -117,7 +132,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">ebook</a></h1>
+<h1 class="logo"><a href="#">Addressing Uncertainty in MultiSector Dynamics Research</a></h1>
 
 
 
@@ -128,14 +143,22 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1.0_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_uncertainty_quantification_the_basics.html">Uncertainty Quantification: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes.html">Uncertainty Quantification: A Tool For Capturing Risks &amp; Extremes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_glossary.html">Glossary</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="1.0_Introduction.html" title="next chapter">Introduction</a></li>
+      <li>Next: <a href="1_introduction.html" title="next chapter">Introduction</a></li>
   </ul></li>
 </ul>
 </div>
@@ -165,7 +188,7 @@
       &copy;2021, Battelle Memorial Institute.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

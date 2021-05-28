@@ -1,0 +1,18 @@
+Markov Chain Monte Carlo
+************************
+
+Markov chain Monte Carlo (MCMC) is a “gold standard” approach to full uncertainty quantification. MCMC refers to a category of algorithms which systematically sample from a target distribution (in this case, the posterior distribution) by constructing a Markov chain. MCMC algorithms rely on the mixing properties of the resulting Markov chain to guarantee asymptotic convergence to the posterior distribution, as the chain is constructed so that the posterior is its stationary distribution. It should be stressed that this guarantee exists only asymptotically. Studies use heuristics to test for signs of misconvergence and to assess the skill of the approximation (xx)
+
+MCMC algorithms begin with the choice of some initial value for the Markov chain. This value can be randomly determined, or can be some other quantity such as a maximum likelihood or maximum a posteriori estimates. While the Markov chain will eventually converge to the posterior regardless of the choice of initial value, the amount of time required to escape the transient dynamics of the Markov chain is dependent on this value. Typically, transient samples are discarded as burn-in, as they may skew the sample distribution if the burn-in is relatively long compared to the number of iterations spent exploring the posterior, though this practice is not universal and has been questioned by some statisticians (Geyer, 2011). However, when not discarding the transient area, the chain must be run for a larger number of iterations to ensure that these samples do not bias the sample distribution.
+
+Diagnosing the convergence of the Markov chain to the posterior is more art than science, relying on heuristics and judgement. One example heuristic is to run many Markov chains from different initial conditions, ideally well-dispersed across the parameter space; one may be able to conclude that the chains have not yet converged if the resulting marginal parameter distributions are sufficiently different when plotted. The Gelman-Rubin diagnostic formalizes this idea by comparing the within-chain and pooled variances of multiple chains (Gelman and Rubin, 1992). The ratio of these two quantities, called the potential scale reduction factor, can diagnose a lack of convergence if it is sufficiently far from 1 (typically using a threshold such as 1.1 or 1.05). Thus, it is generally good practice to use several MCMC runs to facilitate the diagnoses of non-convergence.
+
+Another key value is the effective sample size (ESS). Due to the Markovian property, the samples obtained using MCMC are autocorrelated, and therefore not independent. As a result, the number of samples obtained using MCMC are not directly useful when interpreting the extent of exploration (or computing quantities such as the Monte Carlo standard error (Flegal et al., 2008)). For example, it may not be appropriate to draw inferences about tail properties for a small  ESS.
+
+Many MCMC algorithms exist, with varying strengths and weaknesses, discussed below. For example, some require more tuning to improve the ESS than others. All of these algorithms involve the evaluation of the model at various parameter settings. Once a Markov chain is constructed and deemed to suitably represent the posterior distribution, parameter values can be sampled from it with replacement as a proxy for directly sampling from the posterior.
+
+.. include:: 6.7.3.1_metropolis_hastings.rst
+
+.. include:: 6.7.3.2_gibbs_sampling.rst
+
+.. include:: 6.7.3.3_hamiltonian_monte_carlo.rst
