@@ -9,10 +9,11 @@ Addressing Uncertainty in MultiSector Dynamics Research
 =======================================================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 4
 
-  1.0_Introduction
-  2.0_diagnostic_modeling_overview_and_perspectives
+  1_introduction
+  2_diagnostic_modeling_overview_and_perspectives
+  3_sensitivity_analysis_the_basics
 
 
 Indices and tables

@@ -15,7 +15,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Introduction" href="1.0_Introduction.html" />
+    <link rel="next" title="Overview of model diagnostics" href="2.1_overview_of_model_diagnostics.html" />
+    <link rel="prev" title="Introduction" href="1.0_introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,17 +36,6 @@
   <section id="diagnostic-modeling-overview-and-perspectives">
 <h1>Diagnostic Modeling Overview and Perspectives<a class="headerlink" href="#diagnostic-modeling-overview-and-perspectives" title="Permalink to this headline">¶</a></h1>
 <p>This text prescribes a formal model diagnostic approach to IM3 computational experimentation that is a deliberative and iterative combination of state-of-the-art UC and global sensitivity analysis techniques that progresses from observed history-based fidelity evaluations to forward looking resilience and vulnerability inferences (Gupta et al., 2008; Hadjimichael et al., 2020).</p>
-<section id="overview-of-model-diagnostics">
-<h2>Overview of model diagnostics<a class="headerlink" href="#overview-of-model-diagnostics" title="Permalink to this headline">¶</a></h2>
-<p>Model diagnostics provide a rich basis for hypothesis testing, model innovation, and improved inferences when classifying what is controlling highly consequential results (e.g., vulnerability or resilience in coupled human-natural systems). Figure 2, adapted from (Saltelli et al., 2019), presents idealized illustrations of the relationship between UC and global sensitivity analysis (GSA) for two coupled simulation models. The figure illustrates how UC can be used to address how uncertainties in various modeling decisions (data inputs, parameters, model structures, coupling relationships, and elsewhere) can be sampled and simulated to yield the empirical model output distribution(s) of interest. Monte Carlo frameworks allow us to sample and propagate (or integrate) the ensemble response of the model(s) of focus. The first step of any UC analysis is the specification of the initial input distributions as illustrated in Figure 2. The second step is to perform the Monte Carlo simulations. The question can then be raised, which of the modeling assumptions in our Monte Carlo experiment are the most responsible for the resulting output uncertainty. We can answer this question using “global sensitivity analysis” (GSA) as illustrated in Figure 2. GSA can be defined as a formal Monte Carlo sampling and analysis of modeling choices (structures, parameters, inputs) to quantify their influence on direct model outputs (or output-informed metrics). UC experiments by themselves do not explain why you get a particular uncertain outcome. The pie chart shown in Figure 2 is a conceptual representation of the results of GSA to identify those factors that are most dominantly influencing results, either individually or interactively (Saltelli et al., 2008).</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/figure2_idealized_uc.png"><img alt="Figure 2." src="_images/figure2_idealized_uc.png" style="width: 700px;" /></a>
-<figcaption>
-<p><span class="caption-text">Idealized uncertainty characterization and global sensitivity analysis for two coupled simulation models. Uncertainty coming from various sources (inputs, model structures, coupling relationships, and elsewhere) is propagated through the coupled model(s) to generate empirical distributions of outputs of interest (uncertainty characterization). This model output uncertainty can be decomposed to its origins, by means of sensitivity analysis. This figure has been adapted from Saltelli et al. (2019).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>UC and GSA are not independent modeling analyses. As illustrated here, any GSA requires an initial UC hypothesis in the form of statistical assumptions and representations for the modeling choices of focus (structural, parametric, and data inputs). Information from these two model diagnostic tools can then be used to inform data needs for future model runs, experiments to reduce the uncertainty present, or the simplification or enhancement of the model where necessary. Together UC and GSA provide a foundation for diagnostic exploratory modeling that has a consistent focus on the assumptions, structural model forms, alternative parameterizations, and input data sets that are used to characterize the behavioral space of one or more models.</p>
-</section>
 <section id="perspectives-on-diagnostic-model-evaluation">
 <h2>Perspectives on diagnostic model evaluation<a class="headerlink" href="#perspectives-on-diagnostic-model-evaluation" title="Permalink to this headline">¶</a></h2>
 <p>When we judge or diagnose models the terms “verification and validation” are commonly used. However, their appropriateness in the context of numerical models representing complex coupled human-natural systems is questionable (Beven, 2002; Oreskes et al., 1994). The core issue relates to the fact that these systems are often not fully known or perfectly implemented when modeled. Rather, they are defined within specific system framings and boundary conditions in an evolving learning process with the goal of making continual progress towards attaining higher levels of fidelity. For example, observations used to evaluate the fidelity of parameterized processes are often measured at a finer resolution than is represented in the model and then must be scaled up for the evaluation. In other cases, numerical models may neglect or simplify system processes because the data is not available or the physical mechanisms are not fully known. If sufficient agreement between prediction and observation is not achieved, it is challenging to know whether these types of modeling choices are the cause, or if other issues, such as deficiencies in the input parameters and/or other modeling assumptions are the true cause of errors. Even if there is high agreement between prediction and observation, the model cannot necessarily be considered validated, as it is always possible that the right values were produced for the wrong reasons. For example, low error can stem from a situation where different errors in underlying assumptions or parameters cancel each other out (“compensatory errors”). Furthermore, coupled human-natural system models are often subject to “equifinality”, a situation where multiple parameterized formulations can produce similar outputs or equally acceptable representations of the observed data. There is therefore no uniquely “true” or validated model, and the common practice of selecting “the best” deterministic calibration set is more of an assumption than a finding (Beven, 1993; Beven and Binley, 1992). The situation becomes even more tenuous when observational data is limited in its scope and/or quality to be insufficient to distinguish model representations or their performance differences.
@@ -76,19 +66,20 @@ These limitations on model verification undermine any purely positivist treatmen
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1.0_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.0_introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Diagnostic Modeling Overview and Perspectives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview-of-model-diagnostics">Overview of model diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#perspectives-on-diagnostic-model-evaluation">Perspectives on diagnostic model evaluation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="2.1_overview_of_model_diagnostics.html">Overview of model diagnostics</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="1.0_Introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Previous: <a href="1.0_introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="2.1_overview_of_model_diagnostics.html" title="next chapter">Overview of model diagnostics</a></li>
   </ul></li>
 </ul>
 </div>

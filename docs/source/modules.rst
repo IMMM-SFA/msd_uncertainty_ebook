@@ -1,7 +1,7 @@
-ebook
-=====
+nanites
+=======
 
 .. toctree::
    :maxdepth: 4
 
-   ebook
+   nanites
