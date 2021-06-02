@@ -46,6 +46,10 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# Figures and tables are automatically numbered if they have a caption.
+# This also helps with referencing figures in the main text (otherwise
+# the link text is the figure caption).
+numfig = True
 
 # -- Options for HTML output -------------------------------------------------
 
