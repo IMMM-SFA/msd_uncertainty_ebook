@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.5.27)  28 MAY 2021 11:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.5.27)  2 JUN 2021 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -794,7 +794,7 @@ Chapter 1.
 
 
 ]
-<figure1_state_of_the_science.png, id=326, 385.44pt x 245.41687pt>
+<figure1_state_of_the_science.png, id=343, 385.44pt x 245.41687pt>
 LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
 07.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/txfonts/t1txtt.fd
@@ -810,14 +810,14 @@ Package pdftex.def Info: figure1_state_of_the_science.png  used on input line 1
 
 ]
 Chapter 2.
-<figure2_idealized_uc.png, id=344, 1204.5pt x 737.00343pt>
+<figure2_idealized_uc.png, id=368, 1204.5pt x 737.00343pt>
 File: figure2_idealized_uc.png Graphic file (type png)
 <use figure2_idealized_uc.png>
 Package pdftex.def Info: figure2_idealized_uc.png  used on input line 129.
 (pdftex.def)             Requested size: 469.75311pt x 287.44142pt.
 [5] [6 <./figure2_idealized_uc.png>] [7] [8]
 Chapter 3.
-<figure3_global_versus_local.png, id=363, 1204.5pt x 350.05782pt>
+<figure3_global_versus_local.png, id=387, 1204.5pt x 350.05782pt>
 File: figure3_global_versus_local.png Graphic file (type png)
 <use figure3_global_versus_local.png>
 Package pdftex.def Info: figure3_global_versus_local.png  used on input line 17
@@ -826,13 +826,13 @@ Package pdftex.def Info: figure3_global_versus_local.png  used on input line 17
 [9
 
 ] [10 <./figure3_global_versus_local.png>]
-<figure4_factor_mapping.png, id=375, 1204.5pt x 1005.00468pt>
+<figure4_factor_mapping.png, id=399, 1204.5pt x 1005.00468pt>
 File: figure4_factor_mapping.png Graphic file (type png)
 <use figure4_factor_mapping.png>
 Package pdftex.def Info: figure4_factor_mapping.png  used on input line 213.
 (pdftex.def)             Requested size: 376.40381pt x 314.06319pt.
  [11] [12 <./figure4_factor_mapping.png>] [13]
-<figure5_alternative_designs.png, id=390, 385.44pt x 246.1697pt>
+<figure5_alternative_designs.png, id=414, 385.44pt x 246.1697pt>
 File: figure5_alternative_designs.png Graphic file (type png)
 <use figure5_alternative_designs.png>
 Package pdftex.def Info: figure5_alternative_designs.png  used on input line 32
@@ -864,28 +864,28 @@ Chapter 7.
 
 ]
 Chapter 8.
-[29] [30] [31] [32] [33] [34] [35] [36]
-Chapter 9.
-[37
-
-] [38
+[29] [30
 
 ]
-Chapter 10.
-(./addressinguncertaintyinmultisectordynamicsresearch.ind) [39]
+Chapter 9.
+[31] [32
+
+] (./addressinguncertaintyinmultisectordynamicsresearch.ind) [33
+
+]
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
 Package rerunfilecheck Info: File `addressinguncertaintyinmultisectordynamicsre
 search.out' has not changed.
-(rerunfilecheck)             Checksum: CFDFE8E76528191E7CEF8AB4EB0C584A;14478.
+(rerunfilecheck)             Checksum: 700F7A207D0268AF2F72BDB28AA04315;14488.
  ) 
 Here is how much of TeX's memory you used:
- 13716 strings out of 478994
- 204918 string characters out of 5858184
- 711347 words of memory out of 5000000
- 30727 multiletter control sequences out of 15000+600000
+ 13732 strings out of 478994
+ 205140 string characters out of 5858184
+ 552339 words of memory out of 5000000
+ 30737 multiletter control sequences out of 15000+600000
  462595 words of font info for 68 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 83i,17n,88p,3812b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,17n,88p,3880b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/local/tex
 live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
@@ -899,11 +899,11 @@ t/fonts/type1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fon
 ts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
 lic/tex-gyre/qtmri.pfb>
-Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (43 pa
-ges, 1085625 bytes).
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (37 pa
+ges, 1043930 bytes).
 PDF statistics:
- 741 PDF objects out of 1000 (max. 8388607)
- 663 compressed objects within 7 object streams
- 108 named destinations out of 1000 (max. 500000)
+ 579 PDF objects out of 1000 (max. 8388607)
+ 508 compressed objects within 6 object streams
+ 114 named destinations out of 1000 (max. 500000)
  510 words of extra memory for PDF output out of 10000 (max. 10000000)
 

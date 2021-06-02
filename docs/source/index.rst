@@ -18,8 +18,10 @@ Addressing Uncertainty in MultiSector Dynamics Research
   5_uncertainty_quantification_the_basics
   6_uncertainty_quantification_a_tool_for_capturing_risks_and_extremes
   7_conclusion
-  8_references
-  9_glossary
+  8_glossary
+
+.. bibliography::
+  :style: plain
 
 
 Indices and tables
