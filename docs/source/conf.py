@@ -36,10 +36,14 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.githubpages']
+    'sphinx.ext.githubpages',
+    'sphinxcontrib.bibtex']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# bibliography files
+bibtex_bibfiles = ['refs.bib']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

@@ -54,6 +54,6 @@
 \contentsline {subsection}{\numberline {6.8.1}Markov Chain Monte Carlo with the True Model}{25}{subsection.6.8.1}%
 \contentsline {subsection}{\numberline {6.8.2}Markov Chain Monte Carlo with Surrogate Models}{25}{subsection.6.8.2}%
 \contentsline {chapter}{\numberline {7}Conclusion}{27}{chapter.7}%
-\contentsline {chapter}{\numberline {8}References}{29}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Glossary}{37}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Indices and tables}{39}{chapter.10}%
+\contentsline {chapter}{\numberline {8}Glossary}{29}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Indices and tables}{31}{chapter.9}%
+\contentsline {chapter}{Bibliography}{33}{chapter*.3}%
