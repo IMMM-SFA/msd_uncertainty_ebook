@@ -1,2 +1,0 @@
-Integrating Model Diagnostics and Uncertainty Quantification
-############################################################
