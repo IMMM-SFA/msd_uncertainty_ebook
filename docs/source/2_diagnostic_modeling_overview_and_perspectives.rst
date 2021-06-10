@@ -1,3 +1,5 @@
+.. _2_diagnostic_modeling_overview_and_perspectives:
+
 *********************************************
 Diagnostic Modeling Overview and Perspectives
 *********************************************

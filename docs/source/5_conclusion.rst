@@ -1,3 +1,5 @@
+.. _5_conclusion:
+
 **********
 Conclusion
 **********
