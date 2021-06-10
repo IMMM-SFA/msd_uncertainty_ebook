@@ -1,3 +1,5 @@
+.. _global_vs_local:
+
 Global Versus Local Sensitivity
 ###############################
 
