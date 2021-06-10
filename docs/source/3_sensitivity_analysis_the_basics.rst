@@ -1,3 +1,5 @@
+.. _3_sensitivity_analysis_the_basics:
+
 ********************************
 Sensitivity Analysis: The Basics
 ********************************

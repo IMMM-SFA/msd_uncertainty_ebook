@@ -21,7 +21,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
    A1_Uncertainty_Quantification
 
 .. bibliography::
-  :style: plain
+  :style: unsrt
 
 
 Indices and tables
