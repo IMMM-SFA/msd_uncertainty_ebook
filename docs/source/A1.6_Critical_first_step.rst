@@ -1,2 +1,4 @@
+.. _critical_first_step:
+
 The Critical First Step: How to Choose a Prior Distribution
 ###########################################################
