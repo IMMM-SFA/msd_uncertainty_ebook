@@ -1,7 +1,7 @@
 Pre-Calibration
 ###############
 
-Pre-calibration :cite:`beven_future_1992, edwards_precalibrating_2011, boukouvalas_bayesian_2014` involves the identification of a plausible set of parameters using some prespecified screening criterion, such as the distance from the model results to the observations (based on an appropriate metric for the desired matching features, such as root-mean-squared error). A typical workflow is shown in :numref:`Figure_A1_3`. Parameter values are obtained by systematically sampling the input space (see :numref:`3.5_design_of_e xperiments`). After the model is evaluated at the samples, only those passing the distance criterion are retained. This selects a subset of the parameter space as “plausible” based on the screening criterion, though there is no assignment of probabilities within this plausible region.
+Pre-calibration :cite:`beven_future_1992, edwards_precalibrating_2011, boukouvalas_bayesian_2014` involves the identification of a plausible set of parameters using some prespecified screening criterion, such as the distance from the model results to the observations (based on an appropriate metric for the desired matching features, such as root-mean-squared error). A typical workflow is shown in :numref:`Figure_A1_3`. Parameter values are obtained by systematically sampling the input space (see :numref:`design_of_experiments`). After the model is evaluated at the samples, only those passing the distance criterion are retained. This selects a subset of the parameter space as “plausible” based on the screening criterion, though there is no assignment of probabilities within this plausible region.
 
 .. _Figure_A1_3:
 .. figure:: _static/figureA1_3_precal_workflow.png

@@ -1,8 +1,8 @@
 .. _A1_uncertainty_quantification:
 
-**********
+**************************
 Uncertainty Quantification
-**********
+**************************
 
 .. include:: A1.1_UQ_Introduction.rst
 .. include:: A1.2_Parametric_Bootstrap.rst

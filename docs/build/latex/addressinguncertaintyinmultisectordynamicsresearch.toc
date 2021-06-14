@@ -34,9 +34,9 @@
 \contentsline {section}{\numberline {7.2}Parametric Bootstrap}{41}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Pre\sphinxhyphen {}Calibration}{41}{section.7.3}%
 \contentsline {section}{\numberline {7.4}Markov Chain Monte Carlo}{44}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Other Methods}{44}{section.7.5}%
-\contentsline {section}{\numberline {7.6}The Critical First Step: How to Choose a Prior Distribution}{44}{section.7.6}%
-\contentsline {section}{\numberline {7.7}The Critical Final Step: Predictive Checks}{44}{section.7.7}%
-\contentsline {section}{\numberline {7.8}Key Take\sphinxhyphen {}Home Points}{44}{section.7.8}%
-\contentsline {chapter}{\numberline {8}Indices and tables}{45}{chapter.8}%
-\contentsline {chapter}{Bibliography}{47}{chapter*.3}%
+\contentsline {section}{\numberline {7.5}Other Methods}{46}{section.7.5}%
+\contentsline {section}{\numberline {7.6}The Critical First Step: How to Choose a Prior Distribution}{46}{section.7.6}%
+\contentsline {section}{\numberline {7.7}The Critical Final Step: Predictive Checks}{48}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Key Take\sphinxhyphen {}Home Points}{48}{section.7.8}%
+\contentsline {chapter}{\numberline {8}Indices and tables}{51}{chapter.8}%
+\contentsline {chapter}{Bibliography}{53}{chapter*.3}%

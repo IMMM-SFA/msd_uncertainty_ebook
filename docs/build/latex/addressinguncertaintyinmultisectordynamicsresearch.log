@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.9)  14 JUN 2021 15:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.9)  14 JUN 2021 17:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -867,14 +867,14 @@ File: figure3_4_morris_method.png Graphic file (type png)
 Package pdftex.def Info: figure3_4_morris_method.png  used on input line 399.
 (pdftex.def)             Requested size: 469.75711pt x 329.89478pt.
  [18 <./figure3_4_morris_method.png>] [19] [20]
-<figure3_5classificationofmethods.png, id=719, 1343.2584pt x 914.4564pt>
+<figure3_5classificationofmethods.png, id=721, 1343.2584pt x 914.4564pt>
 File: figure3_5classificationofmethods.png Graphic file (type png)
 <use figure3_5classificationofmethods.png>
 Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
 ne 508.
 (pdftex.def)             Requested size: 469.73756pt x 319.79942pt.
  [21] [22 <./figure3_5classificationofmethods.png>]
-<figure3_6_softwaretoolkits.png, id=746, 534.798pt x 641.232pt>
+<figure3_6_softwaretoolkits.png, id=749, 534.798pt x 641.232pt>
 File: figure3_6_softwaretoolkits.png Graphic file (type png)
 <use figure3_6_softwaretoolkits.png>
 Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 527
@@ -885,13 +885,13 @@ Chapter 4.
 [25
 
 ]
-<figure4_1_diagnostic_workflow.png, id=789, 819.5418pt x 483.0045pt>
+<figure4_1_diagnostic_workflow.png, id=793, 819.5418pt x 483.0045pt>
 File: figure4_1_diagnostic_workflow.png Graphic file (type png)
 <use figure4_1_diagnostic_workflow.png>
 Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
 555.
 (pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
-<figure4_2_behavior_modes.png, id=795, 1350.7263pt x 670.9065pt>
+<figure4_2_behavior_modes.png, id=799, 1350.7263pt x 670.9065pt>
 File: figure4_2_behavior_modes.png Graphic file (type png)
 <use figure4_2_behavior_modes.png>
 Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 568.
@@ -900,7 +900,7 @@ Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 568.
 ! Argument of \Hy@tempa has an extra }.
 <inserted text> 
                 \par 
-l.569 ... {[}\hyperlink{cite.index:id57}{129}{]}.}
+l.569 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
                                                   \label{\detokenize{4_sensi...
 
 ? 
@@ -909,13 +909,13 @@ Runaway argument?
 ! Paragraph ended before \Hy@tempa was complete.
 <to be read again> 
                    \par 
-l.569 ... {[}\hyperlink{cite.index:id57}{129}{]}.}
+l.569 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
                                                   \label{\detokenize{4_sensi...
 
 ? 
 [26 <./figure4_1_diagnostic_workflow.png>] [27 <./figure4_2_behavior_modes.png>
 ]
-<figure4_3_lake_problem_fluxes.png, id=824, 1039.0017pt x 821.469pt>
+<figure4_3_lake_problem_fluxes.png, id=828, 1039.0017pt x 821.469pt>
 File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
 <use figure4_3_lake_problem_fluxes.png>
 Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
@@ -925,7 +925,7 @@ Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line
 ! Argument of \Hy@tempa has an extra }.
 <inserted text> 
                 \par 
-l.593 ...{[}\hyperlink{cite.index:id165}{136}{]}.}
+l.593 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
                                                   \label{\detokenize{4_sensi...
 
 ? 
@@ -934,12 +934,12 @@ Runaway argument?
 ! Paragraph ended before \Hy@tempa was complete.
 <to be read again> 
                    \par 
-l.593 ...{[}\hyperlink{cite.index:id165}{136}{]}.}
+l.593 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
                                                   \label{\detokenize{4_sensi...
 
 ? 
 [28] [29 <./figure4_3_lake_problem_fluxes.png>]
-<figure4_4_exploratory_workflow.png, id=862, 697.8873pt x 549.9747pt>
+<figure4_4_exploratory_workflow.png, id=868, 697.8873pt x 549.9747pt>
 File: figure4_4_exploratory_workflow.png Graphic file (type png)
 <use figure4_4_exploratory_workflow.png>
 Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
@@ -952,7 +952,7 @@ LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 6
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
 )
-<figure14lake_problem_SD.png, id=929, 1354.0989pt x 640.0713pt>
+<figure14lake_problem_SD.png, id=937, 1354.0989pt x 640.0713pt>
 File: figure14lake_problem_SD.png Graphic file (type png)
 <use figure14lake_problem_SD.png>
 Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 651.
@@ -969,71 +969,215 @@ Chapter 6.
 
 ]
 Chapter 7.
-<figureA1_1_UQ_approaches.png, id=988, 1504.8722pt x 1023.825pt>
+<figureA1_1_UQ_approaches.png, id=999, 1504.8722pt x 1023.825pt>
 File: figureA1_1_UQ_approaches.png Graphic file (type png)
 <use figureA1_1_UQ_approaches.png>
 Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 688.
 (pdftex.def)             Requested size: 469.74327pt x 319.5852pt.
 [39] [40 <./figureA1_1_UQ_approaches.png>]
-<figureA1_2_bootstrap_workflow.png, id=1009, 711.8595pt x 565.3923pt>
+<figureA1_2_bootstrap_workflow.png, id=1019, 711.8595pt x 565.3923pt>
 File: figureA1_2_bootstrap_workflow.png Graphic file (type png)
 <use figureA1_2_bootstrap_workflow.png>
 Package pdftex.def Info: figureA1_2_bootstrap_workflow.png  used on input line 
 710.
 (pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
-<figureA1_3_precal_workflow.png, id=1016, 711.8595pt x 565.3923pt>
+<figureA1_3_precal_workflow.png, id=1028, 711.8595pt x 565.3923pt>
 File: figureA1_3_precal_workflow.png Graphic file (type png)
 <use figureA1_3_precal_workflow.png>
 Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 726
 .
 (pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
  [41] [42 <./figureA1_2_bootstrap_workflow.png>] [43 <./figureA1_3_precal_workf
-low.png>] [44]
-Chapter 8.
-[45
+low.png>]
+<figureA1_4_mcmc_workflow.png, id=1074, 711.8595pt x 565.3923pt>
+File: figureA1_4_mcmc_workflow.png Graphic file (type png)
+<use figureA1_4_mcmc_workflow.png>
+Package pdftex.def Info: figureA1_4_mcmc_workflow.png  used on input line 755.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [44] [45 <./figureA1_4_mcmc_workflow.png>]
 
-] [46
+LaTeX Warning: Hyper reference `A1_Uncertainty_Quantification:figure-a1-5' on p
+age 46 undefined on input line 786.
 
-] [47
+
+LaTeX Warning: Reference `A1_Uncertainty_Quantification:figure-a1-5' on page 46
+ undefined on input line 786.
+
+
+LaTeX Warning: Hyper reference `A1_Uncertainty_Quantification:figure-a1-5' on p
+age 46 undefined on input line 786.
+
+
+LaTeX Warning: Reference `A1_Uncertainty_Quantification:figure-a1-5' on page 46
+ undefined on input line 786.
+
+<figureA1_5_priors_posteriors.png, id=1132, 1355.0625pt x 1355.0625pt>
+File: figureA1_5_priors_posteriors.png Graphic file (type png)
+<use figureA1_5_priors_posteriors.png>
+Package pdftex.def Info: figureA1_5_priors_posteriors.png  used on input line 7
+92.
+(pdftex.def)             Requested size: 469.75082pt x 469.7715pt.
+
+LaTeX Warning: Hyper reference `A1_Uncertainty_Quantification:figure-a1-5' on p
+age 46 undefined on input line 796.
+
+
+LaTeX Warning: Reference `A1_Uncertainty_Quantification:figure-a1-5' on page 46
+ undefined on input line 796.
+
+
+LaTeX Warning: Hyper reference `A1_Uncertainty_Quantification:figure-a1-5' on p
+age 46 undefined on input line 799.
+
+
+LaTeX Warning: Reference `A1_Uncertainty_Quantification:figure-a1-5' on page 46
+ undefined on input line 799.
+
+[46] [47 <./figureA1_5_priors_posteriors.png>] [48] [49] [50
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 857--859
+Chapter 8.
+[51] [52
+
+] [53
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 940--942
 []\T1/qtm/m/n/10 Praveen Ku-mar. Ty-pol-ogy of hy-dro-logic pre-dictabil-ity. \
 T1/qtm/m/it/10 Wa-ter Re-sources Re-search\T1/qtm/m/n/10 , 2011. URL:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 857--859
+Underfull \hbox (badness 10000) in paragraph at lines 940--942
 [][]$\T1/qtm/m/n/10 https : / / agupubs . onlinelibrary . wiley . com / doi / a
 bs / 10 . 1029 / 2010WR009769$[][] (vis-ited on 2020-04-15),
  []
 
-[48]
-Underfull \hbox (badness 10000) in paragraph at lines 881--883
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 964--966
 \T1/qtm/m/n/10 1993. URL: [][]$https : / / pubsonline . informs . org / doi / a
 bs / 10 . 1287 / opre . 41 . 3 . 435$[][] (vis-ited on 2018-09-11),
  []
 
-[49] [50] [51] [52] [53]
-Underfull \hbox (badness 5832) in paragraph at lines 1175--1177
+[55] [56] [57] [58] [59]
+Underfull \hbox (badness 5832) in paragraph at lines 1261--1263
 []\T1/qtm/m/n/10 S. R. Car-pen-ter, D. Lud-wig, and W. A. Brock. Man-age-ment o
 f Eu-troph-i-ca-tion for Lakes Sub-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1175--1177
+Underfull \hbox (badness 10000) in paragraph at lines 1261--1263
 [][]$\T1/qtm/m/n/10 http : / / onlinelibrary . wiley . com / doi / 10 . 1890 / 
 1051-[]0761(1999 ) 009{[}0751 : MOEFLS{]}2 . 0 . CO ; 2 / abstract$[][],
  []
 
-[54]
-Underfull \hbox (badness 5548) in paragraph at lines 1241--1243
+[60]
+Underfull \hbox (badness 5548) in paragraph at lines 1333--1335
 []\T1/qtm/m/n/10 Ryan L. Sriver, Robert J. Lem-pert, Per Wikman-Svahn, and Klau
 s Keller. Char-ac-ter-iz-ing un-cer-
  []
 
-(./addressinguncertaintyinmultisectordynamicsresearch.ind) [55]
+[61]
+Underfull \hbox (badness 10000) in paragraph at lines 1366--1368
+\T1/qtm/m/n/10 Math-e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteucli
+d . org / journals / statistical-[]science / volume-[]23 / issue-[]2 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1366--1368
+\T1/qtm/m/n/10 Markov-[]Chain-[]Monte-[]Carlo-[]-[]Can-[]We-[]Trust-[]the-[]Thi
+rd / 10 . 1214 / 08-[]STS257 . full$[][] (vis-ited on 2021-06-14),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1383
+[]\T1/qtm/m/n/10 John Ea-son and Se-len Cre-maschi. Adap-tive se-quen-tial sam-
+pling for sur-ro-gate model gen-er-a-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1381--1383
+\T1/qtm/m/n/10 URL: [][]$https : / / www . sciencedirect . com / science / arti
+cle / pii / S0098135414001719$[][] (vis-ited on 2021-06-14),
+ []
+
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 1414--1416
+[]\T1/qtm/m/n/10 An-drew Gel-man and Don-ald B. Ru-bin. In-fer-ence from It-er-
+a-tive Sim-u-la-tion Us-ing Mul-ti-ple
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1414--1416
+\T1/qtm/m/n/10 Se-quences. \T1/qtm/m/it/10 Sta-tis-ti-cal Sci-ence\T1/qtm/m/n/1
+0 , 7(4):457^^U472, Novem-ber 1992. Pub-lisher: In-sti-tute of Math-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1414--1416
+\T1/qtm/m/n/10 e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteuclid . o
+rg / journals / statistical-[]science / volume-[]7 / issue-[]4 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1414--1416
+\T1/qtm/m/n/10 Inference-[]from-[]Iterative-[]Simulation-[]Using-[]Multiple-[]S
+equences / 10 . 1214 / ss / 1177011136 . full$[][] (vis-ited on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1419
+\T1/qtm/m/it/10 the Royal Sta-tis-ti-cal So-ci-ety: Se-ries B (Sta-tis-ti-cal M
+ethod-ol-ogy)\T1/qtm/m/n/10 , 68(3):411^^U436, 2006. _eprint:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1419
+\T1/qtm/m/n/10 https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2006
+.00553.x. URL: [][]$http : / / rss . onlinelibrary .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1417--1419
+\T1/qtm/m/n/10 wiley . com / doi / abs / 10 . 1111 / j . 1467-[]9868 . 2006 . 0
+0553 . x$[][] (vis-ited on 2021-06-14), [][]doi:10.1111/j.1467-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1426--1428
+\T1/qtm/m/n/10 volume-[]10 / issue-[]2 / Approximate-[]Bayesian-[]Computation-[
+]by-[]Modelling-[]Summary-[]Statistics-[]in-[]a-[]Quasi / 10 .
+ []
+
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 1450--1452
+[]\T1/qtm/m/n/10 An-drew Gel-man and Cosma Ro-hilla Shal-izi. Phi-los-o-phy and
+ the prac-tice of Bayesian statis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1450--1452
+\T1/qtm/m/n/10 tics. \T1/qtm/m/it/10 British Jour-nal of Math-e-mat-i-cal and S
+ta-tis-ti-cal Psy-chol-ogy\T1/qtm/m/n/10 , 66(1):8^^U38, 2013. _eprint:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1450--1452
+\T1/qtm/m/n/10 https://bpspsychub.onlinelibrary.wiley.com/doi/pdf/10.1111/j.204
+4-8317.2011.02037.x. URL: [][]$https :
+ []
+
+
+Underfull \hbox (badness 7133) in paragraph at lines 1450--1452
+\T1/qtm/m/n/10 / / bpspsychub . onlinelibrary . wiley . com / doi / abs / 10 . 
+1111 / j . 2044-[]8317 . 2011 . 02037 . x$[][] (vis-ited on 2021-06-14),
+ []
+
+(./addressinguncertaintyinmultisectordynamicsresearch.ind) [64]
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1042,10 +1186,10 @@ search.out' has not changed.
 (rerunfilecheck)             Checksum: 0BB7F70F57B54C1BBADCE869ABD538B9;8950.
  ) 
 Here is how much of TeX's memory you used:
- 14137 strings out of 478994
- 211803 string characters out of 5858185
- 570843 words of memory out of 5000000
- 30962 multiletter control sequences out of 15000+600000
+ 14221 strings out of 478994
+ 212996 string characters out of 5858185
+ 576592 words of memory out of 5000000
+ 30999 multiletter control sequences out of 15000+600000
  463007 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  83i,17n,88p,4170b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1066,13 +1210,12 @@ s/type1/public/tex-gyre/qhvbi.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
 blic/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/t
 ex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyr
-e/qtmri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts/t1xt
-t.pfb>
-Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (59 pa
-ges, 5952352 bytes).
+e/qtmri.pfb>
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (68 pa
+ges, 6361143 bytes).
 PDF statistics:
- 1275 PDF objects out of 1440 (max. 8388607)
- 1143 compressed objects within 12 object streams
- 282 named destinations out of 1000 (max. 500000)
- 429 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1483 PDF objects out of 1728 (max. 8388607)
+ 1337 compressed objects within 14 object streams
+ 327 named destinations out of 1000 (max. 500000)
+ 439 words of extra memory for PDF output out of 10000 (max. 10000000)
 
