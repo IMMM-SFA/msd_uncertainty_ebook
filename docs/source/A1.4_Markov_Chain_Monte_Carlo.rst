@@ -9,7 +9,7 @@ A general workflow for MCMC is shown in :numref:`Figure_A1_4`. The first decisio
 
 .. _Figure_A1_4:
 .. figure:: _static/figureA1_4_mcmc_workflow.png
-    :alt: Figure A1.3
+    :alt: Figure A1.4
     :width: 700px
     :align: center
 
