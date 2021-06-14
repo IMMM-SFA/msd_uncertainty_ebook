@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.5.27)  2 JUN 2021 18:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.9)  14 JUN 2021 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -752,14 +752,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@m' on input line 72.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\spacefactor' on input line 72.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@m' on input line 72.
-
 LaTeX Font Info:    Trying to load font information for T1+qhv on input line 72
 .
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
@@ -776,13 +768,18 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Overfull \hbox (780.69733pt too wide) in paragraph at lines 72--72
+ [][]
+ []
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+[1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2
 
 
-]
-(./addressinguncertaintyinmultisectordynamicsresearch.toc [1
+] (./addressinguncertaintyinmultisectordynamicsresearch.toc [1
 
 ])
 \tf@toc=\write6
@@ -794,116 +791,288 @@ Chapter 1.
 
 
 ]
-<figure1_state_of_the_science.png, id=343, 385.44pt x 245.41687pt>
+<figure1_1_state_of_the_science.png, id=264, 1625.5932pt x 1034.6655pt>
 LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
 07.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/txfonts/t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 )
-File: figure1_state_of_the_science.png Graphic file (type png)
-<use figure1_state_of_the_science.png>
-Package pdftex.def Info: figure1_state_of_the_science.png  used on input line 1
-07.
-(pdftex.def)             Requested size: 469.75385pt x 299.11229pt.
+File: figure1_1_state_of_the_science.png Graphic file (type png)
+<use figure1_1_state_of_the_science.png>
+Package pdftex.def Info: figure1_1_state_of_the_science.png  used on input line
+ 107.
+(pdftex.def)             Requested size: 469.74806pt x 298.98753pt.
  [2]
-[3 <./figure1_state_of_the_science.png>] [4
+[3 <./figure1_1_state_of_the_science.png>] [4
 
 ]
 Chapter 2.
-<figure2_idealized_uc.png, id=368, 1204.5pt x 737.00343pt>
-File: figure2_idealized_uc.png Graphic file (type png)
-<use figure2_idealized_uc.png>
-Package pdftex.def Info: figure2_idealized_uc.png  used on input line 129.
+<figure2_1_idealized_uc.png, id=308, 1204.5pt x 737.00343pt>
+File: figure2_1_idealized_uc.png Graphic file (type png)
+<use figure2_1_idealized_uc.png>
+Package pdftex.def Info: figure2_1_idealized_uc.png  used on input line 129.
 (pdftex.def)             Requested size: 469.75311pt x 287.44142pt.
-[5] [6 <./figure2_idealized_uc.png>] [7] [8]
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.130 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
+
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.130 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
+
+? 
+[5] [6 <./figure2_1_idealized_uc.png>] [7] [8]
 Chapter 3.
-<figure3_global_versus_local.png, id=387, 1204.5pt x 350.05782pt>
-File: figure3_global_versus_local.png Graphic file (type png)
-<use figure3_global_versus_local.png>
-Package pdftex.def Info: figure3_global_versus_local.png  used on input line 17
-3.
-(pdftex.def)             Requested size: 469.75311pt x 136.52733pt.
+<figure3_1_global_versus_local.png, id=401, 824.8416pt x 416.9979pt>
+File: figure3_1_global_versus_local.png Graphic file (type png)
+<use figure3_1_global_versus_local.png>
+Package pdftex.def Info: figure3_1_global_versus_local.png  used on input line 
+175.
+(pdftex.def)             Requested size: 469.76184pt x 237.49402pt.
+
+Package amsmath Warning: Foreign command \above;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 176.
+
 [9
 
-] [10 <./figure3_global_versus_local.png>]
-<figure4_factor_mapping.png, id=399, 1204.5pt x 1005.00468pt>
-File: figure4_factor_mapping.png Graphic file (type png)
-<use figure4_factor_mapping.png>
-Package pdftex.def Info: figure4_factor_mapping.png  used on input line 213.
-(pdftex.def)             Requested size: 376.40381pt x 314.06319pt.
- [11] [12 <./figure4_factor_mapping.png>] [13]
-<figure5_alternative_designs.png, id=414, 385.44pt x 246.1697pt>
-File: figure5_alternative_designs.png Graphic file (type png)
-<use figure5_alternative_designs.png>
-Package pdftex.def Info: figure5_alternative_designs.png  used on input line 32
-2.
-(pdftex.def)             Requested size: 376.40381pt x 240.39949pt.
- [14] [15 <./figure5_alternative_designs.png>] [16]
-LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 3
-94.
+] [10 <./figure3_1_global_versus_local.png>]
+<figure3_2_factor_mapping.png, id=452, 1166.4378pt x 973.236pt>
+File: figure3_2_factor_mapping.png Graphic file (type png)
+<use figure3_2_factor_mapping.png>
+Package pdftex.def Info: figure3_2_factor_mapping.png  used on input line 212.
+(pdftex.def)             Requested size: 376.40381pt x 314.05554pt.
+ [11] [12 <./figure3_2_factor_mapping.png>] [13]
+<figure3_3_alternative_designs.png, id=511, 1169.5695pt x 746.79pt>
+File: figure3_3_alternative_designs.png Graphic file (type png)
+<use figure3_3_alternative_designs.png>
+Package pdftex.def Info: figure3_3_alternative_designs.png  used on input line 
+326.
+(pdftex.def)             Requested size: 376.40381pt x 240.3337pt.
+ [14] [15 <./figure3_3_alternative_designs.png>] [16]
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 388.
+
+[17]
+<figure3_4_morris_method.png, id=618, 799.3062pt x 561.297pt>
+File: figure3_4_morris_method.png Graphic file (type png)
+<use figure3_4_morris_method.png>
+Package pdftex.def Info: figure3_4_morris_method.png  used on input line 399.
+(pdftex.def)             Requested size: 469.75711pt x 329.89478pt.
+ [18 <./figure3_4_morris_method.png>] [19] [20]
+<figure3_5classificationofmethods.png, id=719, 1343.2584pt x 914.4564pt>
+File: figure3_5classificationofmethods.png Graphic file (type png)
+<use figure3_5classificationofmethods.png>
+Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
+ne 508.
+(pdftex.def)             Requested size: 469.73756pt x 319.79942pt.
+ [21] [22 <./figure3_5classificationofmethods.png>]
+<figure3_6_softwaretoolkits.png, id=746, 534.798pt x 641.232pt>
+File: figure3_6_softwaretoolkits.png Graphic file (type png)
+<use figure3_6_softwaretoolkits.png>
+Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 527
+.
+(pdftex.def)             Requested size: 469.76686pt x 563.31726pt.
+ [23] [24 <./figure3_6_softwaretoolkits.png>]
+Chapter 4.
+[25
+
+]
+<figure4_1_diagnostic_workflow.png, id=789, 819.5418pt x 483.0045pt>
+File: figure4_1_diagnostic_workflow.png Graphic file (type png)
+<use figure4_1_diagnostic_workflow.png>
+Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
+555.
+(pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
+<figure4_2_behavior_modes.png, id=795, 1350.7263pt x 670.9065pt>
+File: figure4_2_behavior_modes.png Graphic file (type png)
+<use figure4_2_behavior_modes.png>
+Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 568.
+(pdftex.def)             Requested size: 469.75218pt x 233.32616pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.569 ... {[}\hyperlink{cite.index:id57}{129}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.569 ... {[}\hyperlink{cite.index:id57}{129}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+[26 <./figure4_1_diagnostic_workflow.png>] [27 <./figure4_2_behavior_modes.png>
+]
+<figure4_3_lake_problem_fluxes.png, id=824, 1039.0017pt x 821.469pt>
+File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
+<use figure4_3_lake_problem_fluxes.png>
+Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
+592.
+(pdftex.def)             Requested size: 469.76599pt x 371.42502pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.593 ...{[}\hyperlink{cite.index:id165}{136}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.593 ...{[}\hyperlink{cite.index:id165}{136}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+[28] [29 <./figure4_3_lake_problem_fluxes.png>]
+<figure4_4_exploratory_workflow.png, id=862, 697.8873pt x 549.9747pt>
+File: figure4_4_exploratory_workflow.png Graphic file (type png)
+<use figure4_4_exploratory_workflow.png>
+Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
+ 617.
+(pdftex.def)             Requested size: 469.75444pt x 370.19308pt.
+ [30 <./figure4_4_exploratory_workflow.png>] [31]
+LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 6
+42.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
-) [17] [18]
-Chapter 4.
-[19
-
-] [20
+)
+<figure14lake_problem_SD.png, id=929, 1354.0989pt x 640.0713pt>
+File: figure14lake_problem_SD.png Graphic file (type png)
+<use figure14lake_problem_SD.png>
+Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 651.
+(pdftex.def)             Requested size: 469.74736pt x 222.04567pt.
+ [32] [33 <./figure14lake_problem_SD.png>] [34
 
 ]
 Chapter 5.
-[21] [22
+[35] [36
 
 ]
 Chapter 6.
-[23] [24] [25] [26
+[37] [38
 
 ]
 Chapter 7.
-[27] [28
-
-]
+<figureA1_1_UQ_approaches.png, id=988, 1504.8722pt x 1023.825pt>
+File: figureA1_1_UQ_approaches.png Graphic file (type png)
+<use figureA1_1_UQ_approaches.png>
+Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 688.
+(pdftex.def)             Requested size: 469.74327pt x 319.5852pt.
+[39] [40 <./figureA1_1_UQ_approaches.png>]
+<figureA1_2_bootstrap_workflow.png, id=1009, 711.8595pt x 565.3923pt>
+File: figureA1_2_bootstrap_workflow.png Graphic file (type png)
+<use figureA1_2_bootstrap_workflow.png>
+Package pdftex.def Info: figureA1_2_bootstrap_workflow.png  used on input line 
+710.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+<figureA1_3_precal_workflow.png, id=1016, 711.8595pt x 565.3923pt>
+File: figureA1_3_precal_workflow.png Graphic file (type png)
+<use figureA1_3_precal_workflow.png>
+Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 726
+.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [41] [42 <./figureA1_2_bootstrap_workflow.png>] [43 <./figureA1_3_precal_workf
+low.png>] [44]
 Chapter 8.
-[29] [30
+[45
+
+] [46
+
+] [47
 
 ]
-Chapter 9.
-[31] [32
+Underfull \hbox (badness 10000) in paragraph at lines 857--859
+[]\T1/qtm/m/n/10 Praveen Ku-mar. Ty-pol-ogy of hy-dro-logic pre-dictabil-ity. \
+T1/qtm/m/it/10 Wa-ter Re-sources Re-search\T1/qtm/m/n/10 , 2011. URL:
+ []
 
-] (./addressinguncertaintyinmultisectordynamicsresearch.ind) [33
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 857--859
+[][]$\T1/qtm/m/n/10 https : / / agupubs . onlinelibrary . wiley . com / doi / a
+bs / 10 . 1029 / 2010WR009769$[][] (vis-ited on 2020-04-15),
+ []
+
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 881--883
+\T1/qtm/m/n/10 1993. URL: [][]$https : / / pubsonline . informs . org / doi / a
+bs / 10 . 1287 / opre . 41 . 3 . 435$[][] (vis-ited on 2018-09-11),
+ []
+
+[49] [50] [51] [52] [53]
+Underfull \hbox (badness 5832) in paragraph at lines 1175--1177
+[]\T1/qtm/m/n/10 S. R. Car-pen-ter, D. Lud-wig, and W. A. Brock. Man-age-ment o
+f Eu-troph-i-ca-tion for Lakes Sub-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1175--1177
+[][]$\T1/qtm/m/n/10 http : / / onlinelibrary . wiley . com / doi / 10 . 1890 / 
+1051-[]0761(1999 ) 009{[}0751 : MOEFLS{]}2 . 0 . CO ; 2 / abstract$[][],
+ []
+
+[54]
+Underfull \hbox (badness 5548) in paragraph at lines 1241--1243
+[]\T1/qtm/m/n/10 Ryan L. Sriver, Robert J. Lem-pert, Per Wikman-Svahn, and Klau
+s Keller. Char-ac-ter-iz-ing un-cer-
+ []
+
+(./addressinguncertaintyinmultisectordynamicsresearch.ind) [55]
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `addressinguncertaintyinmultisectordynamicsre
 search.out' has not changed.
-(rerunfilecheck)             Checksum: 700F7A207D0268AF2F72BDB28AA04315;14488.
+(rerunfilecheck)             Checksum: 0BB7F70F57B54C1BBADCE869ABD538B9;8950.
  ) 
 Here is how much of TeX's memory you used:
- 13732 strings out of 478994
- 205140 string characters out of 5858184
- 552339 words of memory out of 5000000
- 30737 multiletter control sequences out of 15000+600000
- 462595 words of font info for 68 fonts, out of 8000000 for 9000
+ 14137 strings out of 478994
+ 211803 string characters out of 5858185
+ 570843 words of memory out of 5000000
+ 30962 multiletter control sequences out of 15000+600000
+ 463007 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 83i,17n,88p,3880b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,17n,88p,4170b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
-ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-21/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/public/tex-gyre/qhvbi.pfb></usr/local/texlive/2021/texmf-dis
-t/fonts/type1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
-e1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
-lic/tex-gyre/qtmri.pfb>
-Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (37 pa
-ges, 1043930 bytes).
+live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive
+/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dis
+t/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2021/texmf-dist/font
+s/type1/public/tex-gyre/qhvbi.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
+e1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
+blic/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/t
+ex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyr
+e/qtmri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts/t1xt
+t.pfb>
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (59 pa
+ges, 5952352 bytes).
 PDF statistics:
- 579 PDF objects out of 1000 (max. 8388607)
- 508 compressed objects within 6 object streams
- 114 named destinations out of 1000 (max. 500000)
- 510 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1275 PDF objects out of 1440 (max. 8388607)
+ 1143 compressed objects within 12 object streams
+ 282 named destinations out of 1000 (max. 500000)
+ 429 words of extra memory for PDF output out of 10000 (max. 10000000)
 

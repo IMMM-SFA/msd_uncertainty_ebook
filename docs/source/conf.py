@@ -19,7 +19,10 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 project = 'Addressing Uncertainty in MultiSector Dynamics Research'
 copyright = '2021, Battelle Memorial Institute'
-author = 'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek, Tina Karimi, David Gold, Rohini Gupta, Chris Vernon, Jennie Rice'
+author = 'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek, ' \
+         'Tina Karimi, Vivek Srikrishnan, Klaus Keller, ' \
+         'David Gold, Rohini Gupta, Chris Vernon, ' \
+         'Jennie Rice'
 
 # The full version, including alpha/beta/rc tags
 release = 'v0.1.0'

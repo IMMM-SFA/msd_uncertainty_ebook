@@ -12,7 +12,6 @@ nanites.tests.test\_model module
    :undoc-members:
    :show-inheritance:
 
-
 Module contents
 ---------------
 

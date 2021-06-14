@@ -1,7 +1,7 @@
 Elementary Effect Methods
 *************************
 
-Elementary effect (EE) SA methods provide a solution to the local nature of the derivative-based methods by exploring the entire parametric range of each input parameter :cite:p:`iooss2015review`. However, EE methods still use OAT sampling and do not vary all input parameters simultaneously while exploring the parametric space. The OAT nature of EEs methods therefore prevents them from properly capturing the interactions between uncertain factors. EEs methods are computationally efficient compared to their AAT counterparts, making them more suitable when computational capacity is a limiting factor, while still allowing for some inferences regarding factor interactions. 
+Elementary effect (EE) SA methods provide a solution to the local nature of the derivative-based methods by exploring the entire parametric range of each input parameter :cite:p:`iooss2015review`. However, EE methods still use OAT sampling and do not vary all input parameters simultaneously while exploring the parametric space. The OAT nature of EEs methods therefore prevents them from properly capturing the interactions between uncertain factors. EEs methods are computationally efficient compared to their All-At-a-Time (AAT) counterparts, making them more suitable when computational capacity is a limiting factor, while still allowing for some inferences regarding factor interactions.
 The most popular EE method is the Method of Morris :cite:p:`morris1991factorial`. Following the notation by :cite:p:`pianosi2016sensitivity`, this method calculates global sensitivity using the mean of the EEs (finite differences) of each parameter at different locations:
 
 .. math::
@@ -9,14 +9,14 @@ The most popular EE method is the Method of Morris :cite:p:`morris1991factorial`
   S_i = \mu_i^* = \frac{1}{r}\sum_{j=1}^r EE^j_i = \frac{1}{r}\sum_{j=1}^r \frac{g(\bar{x}_1,...\bar{x}_i+\Delta_i,...\bar{x}_N)-g(\bar{x}_1,...\bar{x}_i,...\bar{x}_N)}{\Delta_i}c_i
 
 
-with r representing the number of repetitions (or trajectories) in the input space, usually set between 4 and 10 :cite:`saltelli2004sensitivity`. Each xj represents the points of each trajectory, with j=1,…, r, selected as described in the sampling strategy for this method, found above. This method also produces the standard deviation of the EEs:
+with :math:`r` representing the number of repetitions (or trajectories) in the input space, usually set between 4 and 10 :cite:`saltelli2004sensitivity`. Each xj represents the points of each trajectory, with :math:`j=1,…, r`, selected as described in the sampling strategy for this method, found above. This method also produces the standard deviation of the EEs:
 
 .. math::
 
   \sigma_i = \sqrt{\frac{1}{r}\sum_{j=1}^r(EE_i^j-\frac{1}{r}\sum_{j=1}^r EE^j_i)^2}
 
 
-which is a measure of parametric interactions. Higher values of :math:`\sigma_i` suggest model responses at different levels of factor xi are significantly different, which indicates considerable interactions between that and other uncertain factors. The values of i* and i for each factor allow us to draw several different conclusions, illustrated in :numref:`Figure_3_4`, following the example by :cite:`iooss2015review`. In this example, factors :math:`x_1`, :math:`x2`, :math:`x_4`, and :math:`x_5` can be said to have an influence on the model outputs, with :math:`x_1`, :math:`x_4`, and :math:`x_5` having some interactive or non-linear effects. Depending on the orders of magnitude of :math:`\mu_i^*` and :math:`\sigma_i` one can indirectly deduce whether the factors have strong interactive effects, for example if a factor :math:`\sigma_i << \mu_i^*` then the relationship between that factor and the output can be assumed to be largely linear (nb: this is still an OAT method and assumptions on factor interactions should be strongly caveated). Extensions of the Method of Morris have also been developed specifically for the purposes of factor fixing and explorations of parametric interactions (e.g., :cite:p:`borgonovo2010sensitivity,campolongo1999use,cropp2002new`).
+which is a measure of parametric interactions. Higher values of :math:`\sigma_i` suggest model responses at different levels of factor :math:`x_i` are significantly different, which indicates considerable interactions between that and other uncertain factors. The values of :math:`\mu_i^*` and :math:`\sigma_i` for each factor allow us to draw several different conclusions, illustrated in :numref:`Figure_3_4`, following the example by :cite:`iooss2015review`. In this example, factors :math:`x_1`, :math:`x_2`, :math:`x_4`, and :math:`x_5` can be said to have an influence on the model outputs, with :math:`x_1`, :math:`x_4`, and :math:`x_5` having some interactive or non-linear effects. Depending on the orders of magnitude of :math:`\mu_i^*` and :math:`\sigma_i` one can indirectly deduce whether the factors have strong interactive effects, for example if a factor :math:`\sigma_i << \mu_i^*` then the relationship between that factor and the output can be assumed to be largely linear (nb: this is still an OAT method and assumptions on factor interactions should be strongly caveated). Extensions of the Method of Morris have also been developed specifically for the purposes of factor fixing and explorations of parametric interactions (e.g., :cite:p:`borgonovo2010sensitivity,campolongo1999use,cropp2002new`).
 
 
 .. _Figure_3_4:
@@ -25,4 +25,4 @@ which is a measure of parametric interactions. Higher values of :math:`\sigma_i`
     :width: 700px
     :align: center
 
-    Illustrative results of the Morris Method. Factors :math:`x_1`, :math:`x_2`, :math:`x_4`, and :math:`x_5` have an influence on the model outputs, with :math:`x_1`, :math:`x_4`, and :math:`x:5` having interactive or non-linear effects.
+    Illustrative results of the Morris Method. Factors :math:`x_1`, :math:`x_2`, :math:`x_4`, and :math:`x_5` have an influence on the model outputs, with :math:`x_1`, :math:`x_4`, and :math:`x_5` having interactive or non-linear effects.
