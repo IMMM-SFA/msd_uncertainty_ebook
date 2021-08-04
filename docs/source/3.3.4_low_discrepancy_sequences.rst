@@ -5,4 +5,7 @@ Low-discrepancy sequences is another sampling technique that employs a pseudo-ra
 
 .. seealso::
 
-    Put this into practice! Checkout Appendix X for an interactive tutorial on implementing a Sobol SA using SALib.
+    Put this into practice! Click the following badge to try out an interactive tutorial on implementing a Sobol SA using SALib:
+
+    .. image:: https://mybinder.org/badge_logo.svg
+         :target: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/jupyter?filepath=docs%2Fsource%2Fsa_saltelli_sobol_ishigami.ipynb

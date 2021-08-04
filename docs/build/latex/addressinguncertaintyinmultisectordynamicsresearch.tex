@@ -60,7 +60,7 @@
 
 
 \title{Addressing Uncertainty in MultiSector Dynamics Research}
-\date{Jun 14, 2021}
+\date{Aug 04, 2021}
 \release{v0.1.0}
 \author{Patrick M.\@{} Reed, Antonia Hadjimichael, Keyvan Malek, Tina Karimi, Vivek Srikrishnan, Klaus Keller, David Gold, Rohini Gupta, Chris Vernon, Jennie Rice}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -340,6 +340,16 @@ LH sampling is less effective when the number of samples is not much larger than
 \label{\detokenize{3_sensitivity_analysis_the_basics:low-discrepancy-sequences}}
 \sphinxAtStartPar
 Low\sphinxhyphen{}discrepancy sequences is another sampling technique that employs a pseudo\sphinxhyphen{}random generator for Monte Carlo sampling {[}\hyperlink{cite.index:id81}{65}, \hyperlink{cite.index:id92}{66}{]}. These quasi\sphinxhyphen{}Monte Carlo methods eliminate potential gaps and clusters between samples by minimizing discrepancy when generating uniformly distributed random samples within the hypercube. The discrepancy property is mathematically measured by characterizing the lumpiness of a sequence of samples in a multidimensional space, which results in evenly distributed samples {[}\hyperlink{cite.index:id81}{65}{]}. Discrepancy can be quantitatively measured using the deviations of sampled points from the uniform distribution {[}\hyperlink{cite.index:id95}{67}{]}. Low\sphinxhyphen{}discrepancy sequences ensure that the number of samples in any subspace of the variability hypercube is approximately the same. This is not something guaranteed by LH sampling, and even though the design can be improved through optimization with various criteria, such adjustments are limited to small sample sizes and low dimensions {[}\hyperlink{cite.index:id95}{67}, \hyperlink{cite.index:id93}{68}, \hyperlink{cite.index:id94}{69}, \hyperlink{cite.index:id96}{70}, \hyperlink{cite.index:id97}{71}{]}. The Sobol sequence {[}\hyperlink{cite.index:id98}{72}, \hyperlink{cite.index:id99}{73}{]}, one of the most widely used sampling techniques, utilizes the low\sphinxhyphen{}discrepancy approach to uniformly fill the sampled factor space. A core advantage of this style of sampling is that it takes far fewer samples (i.e., simulations) to attain a much lower level of error in estimating model output statistics (e.g., the mean and variance of outputs).
+
+
+\sphinxstrong{See also:}
+\nopagebreak
+
+
+\sphinxAtStartPar
+Put this into practice! Checkout Appendix X for an interactive tutorial on implementing a Sobol SA using SALib.
+
+
 
 
 \subsection{Other types of sampling}
