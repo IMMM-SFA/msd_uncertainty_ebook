@@ -2,3 +2,8 @@
 
 ## Addressing Uncertainty in MultiSector Dynamics Research
 
+### Install the supporting Python package
+
+```bash
+pip install msdbook
+```

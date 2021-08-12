@@ -1,11 +1,18 @@
 import numpy as np
 import statsmodels.api as sm
 
+
 def load_performance(ID):
+    """Need description"""
+
     allSOWs = np.load('./data/'+ ID + '_heatmap.npy')
-    return(allSOWs)
+
+    return allSOWs
+
 
 def fitLogit(dta, predictors):
+    """Need description"""
+
     # concatenate intercept column of 1s
     dta['Intercept'] = np.ones(np.shape(dta)[0])
     # get columns of predictors
@@ -13,10 +20,13 @@ def fitLogit(dta, predictors):
     #fit logistic regression
     logit = sm.Logit(dta['Success'], dta[cols], disp=False)
     result = logit.fit()
+
     return result
 
-def plotContourMap(ax, result, dta, contour_cmap, dot_cmap, levels, xgrid, ygrid, \
-                   xvar, yvar, base):
+
+def plotContourMap(ax, result, dta, contour_cmap, dot_cmap, levels, xgrid, ygrid, xvar, yvar, base):
+    """Need description"""
+
     # find probability of success for x=xgrid, y=ygrid
     X, Y = np.meshgrid(xgrid, ygrid)
     x = X.flatten()
@@ -36,5 +46,6 @@ def plotContourMap(ax, result, dta, contour_cmap, dot_cmap, levels, xgrid, ygrid
     ax.set_xlabel(xvar, fontsize=14)
     ax.set_ylabel(yvar, fontsize=14)
     ax.tick_params(axis='both', labelsize=12)
+
     return contourset
 
