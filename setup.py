@@ -34,6 +34,9 @@ setup(
         "numpy>=1.14",
         "SALib>=1.3.11",
         "statsmodels>=0.12.1",
+        "pandas>=1.1.4",
+        "matplotlib>=3.3.3",
+        "seaborn>=0.11.1"
     ],
     extras_require={
         'dev': [
