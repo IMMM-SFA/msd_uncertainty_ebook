@@ -40,7 +40,11 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.githubpages',
-    'sphinxcontrib.bibtex']
+    'sphinxcontrib.bibtex',
+    'sphinx.ext.githubpages',
+    'sphinx.ext.viewcode',
+    'nbsphinx'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -51,7 +55,7 @@ bibtex_bibfiles = ['refs.bib']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['**.ipynb_checkpoints']
 
 # Figures and tables are automatically numbered if they have a caption.
 # This also helps with referencing figures in the main text (otherwise
