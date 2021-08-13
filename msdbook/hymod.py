@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 import math
 
@@ -108,7 +107,7 @@ def Hymod01(Data, Pars, InState):
     return Model
 
 
-def main(Nq, Kq, Ks, Alp, Huz, B, Data_name, ndays):
+def hymod(Nq, Kq, Ks, Alp, Huz, B, hymod_dataframe, ndays):
     """Hymod main function.
 
     :param Nq: number of quickflow routing tanks
@@ -120,8 +119,7 @@ def main(Nq, Kq, Ks, Alp, Huz, B, Data_name, ndays):
 
     """
     # read in observed rainfall-runoff data for one year
-    Data = pd.read_csv(Data_name)
-    Data = Data.iloc[0:ndays]
+    Data = hymod_dataframe.iloc[0:ndays]
 
     # assign parameters
     Pars = {'Nq': Nq,

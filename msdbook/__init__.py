@@ -4,4 +4,4 @@ from .hymod import *
 from .package_data import *
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
