@@ -34,7 +34,8 @@ Besides the Sobol method, there are some other variance-based sensitivity analys
 Fishery Dynamics Tutorial
 *************************
 
-Run the tutorial interactively:  `Fishery Dynamics Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/b8a490616a456c2b366066702f31e5b6fe07f701?filepath=notebooks%2Ffishery_dynamics.ipynb>`_
+.. note:: Run the tutorial interactively:  `Fishery Dynamics Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/b8a490616a456c2b366066702f31e5b6fe07f701?filepath=notebooks%2Ffishery_dynamics.ipynb>`_
+
 
 Sensitivity Analysis (SA) to discover factors shaping consequential dynamics
 ----------------------------------------------------------------------------
