@@ -17,3 +17,10 @@ number of samples can be used to represent the parameter space, but which are to
 However, pre-calibration results in a very coarse characterization of uncertainty, especially when considering a large number of parameters, as more samples are needed to fully characterize the parameter space. Due to the inability to evaluate the relative probability of regions of the parameter space beyond the binary plausible-and-implausible characterization, pre-calibration can also result in degraded hindcast and projection skills and parameter estimates :cite:`makowski_using_2002, shafii_uncertainty-based_2014, ruckert_assessing_2017`.
 
 A related method, widely used in hydrological studies, is generalized likelihood uncertainty estimation, or GLUE :cite:`beven_future_1992`. Unlike pre-calibration, the underlying argument for GLUE relies on the concept of equifinality :cite:`beven_equifinality_2001`, which posits that it is impossible to find a uniquely well-performing parameter vector for models of abstract environmental systems :cite:`beven_equifinality_2001, vrugt_embracing_2018`. In other words, there exist multiple parameter vectors which perform equally or similarly well. As with pre-calibration, GLUE uses a goodness-of-fit measure (though this is called a “likelihood” in the GLUE literature, as opposed to a statistical likelihood function :cite:`stedinger_appraisal_2008`) to evaluate samples. After setting a threshold of acceptable performance with respect to that measure, samples are evaluated and classified into “behavioral” or “non-behavioral” according to the threshold.
+
+.. seealso::
+
+    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:
+
+     .. image:: https://mybinder.org/badge_logo.svg
+         :target: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/b8a490616a456c2b366066702f31e5b6fe07f701?filepath=notebooks%2Ffishery_dynamics.ipynb

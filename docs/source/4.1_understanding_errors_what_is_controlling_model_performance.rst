@@ -20,3 +20,10 @@ A comprehensive model diagnostic workflow typically entails the components demon
     :align: center
 
     Diagnostic evaluation of model fidelity using sensitivity analysis methods.
+
+    .. seealso::
+
+    Put this into practice! Click the following badge to try out an interactive tutorial on implementing a time-varying sensitivity analysis of HYMOD model parameters:
+
+     .. image:: https://mybinder.org/badge_logo.svg
+         :target: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/b8a490616a456c2b366066702f31e5b6fe07f701?filepath=notebooks%2Ffishery_dynamics.ipynb
