@@ -19,6 +19,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
    5_conclusion
    6_glossary
    A1_Uncertainty_Quantification
+   A2_Jupyter_Notebooks
 
 .. bibliography::
   :style: unsrt
