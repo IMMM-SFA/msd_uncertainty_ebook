@@ -1,7 +1,7 @@
 import numpy as np
 import itertools
-import matplotlib.pyplot as plt
-from matplotlib import patheffects as pe
+# import matplotlib.pyplot as plt
+# from matplotlib import patheffects as pe
 
 
 def inequality(b, m, h, K):

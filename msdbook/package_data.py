@@ -5,19 +5,36 @@ import pandas as pd
 
 
 def load_robustness_data():
-    """Load data from file."""
+    """Load robustness solution data from file.  For use in 'fishery_dynamics.ipynb'"""
 
     f = pkg_resources.resource_filename('msdbook', 'data/Robustness.txt')
 
     return np.loadtxt(f, delimiter=' ')
 
 
-def load_result_data():
-    """Load data from file."""
+def load_profit_maximization_data():
+    """Load profit-maximizing solution data from file.  For use in 'fishery_dynamics.ipynb'"""
 
     f = pkg_resources.resource_filename('msdbook', 'data/solutions.resultfile')
 
     return np.loadtxt(f)
+
+
+def load_saltelli_param_values():
+    """Load Saltelli parameter values from file.  For use in 'fishery_dynamics.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/param_values.csv')
+
+    return np.loadtxt(f, delimiter=',')
+
+
+def load_collapse_data():
+    """Load the predator population collapse data from file.  For use in 'fishery_dynamics.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/collapse_days.csv')
+
+    return np.loadtxt(f, delimiter=',')
+
 
 
 def load_hymod_input_file():
