@@ -1,31 +1,28 @@
+import warnings
+
 import numpy as np
 import statsmodels.api as sm
 
 
-def load_performance(ID):
-    """Need description"""
-
-    allSOWs = np.load('./data/'+ ID + '_heatmap.npy')
-
-    return allSOWs
-
-
-def fitLogit(dta, predictors):
-    """Need description"""
+def fit_logit(dta, predictors):
+    """Logistic regression"""
 
     # concatenate intercept column of 1s
     dta['Intercept'] = np.ones(np.shape(dta)[0])
     # get columns of predictors
     cols = dta.columns.tolist()[-1:] + predictors + ['Interaction']
-    #fit logistic regression
+    # fit logistic regression
     logit = sm.Logit(dta['Success'], dta[cols], disp=False)
     result = logit.fit()
 
     return result
 
 
-def plotContourMap(ax, result, dta, contour_cmap, dot_cmap, levels, xgrid, ygrid, xvar, yvar, base):
-    """Need description"""
+def plot_contour_map(ax, result, dta, contour_cmap, dot_cmap, levels, xgrid, ygrid, xvar, yvar, base):
+    """Plot the contour map"""
+
+    # TODO:  see why this warning is being raised about the tight layout
+    warnings.filterwarnings("ignore")
 
     # find probability of success for x=xgrid, y=ygrid
     X, Y = np.meshgrid(xgrid, ygrid)
