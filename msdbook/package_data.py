@@ -26,3 +26,43 @@ def load_hymod_input_file():
     f = pkg_resources.resource_filename('msdbook', 'data/LeafCatch.csv')
 
     return pd.read_csv(f, sep=',')
+
+
+def load_lhs_basin_sample():
+    """Load LHS sample data from file.  For use in 'basin_users_logistic_regression.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/LHsamples_original_1000.txt')
+
+    return np.loadtxt(f)
+
+
+def load_basin_param_bounds():
+    """Load parameter bounds data from file.  For use in 'basin_users_logistic_regression.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/uncertain_params_bounds.txt')
+
+    return np.loadtxt(f, usecols=(1, 2))
+
+
+def load_user_heatmap_array(user_id):
+    """Load the heatmap array associated with the target user ID.
+
+    For use in 'basin_users_logistic_regression.ipynb'
+
+    """
+
+    f = pkg_resources.resource_filename('msdbook', f'data/{user_id}_heatmap.npy')
+
+    return np.load(f)
+
+
+def load_user_pseudo_scores(user_id):
+    """Load the pseudo r scores associated with the target user ID.
+
+    For use in 'basin_users_logistic_regression.ipynb'
+
+    """
+
+    f = pkg_resources.resource_filename('msdbook', f'data/{user_id}_pseudo_r_scores.csv')
+
+    return pd.read_csv(f)
