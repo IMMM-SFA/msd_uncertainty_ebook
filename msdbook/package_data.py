@@ -36,15 +36,6 @@ def load_collapse_data():
     return np.loadtxt(f, delimiter=',')
 
 
-
-def load_hymod_input_file():
-    """Load data from file."""
-
-    f = pkg_resources.resource_filename('msdbook', 'data/LeafCatch.csv')
-
-    return pd.read_csv(f, sep=',')
-
-
 def load_lhs_basin_sample():
     """Load LHS sample data from file.  For use in 'basin_users_logistic_regression.ipynb'"""
 
@@ -83,3 +74,27 @@ def load_user_pseudo_scores(user_id):
     f = pkg_resources.resource_filename('msdbook', f'data/{user_id}_pseudo_r_scores.csv')
 
     return pd.read_csv(f)
+
+
+def load_hymod_input_file():
+    """Load data from file."""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/LeafCatch.csv')
+
+    return pd.read_csv(f, sep=',')
+
+
+def load_hymod_params():
+    """Load HYMOD parameters from the Saltelli sample.  For use in 'hymod.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/param_values_hymod.npy')
+
+    return np.load(f)
+
+
+def load_hymod_simulation():
+    """Load HYMOD simuated outputs.  For use in 'hymod.ipynb'"""
+
+    f = pkg_resources.resource_filename('msdbook', 'data/output_flow_256.csv')
+
+    return pd.read_csv(f, index_col=0)
