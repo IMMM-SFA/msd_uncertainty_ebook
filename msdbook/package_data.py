@@ -87,14 +87,42 @@ def load_hymod_input_file():
 def load_hymod_params():
     """Load HYMOD parameters from the Saltelli sample.  For use in 'hymod.ipynb'"""
 
-    f = pkg_resources.resource_filename('msdbook', 'data/param_values_hymod.npy')
+    f = pkg_resources.resource_filename('msdbook', 'data/hymod_params_256samples.npy')
 
     return np.load(f)
 
 
 def load_hymod_simulation():
-    """Load HYMOD simuated outputs.  For use in 'hymod.ipynb'"""
+    """Load HYMOD simulated outputs.  For use in 'hymod.ipynb'"""
 
-    f = pkg_resources.resource_filename('msdbook', 'data/output_flow_256.csv')
+    f = pkg_resources.resource_filename('msdbook', 'data/hymod_simulations_256samples.csv')
 
-    return pd.read_csv(f, index_col=0)
+    return pd.read_csv(f)
+
+
+def load_hymod_monthly_simulations():
+    """Load HYMOD monthly simulation.  For use in 'hymod.ipynb'"""
+
+    f_delta = pkg_resources.resource_filename('msdbook', 'data/sa_by_mth_delta.npy')
+    f_s1 = pkg_resources.resource_filename('msdbook', 'data/sa_by_mth_s1.npy')
+
+    return np.load(f_delta), np.load(f_s1)
+
+
+def load_hymod_annual_simulations():
+    """Load HYMOD annual simulation.  For use in 'hymod.ipynb'"""
+
+    f_delta = pkg_resources.resource_filename('msdbook', 'data/sa_by_yr_delta.npy')
+    f_s1 = pkg_resources.resource_filename('msdbook', 'data/sa_by_yr_s1.npy')
+
+    return np.load(f_delta), np.load(f_s1)
+
+
+def load_hymod_varying_simulations():
+    """Load HYMOD time varying simulation.  For use in 'hymod.ipynb'"""
+
+    f_delta = pkg_resources.resource_filename('msdbook', 'data/sa_vary_delta.npy')
+    f_s1 = pkg_resources.resource_filename('msdbook', 'data/sa_vary_s1.npy')
+
+    return np.load(f_delta), np.load(f_s1)
+
