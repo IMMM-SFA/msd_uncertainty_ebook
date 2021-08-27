@@ -2,8 +2,9 @@ import math
 
 import numpy as np
 import seaborn as sns
-
 import matplotlib.pyplot as plt
+
+from matplotlib.lines import Line2D
 
 
 def plot_observed_vs_simulated_streamflow(df, hymod_dict, figsize=[12, 6]):
@@ -180,7 +181,7 @@ def plot_varying_heatmap(arr_sim, df_obs, title='', figsize=[14,5]):
     """
 
     # set up figure
-    fig_5, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots(figsize=figsize)
 
     # plot heatmap
     sns.heatmap(arr_sim,
@@ -209,6 +210,41 @@ def plot_varying_heatmap(arr_sim, df_obs, title='', figsize=[14,5]):
 
     return ax, ax2
 
+
+def plot_precalibration_flow(arr_sim, df_obs, title='', figsize=[10, 4]):
+    """Plot  flow discharge provided by the ensemble of parameters sets from Pre-Calibration versus the observed
+    flow data.
+
+    :param arr_sim:         Numpy array of simulated metrics
+
+    :param df_obs:          Dataframe of mean monthly observed data from sensitivity analysis
+
+    :param title:           Title of plot
+    :type title:            str
+
+    :param figsize:         Matplotlib figure size
+    :type figsize:          list
+
+    """
+
+    # set up figure
+    fig, ax = plt.subplots(figsize=figsize)
+
+    plt.plot(range(0, len(agg_m_precal_df)), agg_m_precal_df.iloc[:,2],  color="lightgreen", alpha=0.2)
+
+    ax_fig_2_3.set_xlabel('Days')
+    ax_fig_2_3.set_ylabel('Flow Discharge')
+
+    for i_ps in range(0, agg_m_precal_df.shape[1]):
+        plt.plot(range(0, agg_m_precal_df.shape[0]), agg_m_precal_df.iloc[:,i_ps],  color="lightgreen", alpha=0.2)
+
+
+    plt.plot(range(0, len(agg_m_precal_df)), df_obs_mth_mean.iloc[0:len(agg_m_Q_beh_df),2],  color="black")
+    plt.title('Observed vs. Sensitivity Analysis Outputs')
+    custom_lines = [Line2D([0], [0],  color="lightgreen", lw=4),
+                    Line2D([0], [0], color="black", lw=4)]
+    plt.legend(custom_lines, ['Pre-Calibration', 'Observed',])
+    plt.show()
 
 def Pdm01(Hpar, Bpar, Hbeg, PP, PET):
     """Fill in description.
