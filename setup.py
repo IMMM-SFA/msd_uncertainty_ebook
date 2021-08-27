@@ -37,7 +37,8 @@ setup(
         "pandas>=1.3.1",
         "matplotlib>=3.4.2",
         "seaborn>=0.11.2",
-        "requests>=2.25.1"
+        "requests>=2.25.1",
+        "scikit-learn>=0.24.2"
     ],
     extras_require={
         'dev': [

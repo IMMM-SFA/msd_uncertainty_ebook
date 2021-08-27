@@ -18,7 +18,8 @@ class InstallSupplement:
     """
 
     # URL for DOI minted example data hosted on Zenodo
-    DATA_VERSION_URLS = {'0.1.3': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1'}
+    DATA_VERSION_URLS = {'0.1.3': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1',
+                         '0.1.4': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1'}
 
     def fetch_zenodo(self):
         """Download and unpack the Zenodo example data supplement for the

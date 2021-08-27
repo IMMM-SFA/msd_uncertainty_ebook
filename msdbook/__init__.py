@@ -5,4 +5,4 @@ from .package_data import *
 from .install_supplement import install_package_data
 
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
