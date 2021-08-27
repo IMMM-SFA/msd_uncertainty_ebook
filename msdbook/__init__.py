@@ -3,6 +3,7 @@ from .utils import *
 from .hymod import *
 from .package_data import *
 from .install_supplement import install_package_data
+from .fishery_dynamics import *
 
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
