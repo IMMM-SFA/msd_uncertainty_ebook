@@ -4,6 +4,12 @@ import numpy as np
 import pandas as pd
 
 
+def get_data_directory():
+    """Return the directory of where the cerf package data resides."""
+
+    return pkg_resources.resource_filename('msdbook', 'data')
+
+
 def load_robustness_data():
     """Load robustness solution data from file.  For use in 'fishery_dynamics.ipynb'"""
 
@@ -90,6 +96,20 @@ def load_hymod_params():
     f = pkg_resources.resource_filename('msdbook', 'data/hymod_params_256samples.npy')
 
     return np.load(f)
+
+
+def load_hymod_metric_simulation():
+    """Load HYMOD metric sensitivity S1 outputs.  For use in 'hymod.ipynb'"""
+
+    col_names = ['Kq', 'Ks', 'Alp', 'Huz', 'B']
+
+    f = pkg_resources.resource_filename('msdbook', 'data/sa_metric_s1.npy')
+
+    # load the numpy array
+    arr = np.load(f)
+
+    # construct dataframe
+    return pd.DataFrame(arr, columns=col_names)
 
 
 def load_hymod_simulation():

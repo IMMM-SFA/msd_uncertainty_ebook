@@ -233,7 +233,7 @@ def plot_precalibration_flow(df_sim, df_obs, figsize=[10, 4]):
 
     # plot pre-calibration results
     for i in range(df_sim.shape[1]):
-        plt.plot(range(df_sim.shape[0]), df_sim.iloc[i],  color="lightgreen", alpha=0.2)
+        plt.plot(range(len(df_sim)), df_sim.iloc[:, i],  color="lightgreen", alpha=0.2)
 
     # plot observed
     plt.plot(range(len(df_sim)), df_obs['Strmflw'],  color="black")
@@ -248,7 +248,7 @@ def plot_precalibration_flow(df_sim, df_obs, figsize=[10, 4]):
     return ax
 
 
-def plot_precalibration_glue(df_sim, df_obs, figsize=[10, 4]):
+def plot_precalibration_glue(df_precal, df_glue, df_obs, figsize=[10, 4]):
     """Plot flow discharge provided by the ensemble of parameters sets from Pre-Calibration versus the observed
     flow data.
 
@@ -269,22 +269,23 @@ def plot_precalibration_glue(df_sim, df_obs, figsize=[10, 4]):
     ax.set_ylabel('Flow Discharge')
 
     # plot pre-calibration results
-    for i in range(df_sim.shape[1]):
-        plt.plot(range(df_sim.shape[0]), df_sim.iloc[i],  color="lightgreen", alpha=0.2)
+    for i in range(df_precal.shape[1]):
+        plt.plot(range(len(df_precal)), df_precal.iloc[:, i],  color="lightgreen", alpha=0.2)
 
     # plot glue
-    for i in range(0, df_sim.shape[1]):
-        plt.plot(range(0, df_sim.shape[0]), df_sim.iloc[i], color="lightblue", alpha=0.2)
+    for i in range(df_glue.shape[1]):
+        plt.plot(range(len(df_glue)), df_glue.iloc[:, i], color="lightblue", alpha=0.2)
 
     # plot observed
-    plt.plot(range(len(df_sim)), df_obs['Strmflw'],  color="black")
+    plt.plot(range(len(df_precal)), df_obs['Strmflw'],  color="black")
 
-    plt.title('Observed vs. Pre-Calibration Outputs')
+    plt.title('Observed vs. Sensitivity Analysis Outputs across GLUE/Pre-Calibration')
 
     # customize legend
     custom_lines = [Line2D([0], [0],  color="lightgreen", lw=4),
+                    Line2D([0], [0], color="lightblue", lw=4),
                     Line2D([0], [0], color="black", lw=4)]
-    plt.legend(custom_lines, ['Pre-Calibration', 'Observed'])
+    plt.legend(custom_lines, ['Pre-Calibration', 'GLUE', 'Observed'])
 
     return ax
 

@@ -31,12 +31,13 @@ setup(
     python_requires='>=3.6.*, <4',
     include_package_data=True,
     install_requires=[
-        "numpy>=1.14",
-        "SALib>=1.3.11",
-        "statsmodels>=0.12.1",
-        "pandas>=1.1.4",
-        "matplotlib>=3.3.3",
-        "seaborn>=0.11.1"
+        "numpy>=1.21.1",
+        "SALib>=1.4.4",
+        "statsmodels>=0.12.2",
+        "pandas>=1.3.1",
+        "matplotlib>=3.4.2",
+        "seaborn>=0.11.2",
+        "requests>=2.25.1"
     ],
     extras_require={
         'dev': [

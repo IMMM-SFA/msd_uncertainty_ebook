@@ -1,6 +1,7 @@
-numpy>=1.14
-pandas>=1.1.4
-SALib>=1.3.11
-matplotlib>=3.3.3
-seaborn>=0.11.1
-statsmodels>=0.12.1
+numpy>=1.21.1
+pandas>=1.3.1
+SALib>=1.4.4
+matplotlib>=3.4.2
+seaborn>=0.11.2
+statsmodels>=0.12.2
+requests>=2.25.1
