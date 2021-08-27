@@ -211,16 +211,13 @@ def plot_varying_heatmap(arr_sim, df_obs, title='', figsize=[14,5]):
     return ax, ax2
 
 
-def plot_precalibration_flow(arr_sim, df_obs, title='', figsize=[10, 4]):
-    """Plot  flow discharge provided by the ensemble of parameters sets from Pre-Calibration versus the observed
+def plot_precalibration_flow(df_sim, df_obs, figsize=[10, 4]):
+    """Plot flow discharge provided by the ensemble of parameters sets from Pre-Calibration versus the observed
     flow data.
 
-    :param arr_sim:         Numpy array of simulated metrics
+    :param df_sim:          Dataframe of simulated metrics
 
     :param df_obs:          Dataframe of mean monthly observed data from sensitivity analysis
-
-    :param title:           Title of plot
-    :type title:            str
 
     :param figsize:         Matplotlib figure size
     :type figsize:          list
@@ -230,21 +227,67 @@ def plot_precalibration_flow(arr_sim, df_obs, title='', figsize=[10, 4]):
     # set up figure
     fig, ax = plt.subplots(figsize=figsize)
 
-    plt.plot(range(0, len(agg_m_precal_df)), agg_m_precal_df.iloc[:,2],  color="lightgreen", alpha=0.2)
+    # set axis labels
+    ax.set_xlabel('Days')
+    ax.set_ylabel('Flow Discharge')
 
-    ax_fig_2_3.set_xlabel('Days')
-    ax_fig_2_3.set_ylabel('Flow Discharge')
+    # plot pre-calibration results
+    for i in range(df_sim.shape[1]):
+        plt.plot(range(df_sim.shape[0]), df_sim.iloc[i],  color="lightgreen", alpha=0.2)
 
-    for i_ps in range(0, agg_m_precal_df.shape[1]):
-        plt.plot(range(0, agg_m_precal_df.shape[0]), agg_m_precal_df.iloc[:,i_ps],  color="lightgreen", alpha=0.2)
+    # plot observed
+    plt.plot(range(len(df_sim)), df_obs['Strmflw'],  color="black")
 
+    plt.title('Observed vs. Pre-Calibration Outputs')
 
-    plt.plot(range(0, len(agg_m_precal_df)), df_obs_mth_mean.iloc[0:len(agg_m_Q_beh_df),2],  color="black")
-    plt.title('Observed vs. Sensitivity Analysis Outputs')
+    # customize legend
     custom_lines = [Line2D([0], [0],  color="lightgreen", lw=4),
                     Line2D([0], [0], color="black", lw=4)]
-    plt.legend(custom_lines, ['Pre-Calibration', 'Observed',])
-    plt.show()
+    plt.legend(custom_lines, ['Pre-Calibration', 'Observed'])
+
+    return ax
+
+
+def plot_precalibration_glue(df_sim, df_obs, figsize=[10, 4]):
+    """Plot flow discharge provided by the ensemble of parameters sets from Pre-Calibration versus the observed
+    flow data.
+
+    :param df_sim:          Dataframe of simulated metrics
+
+    :param df_obs:          Dataframe of mean monthly observed data from sensitivity analysis
+
+    :param figsize:         Matplotlib figure size
+    :type figsize:          list
+
+    """
+
+    # set up figure
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # set axis labels
+    ax.set_xlabel('Days')
+    ax.set_ylabel('Flow Discharge')
+
+    # plot pre-calibration results
+    for i in range(df_sim.shape[1]):
+        plt.plot(range(df_sim.shape[0]), df_sim.iloc[i],  color="lightgreen", alpha=0.2)
+
+    # plot glue
+    for i in range(0, df_sim.shape[1]):
+        plt.plot(range(0, df_sim.shape[0]), df_sim.iloc[i], color="lightblue", alpha=0.2)
+
+    # plot observed
+    plt.plot(range(len(df_sim)), df_obs['Strmflw'],  color="black")
+
+    plt.title('Observed vs. Pre-Calibration Outputs')
+
+    # customize legend
+    custom_lines = [Line2D([0], [0],  color="lightgreen", lw=4),
+                    Line2D([0], [0], color="black", lw=4)]
+    plt.legend(custom_lines, ['Pre-Calibration', 'Observed'])
+
+    return ax
+
 
 def Pdm01(Hpar, Bpar, Hbeg, PP, PET):
     """Fill in description.
