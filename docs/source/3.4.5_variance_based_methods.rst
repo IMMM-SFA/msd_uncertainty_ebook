@@ -31,3 +31,9 @@ This index reveals the expected portion of variance that remains if uncertainty 
 Besides the Sobol method, there are some other variance-based sensitivity analysis methods, such as the Fourier amplitude sensitivity test (FAST; :cite:`cukier1973study, mcrae1982development`) and extended-FAST :cite:`saltelli1998alternative,vazquez2014global`, that have been used by the scientific community. However, Sobol remains by far the most common method of this class. Variance-based techniques have been widely used and have proved to be powerful in a variety of applications. Despite their popularity, some authors have expressed concerns about the methods’ appropriateness in some settings. Specifically, the presence of heavy-tailed distributions or outliers, or when model outputs are multimodal can bias the sensitivity indices produced by these methods :cite:p:`auder2008global,zadeh2017comparison,pianosi2015simple`. Moment-independent measures, discussed below, attempt to overcome these challenges.
 
 
+.. seealso::
+
+    Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover important factors:
+
+    .. image:: https://mybinder.org/badge_logo.svg
+         :target: https://hub-binder.mybinder.ovh/user/immm-sfa-msd_uncertainty_ebook-pheczmlw/notebooks/notebooks/fishery_dynamics.ipynb
