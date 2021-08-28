@@ -5,6 +5,7 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
    nanites.tests
 
@@ -18,7 +19,6 @@ nanites.model module
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 Module contents
 ---------------
