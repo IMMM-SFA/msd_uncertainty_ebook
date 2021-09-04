@@ -17,12 +17,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Addressing Uncertainty in MultiSector Dynamics Research'
+project = '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}'
 copyright = '2021, Battelle Memorial Institute'
-author = """Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek, \n
-         'Tina Karimi, Vivek Srikrishnan, Klaus Keller, \n
-         'David Gold, Rohini Gupta, Chris Vernon, \n
-         'Jennie Rice"""
 
 # The full version, including alpha/beta/rc tags
 release = 'v0.1.0'
@@ -83,3 +79,24 @@ html_static_path = ['_static']
 # html_theme_options = {
 #     'logo': 'im3.png'
 # }
+
+# -- Options for Latex
+master_doc = 'index'
+
+# The name of an image file (relative to this directory) to place at the top of
+# the title page.
+latex_logo = None
+
+
+latex_documents = [
+    (master_doc, 'addressinguncertaintyinmultisectordynamicsresearch.tex', project,
+     'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
+     '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan'
+     '\\and Rohini Gupta, David Gold, B. Lee, Klaus Keller, Jennie S. Rice'
+     , 'book'),
+]
+
+latex_elements = {
+    'papersize': 'a4paper',
+    'releasename': release
+}

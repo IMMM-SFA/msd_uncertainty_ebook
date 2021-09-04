@@ -1,16 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 SEP 2021 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 SEP 2021 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **addressinguncertaintyinmultisectordynamicsresearch.tex
 (./addressinguncertaintyinmultisectordynamicsresearch.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-03-06> (./sphinxmanual.cls
-Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
-(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+L3 programming layer <2020-03-06>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count167
 \c@chapter=\count168
@@ -24,8 +23,6 @@ File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-)
-LaTeX Info: Redefining \and on input line 35.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2018/08/11 v1.3c Input encoding file
@@ -639,26 +636,26 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
 \openout1 = `addressinguncertaintyinmultisectordynamicsresearch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 216.
-LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
 LaTeX Font Info:    Trying to load font information for T1+qtm on input line 21
-6.
+0.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qtm.fd
 File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
@@ -691,25 +688,25 @@ e
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: letterpaper
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=700.50687pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \topmargin=-30.06749pt
 * \headheight=12.0pt
-* \headsep=25.0pt
+* \headsep=18.06749pt
 * \topskip=10.0pt
-* \footskip=30.0pt
+* \footskip=25.29494pt
 * \marginparwidth=36.135pt
-* \marginparsep=11.0pt
+* \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -722,7 +719,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box116
-Package hyperref Info: Link coloring ON on input line 216.
+Package hyperref Info: Link coloring ON on input line 210.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -735,311 +732,1044 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 216.
-LaTeX Info: Redefining \pageref on input line 216.
-LaTeX Info: Redefining \nameref on input line 216.
+LaTeX Info: Redefining \ref on input line 210.
+LaTeX Info: Redefining \pageref on input line 210.
+LaTeX Info: Redefining \nameref on input line 210.
  (./addressinguncertaintyinmultisectordynamicsresearch.out)
 (./addressinguncertaintyinmultisectordynamicsresearch.out)
 \@outlinefile=\write5
 \openout5 = `addressinguncertaintyinmultisectordynamicsresearch.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 219.
+<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
+LaTeX Font Info:    Trying to load font information for U+msa on input line 214
+.
 
-Runaway argument?
-M.\spacefactor \@m {}{} Reed, Antonia Hadjimichael, Keyvan Malek, 
-! Paragraph ended before \HyPsd@@ProtectSpacesFi was complete.
-<to be read again> 
-                   \par 
-l.219 \sphinxmaketitle
-                      
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 214
+.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 21
+5.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
+) [2
+
+]
+(./addressinguncertaintyinmultisectordynamicsresearch.toc [3] [4])
+\tf@toc=\write6
+\openout6 = `addressinguncertaintyinmultisectordynamicsresearch.toc'.
+
+ [5] [6
+
+]
+Chapter 1.
+[7]
+<figure1_1_state_of_the_science.png, id=665, 1625.5932pt x 1034.6655pt>
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 2
+48.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
+File: t1txtt.fd 2000/12/15 v3.1
+)
+File: figure1_1_state_of_the_science.png Graphic file (type png)
+<use figure1_1_state_of_the_science.png>
+Package pdftex.def Info: figure1_1_state_of_the_science.png  used on input line
+ 248.
+(pdftex.def)             Requested size: 452.9554pt x 288.29926pt.
+ [8]
+[9 <./figure1_1_state_of_the_science.png>] [10
+
+]
+Chapter 2.
+<figure2_1_idealized_uc.png, id=708, 1204.5pt x 737.00343pt>
+File: figure2_1_idealized_uc.png Graphic file (type png)
+<use figure2_1_idealized_uc.png>
+Package pdftex.def Info: figure2_1_idealized_uc.png  used on input line 270.
+(pdftex.def)             Requested size: 452.97293pt x 277.16281pt.
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.271 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
+
 ? R
 OK, entering \nonstopmode...
-! Use of \HyPsd@RemoveMask doesn't match its definition.
-\@pdfauthor ->\par 
-                   \80\047{}Tina Karimi, Vivek Srikrishnan, Klaus Keller, \p...
-l.219 \sphinxmaketitle
-                      
-If you say, e.g., `\def\a1{...}', then you must always
-put `1' after `\a', since control sequence names are
-made up of letters only. The macro here has not been
-followed by the required stuff, so I'm ignoring it.
-
-! Undefined control sequence.
-\HyPsd@ProtectSpaces ...d@RemoveMask #1\HyPsd@End 
-                                                  #1
-l.219 \sphinxmaketitle
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 Runaway argument?
-{
-! Paragraph ended before \HyPsd@RemoveBraces was complete.
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
 <to be read again> 
                    \par 
-l.219 \sphinxmaketitle
-                      
+l.271 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-! Extra }, or forgotten \endgroup.
-\pdfstringdef ...d@RemoveBraces \expandafter {#1|}
-                                                  \global \let #1\HyPsd@Stri...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+[11] [12 <./figure2_1_idealized_uc.png>] [13] [14
 
-! Argument of \HyPsd@CheckCatcodes has an extra }.
-<inserted text> 
-                \par 
-l.219 \sphinxmaketitle
-                      
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
+]
+Chapter 3.
+<figure3_1_global_versus_local.png, id=800, 824.8416pt x 416.9979pt>
+File: figure3_1_global_versus_local.png Graphic file (type png)
+<use figure3_1_global_versus_local.png>
+Package pdftex.def Info: figure3_1_global_versus_local.png  used on input line 
+316.
+(pdftex.def)             Requested size: 452.97205pt x 229.00595pt.
 
-Runaway argument?
-\global \let \@pdfauthor \HyPsd@String 
-! Paragraph ended before \HyPsd@CheckCatcodes was complete.
-<to be read again> 
-                   \par 
-l.219 \sphinxmaketitle
-                      
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
+Package amsmath Warning: Foreign command \above;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 317.
 
-Runaway argument?
-\@empty \HyPsd@End \@pdfauthor \expandafter \HyPsd@Subst \expandafter \ETC.
-! Paragraph ended before \HyPsd@RemoveMask was complete.
-<to be read again> 
-                   \par 
-l.219 \sphinxmaketitle
-                      
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-! Extra }, or forgotten \endgroup.
-\sphinxmaketitle ...erFamily {\Huge \@title \par }
-                                                   {\itshape \LARGE \py@rele...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Use of \begin doesn't match its definition.
-\sphinxmaketitle ...\par } \vfill {\LARGE \begin {
-                                                  tabular}[t]{c} \@author \e...
-l.219 \sphinxmaketitle
-                      
-If you say, e.g., `\def\a1{...}', then you must always
-put `1' after `\a', since control sequence names are
-made up of letters only. The macro here has not been
-followed by the required stuff, so I'm ignoring it.
-
-! Use of \end doesn't match its definition.
-\sphinxmaketitle ...tabular}[t]{c} \@author \end {
-                                                  tabular}\kern -\tabcolsep ...
-l.219 \sphinxmaketitle
-                      
-If you say, e.g., `\def\a1{...}', then you must always
-put `1' after `\a', since control sequence names are
-made up of letters only. The macro here has not been
-followed by the required stuff, so I'm ignoring it.
-
-! Extra }, or forgotten \endgroup.
-\sphinxmaketitle ...[t]{c} \@author \end {tabular}
-                                                  \kern -\tabcolsep \par } \...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Extra }, or forgotten \endgroup.
-\sphinxmaketitle ...bular}\kern -\tabcolsep \par }
-                                                   \vfill \vfill {\large \@d...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Use of \end doesn't match its definition.
-\sphinxmaketitle ...\py@authoraddress \par }\end {
-                                                  flushright}\@thanks \end {...
-l.219 \sphinxmaketitle
-                      
-If you say, e.g., `\def\a1{...}', then you must always
-put `1' after `\a', since control sequence names are
-made up of letters only. The macro here has not been
-followed by the required stuff, so I'm ignoring it.
-
-! Extra }, or forgotten \endgroup.
-\sphinxmaketitle ...ddress \par }\end {flushright}
-                                                  \@thanks \end {titlepage}\...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Use of \end doesn't match its definition.
-\sphinxmaketitle ...nd {flushright}\@thanks \end {
-                                                  titlepage}\setcounter {foo...
-l.219 \sphinxmaketitle
-                      
-If you say, e.g., `\def\a1{...}', then you must always
-put `1' after `\a', since control sequence names are
-made up of letters only. The macro here has not been
-followed by the required stuff, so I'm ignoring it.
-
-! Extra }, or forgotten \endgroup.
-\sphinxmaketitle ...ight}\@thanks \end {titlepage}
-                                                  \setcounter {footnote}{0}\...
-l.219 \sphinxmaketitle
-                      
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing { inserted.
-<to be read again> 
-                   #
-l.219 \sphinxmaketitle
-                      
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-! Missing { inserted.
-<to be read again> 
-                   #
-l.219 \sphinxmaketitle
-                      
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-
-Overfull \vbox (700.19pt too high) has occurred while \output is active []
-
-
-! Argument of \@dottedtocline has an extra }.
-<inserted text> 
-                \par 
-l.221 \sphinxtableofcontents
-                            
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
-
-Runaway argument?
-! Paragraph ended before \@dottedtocline was complete.
-<to be read again> 
-                   \par 
-l.221 \sphinxtableofcontents
-                            
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
- []  
+[15] [16 <./figure3_1_global_versus_local.png>]
+<figure3_2_factor_mapping.png, id=854, 1166.4378pt x 973.236pt>
+File: figure3_2_factor_mapping.png Graphic file (type png)
+<use figure3_2_factor_mapping.png>
+Package pdftex.def Info: figure3_2_factor_mapping.png  used on input line 353.
+(pdftex.def)             Requested size: 376.40381pt x 314.05554pt.
+ [17 <./figure3_2_factor_mapping.png>] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 444--444
+[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
  []
 
-! Undefined control sequence.
-extract@sizefn ...e@funct@args remove@star #2@nil 
-                                                  def sizefn@info {#1}fi 
-l.221 \sphinxtableofcontents
-                            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-gen@sfcnt ->edef mandatory@arg {mandatory@arg 
-                                              f@size }empty@sfcnt 
-l.221 \sphinxtableofcontents
-                            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-empty@sfcnt ...@empty else @tempdimb optional@arg 
-                                                  @tempdimb #1{Fontspace sha...
-l.221 \sphinxtableofcontents
-                            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Underfull \hbox (badness 10000) in paragraph at lines 444--444
+[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
+ []
 
 
-LaTeX Font Warning: Fontspace shapespace `OT1/cmr/m/n'space willspace be
-(Font)space space space space space space space space space space space space s
-pace space scaledspace tospace sizespace 7.0pt on input line 221.
+Underfull \hbox (badness 10000) in paragraph at lines 444--444
+[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
+ []
 
-! Font OT1/cmr/m/n/7=7 at 7.0pt not loadable: Metric (TFM) file not found.
+[19]
+<figure3_3_alternative_designs.png, id=916, 1169.5695pt x 746.79pt>
+File: figure3_3_alternative_designs.png Graphic file (type png)
+<use figure3_3_alternative_designs.png>
+Package pdftex.def Info: figure3_3_alternative_designs.png  used on input line 
+467.
+(pdftex.def)             Requested size: 376.40381pt x 240.3337pt.
+ [20 <./figure3_3_alternative_designs.png>]
+LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 4
+90.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
+File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
+)
+Underfull \hbox (badness 10000) in paragraph at lines 489--491
+[]\TS1/qtm/b/n/10 `\T1/qtm/b/n/10 Sobol SA us-ing SALib Jupyter Note-book <http
+s://mybinder.org/v2/gh/IMMM-
+ []
+
+
+Overfull \hbox (126.63203pt too wide) in paragraph at lines 489--491
+\T1/qtm/b/n/10 SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097a
+c2?filepath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>\TS1/qtm/b/n/10 `\T1/q
+tm/b/n/10 _ 
+ []
+
+[21]
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 537.
+
+[22]
+<figure3_4_morris_method.png, id=1016, 799.3062pt x 561.297pt>
+File: figure3_4_morris_method.png Graphic file (type png)
+<use figure3_4_morris_method.png>
+Package pdftex.def Info: figure3_4_morris_method.png  used on input line 548.
+(pdftex.def)             Requested size: 452.97484pt x 318.10977pt.
+ [23 <./figure3_4_morris_method.png>] [24] [25]
+<figure3_5classificationofmethods.png, id=1120, 1343.2584pt x 914.4564pt>
+File: figure3_5classificationofmethods.png Graphic file (type png)
+<use figure3_5classificationofmethods.png>
+Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
+ne 670.
+(pdftex.def)             Requested size: 452.95097pt x 308.37154pt.
+ [26] [27 <./figure3_5classificationofmethods.png>]
+<figure3_6_softwaretoolkits.png, id=1149, 534.798pt x 641.232pt>
+File: figure3_6_softwaretoolkits.png Graphic file (type png)
+<use figure3_6_softwaretoolkits.png>
+Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 689
+.
+(pdftex.def)             Requested size: 452.97285pt x 543.19075pt.
+ [28] [29 <./figure3_6_softwaretoolkits.png>] [30
+
+]
+Chapter 4.
+[31]
+<figure4_1_diagnostic_workflow.png, id=1196, 819.5418pt x 483.0045pt>
+File: figure4_1_diagnostic_workflow.png Graphic file (type png)
+<use figure4_1_diagnostic_workflow.png>
+Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
+717.
+(pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
+<figure4_2_behavior_modes.png, id=1203, 1350.7263pt x 670.9065pt>
+File: figure4_2_behavior_modes.png Graphic file (type png)
+<use figure4_2_behavior_modes.png>
+Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 743.
+(pdftex.def)             Requested size: 452.9547pt x 224.99307pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.744 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
 <to be read again> 
-                   relax 
-l.221 \sphinxtableofcontents
-                            
-I wasn't able to read the size data for this font,
-so I will ignore the font specification.
-[Wizards can fix TFM files using TFtoPL/PLtoTF.]
-You might try inserting a different font spec;
-e.g., type `I\font<same font id>=<substitute font name>'.
+                   \par 
+l.744 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
 
-<<ot1tt.cmap>>
-! pdfTeX error (font): invalid font identifier.
-font@name ->OT1/cmr/m/n/7 
-                          
-l.221 \sphinxtableofcontents
-                            
+[32 <./figure4_1_diagnostic_workflow.png>] [33 <./figure4_2_behavior_modes.png>
+]
+<figure4_3_lake_problem_fluxes.png, id=1230, 1039.0017pt x 821.469pt>
+File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
+<use figure4_3_lake_problem_fluxes.png>
+Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
+767.
+(pdftex.def)             Requested size: 452.97675pt x 358.15088pt.
 
- 
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.768 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.768 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+[34 <./figure4_3_lake_problem_fluxes.png>]
+<figure4_4_exploratory_workflow.png, id=1264, 697.8873pt x 549.9747pt>
+File: figure4_4_exploratory_workflow.png Graphic file (type png)
+<use figure4_4_exploratory_workflow.png>
+Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
+ 792.
+(pdftex.def)             Requested size: 452.97179pt x 356.9674pt.
+ [35] [36 <./figure4_4_exploratory_workflow.png>] [37]
+<figure14lake_problem_SD.png, id=1339, 1354.0989pt x 640.0713pt>
+File: figure14lake_problem_SD.png Graphic file (type png)
+<use figure14lake_problem_SD.png>
+Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 826.
+(pdftex.def)             Requested size: 452.94926pt x 214.10535pt.
+ [38] [39 <./figure14lake_problem_SD.png>] [40
+
+]
+Chapter 5.
+[41] [42
+
+]
+Chapter 6.
+[43] [44
+
+]
+Chapter 7.
+<figureA1_1_UQ_approaches.png, id=1403, 1504.8722pt x 1023.825pt>
+File: figureA1_1_UQ_approaches.png Graphic file (type png)
+<use figureA1_1_UQ_approaches.png>
+Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 876.
+(pdftex.def)             Requested size: 452.9577pt x 308.16531pt.
+[45] [46 <./figureA1_1_UQ_approaches.png>]
+<figureA1_2_bootstrap_workflow.png, id=1423, 711.8595pt x 565.3923pt>
+File: figureA1_2_bootstrap_workflow.png Graphic file (type png)
+<use figureA1_2_bootstrap_workflow.png>
+Package pdftex.def Info: figureA1_2_bootstrap_workflow.png  used on input line 
+898.
+(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
+ [47 <./figureA1_2_bootstrap_workflow.png>]
+<figureA1_3_precal_workflow.png, id=1440, 711.8595pt x 565.3923pt>
+File: figureA1_3_precal_workflow.png Graphic file (type png)
+<use figureA1_3_precal_workflow.png>
+Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 914
+.
+(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
+ [48 <./figureA1_3_precal_workflow.png>]
+<figureA1_4_mcmc_workflow.png, id=1473, 711.8595pt x 565.3923pt>
+File: figureA1_4_mcmc_workflow.png Graphic file (type png)
+<use figureA1_4_mcmc_workflow.png>
+Package pdftex.def Info: figureA1_4_mcmc_workflow.png  used on input line 958.
+(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
+ [49] [50 <./figureA1_4_mcmc_workflow.png>]
+<figureA1_5_priors_posteriors.png, id=1535, 1355.0625pt x 1355.0625pt>
+File: figureA1_5_priors_posteriors.png Graphic file (type png)
+<use figureA1_5_priors_posteriors.png>
+Package pdftex.def Info: figureA1_5_priors_posteriors.png  used on input line 9
+95.
+(pdftex.def)             Requested size: 452.96144pt x 452.98213pt.
+ [51] [52 <./figureA1_5_priors_posteriors.png>] [53] [54]
+Chapter 8.
+<eqn2.png, id=1580, 188.1429pt x 68.4156pt>
+File: eqn2.png Graphic file (type png)
+<use eqn2.png>
+Package pdftex.def Info: eqn2.png  used on input line 1066.
+(pdftex.def)             Requested size: 453.00766pt x 164.7436pt.
+<Figure_1.png, id=1581, 1229.5536pt x 638.385pt>
+File: Figure_1.png Graphic file (type png)
+<use Figure_1.png>
+Package pdftex.def Info: Figure_1.png  used on input line 1074.
+(pdftex.def)             Requested size: 452.95776pt x 235.17593pt.
+[55
+
+ <./eqn2.png>]
+LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 1128.
+
+LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <10> not available
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1137.
+
+LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
+1141.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ts1txtt.fd
+File: ts1txtt.fd 2000/12/15 v3.1
+) [56 <./Figure_1.png>] [57]
+<fishery_output_6_0.png, id=1603, 1300.86pt x 650.43pt>
+File: fishery_output_6_0.png Graphic file (type png)
+<use fishery_output_6_0.png>
+Package pdftex.def Info: fishery_output_6_0.png  used on input line 1202.
+(pdftex.def)             Requested size: 452.96559pt x 226.48279pt.
+ [58 <./fishery_output_6_0.png>] [59] [60]
+<eqn4.png, id=1617, 97.8054pt x 23.1264pt>
+File: eqn4.png Graphic file (type png)
+<use eqn4.png>
+Package pdftex.def Info: eqn4.png  used on input line 1370.
+(pdftex.def)             Requested size: 305.7142pt x 72.2737pt.
+<fishery_output_22_0.png, id=1619, 578.16pt x 289.08pt>
+File: fishery_output_22_0.png Graphic file (type png)
+<use fishery_output_22_0.png>
+Package pdftex.def Info: fishery_output_22_0.png  used on input line 1427.
+(pdftex.def)             Requested size: 452.96558pt x 226.48277pt.
+ [61 <./eqn4.png>]
+[62 <./fishery_output_22_0.png>]
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 and has three inputs, 𝑥
+                                 1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 and has three inputs, 𝑥1, 𝑥
+                                        2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 and has three inputs, 𝑥1, 𝑥2, 𝑥
+                                               3 where 𝑥𝑖 ∈ {[}−�...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ...e inputs, 𝑥1, 𝑥2, 𝑥3 where 𝑥
+                                                  𝑖 ∈ {[}−𝜋, 𝜋{]}.
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑖 (U+1D456)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ...puts, 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖
+                                                   ∈ {[}−𝜋, 𝜋{]}.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character ∈ (U+2208)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ..., 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈
+                                                   {[}−𝜋, 𝜋{]}.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ..., 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−
+                                                  𝜋, 𝜋{]}.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝜋 (U+1D70B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ...��2, 𝑥3 where 𝑥𝑖 ∈ {[}−𝜋
+                                                  , 𝜋{]}.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝜋 (U+1D70B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 ...���3 where 𝑥𝑖 ∈ {[}−𝜋, 𝜋
+                                                  {]}.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑁 (U+1D441)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1517 by 3. The sampler generates 𝑁
+                                       ∗(2𝐷+2) samples, where in this e...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character ∗ (U+2217)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1517 by 3. The sampler generates 𝑁∗
+                                          (2𝐷+2) samples, where in this e...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝐷 (U+1D437)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1517 by 3. The sampler generates 𝑁∗(2𝐷
+                                                +2) samples, where in this e...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑁 (U+1D441)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1521 with 𝑁
+                ∗(𝐷+2) rows instead.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character ∗ (U+2217)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1521 with 𝑁∗
+                   (𝐷+2) rows instead.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝐷 (U+1D437)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1521 with 𝑁∗(𝐷
+                        +2) rows instead.
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[63]
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1568 ...f our three parameters, we see that 𝑥
+                                                  1 and 𝑥2
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1568 ...e parameters, we see that 𝑥1 and 𝑥
+                                                  2
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1570 ...e parameters independently, whereas 𝑥
+                                                  3
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1591 ...order interactions. Now we see that 𝑥
+                                                  3 has non\sphinxhyphen{}ne...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1629 ...ere are strong interactions between 𝑥
+                                                  1 and 𝑥3. Note in
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1629 ...rong interactions between 𝑥1 and 𝑥
+                                                  3. Note in
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1632 ...e, we would erroneously assume that 𝑥
+                                                  3 has no
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 𝑥
+           2\sphinxhyphen{}𝑥3 index. Typically, these computing errors sh...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1641 𝑥2\sphinxhyphen{}𝑥
+                               3 index. Typically, these computing errors sh...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[64]
+<basin_map.png, id=1644, 871.33075pt x 547.47934pt>
+File: basin_map.png Graphic file (type png)
+<use basin_map.png>
+Package pdftex.def Info: basin_map.png  used on input line 1697.
+(pdftex.def)             Requested size: 452.97493pt x 284.62405pt.
+ [65]
+Overfull \vbox (11.2721pt too high) detected at line 1761
+ []
+
+[66 <./basin_map.png>] [67] [68]
+Underfull \vbox (badness 2119) detected at line 1935
+ []
+
+[69]
+<notebook_logistic_output_11_1.png, id=1668, 494.84875pt x 1292.83pt>
+File: notebook_logistic_output_11_1.png Graphic file (type png)
+<use notebook_logistic_output_11_1.png>
+Package pdftex.def Info: notebook_logistic_output_11_1.png  used on input line 
+1949.
+(pdftex.def)             Requested size: 268.12799pt x 700.50478pt.
+ [70] [71 <./notebook_logistic_output_11_1.png>]
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:sensitivity' on page 72 un
+defined on input line 2004.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:TVSA' on page 72 undefined
+ on input line 2011.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:GLUE' on page 72 undefined
+ on input line 2017.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:precalibration' on page 72
+ undefined on input line 2018.
+
+[72]
+<hymod.png, id=1689, 639.89063pt x 203.25937pt>
+File: hymod.png Graphic file (type png)
+<use hymod.png>
+Package pdftex.def Info: hymod.png  used on input line 2083.
+(pdftex.def)             Requested size: 452.96832pt x 143.89024pt.
+ [73 <./hymod.png>]
+Overfull \vbox (13.10184pt too high) detected at line 2161
+ []
+
+[74]
+LaTeX Font Info:    Font shape `TS1/txtt/m/it' in size <10> not available
+(Font)              Font shape `TS1/txtt/m/sl' tried instead on input line 2188
+.
+ [75]
+<output_16_0.png, id=1708, 720.6925pt x 385.44pt>
+File: output_16_0.png Graphic file (type png)
+<use output_16_0.png>
+Package pdftex.def Info: output_16_0.png  used on input line 2244.
+(pdftex.def)             Requested size: 452.96098pt x 242.2521pt.
+ [76 <./output_16_0.png>] [77]
+<output_28_0.png, id=1719, 604.2575pt x 276.03125pt>
+File: output_28_0.png Graphic file (type png)
+<use output_28_0.png>
+Package pdftex.def Info: output_28_0.png  used on input line 2398.
+(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
+ [78 <./output_28_0.png>] [79]
+<output_40_0.png, id=1730, 537.00626pt x 304.13625pt>
+File: output_40_0.png Graphic file (type png)
+<use output_40_0.png>
+Package pdftex.def Info: output_40_0.png  used on input line 2516.
+(pdftex.def)             Requested size: 402.75371pt x 228.10626pt.
+ [80 <./output_40_0.png>] [81]
+<output_49_0.png, id=1747, 729.72626pt x 371.3875pt>
+File: output_49_0.png Graphic file (type png)
+<use output_49_0.png>
+Package pdftex.def Info: output_49_0.png  used on input line 2620.
+(pdftex.def)             Requested size: 452.9712pt x 230.53554pt.
+<output_52_0.png, id=1748, 735.74875pt x 371.3875pt>
+File: output_52_0.png Graphic file (type png)
+<use output_52_0.png>
+Package pdftex.def Info: output_52_0.png  used on input line 2643.
+(pdftex.def)             Requested size: 452.98238pt x 228.64279pt.
+ [82 <./output_49_0.png>] [83 <./output_52_0.png>]
+<output_59_0.png, id=1761, 726.715pt x 316.18124pt>
+File: output_59_0.png Graphic file (type png)
+<use output_59_0.png>
+Package pdftex.def Info: output_59_0.png  used on input line 2709.
+(pdftex.def)             Requested size: 452.97598pt x 197.08209pt.
+<output_62_0.png, id=1762, 733.74126pt x 316.18124pt>
+File: output_62_0.png Graphic file (type png)
+<use output_62_0.png>
+Package pdftex.def Info: output_62_0.png  used on input line 2726.
+(pdftex.def)             Requested size: 452.97798pt x 195.18605pt.
+ [84 <./output_59_0.png>] [85 <./output_62_0.png>]
+<output_68_0.png, id=1775, 726.715pt x 339.2675pt>
+File: output_68_0.png Graphic file (type png)
+<use output_68_0.png>
+Package pdftex.def Info: output_68_0.png  used on input line 2789.
+(pdftex.def)             Requested size: 452.97598pt x 211.45668pt.
+<output_71_0.png, id=1776, 733.74126pt x 339.2675pt>
+File: output_71_0.png Graphic file (type png)
+<use output_71_0.png>
+Package pdftex.def Info: output_71_0.png  used on input line 2806.
+(pdftex.def)             Requested size: 452.97798pt x 209.4222pt.
+ [86 <./output_68_0.png>] [87 <./output_71_0.png>]
+<output_80_0.png, id=1798, 386.44376pt x 260.975pt>
+File: output_80_0.png Graphic file (type png)
+<use output_80_0.png>
+Package pdftex.def Info: output_80_0.png  used on input line 2931.
+(pdftex.def)             Requested size: 289.8321pt x 195.73077pt.
+ [88 <./output_80_0.png>]
+<output_82_0.png, id=1804, 386.44376pt x 261.97874pt>
+File: output_82_0.png Graphic file (type png)
+<use output_82_0.png>
+Package pdftex.def Info: output_82_0.png  used on input line 2945.
+(pdftex.def)             Requested size: 289.8321pt x 196.48756pt.
+<output_87_0.png, id=1805, 1073.00874pt x 208.78pt>
+File: output_87_0.png Graphic file (type png)
+<use output_87_0.png>
+Package pdftex.def Info: output_87_0.png  used on input line 2983.
+(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
+ [89 <./output_82_0.png>]
+<output_88_0.png, id=1811, 1073.00874pt x 208.78pt>
+File: output_88_0.png Graphic file (type png)
+<use output_88_0.png>
+Package pdftex.def Info: output_88_0.png  used on input line 2993.
+(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
+ [90 <./output_87_0.png> <./output_88_0.png>]
+<output_94_0.png, id=1823, 835.12pt x 930.47626pt>
+File: output_94_0.png Graphic file (type png)
+<use output_94_0.png>
+Package pdftex.def Info: output_94_0.png  used on input line 3077.
+(pdftex.def)             Requested size: 452.97145pt x 504.66457pt.
+ [91] [92 <./output_94_0.png>]
+<output_99_0.png, id=1834, 1073.00874pt x 208.78pt>
+File: output_99_0.png Graphic file (type png)
+<use output_99_0.png>
+Package pdftex.def Info: output_99_0.png  used on input line 3115.
+(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
+<output_100_0.png, id=1835, 1073.00874pt x 208.78pt>
+File: output_100_0.png Graphic file (type png)
+<use output_100_0.png>
+Package pdftex.def Info: output_100_0.png  used on input line 3125.
+(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
+<output_103_0.png, id=1837, 604.2575pt x 276.03125pt>
+File: output_103_0.png Graphic file (type png)
+<use output_103_0.png>
+Package pdftex.def Info: output_103_0.png  used on input line 3150.
+(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
+ [93 <./output_99_0.png> <./output_100_0.png>]
+<output_106_0.png, id=1845, 604.2575pt x 276.03125pt>
+File: output_106_0.png Graphic file (type png)
+<use output_106_0.png>
+Package pdftex.def Info: output_106_0.png  used on input line 3177.
+(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
+ [94 <./output_103_0.png> <./output_106_0.png>]
+[95] [96
+
+]
+Chapter 9.
+[97] [98] [99] [100] [101] [102] [103]
+Underfull \vbox (badness 10000) detected at line 3647
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 3647
+ []
+
+[104] [105]
+Underfull \vbox (badness 10000) detected at line 3738
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 3738
+ []
+
+[106] [107] [108
+
+] [109]
+Underfull \hbox (badness 10000) in paragraph at lines 3826--3828
+[][]$\T1/qtm/m/n/10 https : / / agupubs . onlinelibrary . wiley . com / doi / a
+bs / 10 . 1029 / 2010WR009769$[][] (vis-ited on 2020-04-15),
+ []
+
+[110]
+Underfull \hbox (badness 5696) in paragraph at lines 3850--3852
+[]\T1/qtm/m/n/10 Steve Bankes. Ex-ploratory Mod-el-ing for Pol-icy Anal-y-sis. 
+\T1/qtm/m/it/10 Op-er-a-tions Re-search\T1/qtm/m/n/10 , 41(3):435^^U449,
+ []
+
+[111] [112] [113] [114]
+Underfull \hbox (badness 10000) in paragraph at lines 4147--4149
+[][]$\T1/qtm/m/n/10 http : / / onlinelibrary . wiley . com / doi / 10 . 1890 / 
+1051-[]0761(1999 ) 009{[}0751 : MOEFLS{]}2 . 0 . CO ; 2 / abstract$[][],
+ []
+
+[115] [116]
+Underfull \hbox (badness 10000) in paragraph at lines 4255--4257
+\T1/qtm/m/n/10 & Fran-cis _eprint: https://www.tandfonline.com/doi/pdf/10.1080/
+01621459.1991.10475138. URL:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4255--4257
+[][]$\T1/qtm/m/n/10 https : / / www . tandfonline . com / doi / abs / 10 . 1080
+ / 01621459 . 1991 . 10475138$[][] (vis-ited on 2021-06-14),
+ []
+
+[117]
+Underfull \hbox (badness 10000) in paragraph at lines 4276--4278
+[]\T1/qtm/m/n/10 Michael Be-tan-court. A con-cep-tual in-tro-duc-tion to Hamil-
+to-nian Monte Carlo. \T1/qtm/m/it/10 arXiv preprint
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4288--4290
+[]\T1/qtm/m/n/10 NIM-BLE De-vel-op-ment Team. NIM-BLE: MCMC, Par-ti-cle Fil-ter
+-ing, and Pro-grammable Hi-er-
+ []
+
+
+Underfull \hbox (badness 5504) in paragraph at lines 4288--4290
+\T1/qtm/m/n/10 ar-chi-cal Mod-el-ing. May 2021. URL: [][]$https : / / zenodo . 
+org / record / 4829693$[][] (vis-ited on 2021-06-14),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+[]\T1/qtm/m/n/10 An-drew Gel-man and Don-ald B. Ru-bin. In-fer-ence from It-er-
+a-tive Sim-u-la-tion Us-ing Mul-ti-ple
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+\T1/qtm/m/n/10 Se-quences. \T1/qtm/m/it/10 Sta-tis-ti-cal Sci-ence\T1/qtm/m/n/1
+0 , 7(4):457^^U472, Novem-ber 1992. Pub-lisher: In-sti-tute of Math-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+\T1/qtm/m/n/10 e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteuclid . o
+rg / journals / statistical-[]science / volume-[]7 / issue-[]4 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+\T1/qtm/m/n/10 Inference-[]from-[]Iterative-[]Simulation-[]Using-[]Multiple-[]S
+equences / 10 . 1214 / ss / 1177011136 . full$[][] (vis-ited
+ []
+
+[118]
+Underfull \hbox (badness 6758) in paragraph at lines 4303--4305
+[]\T1/qtm/m/n/10 Pierre Del Moral, Ar-naud Doucet, and Ajay Jasra. Se-quen-tial
+ Monte Carlo sam-plers. \T1/qtm/m/it/10 Jour-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4303--4305
+\T1/qtm/m/n/10 _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-
+9868.2006.00553.x. URL: [][]$http :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4303--4305
+\T1/qtm/m/n/10 / / rss . onlinelibrary . wiley . com / doi / abs / 10 . 1111 / 
+j . 1467-[]9868 . 2006 . 00553 . x$[][] (vis-ited on 2021-06-14),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
+[]\T1/qtm/m/n/10 Ste-fano Cabras, Maria Eu-ge-nia Castel-lanos Nueda, and Erlis
+ Ruli. Ap-prox-i-mate Bayesian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
+\T1/qtm/m/n/10 Com-pu-ta-tion by Mod-elling Sum-mary Statis-tics in a Quasi-lik
+elihood Frame-work. \T1/qtm/m/it/10 Bayesian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
+\T1/qtm/m/it/10 Anal-y-sis\T1/qtm/m/n/10 , 10(2):411^^U439, June 2015. Pub-lish
+er: In-ter-na-tional So-ci-ety for Bayesian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
+\T1/qtm/m/n/10 Anal-y-sis. URL: [][]$https : / / projecteuclid . org / journals
+ / bayesian-[]analysis / volume-[]10 / issue-[]2 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
+\T1/qtm/m/n/10 Approximate-[]Bayesian-[]Computation-[]by-[]Modelling-[]Summary-
+[]Statistics-[]in-[]a-[]Quasi / 10 . 1214 / 14-[]BA921 .
+ []
+
+
+Underfull \hbox (badness 6396) in paragraph at lines 4336--4338
+[]\T1/qtm/m/n/10 An-drew Gel-man and Cosma Ro-hilla Shal-izi. Phi-los-o-phy and
+ the prac-tice of Bayesian statis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
+\T1/qtm/m/n/10 tics. \T1/qtm/m/it/10 British Jour-nal of Math-e-mat-i-cal and S
+ta-tis-ti-cal Psy-chol-ogy\T1/qtm/m/n/10 , 66(1):8^^U38, 2013. _eprint:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
+\T1/qtm/m/n/10 https://bpspsychub.onlinelibrary.wiley.com/doi/pdf/10.1111/j.204
+4-8317.2011.02037.x. URL:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
+[][]$\T1/qtm/m/n/10 https : / / bpspsychub . onlinelibrary . wiley . com / doi 
+/ abs / 10 . 1111 / j . 2044-[]8317 . 2011 . 02037 . x$[][] (vis-ited on
+ []
+
+(./addressinguncertaintyinmultisectordynamicsresearch.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4344.
+ [119]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4344.
+
+(./addressinguncertaintyinmultisectordynamicsresearch.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4344.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4344.
+
+Package rerunfilecheck Info: File `addressinguncertaintyinmultisectordynamicsre
+search.out' has not changed.
+(rerunfilecheck)             Checksum: 667001284E4D0213D56E19118D5E0002;30920.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4344.
+ ) 
 Here is how much of TeX's memory you used:
- 13477 strings out of 480608
- 193805 string characters out of 5903631
- 475250 words of memory out of 5000000
- 29096 multiletter control sequences out of 15000+600000
- 535953 words of font info for 26 fonts, out of 8000000 for 9000
+ 15063 strings out of 480608
+ 226477 string characters out of 5903631
+ 677514 words of memory out of 5000000
+ 30062 multiletter control sequences out of 15000+600000
+ 594727 words of font info for 80 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 38i,5n,51p,292b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 38i,19n,51p,4170b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
+exlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2
+020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/local/texlive/2020/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
+ublic/tex-gyre/qhvb.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/
+tex-gyre/qhvri.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/tex-g
+yre/qtmb.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qt
+mr.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xbtt.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/txfonts/tcxtt.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (119 p
+ages, 14322477 bytes).
+PDF statistics:
+ 2250 PDF objects out of 2487 (max. 8388607)
+ 1993 compressed objects within 20 object streams
+ 468 named destinations out of 1000 (max. 500000)
+ 1209 words of extra memory for PDF output out of 10000 (max. 10000000)
+
