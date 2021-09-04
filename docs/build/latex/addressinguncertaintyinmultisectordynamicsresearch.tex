@@ -58,11 +58,158 @@
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 
+% Jupyter Notebook code cell colors
+\definecolor{nbsphinxin}{HTML}{307FC1}
+\definecolor{nbsphinxout}{HTML}{BF5B3D}
+\definecolor{nbsphinx-code-bg}{HTML}{F5F5F5}
+\definecolor{nbsphinx-code-border}{HTML}{E0E0E0}
+\definecolor{nbsphinx-stderr}{HTML}{FFDDDD}
+% ANSI colors for output streams and traceback highlighting
+\definecolor{ansi-black}{HTML}{3E424D}
+\definecolor{ansi-black-intense}{HTML}{282C36}
+\definecolor{ansi-red}{HTML}{E75C58}
+\definecolor{ansi-red-intense}{HTML}{B22B31}
+\definecolor{ansi-green}{HTML}{00A250}
+\definecolor{ansi-green-intense}{HTML}{007427}
+\definecolor{ansi-yellow}{HTML}{DDB62B}
+\definecolor{ansi-yellow-intense}{HTML}{B27D12}
+\definecolor{ansi-blue}{HTML}{208FFB}
+\definecolor{ansi-blue-intense}{HTML}{0065CA}
+\definecolor{ansi-magenta}{HTML}{D160C4}
+\definecolor{ansi-magenta-intense}{HTML}{A03196}
+\definecolor{ansi-cyan}{HTML}{60C6C8}
+\definecolor{ansi-cyan-intense}{HTML}{258F8F}
+\definecolor{ansi-white}{HTML}{C5C1B4}
+\definecolor{ansi-white-intense}{HTML}{A1A6B2}
+\definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+\definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+% Define an environment for non-plain-text code cell outputs (e.g. images)
+\makeatletter
+\newenvironment{nbsphinxfancyoutput}{%
+    % Avoid fatal error with framed.sty if graphics too long to fit on one page
+    \let\sphinxincludegraphics\nbsphinxincludegraphics
+    \nbsphinx@image@maxheight\textheight
+    \advance\nbsphinx@image@maxheight -2\fboxsep   % default \fboxsep 3pt
+    \advance\nbsphinx@image@maxheight -2\fboxrule  % default \fboxrule 0.4pt
+    \advance\nbsphinx@image@maxheight -\baselineskip
+\def\nbsphinxfcolorbox{\spx@fcolorbox{nbsphinx-code-border}{white}}%
+\def\FrameCommand{\nbsphinxfcolorbox\nbsphinxfancyaddprompt\@empty}%
+\def\FirstFrameCommand{\nbsphinxfcolorbox\nbsphinxfancyaddprompt\sphinxVerbatim@Continues}%
+\def\MidFrameCommand{\nbsphinxfcolorbox\sphinxVerbatim@Continued\sphinxVerbatim@Continues}%
+\def\LastFrameCommand{\nbsphinxfcolorbox\sphinxVerbatim@Continued\@empty}%
+\MakeFramed{\advance\hsize-\width\@totalleftmargin\z@\linewidth\hsize\@setminipage}%
+\lineskip=1ex\lineskiplimit=1ex\raggedright%
+}{\par\unskip\@minipagefalse\endMakeFramed}
+\makeatother
+\newbox\nbsphinxpromptbox
+\def\nbsphinxfancyaddprompt{\ifvoid\nbsphinxpromptbox\else
+    \kern\fboxrule\kern\fboxsep
+    \copy\nbsphinxpromptbox
+    \kern-\ht\nbsphinxpromptbox\kern-\dp\nbsphinxpromptbox
+    \kern-\fboxsep\kern-\fboxrule\nointerlineskip
+    \fi}
+\newlength\nbsphinxcodecellspacing
+\setlength{\nbsphinxcodecellspacing}{0pt}
+
+% Define support macros for attaching opening and closing lines to notebooks
+\newsavebox\nbsphinxbox
+\makeatletter
+\newcommand{\nbsphinxstartnotebook}[1]{%
+    \par
+    % measure needed space
+    \setbox\nbsphinxbox\vtop{{#1\par}}
+    % reserve some space at bottom of page, else start new page
+    \needspace{\dimexpr2.5\baselineskip+\ht\nbsphinxbox+\dp\nbsphinxbox}
+    % mimick vertical spacing from \section command
+      \addpenalty\@secpenalty
+      \@tempskipa 3.5ex \@plus 1ex \@minus .2ex\relax
+      \addvspace\@tempskipa
+      {\Large\@tempskipa\baselineskip
+             \advance\@tempskipa-\prevdepth
+             \advance\@tempskipa-\ht\nbsphinxbox
+             \ifdim\@tempskipa>\z@
+               \vskip \@tempskipa
+             \fi}
+    \unvbox\nbsphinxbox
+    % if notebook starts with a \section, prevent it from adding extra space
+    \@nobreaktrue\everypar{\@nobreakfalse\everypar{}}%
+    % compensate the parskip which will get inserted by next paragraph
+    \nobreak\vskip-\parskip
+    % do not break here
+    \nobreak
+}% end of \nbsphinxstartnotebook
+
+\newcommand{\nbsphinxstopnotebook}[1]{%
+    \par
+    % measure needed space
+    \setbox\nbsphinxbox\vbox{{#1\par}}
+    \nobreak % it updates page totals
+    \dimen@\pagegoal
+    \advance\dimen@-\pagetotal \advance\dimen@-\pagedepth
+    \advance\dimen@-\ht\nbsphinxbox \advance\dimen@-\dp\nbsphinxbox
+    \ifdim\dimen@<\z@
+      % little space left
+      \unvbox\nbsphinxbox
+      \kern-.8\baselineskip
+      \nobreak\vskip\z@\@plus1fil
+      \penalty100
+      \vskip\z@\@plus-1fil
+      \kern.8\baselineskip
+    \else
+      \unvbox\nbsphinxbox
+    \fi
+}% end of \nbsphinxstopnotebook
+
+% Ensure height of an included graphics fits in nbsphinxfancyoutput frame
+\newdimen\nbsphinx@image@maxheight % set in nbsphinxfancyoutput environment
+\newcommand*{\nbsphinxincludegraphics}[2][]{%
+    \gdef\spx@includegraphics@options{#1}%
+    \setbox\spx@image@box\hbox{\includegraphics[#1,draft]{#2}}%
+    \in@false
+    \ifdim \wd\spx@image@box>\linewidth
+      \g@addto@macro\spx@includegraphics@options{,width=\linewidth}%
+      \in@true
+    \fi
+    % no rotation, no need to worry about depth
+    \ifdim \ht\spx@image@box>\nbsphinx@image@maxheight
+      \g@addto@macro\spx@includegraphics@options{,height=\nbsphinx@image@maxheight}%
+      \in@true
+    \fi
+    \ifin@
+      \g@addto@macro\spx@includegraphics@options{,keepaspectratio}%
+    \fi
+    \setbox\spx@image@box\box\voidb@x % clear memory
+    \expandafter\includegraphics\expandafter[\spx@includegraphics@options]{#2}%
+}% end of "\MakeFrame"-safe variant of \sphinxincludegraphics
+\makeatother
+
+\makeatletter
+\renewcommand*\sphinx@verbatim@nolig@list{\do\'\do\`}
+\begingroup
+\catcode`'=\active
+\let\nbsphinx@noligs\@noligs
+\g@addto@macro\nbsphinx@noligs{\let'\PYGZsq}
+\endgroup
+\makeatother
+\renewcommand*\sphinxbreaksbeforeactivelist{\do\<\do\"\do\'}
+\renewcommand*\sphinxbreaksafteractivelist{\do\.\do\,\do\:\do\;\do\?\do\!\do\/\do\>\do\-}
+\makeatletter
+\fvset{codes*=\sphinxbreaksattexescapedchars\do\^\^\let\@noligs\nbsphinx@noligs}
+\makeatother
+
+
 
 \title{Addressing Uncertainty in MultiSector Dynamics Research}
-\date{Aug 04, 2021}
+\date{Sep 04, 2021}
 \release{v0.1.0}
-\author{Patrick M.\@{} Reed, Antonia Hadjimichael, Keyvan Malek, Tina Karimi, Vivek Srikrishnan, Klaus Keller, David Gold, Rohini Gupta, Chris Vernon, Jennie Rice}
+\author{Patrick M.\@{} Reed, Antonia Hadjimichael, Keyvan Malek, 
+
+         \textquotesingle{}Tina Karimi, Vivek Srikrishnan, Klaus Keller, 
+
+         \textquotesingle{}David Gold, Rohini Gupta, Chris Vernon, 
+
+         \textquotesingle{}Jennie Rice}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
@@ -347,7 +494,10 @@ Low\sphinxhyphen{}discrepancy sequences is another sampling technique that emplo
 
 
 \sphinxAtStartPar
-Put this into practice! Checkout Appendix X for an interactive tutorial on implementing a Sobol SA using SALib.
+Put this into practice! Click the following link to try out an interactive tutorial on implementing a Sobol SA using SALib:
+
+\sphinxAtStartPar
+\sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fsa\_saltelli\_sobol\_ishigami.ipynb}{Sobol SA using SALib Jupyter Notebook}
 
 
 
@@ -489,6 +639,19 @@ This index reveals the expected portion of variance that remains if uncertainty 
 Besides the Sobol method, there are some other variance\sphinxhyphen{}based sensitivity analysis methods, such as the Fourier amplitude sensitivity test (FAST; {[}\hyperlink{cite.index:id100}{75}, \hyperlink{cite.index:id151}{112}{]}) and extended\sphinxhyphen{}FAST {[}\hyperlink{cite.index:id152}{113}, \hyperlink{cite.index:id153}{114}{]}, that have been used by the scientific community. However, Sobol remains by far the most common method of this class. Variance\sphinxhyphen{}based techniques have been widely used and have proved to be powerful in a variety of applications. Despite their popularity, some authors have expressed concerns about the methods’ appropriateness in some settings. Specifically, the presence of heavy\sphinxhyphen{}tailed distributions or outliers, or when model outputs are multimodal can bias the sensitivity indices produced by these methods {[}\hyperlink{cite.index:id154}{115}, \hyperlink{cite.index:id155}{116}, \hyperlink{cite.index:id156}{117}{]}. Moment\sphinxhyphen{}independent measures, discussed below, attempt to overcome these challenges.
 
 
+\sphinxstrong{See also:}
+\nopagebreak
+
+
+\sphinxAtStartPar
+Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover important factors:
+
+\sphinxAtStartPar
+\sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Ffishery\_dynamics.ipynb}{Factor Discovery Jupyter Notebook}
+
+
+
+
 \subsection{Analysis of Variance (ANOVA)}
 \label{\detokenize{3_sensitivity_analysis_the_basics:analysis-of-variance-anova}}
 \sphinxAtStartPar
@@ -564,6 +727,19 @@ A comprehensive model diagnostic workflow typically entails the components demon
 
 \noindent\sphinxincludegraphics[width=500\sphinxpxdimen]{{figure4_1_diagnostic_workflow}.png}
 \caption{Diagnostic evaluation of model fidelity using sensitivity analysis methods.}\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:id50}}\label{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:figure-4-1}}\end{figure}
+
+
+\sphinxstrong{See also:}
+\nopagebreak
+
+
+\sphinxAtStartPar
+Put this into practice! Click the following badge to try out an interactive tutorial on implementing a time\sphinxhyphen{}varying sensitivity analysis of HYMOD model parameters:
+
+\sphinxAtStartPar
+\sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fhymod.ipynb}{HYMOD Jupyter Notebook}
+
+
 
 
 \section{Consequential Dynamics: What is Controlling Model Behaviors of Interest?}
@@ -665,6 +841,19 @@ Below we provide an example application of two scenario discovery methods, PRIM 
 \hyperref[\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:figure-4-5}]{Fig.\@ \ref{\detokenize{4_sensitivity_analysis_diagnostic_and_exploratory_modeling:figure-4-5}}} shows the results of scenario discovery, performed through (a) PRIM and (b) logistic regression. Each point in the two panels indicates a potential state of the world, generated through Latin Hypercube Sampling. Each point is colored by whether the policy meets the above performance criterion, with blue indicating success and red indicating failure. PRIM identifies several orthogonal areas of interest, one of which is shown in panel (a). As discussed above, this necessary orthogonality limits how PRIM identifies areas of success (the area within the box). As factors  \(b\) and \(q\) interact in this system, the transition boundary between the regions of success and failure is not orthogonal to any of the axes. As a result, a large number of points in the bottom right and the top left of the figure are left outside of the identified region. Logistic regression can overcome this limitation by identifying a diagonal boundary between the two regions, seen in panel (b). This method also produces a gradient of estimated probability of success across these regions.
 
 
+\sphinxstrong{See also:}
+\nopagebreak
+
+
+\sphinxAtStartPar
+Put this into practice! Click the following link to try out an interactive tutorial on performing factor mapping using logistic regression:
+
+\sphinxAtStartPar
+\sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fbasin\_users\_logistic\_regression.ipynb}{Logistic Regression Jupyter Notebook}
+
+
+
+
 \chapter{Conclusion}
 \label{\detokenize{5_conclusion:conclusion}}\label{\detokenize{5_conclusion:id1}}\label{\detokenize{5_conclusion::doc}}
 \sphinxAtStartPar
@@ -745,6 +934,21 @@ However, pre\sphinxhyphen{}calibration results in a very coarse characterization
 
 \sphinxAtStartPar
 A related method, widely used in hydrological studies, is generalized likelihood uncertainty estimation, or GLUE {[}\hyperlink{cite.index:id38}{19}{]}. Unlike pre\sphinxhyphen{}calibration, the underlying argument for GLUE relies on the concept of equifinality {[}\hyperlink{cite.index:id43}{165}{]}, which posits that it is impossible to find a uniquely well\sphinxhyphen{}performing parameter vector for models of abstract environmental systems {[}\hyperlink{cite.index:id43}{165}, \hyperlink{cite.index:id44}{166}{]}. In other words, there exist multiple parameter vectors which perform equally or similarly well. As with pre\sphinxhyphen{}calibration, GLUE uses a goodness\sphinxhyphen{}of\sphinxhyphen{}fit measure (though this is called a “likelihood” in the GLUE literature, as opposed to a statistical likelihood function {[}\hyperlink{cite.index:id45}{167}{]}) to evaluate samples. After setting a threshold of acceptable performance with respect to that measure, samples are evaluated and classified into “behavioral” or “non\sphinxhyphen{}behavioral” according to the threshold.
+
+
+\sphinxstrong{See also:}
+\nopagebreak
+
+
+\sphinxAtStartPar
+Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre\sphinxhyphen{}Calibration and GLUE for HYMOD model calibration:
+\begin{quote}
+
+\sphinxAtStartPar
+\sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fhymod.ipynb}{Pre\sphinxhyphen{}Calibration Jupyter Notebook}
+\end{quote}
+
+
 
 
 \section{Markov Chain Monte Carlo}
@@ -843,6 +1047,2162 @@ We conclude this appendix with some key recommendations:
 4. Be cognizant of the limitations of conclusions that can be drawn by using each method. The bootstrap, for example, may result in overconfidence if the dataset is limited and is not truly representative of the underlying stochastic process.
 5. When using MCMC, Markov chains can not be shown to have converged to the target distribution, but rather evidence can be collected to demonstrate that it is likely that they have.
 6. Conduct predictive checks based on the assumptions underlying the choices made in the analysis, and iteratively update those choices if the assumptions prove to be ill\sphinxhyphen{}suited for the problem at hand.
+
+
+\chapter{Jupyter Notebook Tutorials}
+\label{\detokenize{A2_Jupyter_Notebooks:jupyter-notebook-tutorials}}\label{\detokenize{A2_Jupyter_Notebooks:a2-jupyter-notebooks}}\label{\detokenize{A2_Jupyter_Notebooks::doc}}
+
+\section{Fishery Dynamics Tutorial}
+\label{\detokenize{A2_Jupyter_Notebooks:fishery-dynamics-tutorial}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Run the tutorial interactively:  \sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Ffishery\_dynamics.ipynb}{Fishery Dynamics Notebook}
+\end{sphinxadmonition}
+
+
+\subsection{Tutorial: Sensitivity Analysis (SA) to discover factors shaping consequential dynamics}
+\label{\detokenize{A2_Jupyter_Notebooks:tutorial-sensitivity-analysis-sa-to-discover-factors-shaping-consequential-dynamics}}
+\sphinxAtStartPar
+This notebook demonstrates the application of sensitivity analysis to
+discover factors that shape the behavior modes of a socio\sphinxhyphen{}ecological
+system with dynamic human action.
+
+\sphinxAtStartPar
+The model represents a system of prey and predator fish, with a human
+actor harvesting the prey fish. The system is simple but very rich in
+the dynamic behaviors it exhibits. You can read more about this system
+at \sphinxhref{https://doi.org/10.1155/2020/4170453}{Hadjimichael et
+al. (2020)}.
+
+\noindent\sphinxincludegraphics[width=781\sphinxpxdimen,height=284\sphinxpxdimen]{{eqn2}.png}
+
+\sphinxAtStartPar
+This complexity is accompanied by the presence of several equilibria
+that come in and out of existence with different parameter values. The
+equilibria also change in their stability according to different
+parameter values, giving rise to different behavior modes.
+
+\noindent\sphinxincludegraphics[width=5104\sphinxpxdimen,height=2650\sphinxpxdimen]{{Figure_1}.png}
+
+\sphinxAtStartPar
+In the unharvested system (without the human actor) the stability of
+several of these equilibria can be derived analytically. The task
+becomes significantly more difficult when the adaptive human actor is
+introduced, deciding to harvest the system at different rates according
+to their objectives and preferences.
+
+\sphinxAtStartPar
+Sensitivity analysis methods can help us identify the factors that most
+control these dynamics by exploring the space of parameter values and
+seeing how system outputs change as a result.
+
+\sphinxAtStartPar
+Through previously conducted optimization, there already exists a set of
+potential harvesting strategies that were identified in pursuit of five
+objectives:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Maximize Harvesting Discounted Profits (Net Present Value)
+
+\item {} 
+\sphinxAtStartPar
+Minimize Prey Population Deficit
+
+\item {} 
+\sphinxAtStartPar
+Minimize Longest Duration of Consecutive Low Harvest
+
+\item {} 
+\sphinxAtStartPar
+Maximize Worst Harvest Instance
+
+\item {} 
+\sphinxAtStartPar
+Minimize Harvest Variance
+
+\end{itemize}
+
+\sphinxAtStartPar
+The identified harvesting strategies also meet the necessary constraint
+of not causing inadvertent predator collapse.
+
+\sphinxAtStartPar
+We will be examining the effects of parametric uncertainty on these
+identified strategies, particularly focusing on two strategies: one
+selected to maximize harvesting profits and one identified through
+previous analysis to perform ‘well enough’ for all objectives across a
+wide range of states of the world (referred to as the ‘robust’
+harvesting policy).
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{msdbook}
+
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{sample} \PYG{k+kn}{import} \PYG{n}{saltelli}
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{analyze} \PYG{k+kn}{import} \PYG{n}{sobol}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{patheffects} \PYG{k}{as} \PYG{n}{pe}
+
+\PYG{c+c1}{\PYGZsh{} load example data}
+\PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{install\PYGZus{}package\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.print\PYGZus{}figure\PYGZus{}kwargs = \PYGZob{}\PYGZsq{}bbox\PYGZus{}inches\PYGZsq{}:None\PYGZcb{}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Downloading} \PYG{n}{example} \PYG{n}{data} \PYG{k}{for} \PYG{n}{msdbook} \PYG{n}{version} \PYG{l+m+mf}{0.1}\PYG{l+m+mf}{.5}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{uncertain\PYGZus{}params\PYGZus{}bounds}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}metric\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{solutions}\PYG{o}{.}\PYG{n}{resultfile}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LHsamples\PYGZus{}original\PYGZus{}1000}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{param\PYGZus{}values}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{collapse\PYGZus{}days}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}params\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LeafCatch}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}simulations\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{Robustness}\PYG{o}{.}\PYG{n}{txt}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 1: Load identified solutions and explore performance}
+\label{\detokenize{A2_Jupyter_Notebooks:step-1-load-identified-solutions-and-explore-performance}}
+\sphinxAtStartPar
+Identify and load the most robust and profit\sphinxhyphen{}maximizing solutions
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{robustness} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}robustness\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{results} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}profit\PYGZus{}maximization\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{robust\PYGZus{}solution} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{robustness}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{}pick robust solution}
+\PYG{n}{profit\PYGZus{}solution} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmin}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{}pick profitable solution}
+\PYG{n}{objective\PYGZus{}performance} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{results}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{:}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Get decision variables for each of the policies}
+\PYG{n}{highprofitpolicy} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{n}{profit\PYGZus{}solution}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{6}\PYG{p}{]}
+\PYG{n}{mostrobustpolicy} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{n}{robust\PYGZus{}solution}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{6}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Plot the identified solutions with regards to their objective
+performance in a parallel axis plot
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-objective-performance}{plot\_objective\_performance}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax1} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}objective\PYGZus{}performance}\PYG{p}{(}\PYG{n}{objective\PYGZus{}performance}\PYG{p}{,} \PYG{n}{profit\PYGZus{}solution}\PYG{p}{,} \PYG{n}{robust\PYGZus{}solution}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=1296\sphinxpxdimen,height=648\sphinxpxdimen]{{fishery_output_6_0}.png}
+
+\sphinxAtStartPar
+The results of the optimization are presented in a parallel axis plot
+where each of the five objectives (and one constraint) are represented
+as an axis. Each solution on the Pareto front is represented as a line
+where the color of the line indicates the value of the NPV objective.
+The preference for objective values is in the upward direction.
+Therefore, the ideal solution would be a line straight across the top of
+the plot that satisfies every objective. However, no such line exists
+because there are tradeoffs when sets of objectives are prioritized over
+the others. When lines cross in between axes, this indicates a tradeoff
+between objectives (as seen in the first two axes).The solution that is
+most robust in the NPV objective has the highest value on the first axis
+and is outlined in dark gold. The solution that is most robust across
+all objectives is outlined in a brighter yellow.
+
+
+\subsubsection{Step 2: Use SALib to generate a sample for a Sobol sensitivity analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:step-2-use-salib-to-generate-a-sample-for-a-sobol-sensitivity-analysis}}
+\sphinxAtStartPar
+To do so, we first need to define the problem dictionary that allows us
+to generate alternative states of the world.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Set up SALib problem}
+\PYG{n}{problem} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+  \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{num\PYGZus{}vars}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{9}\PYG{p}{,}
+  \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{names}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{h}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{K}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{m}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sigmaX}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sigmaY}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+  \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bounds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{p}{[}\PYG{l+m+mf}{0.002}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.005}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.2}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.05}\PYG{p}{,} \PYG{l+m+mf}{0.2}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+             \PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{l+m+mi}{5000}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mf}{1.5}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{l+m+mf}{0.01}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{l+m+mf}{0.01}\PYG{p}{]}\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+You can use the following to generate a Saltelli sample using the
+following:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{param\PYGZus{}values} \PYG{o}{=} \PYG{n}{saltelli}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{problem}\PYG{p}{,} \PYG{l+m+mi}{1024}\PYG{p}{,} \PYG{n}{calc\PYGZus{}second\PYGZus{}order}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Generally, it is a good idea to save the result of the sample since it
+is often reused and regenerating it produces a different sample set. For
+this reason, we will load one from file that was previously generated.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load previously generated Saltelli sample from our msdbook package data}
+\PYG{n}{param\PYGZus{}values} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}saltelli\PYGZus{}param\PYGZus{}values}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 3: Evaluate the system over all generated states of the world}
+\label{\detokenize{A2_Jupyter_Notebooks:step-3-evaluate-the-system-over-all-generated-states-of-the-world}}
+\sphinxAtStartPar
+We need to identify the states where the predator population collapses,
+as an inadvertent consequence of applying the harvesting strategy under
+a state of the world different from the one originally assumed. Due to
+how long this step takes to execute within the tutorial, we will read in
+the solutions from an external file. However, the block of code below
+shows how evaluation can be implemented.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} create array to store collapse values under both policies}
+\PYG{n}{collapse\PYGZus{}days} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{param\PYGZus{}values}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} evaluate performance under every state}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{param\PYGZus{}values}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{n}{additional\PYGZus{}inputs} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Previous\PYGZus{}Prey}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+                                  \PYG{p}{[}\PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{,}
+                                   \PYG{n}{param\PYGZus{}values}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+
+    \PYG{n}{collapse\PYGZus{}days}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{fish\PYGZus{}game}\PYG{p}{(}\PYG{n}{highprofitpolicy}\PYG{p}{,} \PYG{n}{additional\PYGZus{}inputs}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n}{collapse\PYGZus{}days}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{fish\PYGZus{}game}\PYG{p}{(}\PYG{n}{mostrobustpolicy}\PYG{p}{,} \PYG{n}{additional\PYGZus{}inputs}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load the simulation data from our msdbook package data}
+\PYG{n}{collapse\PYGZus{}days} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}collapse\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 4: Calculate sensitivity indices}
+\label{\detokenize{A2_Jupyter_Notebooks:step-4-calculate-sensitivity-indices}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Si\PYGZus{}profit} \PYG{o}{=} \PYG{n}{sobol}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem}\PYG{p}{,} \PYG{n}{collapse\PYGZus{}days}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                          \PYG{n}{calc\PYGZus{}second\PYGZus{}order}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
+                          \PYG{n}{conf\PYGZus{}level}\PYG{o}{=}\PYG{l+m+mf}{0.95}\PYG{p}{,}
+                          \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+              \PYG{n}{ST}   \PYG{n}{ST\PYGZus{}conf}
+\PYG{n}{a}       \PYG{l+m+mf}{0.278724}  \PYG{l+m+mf}{0.051918}
+\PYG{n}{b}       \PYG{l+m+mf}{0.188124}  \PYG{l+m+mf}{0.027986}
+\PYG{n}{c}       \PYG{l+m+mf}{0.015588}  \PYG{l+m+mf}{0.012159}
+\PYG{n}{d}       \PYG{l+m+mf}{0.077655}  \PYG{l+m+mf}{0.016051}
+\PYG{n}{h}       \PYG{l+m+mf}{0.025096}  \PYG{l+m+mf}{0.014796}
+\PYG{n}{K}       \PYG{l+m+mf}{0.033239}  \PYG{l+m+mf}{0.014006}
+\PYG{n}{m}       \PYG{l+m+mf}{0.845465}  \PYG{l+m+mf}{0.071372}
+\PYG{n}{sigmaX}  \PYG{l+m+mf}{0.000708}  \PYG{l+m+mf}{0.000851}
+\PYG{n}{sigmaY}  \PYG{l+m+mf}{0.000849}  \PYG{l+m+mf}{0.000470}
+              \PYG{n}{S1}   \PYG{n}{S1\PYGZus{}conf}
+\PYG{n}{a}       \PYG{l+m+mf}{0.126405}  \PYG{l+m+mf}{0.042938}
+\PYG{n}{b}       \PYG{l+m+mf}{0.060739}  \PYG{l+m+mf}{0.034380}
+\PYG{n}{c}       \PYG{l+m+mf}{0.003333}  \PYG{l+m+mf}{0.008758}
+\PYG{n}{d}       \PYG{l+m+mf}{0.011388}  \PYG{l+m+mf}{0.025792}
+\PYG{n}{h}       \PYG{l+m+mf}{0.010233}  \PYG{l+m+mf}{0.013034}
+\PYG{n}{K}       \PYG{l+m+mf}{0.016699}  \PYG{l+m+mf}{0.015731}
+\PYG{n}{m}       \PYG{l+m+mf}{0.609991}  \PYG{l+m+mf}{0.072196}
+\PYG{n}{sigmaX}  \PYG{l+m+mf}{0.000531}  \PYG{l+m+mf}{0.001607}
+\PYG{n}{sigmaY}  \PYG{l+m+mf}{0.000337}  \PYG{l+m+mf}{0.002014}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Si\PYGZus{}robustness} \PYG{o}{=} \PYG{n}{sobol}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem}\PYG{p}{,}
+                              \PYG{n}{collapse\PYGZus{}days}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+                              \PYG{n}{calc\PYGZus{}second\PYGZus{}order}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
+                              \PYG{n}{conf\PYGZus{}level}\PYG{o}{=}\PYG{l+m+mf}{0.95}\PYG{p}{,}
+                              \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+              \PYG{n}{ST}   \PYG{n}{ST\PYGZus{}conf}
+\PYG{n}{a}       \PYG{l+m+mf}{0.226402}  \PYG{l+m+mf}{0.038177}
+\PYG{n}{b}       \PYG{l+m+mf}{0.066819}  \PYG{l+m+mf}{0.017905}
+\PYG{n}{c}       \PYG{l+m+mf}{0.004395}  \PYG{l+m+mf}{0.004478}
+\PYG{n}{d}       \PYG{l+m+mf}{0.024509}  \PYG{l+m+mf}{0.006695}
+\PYG{n}{h}       \PYG{l+m+mf}{0.009765}  \PYG{l+m+mf}{0.006605}
+\PYG{n}{K}       \PYG{l+m+mf}{0.020625}  \PYG{l+m+mf}{0.010860}
+\PYG{n}{m}       \PYG{l+m+mf}{0.897971}  \PYG{l+m+mf}{0.070086}
+\PYG{n}{sigmaX}  \PYG{l+m+mf}{0.000136}  \PYG{l+m+mf}{0.000152}
+\PYG{n}{sigmaY}  \PYG{l+m+mf}{0.000739}  \PYG{l+m+mf}{0.001088}
+              \PYG{n}{S1}   \PYG{n}{S1\PYGZus{}conf}
+\PYG{n}{a}       \PYG{l+m+mf}{0.087936}  \PYG{l+m+mf}{0.045617}
+\PYG{n}{b}       \PYG{l+m+mf}{0.000554}  \PYG{l+m+mf}{0.019070}
+\PYG{n}{c}      \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.002970}  \PYG{l+m+mf}{0.004227}
+\PYG{n}{d}       \PYG{l+m+mf}{0.001206}  \PYG{l+m+mf}{0.015897}
+\PYG{n}{h}       \PYG{l+m+mf}{0.004554}  \PYG{l+m+mf}{0.008202}
+\PYG{n}{K}       \PYG{l+m+mf}{0.003843}  \PYG{l+m+mf}{0.012294}
+\PYG{n}{m}       \PYG{l+m+mf}{0.751301}  \PYG{l+m+mf}{0.063511}
+\PYG{n}{sigmaX} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.000325}  \PYG{l+m+mf}{0.001155}
+\PYG{n}{sigmaY} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.001887}  \PYG{l+m+mf}{0.003287}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Looking at the total\sphinxhyphen{}order indices, (ST) factors \(m\), \(a\),
+\(b\), \(d\) and \(K\) appear to affect the stability of
+this system. Looking at the first\sphinxhyphen{}order indices (S1), we also see that
+besides factors \(m\) and \(a\), all other factors are important
+in this system through their interactions, which make up the difference
+between their S1 and ST indices. This shows the danger of limiting
+sensitivity analyses to first order effects, as factor importance might
+be significantly misjudged.
+
+\sphinxAtStartPar
+These findings are supported by the analytical condition of equilibrium
+stability in this system:
+
+\noindent\sphinxincludegraphics[width=406\sphinxpxdimen,height=96\sphinxpxdimen]{{eqn4}.png}
+
+\sphinxAtStartPar
+In an unharvested system, this condition is both necessary and
+sufficient for the equilibrium of the two species coexisting to be
+stable.
+
+\sphinxAtStartPar
+When adaptive human action is introduced however, this condition is
+still necessary, but no longer sufficient, as harvesting reduces the
+numbers of prey fish and as a result reduces the resources for the
+predator fish. Since this harvesting value is not constant, but can
+dynamically adapt according to the harvester’s objectives, it cannot be
+introduced into this simple equation.
+
+
+\subsubsection{Step 5: Explore relationship between uncertain factors and performance}
+\label{\detokenize{A2_Jupyter_Notebooks:step-5-explore-relationship-between-uncertain-factors-and-performance}}
+\sphinxAtStartPar
+In the following steps, we will use the results of our sensitivity
+analysis to investigate the relationships between parametric
+uncertainty, equilibrium stability and the performance of the two
+policies.
+
+\sphinxAtStartPar
+We can use the top three factors identified (\(m\), \(a\), and
+\(b\)) to visualize the performance of our policies in this
+three\sphinxhyphen{}dimensional parametric space.
+
+\sphinxAtStartPar
+We first define the stability condition, as a function of \(b\) and
+\(m\), and calculate the corresponding values of \(a\).
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{inequality}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{K}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{return} \PYG{p}{(}\PYG{p}{(}\PYG{n}{b}\PYG{o}{*}\PYG{o}{*}\PYG{n}{m}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{n}{h}\PYG{o}{*}\PYG{n}{K}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} boundary interval that separates successful and failed states of the world}
+\PYG{n}{b} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+m+mf}{0.005}\PYG{p}{,} \PYG{n}{stop}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}
+\PYG{n}{m} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{n}{stop}\PYG{o}{=}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}
+\PYG{n}{h} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{n}{stop}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}
+\PYG{n}{K} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{stop}\PYG{o}{=}\PYG{l+m+mi}{2000}\PYG{p}{,} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}
+\PYG{n}{b}\PYG{p}{,} \PYG{n}{m} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{m}\PYG{p}{)}
+\PYG{n}{a} \PYG{o}{=} \PYG{n}{inequality}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{K}\PYG{p}{)}
+\PYG{n}{a} \PYG{o}{=} \PYG{n}{a}\PYG{o}{.}\PYG{n}{clip}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-factor-performance}{plot\_factor\_performance}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} generate plot}
+\PYG{n}{ax1}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}factor\PYGZus{}performance}\PYG{p}{(}\PYG{n}{param\PYGZus{}values}\PYG{p}{,} \PYG{n}{collapse\PYGZus{}days}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{a}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=4800\sphinxpxdimen,height=2400\sphinxpxdimen]{{fishery_output_22_0}.png}
+
+\sphinxAtStartPar
+These figures show the combinations of factors that lead to success or
+failure in different states of the world when the NPV\sphinxhyphen{}maximizing and
+Robust policies are utilized. Each point is a state of the world,
+characterized by specific values of the parameters, and ideally, we
+would like the color of the point to be blue, to represent that there
+are a low number of days with a predator collapse in that world. The
+gray curve denotes the highly non\sphinxhyphen{}linear nature of the boundary that
+separates successful and failed states of the world. The figures
+demonstrate the following key points:
+
+\sphinxAtStartPar
+First, as asserted above, the policies interact with the system in
+different and complex ways. In the presence of human action, the
+stability condition is not sufficient in determining whether the policy
+will succeed, even though it clearly shapes the system in a fundamental
+manner.
+
+\sphinxAtStartPar
+Secondly, the robust policy manages to avoid collapse in many more of
+the sampled states of the world, indicated by the number of blue points.
+This presents a clear tradeoff between profit\sphinxhyphen{}maximizing performance and
+robustness against uncertainty.
+
+
+\section{Sobol SA Tutorial}
+\label{\detokenize{A2_Jupyter_Notebooks:sobol-sa-tutorial}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Run the tutorial interactively:  \sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fsa\_saltelli\_sobol\_ishigami.ipynb}{Sobol SA Tutorial}
+\end{sphinxadmonition}
+
+
+\subsection{Tutorial: Sensitivity Analysis (SA) using the Saltelli sampling scheme with Sobol SA}
+\label{\detokenize{A2_Jupyter_Notebooks:tutorial-sensitivity-analysis-sa-using-the-saltelli-sampling-scheme-with-sobol-sa}}
+\sphinxAtStartPar
+In this tutorial, we will use the popular Python Sensitivity Analysis
+Library (\sphinxhref{https://salib.readthedocs.io/en/latest/index.html}{SALib})
+to: 1. Generate a problem set as a dictionary for our Ishigami function
+that has three inputs 2. Generate 8000 samples for our problem set using
+the Saltelli1,2 sampling scheme 3. Execute the Ishigami function for
+each of our samples and gather the outputs 4. Compute the sensitivity
+analysis to generate first\sphinxhyphen{}order and total\sphinxhyphen{}order sensitivity indices
+using the Sobol3 method 5. Interpret the meaning of our results
+
+
+\subsubsection{Let’s get started!}
+\label{\detokenize{A2_Jupyter_Notebooks:lets-get-started}}
+\sphinxAtStartPar
+\sphinxstylestrong{NOTE}: Content from this tutorial is taken directly from the SALib
+\sphinxhref{https://salib.readthedocs.io/en/latest/basics.html}{“Basics”}
+walkthrough.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{sample} \PYG{k+kn}{import} \PYG{n}{saltelli}
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{analyze} \PYG{k+kn}{import} \PYG{n}{sobol}
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{test\PYGZus{}functions} \PYG{k+kn}{import} \PYG{n}{Ishigami}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 1: Generate the problem dictionary}
+\label{\detokenize{A2_Jupyter_Notebooks:step-1-generate-the-problem-dictionary}}
+\sphinxAtStartPar
+The Ishigami function is of the form:
+\begin{equation*}
+\begin{split}f(x) = sin(x_1)+asin^2(x_2)+bx_3^4sin(x_1)\end{split}
+\end{equation*}
+\sphinxAtStartPar
+and has three inputs, 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−𝜋, 𝜋{]}.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{problem} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{num\PYGZus{}vars}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{3}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{names}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bounds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{3.14159265359}\PYG{p}{,} \PYG{l+m+mf}{3.14159265359}\PYG{p}{]}\PYG{p}{,}
+               \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{3.14159265359}\PYG{p}{,} \PYG{l+m+mf}{3.14159265359}\PYG{p}{]}\PYG{p}{,}
+               \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{3.14159265359}\PYG{p}{,} \PYG{l+m+mf}{3.14159265359}\PYG{p}{]}\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 2: Generate samples using the Saltelli sampling scheme}
+\label{\detokenize{A2_Jupyter_Notebooks:step-2-generate-samples-using-the-saltelli-sampling-scheme}}
+\sphinxAtStartPar
+Sobol SA requires the use of the Saltelli sampling scheme. The output of
+the \sphinxcode{\sphinxupquote{saltelli.sample}} function is a NumPy array that is of shape 2048
+by 3. The sampler generates 𝑁∗(2𝐷+2) samples, where in this example N is
+256 (the argument we supplied) and D is 3 (the number of model inputs),
+yielding 2048 samples. The keyword argument \sphinxcode{\sphinxupquote{calc\_second\_order=False}}
+will exclude second\sphinxhyphen{}order indices, resulting in a smaller sample matrix
+with 𝑁∗(𝐷+2) rows instead.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{param\PYGZus{}values} \PYG{o}{=} \PYG{n}{saltelli}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{problem}\PYG{p}{,} \PYG{l+m+mi}{256}\PYG{p}{)}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{`param\PYGZus{}values` shape:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{param\PYGZus{}values}\PYG{o}{.}\PYG{n}{shape}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+\begin{sphinxalltt}
+\sphinxtitleref{param\_values} shape:  (2048, 3)
+\end{sphinxalltt}
+
+
+\subsubsection{Step 3: Execute the Ishigami function over our sample set}
+\label{\detokenize{A2_Jupyter_Notebooks:step-3-execute-the-ishigami-function-over-our-sample-set}}
+\sphinxAtStartPar
+SALib provides a nice wrapper to the Ishigami function that allows the
+user to directly pass the \sphinxcode{\sphinxupquote{param\_values}} array we just generated into
+the function directly.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Y} \PYG{o}{=} \PYG{n}{Ishigami}\PYG{o}{.}\PYG{n}{evaluate}\PYG{p}{(}\PYG{n}{param\PYGZus{}values}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 4: Compute first\sphinxhyphen{}, second\sphinxhyphen{}, and total\sphinxhyphen{}order sensitivity indices using the Sobol method}
+\label{\detokenize{A2_Jupyter_Notebooks:step-4-compute-first-second-and-total-order-sensitivity-indices-using-the-sobol-method}}
+\sphinxAtStartPar
+The \sphinxcode{\sphinxupquote{sobol.analyze}} function will use our problem dictionary and the
+result of the Ishigami runs (\sphinxcode{\sphinxupquote{Y}}) to compute first\sphinxhyphen{}, second\sphinxhyphen{}, and
+total\sphinxhyphen{}order indicies.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Si} \PYG{o}{=} \PYG{n}{sobol}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Si}} is a Python dict with the keys “S1”, “S2”, “ST”, “S1\_conf”,
+“S2\_conf”, and “ST\_conf”. The \sphinxcode{\sphinxupquote{\_conf}} keys store the corresponding
+confidence intervals, typically with a confidence level of 95\%. Use the
+keyword argument \sphinxcode{\sphinxupquote{print\_to\_console=True}} to print all indices. Or, we
+can print the individual values from \sphinxcode{\sphinxupquote{Si}} as shown in the next step.
+
+
+\subsubsection{Step 5: Interpret our results}
+\label{\detokenize{A2_Jupyter_Notebooks:step-5-interpret-our-results}}
+\sphinxAtStartPar
+When we execute the following code to take a look at our first\sphinxhyphen{}order
+indices (\sphinxcode{\sphinxupquote{S1}}) for each of our three parameters, we see that 𝑥1 and 𝑥2
+exibit first\sphinxhyphen{}order sensitivities. This means that there is contribution
+to the output variance by those parameters independently, whereas 𝑥3
+does not contribute to the output variance.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{first\PYGZus{}order} \PYG{o}{=} \PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{First\PYGZhy{}order:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{x1: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{first\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{, x2: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{first\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{, x3: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{first\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{First}\PYG{o}{\PYGZhy{}}\PYG{n}{order}\PYG{p}{:}
+\PYG{n}{x1}\PYG{p}{:} \PYG{l+m+mf}{0.3260389719592443}\PYG{p}{,} \PYG{n}{x2}\PYG{p}{:} \PYG{l+m+mf}{0.4820072841939227}\PYG{p}{,} \PYG{n}{x3}\PYG{p}{:} \PYG{l+m+mf}{0.011125510338583004}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Next, we evaluate the total\sphinxhyphen{}order indices and find that they are
+substantially larger than the first\sphinxhyphen{}order indices, which reveals that
+higher\sphinxhyphen{}order interactions are occurring. Our total\sphinxhyphen{}order indices measure
+the contribution to the output variance caused by a model input,
+including both its first\sphinxhyphen{}order effects (the input varying alone) and all
+higher\sphinxhyphen{}order interactions. Now we see that 𝑥3 has non\sphinxhyphen{}negligible total
+order indices.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{total\PYGZus{}order} \PYG{o}{=} \PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ST}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Total\PYGZhy{}order:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{x1: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{, x2: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{, x3: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Total}\PYG{o}{\PYGZhy{}}\PYG{n}{order}\PYG{p}{:}
+\PYG{n}{x1}\PYG{p}{:} \PYG{l+m+mf}{0.5646024820275896}\PYG{p}{,} \PYG{n}{x2}\PYG{p}{:} \PYG{l+m+mf}{0.4570071429804512}\PYG{p}{,} \PYG{n}{x3}\PYG{p}{:} \PYG{l+m+mf}{0.2506488435438359}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Finally, we can investigate these higher order interactions by viewing
+the second\sphinxhyphen{}order outputs. The second\sphinxhyphen{}order indicies measure the
+contribution to the output variance caused by the interaction between
+any two model inputs.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{second\PYGZus{}order} \PYG{o}{=} \PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Second\PYGZhy{}order:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{x1\PYGZhy{}x2:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{second\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{x1\PYGZhy{}x3:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{second\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{x2\PYGZhy{}x3:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{second\PYGZus{}order}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Second}\PYG{o}{\PYGZhy{}}\PYG{n}{order}\PYG{p}{:}
+\PYG{n}{x1}\PYG{o}{\PYGZhy{}}\PYG{n}{x2}\PYG{p}{:}  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.018110907981879032}
+\PYG{n}{x1}\PYG{o}{\PYGZhy{}}\PYG{n}{x3}\PYG{p}{:}  \PYG{l+m+mf}{0.2648898732606599}
+\PYG{n}{x2}\PYG{o}{\PYGZhy{}}\PYG{n}{x3}\PYG{p}{:}  \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.005645845624612848}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We can see that there are strong interactions between 𝑥1 and 𝑥3. Note in
+the Ishigami function, these two variables are multiplied in the last
+term, which creates these interactive effects. If we were considering
+first order indices alone, we would erroneously assume that 𝑥3 has no
+effect on our output, but the second\sphinxhyphen{}order and total order indices
+reveal that this is not the case. It’s easy to understand where we might
+see iteractive effects in the case of the simple Ishigami function.
+However, it’s important to remember that in more complex systems, there
+may be many higher\sphinxhyphen{}order interactions that are not apparent, but could
+be extremely consequential in contributing to the variance of the
+output. Additionally, some computing error will appear in the
+sensitivity indices. For example, we observe a negative value for the
+𝑥2\sphinxhyphen{}𝑥3 index. Typically, these computing errors shrink as the number of
+samples increases.
+
+
+\subsubsection{References}
+\label{\detokenize{A2_Jupyter_Notebooks:references}}
+\sphinxAtStartPar
+{[}1{]} Saltelli, A. (2002). “Making best use of model evaluations to
+compute sensitivity indices.” Computer Physics Communications,
+145(2):280\sphinxhyphen{}297, doi:10.1016/S0010\sphinxhyphen{}4655(02)00280\sphinxhyphen{}1.
+
+\sphinxAtStartPar
+{[}2{]} Saltelli, A., P. Annoni, I. Azzini, F. Campolongo, M. Ratto, and S.
+Tarantola (2010). “Variance based sensitivity analysis of model output.
+Design and estimator for the total sensitivity index.” Computer Physics
+Communications, 181(2):259\sphinxhyphen{}270, doi:10.1016/j.cpc.2009.09.018.
+
+\sphinxAtStartPar
+{[}3{]} Sobol, I. M. (2001). “Global sensitivity indices for nonlinear
+mathematical models and their Monte Carlo estimates.” Mathematics and
+Computers in Simulation, 55(1\sphinxhyphen{}3):271\sphinxhyphen{}280,
+doi:10.1016/S0378\sphinxhyphen{}4754(00)00270\sphinxhyphen{}6.
+
+
+\section{Logistic Regression Tutorial}
+\label{\detokenize{A2_Jupyter_Notebooks:logistic-regression-tutorial}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Run the tutorial interactively:  \sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fbasin\_users\_logistic\_regression.ipynb}{Logistic Regression Tutorial}
+\end{sphinxadmonition}
+
+
+\subsection{Tutorial: Logistic Regression for Factor Mapping}
+\label{\detokenize{A2_Jupyter_Notebooks:tutorial-logistic-regression-for-factor-mapping}}
+\sphinxAtStartPar
+This tutorial replicates a scenario discovery analysis performed in
+\sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020EF001503}{Hadjimichael et
+al. (2020)}.
+
+
+\subsubsection{Background}
+\label{\detokenize{A2_Jupyter_Notebooks:background}}
+\sphinxAtStartPar
+Planners in the the Upper Colorado River Basin (UCRB, shown in the
+figure below) are seeking to understand the vulnerability of water users
+to uncertainties stemming from climate change, population growth and
+water policy changes. The UCRB spans 25,682 km2 in western Colorado and
+is home to approximately 300,000 residents and 1,012 km2 of irrigated
+land. Several thousand irrigation ditches divert water from the main
+river and its tributaties for irrigation (shown as small black dots in
+the figure). Transmountain diversions of approximately 567,4000,000 m3
+per year are exported for irrigation, industrial and municipal uses in
+northern and eastern Colorado, serving the major population centers of
+Denver and Colorado Springs. These diversions are carried through
+tunnels, shown as large black dots in the figure.
+
+\noindent\sphinxincludegraphics[width=1278\sphinxpxdimen,height=803\sphinxpxdimen]{{basin_map}.png}
+
+\sphinxAtStartPar
+An important planning consideration is the water rights of each user,
+defined by seniority across all water uses (irrigation diversions,
+transboundary diversions, power plants etc.) in the basin. To assess the
+vulnerability of users with varying degrees of water rights seniority,
+planners simulate the system across an ensemble of scenarios using the
+state of Colorado’s StateMod platform. The model simulates streamflow,
+diversions, instream demands, and reservoir operations.
+
+\sphinxAtStartPar
+Focusing on decision\sphinxhyphen{}relevant metrics, the scenario discovery is applied
+to the water shortages experienced by each individual user (i.e., not on
+a single basin\sphinxhyphen{}wide or sector\sphinxhyphen{}wide metric). For this training example,
+we’ll be performing scenario discovery for three different water users,
+two irrigation users and one municipal user.
+
+\sphinxAtStartPar
+Before we start our analysis, we’ll load the relevant Python libraries
+and create lists storing the names of the users of interest.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{msdbook}
+
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
+\PYG{c+c1}{\PYGZsh{} load example data}
+\PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{install\PYGZus{}package\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{all\PYGZus{}IDs} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{7000550}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{7200799}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{3704614}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} IDs for three that we will perform the analysis for}
+\PYG{n}{usernames} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Medium seniority irrigation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Low seniority irrigation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transbasin municipal diversion}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{nStructures} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{all\PYGZus{}IDs}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Downloading} \PYG{n}{example} \PYG{n}{data} \PYG{k}{for} \PYG{n}{msdbook} \PYG{n}{version} \PYG{l+m+mf}{0.1}\PYG{l+m+mf}{.5}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{uncertain\PYGZus{}params\PYGZus{}bounds}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}metric\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{solutions}\PYG{o}{.}\PYG{n}{resultfile}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LHsamples\PYGZus{}original\PYGZus{}1000}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{param\PYGZus{}values}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{collapse\PYGZus{}days}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}params\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LeafCatch}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}simulations\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{Robustness}\PYG{o}{.}\PYG{n}{txt}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 1: Load Latin Hypercube Sample and set up problem}
+\label{\detokenize{A2_Jupyter_Notebooks:step-1-load-latin-hypercube-sample-and-set-up-problem}}
+\sphinxAtStartPar
+To examine regional vulnerability, we generate an ensemble of plausible
+future states of the worlds (SOWs) using Latin Hypercube Sampling. For
+this tutorial, we’ll load a file containing 1,000 parameter samples.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{LHsamples} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}lhs\PYGZus{}basin\PYGZus{}sample}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{param\PYGZus{}bounds} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}basin\PYGZus{}param\PYGZus{}bounds}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{param\PYGZus{}names}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Irrigation demand multiplier}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Reservoir loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Transbasin demand multiplier}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Municipal \PYGZam{} industrial multiplier}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Shoshone}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Environmental flows}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Evaporation change}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mean dry flow}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Dry flow variance}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mean wet flow}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Wet flow variance}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Dry\PYGZhy{}dry probability}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Wet\PYGZhy{}wet probability}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Snowmelt shift}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 2: Define decision\sphinxhyphen{}relevant metrics for illustration}
+\label{\detokenize{A2_Jupyter_Notebooks:step-2-define-decision-relevant-metrics-for-illustration}}
+\sphinxAtStartPar
+Scenario discovery attempts to identify parametric regions that lead to
+‘success’ and ‘failure’. For this demonstration we’ll be defining
+‘success’ as states of the world where a shortage level doesn’t exceed
+its historical frequency.
+
+
+\subsubsection{Step 3: Run the logistic regression}
+\label{\detokenize{A2_Jupyter_Notebooks:step-3-run-the-logistic-regression}}
+\sphinxAtStartPar
+Logistic regression estimates the probability that a future SOW will be
+classified as a success or failure given a set of performance criteria.
+A logistic regression model is defined by:
+\begin{equation*}
+\begin{split}ln \bigg (\frac{p_i}{1-p_i} \bigg ) = X^T_i \beta\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where \(p_i\) is the probability the performance in the
+\(i^{th}\) SOW will be classified as a success, \(X_i\) is the
+vector of covariates describing the \(i^{th}\) SOW, and
+\(\beta\) is the vector of coefficients describing the relationship
+between the covariates and the response, which here will be estimated
+using maximum likelihood estimation.
+
+\sphinxAtStartPar
+A logistic regression model was fit to the ensemble of SOWs using the
+performance criteria defined in step 2. Logistic regression modeling was
+conducted using the \sphinxhref{https://www.statsmodels.org/stable/index.html}{Statsmodel
+Python} package. The
+data required for the full analysis is too large to include in this
+tutorial, but results can be found in the data file loaded below.
+
+\sphinxAtStartPar
+The results files contain the occurence of different frequency and
+magnitude combinations under the experiment, in increments of 10,
+between 0 and 100. These combinations (100 for each user) are
+alternative decision\sphinxhyphen{}relevant metrics that can be used for scenario
+discovery.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Set arrays for shortage frequencies and magnitudes}
+\PYG{n}{frequencies} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{110}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}
+\PYG{n}{magnitudes} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{110}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}
+\PYG{n}{realizations} \PYG{o}{=} \PYG{l+m+mi}{10}
+
+
+\PYG{c+c1}{\PYGZsh{} Load performance and pseudo r scores for each of the users}
+\PYG{n}{results} \PYG{o}{=} \PYG{p}{[}\PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}user\PYGZus{}heatmap\PYGZus{}array}\PYG{p}{(}\PYG{n}{all\PYGZus{}IDs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{100} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{all\PYGZus{}IDs}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 4: Factor ranking}
+\label{\detokenize{A2_Jupyter_Notebooks:step-4-factor-ranking}}
+\sphinxAtStartPar
+To rank the importance of each uncertain factor, we utilize McFadden’s
+psuedo\sphinxhyphen{}R2, a measure that quantifies the improvement of the model when
+utilizing each given predictor as compared to prediction using the mean
+of the data set:
+\begin{equation*}
+\begin{split}R^2_{McFadden}=1-\frac{ln \hat{L}(M_{full})}{ln \hat{L}(M_{intercept})}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Where \(ln \hat{L}(M_{full})\) is the log likelihood of the full
+model (including the predictor) and \(ln \hat{L}(M_{intercept})\) is
+the log likelihood of the intercept model (which predicts the mean
+probability of success across all SOWs).
+
+\sphinxAtStartPar
+Higher values of McFadden’s psuedo\sphinxhyphen{}R2 indicate higher factor importance
+(when the likelihood of the full model approaches one, the ratio of the
+likelihood of the full model compared to the intercept model will get
+very small).
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{scores} \PYG{o}{=} \PYG{p}{[}\PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}user\PYGZus{}pseudo\PYGZus{}scores}\PYG{p}{(}\PYG{n}{all\PYGZus{}IDs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{all\PYGZus{}IDs}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}
+
+\PYG{n}{freq} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{mag} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+
+\subsubsection{Step 5: Draw factor maps}
+\label{\detokenize{A2_Jupyter_Notebooks:step-5-draw-factor-maps}}
+\sphinxAtStartPar
+The McFadden’s psuedo\sphinxhyphen{}R2 scores files contain preliminary logistic
+regression results on parameter importance for each of these
+combinations. Using these psuedo\sphinxhyphen{}R2 scores we will identify the two most
+important factors for each metric which we’ll use to generate the final
+scenario discovery maps (note: there may be more than two important
+metrics for each user, but here we will demonstrate by mapping two).
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} setup figure}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{axes} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,}\PYG{l+m+mi}{18}\PYG{p}{)}\PYG{p}{,} \PYG{n}{tight\PYGZus{}layout}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{fig}\PYG{o}{.}\PYG{n}{patch}\PYG{o}{.}\PYG{n}{set\PYGZus{}facecolor}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{white}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{axes}\PYG{o}{.}\PYG{n}{flat}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{n}{ax} \PYG{o}{=} \PYG{n}{axes}\PYG{o}{.}\PYG{n}{flat}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+
+    \PYG{n}{allSOWsperformance} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+    \PYG{n}{all\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores} \PYG{o}{=} \PYG{n}{scores}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} construct dataframe}
+    \PYG{n}{dta} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{repeat}\PYG{p}{(}\PYG{n}{LHsamples}\PYG{p}{,} \PYG{n}{realizations}\PYG{p}{,} \PYG{n}{axis} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{n}{param\PYGZus{}names}\PYG{p}{)}
+    \PYG{n}{dta}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Success}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{allSOWsperformance}\PYG{p}{[}\PYG{n}{freq}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{n}{mag}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{,}\PYG{p}{:}\PYG{p}{]}
+
+    \PYG{n}{pseudo\PYGZus{}r\PYGZus{}scores} \PYG{o}{=} \PYG{n}{all\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{frequencies}\PYG{p}{[}\PYG{n}{freq}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{yrs\PYGZus{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{magnitudes}\PYG{p}{[}\PYG{n}{mag}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{o}{+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{prc}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{values}
+    \PYG{n}{top\PYGZus{}predictors} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argsort}\PYG{p}{(}\PYG{n}{pseudo\PYGZus{}r\PYGZus{}scores}\PYG{p}{)}\PYG{p}{[}\PYG{p}{:}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{}Sort scores and pick top 2 predictors}
+
+    \PYG{c+c1}{\PYGZsh{} define color map for dots representing SOWs in which the policy}
+    \PYG{c+c1}{\PYGZsh{} succeeds (light blue) and fails (dark red)}
+    \PYG{n}{dot\PYGZus{}cmap} \PYG{o}{=} \PYG{n}{mpl}\PYG{o}{.}\PYG{n}{colors}\PYG{o}{.}\PYG{n}{ListedColormap}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{227}\PYG{p}{,}\PYG{l+m+mi}{26}\PYG{p}{,}\PYG{l+m+mi}{28}\PYG{p}{]}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mi}{166}\PYG{p}{,}\PYG{l+m+mi}{206}\PYG{p}{,}\PYG{l+m+mi}{227}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{255.0}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} define color map for probability contours}
+    \PYG{n}{contour\PYGZus{}cmap} \PYG{o}{=} \PYG{n}{mpl}\PYG{o}{.}\PYG{n}{cm}\PYG{o}{.}\PYG{n}{get\PYGZus{}cmap}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{RdBu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} define probability contours}
+    \PYG{n}{contour\PYGZus{}levels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.05}\PYG{p}{,}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} define base values of the predictors}
+    \PYG{n}{SOW\PYGZus{}values} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} default parameter values for base SOW}
+    \PYG{n}{base} \PYG{o}{=} \PYG{n}{SOW\PYGZus{}values}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{]}
+    \PYG{n}{ranges} \PYG{o}{=} \PYG{n}{param\PYGZus{}bounds}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} define grid of x (1st predictor), and y (2nd predictor) dimensions}
+    \PYG{c+c1}{\PYGZsh{} to plot contour map over}
+    \PYG{n}{xgrid} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{param\PYGZus{}bounds}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                      \PYG{n}{param\PYGZus{}bounds}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{around}\PYG{p}{(}\PYG{p}{(}\PYG{n}{ranges}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ranges}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{500}\PYG{p}{,}\PYG{n}{decimals}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{ygrid} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{param\PYGZus{}bounds}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                      \PYG{n}{param\PYGZus{}bounds}\PYG{p}{[}\PYG{n}{top\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{around}\PYG{p}{(}\PYG{p}{(}\PYG{n}{ranges}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ranges}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{500}\PYG{p}{,}\PYG{n}{decimals}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{all\PYGZus{}predictors} \PYG{o}{=} \PYG{p}{[} \PYG{n}{dta}\PYG{o}{.}\PYG{n}{columns}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{top\PYGZus{}predictors}\PYG{p}{]}
+    \PYG{n}{dta}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Interaction}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{dta}\PYG{p}{[}\PYG{n}{all\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{]}\PYG{o}{*}\PYG{n}{dta}\PYG{p}{[}\PYG{n}{all\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} logistic regression here}
+    \PYG{n}{predictor\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{n}{all\PYGZus{}predictors}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{]}
+    \PYG{n}{result} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{fit\PYGZus{}logit}\PYG{p}{(}\PYG{n}{dta}\PYG{p}{,} \PYG{n}{predictor\PYGZus{}list}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} plot contour map}
+    \PYG{n}{contourset} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}contour\PYGZus{}map}\PYG{p}{(}\PYG{n}{ax}\PYG{p}{,} \PYG{n}{result}\PYG{p}{,} \PYG{n}{dta}\PYG{p}{,} \PYG{n}{contour\PYGZus{}cmap}\PYG{p}{,}
+                                          \PYG{n}{dot\PYGZus{}cmap}\PYG{p}{,} \PYG{n}{contour\PYGZus{}levels}\PYG{p}{,} \PYG{n}{xgrid}\PYG{p}{,}
+                                          \PYG{n}{ygrid}\PYG{p}{,} \PYG{n}{all\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{all\PYGZus{}predictors}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{base}\PYG{p}{)}
+
+    \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{usernames}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} set up colorbar}
+\PYG{n}{cbar\PYGZus{}ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{add\PYGZus{}axes}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{0.98}\PYG{p}{,} \PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{l+m+mf}{0.05}\PYG{p}{,} \PYG{l+m+mf}{0.7}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{cbar} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{colorbar}\PYG{p}{(}\PYG{n}{contourset}\PYG{p}{,} \PYG{n}{cax}\PYG{o}{=}\PYG{n}{cbar\PYGZus{}ax}\PYG{p}{)}
+\PYG{n}{cbar\PYGZus{}ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Probability of Success}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}
+\PYG{n}{cbar\PYGZus{}ax}\PYG{o}{.}\PYG{n}{tick\PYGZus{}params}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{which}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{major}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{labelsize}\PYG{o}{=}\PYG{l+m+mi}{12}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Optimization} \PYG{n}{terminated} \PYG{n}{successfully}\PYG{o}{.}
+         \PYG{n}{Current} \PYG{n}{function} \PYG{n}{value}\PYG{p}{:} \PYG{l+m+mf}{0.378619}
+         \PYG{n}{Iterations} \PYG{l+m+mi}{8}
+\PYG{n}{Optimization} \PYG{n}{terminated} \PYG{n}{successfully}\PYG{o}{.}
+         \PYG{n}{Current} \PYG{n}{function} \PYG{n}{value}\PYG{p}{:} \PYG{l+m+mf}{0.397285}
+         \PYG{n}{Iterations} \PYG{l+m+mi}{8}
+\PYG{n}{Optimization} \PYG{n}{terminated} \PYG{n}{successfully}\PYG{o}{.}
+         \PYG{n}{Current} \PYG{n}{function} \PYG{n}{value}\PYG{p}{:} \PYG{l+m+mf}{0.377323}
+         \PYG{n}{Iterations} \PYG{l+m+mi}{8}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=493\sphinxpxdimen,height=1288\sphinxpxdimen]{{notebook_logistic_output_11_1}.png}
+
+\sphinxAtStartPar
+The figure above demonstrates how different combinations of the
+uncertain factors lead to success or failure in different states of the
+world, which are denoted by the blue and red dots. The probability of
+success and failure are further denoted by the contours in the figure.
+Several insights can be drawn from this figure.
+
+\sphinxAtStartPar
+First, using metrics chosen to be decision\sphinxhyphen{}relevant (specific to each
+user) causes different factors to be identified as most important by
+this scenario\sphinxhyphen{}discovery exercise (the x\sphinxhyphen{} and y\sphinxhyphen{}axes for each of the
+subplots). In other words, depending on what the decision makers of this
+system want to prioritize they might choose to monitor different
+uncertain factors to track performance.
+
+\sphinxAtStartPar
+Second, in the top panel, the two identified factors appear to also have
+an interactive effect on the metric used (shortages of a certain level
+and frequency in this example). In terms of scenario discovery, the
+Patient Rule Induction Method (PRIM) or Classification And Regression
+Trees (CART) would not be able to delineate this non\sphinxhyphen{}linear space and
+would therefore misclassify parameter combinations as ‘desirable’ when
+they were in fact undesirable, and vice versa.
+
+\sphinxAtStartPar
+Lastly, logistic regression also produces contours of probability of
+success, i.e. different factor\sphinxhyphen{}value combinations are assigned different
+probabilities that a shortage level will be exceeded. This allows the
+decision makers to evaluate these insights while considering their risk
+aversion.
+
+
+\section{HYMOD Dynamics Tutorial}
+\label{\detokenize{A2_Jupyter_Notebooks:hymod-dynamics-tutorial}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Run the tutorial interactively:  \sphinxhref{https://mybinder.org/v2/gh/IMMM-SFA/msd\_uncertainty\_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks\%2Fhymod.ipynb}{HYMOD Notebook}
+\end{sphinxadmonition}
+
+
+\subsection{Tutorial: Sensitivity Analysis of the HYMOD Model}
+\label{\detokenize{A2_Jupyter_Notebooks:tutorial-sensitivity-analysis-of-the-hymod-model}}
+\sphinxAtStartPar
+This tutorial has been developed to showcase some of the sensitivity
+analysis and uncertainty quantification concepts and tools established
+in the main text in the context of HYMOD, a rainfall\sphinxhyphen{}runoff model. The
+tutorial includes the following sections:
+
+
+\subsubsection{Introduction to HYMOD and Sensitivity Analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:introduction-to-hymod-and-sensitivity-analysis}}
+\sphinxAtStartPar
+{\hyperref[\detokenize{A2_Jupyter_Notebooks:hymod}]{\emph{1\sphinxhyphen{} Introduction to a simple hydrologic model (HYMOD)}}} {\hyperref[\detokenize{A2_Jupyter_Notebooks:sensitivity}]{\emph{2\sphinxhyphen{} An
+overview of sensitivity analysis using SALib}}} \sphinxhref{sa\_metrics}{3\sphinxhyphen{}
+Calculation of sensitivity analysis metrics}
+
+
+\subsubsection{Time\sphinxhyphen{}Varying Sensitivity Analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:time-varying-sensitivity-analysis}}
+\sphinxAtStartPar
+{\hyperref[\detokenize{A2_Jupyter_Notebooks:TVSA}]{\emph{4\sphinxhyphen{} Time\sphinxhyphen{}varying sensitivity analysis}}}
+
+
+\subsubsection{Ensemble\sphinxhyphen{}based Parametric Uncertainty}
+\label{\detokenize{A2_Jupyter_Notebooks:ensemble-based-parametric-uncertainty}}
+\sphinxAtStartPar
+{\hyperref[\detokenize{A2_Jupyter_Notebooks:GLUE}]{\emph{5\sphinxhyphen{} Generalized Likelihood Uncertainty Estimation (GLUE)}}} {\hyperref[\detokenize{A2_Jupyter_Notebooks:precalibration}]{\emph{6\sphinxhyphen{}
+Pre\sphinxhyphen{}Calibration}}}
+
+\sphinxAtStartPar
+It is important to note that, although in this tutorial we focus on
+HYMOD, which is a hydrologic model, it can also be thought of as an
+example of a model that abstracts complex non\sphinxhyphen{}linear systems. Therefore,
+many of the methods that we use in the tutorial can be applied to
+numerical models that simulate other complex non\sphinxhyphen{}linear systems.
+
+
+\subsection{Introduction to HYMOD and Sensitivity Analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:id3}}
+
+\subsection{1\sphinxhyphen{} HYMOD}
+\label{\detokenize{A2_Jupyter_Notebooks:hymod}}
+\sphinxAtStartPar
+HYMOD is a simple hydrologic model (rainfall\sphinxhyphen{}runoff model) that
+simulates key hydrologic fluxes such as infiltration, streamflow and
+evapotranspiration. The model has been originally developed and used for
+river flow forecasting. However, in the last two decades the model has
+been widely used to explore different sensitivity analysis (e.g.,
+\sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20124}{Herman et al.,
+2013}),
+uncertainty quantification (e.g., \sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006WR005205}{Smith et al.,
+2008}),
+and optimization (e.g., \sphinxhref{https://www.sciencedirect.com/science/article/pii/S0022169414006362?casa\_token=IRqE19Hkfa8AAAAA:\_fXOqfwpzxMpchvu8\_0njCe0Ok9H29Gyw2F46l9PzG9UVODDTUg6wIOSiyp6uybGevNVnZ7N}{Ye et al.,
+2014})
+concepts.
+
+\sphinxAtStartPar
+There are two main assumptions in the model: 1) Rainfall is generated
+through infiltration excess overland flow. 2) Runoff generation can be
+formulated by the probability\sphinxhyphen{}distributed principle (Moore, 1985).
+Therefore the cumulative rate storage capacity \((F(C))\) can be
+calculated using the following relationship:
+\begin{equation*}
+\begin{split}F(C) = 1 - (1 - \frac{C}{C_{MAX}})-{B_{exp}}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where \sphinxstyleemphasis{:math:\textasciigrave{}C\textasciigrave{}} is the water storage capacity; \sphinxstylestrong{:math:\textasciigrave{}C\_\{MAX\}\textasciigrave{}} is
+the parameter describing basin maximum water storage capacity (mm); and
+\sphinxstylestrong{:math:\textasciigrave{}B\_\{exp\}\textasciigrave{}} is the parameter describing the degree of spatial
+variability within the basin.
+
+\sphinxAtStartPar
+The portion of precipitation that exceeds the water storage capacity is
+treated as runoff. The evapotranspiration is equal to potential
+evapotranspiration (\(PET\)) if enough water is available.
+Otherwise, it equals the available water storage.
+
+\sphinxAtStartPar
+Then, based on a parameter \(Alpha\), the runoff is divided into
+quick flow and slow flow, which are routed through three identical quick
+flow tanks \(Q1, Q2, Q3\) and a parallel slow flow tank,
+respectively.
+
+\sphinxAtStartPar
+The flow rates in the routing system are described by the resident time
+in the quick tanks \(K_q\) (day) and the slow tank \(K_s\)
+(day), respectively.
+
+\begin{figure}[htbp]
+\centering
+\capstart
+
+\noindent\sphinxincludegraphics[width=850\sphinxpxdimen,height=270\sphinxpxdimen]{{hymod}.png}
+\caption{alt text}\label{\detokenize{A2_Jupyter_Notebooks:id9}}\end{figure}
+
+\sphinxAtStartPar
+Vrugt et al., (2008)
+
+
+\subsubsection{1\sphinxhyphen{}1 Model Parameters}
+\label{\detokenize{A2_Jupyter_Notebooks:model-parameters}}
+\sphinxAtStartPar
+\(C_{MAX}\): parameters describing basin maximum water storage
+capacity (mm)
+
+\sphinxAtStartPar
+\(B_{exp}\): parameters describing the degree of spatial variability
+within the basin between 0 and Huz
+
+\sphinxAtStartPar
+\(Alp\): Fraction of runoff contributing to quick flow
+
+\sphinxAtStartPar
+\(K_q\): Quick flow residence time of linear infinite reservoir (the
+Kq values of all three linear reservoirs are the same)
+
+\sphinxAtStartPar
+\(K_s\): Slow flow residence time of linear infinite reservoir
+
+
+\subsubsection{1\sphinxhyphen{}2 Input data}
+\label{\detokenize{A2_Jupyter_Notebooks:input-data}}
+\sphinxAtStartPar
+The HYMOD model only requires precipitation and potential
+evapotranspiration as inputs. The Leaf River example that we use here is
+also a widely used test case of HYMOD. The dataset also includes
+observed runoff that we later use to evaluate the performace of each
+sensitvity analysis sample set.
+
+\sphinxAtStartPar
+We can use the following to read the input file:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{msdbook}
+
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
+
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn} \PYG{k+kn}{import} \PYG{n}{metrics}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{pyplot} \PYG{k}{as} \PYG{n}{plt}
+
+\PYG{c+c1}{\PYGZsh{} load example data}
+\PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{install\PYGZus{}package\PYGZus{}data}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Downloading} \PYG{n}{example} \PYG{n}{data} \PYG{k}{for} \PYG{n}{msdbook} \PYG{n}{version} \PYG{l+m+mf}{0.1}\PYG{l+m+mf}{.5}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{uncertain\PYGZus{}params\PYGZus{}bounds}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}metric\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{solutions}\PYG{o}{.}\PYG{n}{resultfile}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LHsamples\PYGZus{}original\PYGZus{}1000}\PYG{o}{.}\PYG{n}{txt}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{3704614}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{param\PYGZus{}values}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{collapse\PYGZus{}days}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}params\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7000550}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}heatmap}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{sa\PYGZus{}by\PYGZus{}yr\PYGZus{}delta}\PYG{o}{.}\PYG{n}{npy}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{l+m+mi}{7200799}\PYG{n}{\PYGZus{}pseudo\PYGZus{}r\PYGZus{}scores}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{LeafCatch}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{hymod\PYGZus{}simulations\PYGZus{}256samples}\PYG{o}{.}\PYG{n}{csv}
+\PYG{n}{Unzipped}\PYG{p}{:} \PYG{o}{/}\PYG{n}{srv}\PYG{o}{/}\PYG{n}{conda}\PYG{o}{/}\PYG{n}{envs}\PYG{o}{/}\PYG{n}{notebook}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{python3}\PYG{l+m+mf}{.7}\PYG{o}{/}\PYG{n}{site}\PYG{o}{\PYGZhy{}}\PYG{n}{packages}\PYG{o}{/}\PYG{n}{msdbook}\PYG{o}{/}\PYG{n}{data}\PYG{o}{/}\PYG{n}{Robustness}\PYG{o}{.}\PYG{n}{txt}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load the HYMOD input file}
+\PYG{n}{leaf\PYGZus{}data} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}input\PYGZus{}file}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} extract the first eleven years of data}
+\PYG{n}{leaf\PYGZus{}data} \PYG{o}{=} \PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{4015}\PYG{p}{]}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} There are only three columns in the file including precipitation, potential evapotranspiration and  streamflow}
+\PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+
+
+\subsubsection{1\sphinxhyphen{}3 Baseline Model Simulation}
+\label{\detokenize{A2_Jupyter_Notebooks:baseline-model-simulation}}
+\sphinxAtStartPar
+We can start our sensitivity analysis experiment with running HYMOD
+using its default parameters.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} assign input parameters to generate a baseline simulated streamflow}
+\PYG{n}{Nq} \PYG{o}{=} \PYG{l+m+mi}{3}  \PYG{c+c1}{\PYGZsh{} Number of quickflow routing tanks}
+\PYG{n}{Kq} \PYG{o}{=} \PYG{l+m+mf}{0.5} \PYG{c+c1}{\PYGZsh{} Quickflow routing tanks\PYGZsq{} rate parameter}
+\PYG{n}{Ks} \PYG{o}{=}  \PYG{l+m+mf}{0.001} \PYG{c+c1}{\PYGZsh{} Slowflow routing tank\PYGZsq{}s rate parameter}
+\PYG{n}{Alp} \PYG{o}{=} \PYG{l+m+mf}{0.5} \PYG{c+c1}{\PYGZsh{} Quick/slow split parameter}
+\PYG{n}{Huz} \PYG{o}{=} \PYG{l+m+mi}{100} \PYG{c+c1}{\PYGZsh{} Maximum height of soil moisture accounting tank}
+\PYG{n}{B} \PYG{o}{=} \PYG{l+m+mf}{1.0} \PYG{c+c1}{\PYGZsh{} Scaled distribution function shape parameter}
+
+\PYG{c+c1}{\PYGZsh{} Note that the number of years is 11 years. One year of model warm\PYGZhy{}up and ten years are used for actual simulation}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{hymod}\PYG{p}{(}\PYG{n}{Nq}\PYG{p}{,} \PYG{n}{Kq}\PYG{p}{,} \PYG{n}{Ks}\PYG{p}{,} \PYG{n}{Alp}\PYG{p}{,} \PYG{n}{Huz}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{leaf\PYGZus{}data}\PYG{p}{,} \PYG{n}{ndays}\PYG{o}{=}\PYG{l+m+mi}{4015}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\subsubsection{1\sphinxhyphen{}4 Model Outputs}
+\label{\detokenize{A2_Jupyter_Notebooks:model-outputs}}
+\sphinxAtStartPar
+Model outputs include actual evapotranspiration, quick and fast
+streamflow, and combined runoff. In this tutorial we focus on the total
+daily runoff (\(m-3/s\)). We can use the following script to plot
+simulated streamflow against observed streamflow.
+
+
+\subsubsection{Variables}
+\label{\detokenize{A2_Jupyter_Notebooks:variables}}
+\sphinxAtStartPar
+\sphinxstylestrong{PP}: Precipitation
+
+\sphinxAtStartPar
+\sphinxstylestrong{ET}: Evapotranspiration
+
+\sphinxAtStartPar
+\sphinxstylestrong{OV}: Runoff
+
+\sphinxAtStartPar
+\sphinxstylestrong{Qq}: Quick Flow
+
+\sphinxAtStartPar
+\sphinxstylestrong{Qs}: Slow Flow
+
+\sphinxAtStartPar
+\sphinxstylestrong{QQ}: Streamflow (Quick Flow + Slow Flow)
+
+\sphinxAtStartPar
+\sphinxstylestrong{XHuz} and \sphinxstylestrong{XCuz}: Current moisture state of soil moisture
+accounting component (as depth XH or volume XC)
+
+
+\subsubsection{Plot the observed versus simulated streamflow.}
+\label{\detokenize{A2_Jupyter_Notebooks:plot-the-observed-versus-simulated-streamflow}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-observed-vs-simulated-streamflow}{plot\_observed\_vs\_simulated\_streamflow}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}observed\PYGZus{}vs\PYGZus{}simulated\PYGZus{}streamflow}\PYG{p}{(}\PYG{n}{df}\PYG{o}{=}\PYG{n}{leaf\PYGZus{}data}\PYG{p}{,} \PYG{n}{hymod\PYGZus{}dict}\PYG{o}{=}\PYG{n}{model}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=718\sphinxpxdimen,height=384\sphinxpxdimen]{{output_16_0}.png}
+
+
+\subsection{2\sphinxhyphen{} Sensitivity Analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:sensitivity-analysis}}
+\sphinxAtStartPar
+Here we use the SALib Python library to explore how different HYMOD
+input parameters affect model streamflow simulations. For this exercise,
+we only use Sobol variance\sphinxhyphen{}based method. The following commands can be
+used to import SALib
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{sample} \PYG{k+kn}{import} \PYG{n}{saltelli}
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{analyze} \PYG{k+kn}{import} \PYG{n}{sobol}
+\PYG{k+kn}{from} \PYG{n+nn}{SALib}\PYG{n+nn}{.}\PYG{n+nn}{analyze} \PYG{k+kn}{import} \PYG{n}{delta}
+\end{sphinxVerbatim}
+
+
+\subsubsection{2\sphinxhyphen{}2 Model simulations for sensitivity analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:model-simulations-for-sensitivity-analysis}}
+\sphinxAtStartPar
+We first define the model input and their ranges.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{problem\PYGZus{}hymod} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{num\PYGZus{}vars}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{5}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{names}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{bounds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{p}{[}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Kq}
+               \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{0.1}\PYG{p}{]}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Ks}
+               \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}    \PYG{c+c1}{\PYGZsh{} Alp}
+               \PYG{p}{[}\PYG{l+m+mf}{0.1}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{]}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Huz}
+               \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1.9}\PYG{p}{]}\PYG{p}{]}  \PYG{c+c1}{\PYGZsh{} B}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Now we need to sample and then run the model for each of the sample
+sets. We will load a sample that has already been created
+\sphinxcode{\sphinxupquote{param\_values\_hymod}} for demonstration purposes. The actual model
+simulation takes an extended period, so we also load the simulation data
+from a previous run. The following demonstrates how to conduct this
+analysis:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} generate 256 samples. This is an arbitrary number.}
+\PYG{n}{param\PYGZus{}values\PYGZus{}hymod} \PYG{o}{=} \PYG{n}{saltelli}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{l+m+mi}{256}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} dictionary to store outputs in}
+\PYG{n}{d\PYGZus{}outputs} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{\PYGZsh{} run simulation for each parameter sample}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} run model for each sensitivity analysis parameter sets}
+    \PYG{n}{hymod\PYGZus{}output} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{hymod}\PYG{p}{(}\PYG{n}{Nq}\PYG{p}{,}
+                                 \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                                 \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+                                 \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
+                                 \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{,}
+                                 \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{,}
+                                 \PYG{n}{leaf\PYGZus{}data}\PYG{p}{,}
+                                 \PYG{n}{ndays}\PYG{o}{=}\PYG{l+m+mi}{4015}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} store the simulated total flow discharge}
+    \PYG{n}{d\PYGZus{}outputs}\PYG{p}{[}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Q}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{i}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{hymod\PYGZus{}output}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Q}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+
+
+\PYG{n}{Q\PYGZus{}df\PYGZus{}bw} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{d\PYGZus{}outputs}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load previously generated parameter values}
+\PYG{n}{param\PYGZus{}values\PYGZus{}hymod} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}params}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} number of samples}
+\PYG{n}{n\PYGZus{}samples} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} load previously generated hymod simulated outputs}
+\PYG{n}{Q\PYGZus{}df\PYGZus{}bw} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}simulation}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} column names of each sample simulation number}
+\PYG{n}{sample\PYGZus{}column\PYGZus{}names} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{Q\PYGZus{}df\PYGZus{}bw}\PYG{o}{.}\PYG{n}{columns} \PYG{k}{if} \PYG{n}{i}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+
+\paragraph{Model Warm\sphinxhyphen{}up}
+\label{\detokenize{A2_Jupyter_Notebooks:model-warm-up}}
+\sphinxAtStartPar
+A hydrological model such as HYMOD usually includes ordinary
+differential equations that are sensitive to their initial condition.
+They also have components in their underlying formulation that have long
+memory such that prior time steps can affect their current simulations.
+For example, soil moisture or groundwater can hold water for a long time
+and therefore they are often considered to exhibit a long memory. This
+can affect the partitioning of water to runoff and infiltration, while
+also controlling the generation of base flow. Therefore, it is important
+to have a reasonable initial value for them. To achieve this,
+hydrologists usually extend their simulation period and after the
+simulations, they remove that extended time period that has unreasonable
+groundwater or surface water values. This time period is called the
+warm\sphinxhyphen{}up time period.
+
+\sphinxAtStartPar
+Here we extended our simulation for one year (from 10 years to 11 years)
+and we removed the first year of simulation, therefore our warm\sphinxhyphen{}up
+period is one year.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} exclude the first year of simulation from the simulations and reset the index}
+\PYG{n}{Q\PYGZus{}df} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df\PYGZus{}bw}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{365}\PYG{p}{:}\PYG{l+m+mi}{4015}\PYG{p}{]}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{(}\PYG{n}{drop}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} exclude the first year of the input data and reset the index}
+\PYG{n}{leaf\PYGZus{}data} \PYG{o}{=} \PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{365}\PYG{p}{:}\PYG{l+m+mi}{4015}\PYG{p}{]}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{(}\PYG{n}{drop}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\subsubsection{2\sphinxhyphen{}3 Visual inspection of the model outputs}
+\label{\detokenize{A2_Jupyter_Notebooks:visual-inspection-of-the-model-outputs}}
+\sphinxAtStartPar
+Here we create a figure that shows HYMOD streamflow outputs under
+different sample sets, and compare them with the observed streamflow.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} add date columns to our simulation data frame; for this data our start date is 1/1/2000}
+\PYG{n}{date\PYGZus{}ts} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{date\PYGZus{}range}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1/1/2000}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{periods}\PYG{o}{=}\PYG{l+m+mi}{3650}\PYG{p}{,} \PYG{n}{freq}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{date}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}
+\PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{year}
+\PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{month}
+\PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{day}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{day}
+
+\PYG{c+c1}{\PYGZsh{} aggregate the simulated observed streamflow to monthly mean}
+\PYG{n}{df\PYGZus{}sim\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} do the same for the observed data}
+\PYG{n}{date\PYGZus{}ts} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{date\PYGZus{}range}\PYG{p}{(}\PYG{n}{start}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1/1/2000}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{periods}\PYG{o}{=}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{leaf\PYGZus{}data}\PYG{p}{)}\PYG{p}{,} \PYG{n}{freq}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{date}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}
+\PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{year}
+\PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{month}
+\PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{day}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{date\PYGZus{}ts}\PYG{o}{.}\PYG{n}{day}
+
+\PYG{c+c1}{\PYGZsh{} aggregate the daily observed streamflow to monthly mean}
+\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-observed-vs-sensitivity-streamflow}{plot\_observed\_vs\_sensitivity\_streamflow}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}observed\PYGZus{}vs\PYGZus{}sensitivity\PYGZus{}streamflow}\PYG{p}{(}\PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                                     \PYG{n}{df\PYGZus{}sim}\PYG{o}{=}\PYG{n}{df\PYGZus{}sim\PYGZus{}mth\PYGZus{}mean}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=602\sphinxpxdimen,height=275\sphinxpxdimen]{{output_28_0}.png}
+
+
+\subsection{3\sphinxhyphen{} Calculation of Sensitivity Analysis Indices}
+\label{\detokenize{A2_Jupyter_Notebooks:calculation-of-sensitivity-analysis-indices}}
+\sphinxAtStartPar
+There are different options to calculate sensitivity indices. The
+following section aggregates model streamflow outputs and calculates the
+sensitivity indices.
+
+
+\subsubsection{3\sphinxhyphen{}1 Aggregated sensitivity analysis indices}
+\label{\detokenize{A2_Jupyter_Notebooks:aggregated-sensitivity-analysis-indices}}
+\sphinxAtStartPar
+This is the simplest way of calculating sensitivity analysis metrics,
+however, averaging all model response can lead to loss of information
+that we further explore in the following sections.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} overall aggregated indices}
+\PYG{n}{Y} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Perform analysis}
+\PYG{n}{Si} \PYG{o}{=} \PYG{n}{delta}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{First order indices = }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{First} \PYG{n}{order} \PYG{n}{indices} \PYG{o}{=}  \PYG{p}{[}\PYG{l+m+mf}{0.00810372} \PYG{l+m+mf}{0.0049972}  \PYG{l+m+mf}{0.00508833} \PYG{l+m+mf}{0.60039872} \PYG{l+m+mf}{0.28942293}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{l+m+mf}{0.9080109105125653}
+\end{sphinxVerbatim}
+
+
+\subsubsection{3\sphinxhyphen{}2 How do different performance metrics affect the results of our sensitivity analysis?}
+\label{\detokenize{A2_Jupyter_Notebooks:how-do-different-performance-metrics-affect-the-results-of-our-sensitivity-analysis}}
+\sphinxAtStartPar
+Streamflow has many different properties. In this section, we discuss
+how the selection of metrics can lead to fundamentally different
+sensitivity analysis results. For example, one can only focus on
+aggregated streamflow metrics such as mean (what has been presented so
+far), or only on extreme events such as drought or floods.
+
+\sphinxAtStartPar
+Here we compare three different metrics: 1\sphinxhyphen{} Mean error (ME) 2\sphinxhyphen{} Root Mean
+Square Error (RMSE) 3\sphinxhyphen{} Log\sphinxhyphen{}Root Mean Square Error (Log(RMSE))
+
+\sphinxAtStartPar
+Each of these metrics focuses on a specific attribute of streamflow. For
+example, RMSE highlights the impacts of extreme flood events, while
+LOG(RMSE) focuses on model performance during low\sphinxhyphen{}flow events.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} calculate error metrics}
+\PYG{n}{me} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Strmflw}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{mse} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{metrics}\PYG{o}{.}\PYG{n}{mean\PYGZus{}squared\PYGZus{}error}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{leaf\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Strmflw}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{rmse} \PYG{o}{=} \PYG{n}{mse}\PYG{o}{*}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} add error metrics to a dictionary}
+\PYG{n}{d\PYGZus{}metrics} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ME}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{me}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{values}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{RMSE}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{rmse}\PYG{o}{.}\PYG{n}{values}\PYG{p}{,}
+             \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{LOG[RMSE]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{log10}\PYG{p}{(}\PYG{n}{rmse}\PYG{o}{.}\PYG{n}{values}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{\PYGZsh{} convert to a dataframe}
+\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{d\PYGZus{}metrics}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We can use the following to calculate the SA indices for each metric and
+visualize it. Results are pre\sphinxhyphen{}loaded for efficiency.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} performance analysis}
+\PYG{n}{df\PYGZus{}metric\PYGZus{}sa\PYGZus{}result} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} conduct sensitivity analysis for each metric}
+\PYG{k}{for} \PYG{n}{index}\PYG{p}{,} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{d\PYGZus{}metrics}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} get the data as a numpy array for the target metric}
+    \PYG{n}{Y} \PYG{o}{=} \PYG{n}{d\PYGZus{}metrics}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} use the metric to conduct SA}
+    \PYG{n}{Si} \PYG{o}{=} \PYG{n}{delta}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} add the sensitivity indices to the output data frame}
+    \PYG{n}{df\PYGZus{}metric\PYGZus{}sa\PYGZus{}result}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{index}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load previously ran simulation}
+\PYG{n}{df\PYGZus{}metric\PYGZus{}sa\PYGZus{}result} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}metric\PYGZus{}simulation}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} view results}
+\PYG{n}{df\PYGZus{}metric\PYGZus{}sa\PYGZus{}result}
+\end{sphinxVerbatim}
+
+
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} create seaborn heatmap with required labels}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} labels for y\PYGZhy{}axis}
+\PYG{n}{y\PYGZus{}axis\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mean Error}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{RSME}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Log(RMSE)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} plot heatmap}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{df\PYGZus{}metric\PYGZus{}sa\PYGZus{}result}\PYG{p}{,} \PYG{n}{yticklabels}\PYG{o}{=}\PYG{n}{y\PYGZus{}axis\PYGZus{}labels}\PYG{p}{,}  \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{rocket}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=535\sphinxpxdimen,height=303\sphinxpxdimen]{{output_40_0}.png}
+
+\sphinxAtStartPar
+The results indicate that different goodness\sphinxhyphen{}of\sphinxhyphen{}fit metrics can produce
+different sensitivity indices. This is because streamflow time series
+have several dimensions and regimes (e.g., extreme high flow and low
+flow) and focusing on only one metric will neglect the sensitivity of
+other dimensions.
+
+\sphinxAtStartPar
+Therefore, we can argue that a single goodness\sphinxhyphen{}of\sphinxhyphen{}fit measure will never
+be able to capture the entire response of model to different parametric
+combinations. For more discussion about this topic readers can refer to
+\sphinxhref{https://www.sciencedirect.com/science/article/pii/S1574954110000580?via\%3Dihub}{Liu and Sun
+(2010)}
+and \sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR007255}{Foglia et al.,
+(2009)}.
+
+
+\subsection{4\sphinxhyphen{} Time\sphinxhyphen{}Varying Sensitivity Analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:id4}}
+\sphinxAtStartPar
+Hydrological processes are often state\sphinxhyphen{}dependent, meaning that their
+responses are affected by the time\sphinxhyphen{}varying condition that they are in.
+For example, rainfall\sphinxhyphen{}runoff processes are different in winter and
+summer. These processes are also different during wet years and dry
+years.
+
+\sphinxAtStartPar
+Hydrological processes are also path\sphinxhyphen{}dependent, meaning that previous
+time\sphinxhyphen{}steps on the model affect the present and future simulation of
+different hydrologic components. To take these properties into account,
+we can zoom into different time periods to explore how the sensitivity
+of model parameters evolve in different time steps. This is referred to
+as time\sphinxhyphen{}varying sensitivity analysis.
+
+\sphinxAtStartPar
+For more information about time\sphinxhyphen{}varying sensitivity analysis, readers
+can refer to \sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20124}{Herman et
+al. (2013)}
+and \sphinxhref{https://link.springer.com/article/10.1007/s12206-018-0223-8}{Xu et
+al. (2018)}.
+
+
+\subsubsection{4\sphinxhyphen{}1 Sensitivity analysis indices for each month}
+\label{\detokenize{A2_Jupyter_Notebooks:sensitivity-analysis-indices-for-each-month}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} aggregate simulated streamflow data to monthly time series}
+\PYG{n}{df\PYGZus{}sim\PYGZus{}by\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} aggregate observed streamflow data to monthly time series}
+\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We can use the following to calculate the SA indices for each month and
+visualize it. Results are pre\sphinxhyphen{}loaded for efficiency.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} set up dataframes to store outputs}
+\PYG{n}{df\PYGZus{}mth\PYGZus{}s1} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}mth\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} iterate through each month}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} generate the simulation data}
+    \PYG{n}{Y} \PYG{o}{=} \PYG{n}{df\PYGZus{}sim\PYGZus{}by\PYGZus{}mth\PYGZus{}mean}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} run SA}
+    \PYG{n}{Si} \PYG{o}{=} \PYG{n}{delta}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} add to output dataframes}
+    \PYG{n}{df\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{n}{df\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{delta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} convert to arrays}
+\PYG{n}{arr\PYGZus{}mth\PYGZus{}s1} \PYG{o}{=} \PYG{n}{df\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{values}
+\PYG{n}{arr\PYGZus{}mth\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{values}
+\end{sphinxVerbatim}
+
+
+\paragraph{First\sphinxhyphen{}order Indices}
+\label{\detokenize{A2_Jupyter_Notebooks:first-order-indices}}
+\sphinxAtStartPar
+The following can be used to visualize the time\sphinxhyphen{}varying first\sphinxhyphen{}order
+indices. The first order represents the direct impacts of a specific
+parameter on model outputs.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-monthly-heatmap}{plot\_monthly\_heatmap}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load previously ran data}
+\PYG{n}{arr\PYGZus{}mth\PYGZus{}delta}\PYG{p}{,} \PYG{n}{arr\PYGZus{}mth\PYGZus{}s1} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}monthly\PYGZus{}simulations}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}monthly\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                       \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                       \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{First Order \PYGZhy{} Mean Monthly SA}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=727\sphinxpxdimen,height=370\sphinxpxdimen]{{output_49_0}.png}
+
+\sphinxAtStartPar
+This figure demonstrates the first order sensitivity indices when the
+streamflow data are aggregated by month. The purple line represents the
+observed monthly discharge. The figure indicates that the first order
+indices are highest for B and Huz across all months and lowest for Alp,
+Ks, and Kq.
+
+
+\paragraph{Total\sphinxhyphen{}order indices}
+\label{\detokenize{A2_Jupyter_Notebooks:total-order-indices}}
+\sphinxAtStartPar
+We can also focus on the total order sensitivity index that includes
+first\sphinxhyphen{}order SA indices and interactions between parameters
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}monthly\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                       \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                       \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Total Order \PYGZhy{} Mean monthly SA}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=733\sphinxpxdimen,height=370\sphinxpxdimen]{{output_52_0}.png}
+
+\sphinxAtStartPar
+Notably, the total order sensitivity results are different than the
+first order sensitivity results, which indicates that interactions
+between the parameters (particularly in regards to \(Kq\),
+\(Ks\), and \(Alp\)) contribute to variance in the HYMOD output.
+
+
+\subsubsection{4\sphinxhyphen{}2 Annual sensitivity analysis indices}
+\label{\detokenize{A2_Jupyter_Notebooks:annual-sensitivity-analysis-indices}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} group by year and get mean}
+\PYG{n}{df\PYGZus{}sim\PYGZus{}by\PYGZus{}yr\PYGZus{}mean} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{n}{sample\PYGZus{}column\PYGZus{}names}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} group input data and get mean}
+\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}yr\PYGZus{}mean} \PYG{o}{=} \PYG{n}{leaf\PYGZus{}data}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+We can also calculate the sensitivity analysis indices for each
+individual year. This will allow us to understand if model control
+changes during different years. The following code first aggregates the
+outputs to annual time steps, and then calculates the SA indices.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} set up dataframes to store outputs}
+\PYG{n}{df\PYGZus{}yr\PYGZus{}s1} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}yr\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} iterate through each year}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} generate the simulation data}
+    \PYG{n}{Y} \PYG{o}{=} \PYG{n}{df\PYGZus{}sim\PYGZus{}by\PYGZus{}yr\PYGZus{}mean}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} run SA}
+    \PYG{n}{Si} \PYG{o}{=} \PYG{n}{delta}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} add to output dataframes}
+    \PYG{n}{df\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{n}{df\PYGZus{}yr\PYGZus{}delta}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{delta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} convert to arrays}
+\PYG{n}{arr\PYGZus{}yr\PYGZus{}s1} \PYG{o}{=} \PYG{n}{df\PYGZus{}mth\PYGZus{}s1}\PYG{o}{.}\PYG{n}{values}
+\PYG{n}{arr\PYGZus{}yr\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}mth\PYGZus{}delta}\PYG{o}{.}\PYG{n}{values}
+\end{sphinxVerbatim}
+
+
+\paragraph{First\sphinxhyphen{}order indices}
+\label{\detokenize{A2_Jupyter_Notebooks:id5}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-annual-heatmap}{plot\_annual\_heatmap}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load previously ran data}
+\PYG{n}{arr\PYGZus{}yr\PYGZus{}delta}\PYG{p}{,} \PYG{n}{arr\PYGZus{}yr\PYGZus{}s1} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}annual\PYGZus{}simulations}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}annual\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}yr\PYGZus{}s1}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}yr\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{First Order \PYGZhy{} Mean Annual SA}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=724\sphinxpxdimen,height=315\sphinxpxdimen]{{output_59_0}.png}
+
+\sphinxAtStartPar
+The first order sensitivities at the annual scale are not unlike the
+first order monthly sensitivities. Once again, sensitivities vary across
+year and Huz and B are the most consequential parameters.
+
+
+\paragraph{Total\sphinxhyphen{}order indices}
+\label{\detokenize{A2_Jupyter_Notebooks:id6}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}annual\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}yr\PYGZus{}delta}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}by\PYGZus{}yr\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Total Order \PYGZhy{} Mean Annual SA and Observed flow}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=731\sphinxpxdimen,height=315\sphinxpxdimen]{{output_62_0}.png}
+
+\sphinxAtStartPar
+Our results indicate that sensitivity analysis indices vary in different
+years and now that interactions are included, the Kq, Ks, and Alp
+variables impact the sensitivity of the streamflow output.
+
+
+\subsubsection{4\sphinxhyphen{}3 Monthly time\sphinxhyphen{}varying sensitivity analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:monthly-time-varying-sensitivity-analysis}}
+\sphinxAtStartPar
+Although time\sphinxhyphen{}varying sensitivity analysis at average monthly and
+average annual temporal resolutions is informative, TVSA is susceptible
+to the aggregation issue that we discussed earlier in section 3\sphinxhyphen{}2. To
+avoid that we can further discretize our time domain to zoom into
+individual months. This will provide us with even more information about
+model behavior and the sensitivity of different parameters in different
+states of the system. The block of code demonstrates how to implement
+the monthly TVSA.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} set up dataframes to store outputs}
+\PYG{n}{df\PYGZus{}vary\PYGZus{}s1} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+                          \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{df\PYGZus{}vary\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} iterate through each month}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} generate the simulation data}
+    \PYG{n}{Y} \PYG{o}{=} \PYG{n}{df\PYGZus{}sim\PYGZus{}mth\PYGZus{}mean}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}numpy}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} run SA}
+    \PYG{n}{Si} \PYG{o}{=} \PYG{n}{delta}\PYG{o}{.}\PYG{n}{analyze}\PYG{p}{(}\PYG{n}{problem\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{Y}\PYG{p}{,} \PYG{n}{print\PYGZus{}to\PYGZus{}console}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} add to output dataframes}
+    \PYG{n}{df\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{n}{df\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{p}{:}\PYG{p}{]} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{maximum}\PYG{p}{(}\PYG{n}{Si}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{delta}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} convert to arrays}
+\PYG{n}{arr\PYGZus{}vary\PYGZus{}s1} \PYG{o}{=} \PYG{n}{df\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{values}
+\PYG{n}{arr\PYGZus{}vary\PYGZus{}delta} \PYG{o}{=} \PYG{n}{df\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{values}
+\end{sphinxVerbatim}
+
+
+\paragraph{First\sphinxhyphen{}order indices}
+\label{\detokenize{A2_Jupyter_Notebooks:id7}}
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-varying-heatmap}{plot\_varying\_heatmap}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} load in previously ran data}
+\PYG{n}{arr\PYGZus{}vary\PYGZus{}delta}\PYG{p}{,} \PYG{n}{arr\PYGZus{}vary\PYGZus{}s1} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{load\PYGZus{}hymod\PYGZus{}varying\PYGZus{}simulations}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}varying\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}vary\PYGZus{}s1}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{First Order \PYGZhy{} Time\PYGZhy{}Varying SA}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=724\sphinxpxdimen,height=338\sphinxpxdimen]{{output_68_0}.png}
+
+\sphinxAtStartPar
+Compared to the TVSA when streamflow was aggregated, this figure
+suggests that Kq is indeed a relevant parameter for influencing
+streamflow output when individual months are considered.
+
+
+\paragraph{Total order \sphinxhyphen{} time varying sensitivity analysis}
+\label{\detokenize{A2_Jupyter_Notebooks:total-order-time-varying-sensitivity-analysis}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} plot figure}
+\PYG{n}{ax}\PYG{p}{,} \PYG{n}{ax2} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}varying\PYGZus{}heatmap}\PYG{p}{(}\PYG{n}{arr\PYGZus{}sim}\PYG{o}{=}\PYG{n}{arr\PYGZus{}vary\PYGZus{}delta}\PYG{o}{.}\PYG{n}{T}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{title}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Total Order \PYGZhy{} Time\PYGZhy{}Varying SA}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=731\sphinxpxdimen,height=338\sphinxpxdimen]{{output_71_0}.png}
+
+\sphinxAtStartPar
+As above, the total order sensitivities further indicate the importance
+of Kq that is not apparent if aggregation is utilized.
+
+
+\subsection{Ensemble\sphinxhyphen{}based Parametric Uncertainty}
+\label{\detokenize{A2_Jupyter_Notebooks:id8}}
+
+\subsection{5\sphinxhyphen{} Generalized Likelihood Uncertainty Estimation (GLUE)}
+\label{\detokenize{A2_Jupyter_Notebooks:generalized-likelihood-uncertainty-estimation-glue}}
+\sphinxAtStartPar
+The Generalized Likelihood Uncertainty Estimation (GLUE) is an
+uncertainty analysis algorithm that has been widely used in hydrologic
+studies. The main argument behind GLUE is rooted in model calibration
+and the concept of equifinality. Calibration of complex simulation tools
+such as hydrological models often produces more than one optimal or
+near\sphinxhyphen{}optimal solutions and these solutions have equivalent chances to be
+chosen \sphinxhref{https://www.sciencedirect.com/science/article/abs/pii/S0022169401004218}{(Beven and Freer,
+2001)}.
+This situation is called equifinality. GLUE provides a methodological
+framework to handle this problem and consider more than one optimal
+calibration set.
+
+\sphinxAtStartPar
+GLUE usually includes the following steps \sphinxhref{https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa\_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi}{(Beven and Bineley,
+1992)}:
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{)}%
+\item {} 
+\sphinxAtStartPar
+Definition of a likelihood function
+
+\item {} 
+\sphinxAtStartPar
+Definition of ranges of parameters
+
+\item {} 
+\sphinxAtStartPar
+Sensitivity analysis
+
+\item {} 
+\sphinxAtStartPar
+Calculating likelihood (goodness\sphinxhyphen{}of\sphinxhyphen{}fit) values for each model
+simulation
+
+\item {} 
+\sphinxAtStartPar
+Define a threshold and find sample sets that have higher likelihoods
+than the threshold
+
+\item {} 
+\sphinxAtStartPar
+Visualize the sample sets
+
+\end{enumerate}
+
+
+\subsubsection{5\sphinxhyphen{}1 Calculation of GLUE metrics}
+\label{\detokenize{A2_Jupyter_Notebooks:calculation-of-glue-metrics}}
+
+\paragraph{Likelihood calculation (inverse error variance)}
+\label{\detokenize{A2_Jupyter_Notebooks:likelihood-calculation-inverse-error-variance}}
+\sphinxAtStartPar
+There are various likelihood metrics that have been used in previous
+studies that use GLUE. A widely used example is inverse error variance
+(IEV; \sphinxhref{https://link.springer.com/article/10.1007/s00477-008-0274-y}{Vrugt et
+al. 2009}
+and \sphinxhref{https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa\_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi}{Beven and Bineley,
+1992}):
+\begin{equation*}
+\begin{split}IEV = {({\sigma_{e}}-{2})}-{-T} = ({{\frac{SSR}{n-2}}})-{-T}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+The other metric that can be used as an estimation of likelihood is
+normalized inverse error variance:
+\begin{equation*}
+\begin{split}NIEV = \frac{IEV}{\sum_{i=1}-{n} IEV(i)}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where \sphinxstyleemphasis{SSR} is the sum of squared residuals; \(n\) is the number of
+samples; and \(T\) is an arbitrary coefficient. Low \(T\) values
+lead to equal weights placed on each sample set while higher \(T\)
+values concentrate on the best parameter sets.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} From Vrugt et al (2008) : inverse error variance}
+
+\PYG{c+c1}{\PYGZsh{} T=0 means that we only select the best simulated values that are closer to the observed values}
+\PYG{c+c1}{\PYGZsh{}  T=infinity means that all sample sets have the same probability}
+\PYG{n}{T}\PYG{o}{=} \PYG{l+m+mf}{0.70}
+
+\PYG{c+c1}{\PYGZsh{} calculate metrics from Beven and Binley, 1992}
+\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{SSR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{RMSE}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{l+m+mi}{3650}
+\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{SSR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{o}{*}\PYG{o}{*}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{T}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Normalized\PYGZus{}IEV}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} convert array to dataframe}
+\PYG{n}{param\PYGZus{}values\PYGZus{}hymod\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{param\PYGZus{}values\PYGZus{}hymod}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} combine the metrics and param values dataframes and calculate combined metrics}
+\PYG{n}{concat\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{,} \PYG{n}{param\PYGZus{}values\PYGZus{}hymod\PYGZus{}df}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ks\PYGZus{}rescale}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ks}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mf}{0.1}
+\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Huz\PYGZus{}rescale}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Huz}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{500}
+\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{B\PYGZus{}rescale}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{B}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{/} \PYG{l+m+mi}{2}
+
+\PYG{c+c1}{\PYGZsh{} display the first 5 rows of the dataframe}
+\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+
+
+\paragraph{Distribution of likelihoods (inverse error variance) values}
+\label{\detokenize{A2_Jupyter_Notebooks:distribution-of-likelihoods-inverse-error-variance-values}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} density plot and histogram of the inverse error variance}
+\PYG{n}{h} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{,}
+                 \PYG{n}{x}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                 \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                 \PYG{n}{bins}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{180}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+                 \PYG{n}{color} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gold}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=385\sphinxpxdimen,height=260\sphinxpxdimen]{{output_80_0}.png}
+
+
+\paragraph{Distribution of normalized inverse error variance values}
+\label{\detokenize{A2_Jupyter_Notebooks:distribution-of-normalized-inverse-error-variance-values}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} density plot and histogram of the normalized inverse error variance}
+\PYG{n}{h} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{df\PYGZus{}metrics\PYGZus{}SA}\PYG{p}{,}
+                 \PYG{n}{x}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Normalized\PYGZus{}IEV}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                 \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                 \PYG{n}{bins}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{180}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+                 \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{darkred}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=385\sphinxpxdimen,height=261\sphinxpxdimen]{{output_82_0}.png}
+
+
+\paragraph{Selection of important sample sets and setting a threshold for physical/non\sphinxhyphen{}physical sample sets}
+\label{\detokenize{A2_Jupyter_Notebooks:selection-of-important-sample-sets-and-setting-a-threshold-for-physical-non-physical-sample-sets}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} selection of important sample sets}
+\PYG{n}{percentile} \PYG{o}{=} \PYG{l+m+mi}{95}
+
+\PYG{n}{threshold} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{percentile}\PYG{p}{(}\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{percentile}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Threshold using the }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{percentile}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ percentile:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{threshold}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} select values greater than the threshold}
+\PYG{n}{selected\PYGZus{}values\PYGZus{}glue} \PYG{o}{=} \PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{InverseErrorVariance}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{threshold}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Threshold} \PYG{n}{using} \PYG{n}{the} \PYG{l+m+mi}{95} \PYG{n}{percentile}\PYG{p}{:}  \PYG{l+m+mf}{0.4981408917485908}
+\end{sphinxVerbatim}
+
+
+\subsubsection{5\sphinxhyphen{}2 Visual inspection of GLUE results}
+\label{\detokenize{A2_Jupyter_Notebooks:visual-inspection-of-glue-results}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} format the data frame so that it may be used for plotting}
+\PYG{n}{to\PYGZus{}plot} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{melt}\PYG{p}{(}\PYG{n}{selected\PYGZus{}values\PYGZus{}glue}\PYG{p}{,}
+                  \PYG{n}{id\PYGZus{}vars}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ME}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+                  \PYG{n}{value\PYGZus{}vars}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} build a plot with multiple panels of scatter plots where ME is the target metric}
+\PYG{n}{g} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{FacetGrid}\PYG{p}{(}\PYG{n}{to\PYGZus{}plot}\PYG{p}{,} \PYG{n}{col}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{variable}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} map the scatter plots to the facet grid panels}
+\PYG{n}{gf} \PYG{o}{=} \PYG{n}{g}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{scatterplot}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{value}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}  \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.7}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=1069\sphinxpxdimen,height=208\sphinxpxdimen]{{output_87_0}.png}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} build a plot with multiple panels of histogram plots where ME is the target metric}
+\PYG{n}{g} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{FacetGrid}\PYG{p}{(}\PYG{n}{to\PYGZus{}plot}\PYG{p}{,} \PYG{n}{col}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{variable}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} map the plots to the facet grid panels}
+\PYG{n}{gf} \PYG{o}{=} \PYG{n}{g}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{value}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=1069\sphinxpxdimen,height=208\sphinxpxdimen]{{output_88_0}.png}
+
+
+\subsubsection{5\sphinxhyphen{}3 Comment on the GLUE results}
+\label{\detokenize{A2_Jupyter_Notebooks:comment-on-the-glue-results}}
+\sphinxAtStartPar
+Our results suggest that it is challenging to find an clear and
+interpretable relationship between different selected near\sphinxhyphen{}optimal
+sample sets at least by visual inspection. The main reason for this is
+that HYMOD includes a complex non\sphinxhyphen{}linear system of equations that is
+also affected by initial conditions and complexity of its input time
+series. Therefore, it does not have a clear control.
+
+\sphinxAtStartPar
+Glue has been widely used in hydrology, the original paper has more than
+5000 citations. However, the likelihood measure that GLUE uses is not
+actually a statistically sound likelihood metric and is in fact a
+goodness\sphinxhyphen{}of\sphinxhyphen{}fit measure. Therefore, it might not produce valid insights
+when dealing with situations of non\sphinxhyphen{}normality, heteroscedasticity, and
+serial correlation. For more on these issues reader can refer to
+\sphinxhref{https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR006822\%4010.1002/\%28ISSN\%291944-7973.ASSESS1}{Stedinger et al.,
+(2008)},
+\sphinxhref{https://www.sciencedirect.com/science/article/pii/S0022169406002162?casa\_token=Ml8dhBrO5PkAAAAA:Ake1YuQo0OxK6BaaG-8wIdHa\_kd4cuUpm7WiHBFur-G\_DlRze6Z0\_GkwWH3qHDLKwbJDO9mN}{Mantovan and Todini,
+(2006)},
+and \sphinxhref{https://onlinelibrary.wiley.com/doi/full/10.1002/hyp.10082}{Beven And Binley,
+(2014)}.
+
+
+\subsection{6\sphinxhyphen{} Pre\sphinxhyphen{}Calibration}
+\label{\detokenize{A2_Jupyter_Notebooks:pre-calibration}}
+\sphinxAtStartPar
+Pre\sphinxhyphen{}calibration \sphinxhref{https://link.springer.com/article/10.1007/s00382-010-0921-0}{(Edwards et al,
+2010)}
+is a simplified method to deal with uncertainty in complex environmental
+models. Pre\sphinxhyphen{}calibration can also be thought of as another method that
+tackles the shortcomings and conceptual challenges involved in
+calibration of complex environmental models. In pre\sphinxhyphen{}calibration instead
+of finding the best solutions, we focus on finding the sample sets that
+create outputs that are against the common understanding of the system.
+These parameter sets are called non\sphinxhyphen{}physical parameter sets. In other
+words, the probability that these parameters are among the best sample
+sets is zero or near zero and can be neglected in practice.
+
+\sphinxAtStartPar
+Pre\sphinxhyphen{}calibration can include the following steps: 1) Sensitivity analysis
+2) Definition of non\sphinxhyphen{}physical boundaries 3) Delineating regions in the
+output space which are non\sphinxhyphen{}physical (Implausible) 4) Map non\sphinxhyphen{}physical
+sets back to input space 5) Interpret the non\sphinxhyphen{}physical sample sets
+
+
+\subsubsection{6\sphinxhyphen{}1 Pre\sphinxhyphen{}calibration calculations}
+\label{\detokenize{A2_Jupyter_Notebooks:pre-calibration-calculations}}
+
+\paragraph{Distribution of mean error, RMSE, and Log{[}RMSE{]} under different sample sets}
+\label{\detokenize{A2_Jupyter_Notebooks:distribution-of-mean-error-rmse-and-log-rmse-under-different-sample-sets}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} set up figure and axis objects}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{axs} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{n}{nrows}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{p}{,}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} axis 1 (first row in figure)}
+\PYG{n}{a} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{concat\PYGZus{}df}\PYG{p}{,}
+                 \PYG{n}{x}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{RMSE}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                 \PYG{n}{ax}\PYG{o}{=}\PYG{n}{axs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+                 \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                 \PYG{n}{bins}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{180}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+                 \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{peachpuff}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distribution of RMSE in Different Sample Sets}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} axis 2 (second row in figure)}
+\PYG{n}{b} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{concat\PYGZus{}df}\PYG{p}{,}
+                 \PYG{n}{x}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                 \PYG{n}{ax}\PYG{o}{=}\PYG{n}{axs}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+                 \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                 \PYG{n}{bins}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{180}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+                 \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lightgreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distribution of ME in Different Sample Sets}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} axis 3 (third row in figure)}
+\PYG{n}{c} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{concat\PYGZus{}df}\PYG{p}{,}
+                 \PYG{n}{x}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{LOG[RMSE]}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                 \PYG{n}{ax}\PYG{o}{=}\PYG{n}{axs}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
+                 \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                 \PYG{n}{bins}\PYG{o}{=}\PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mi}{180}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+                 \PYG{n}{color} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lightseagreen}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Distribution of LOG[RMSE] in Different Sample Sets}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=832\sphinxpxdimen,height=927\sphinxpxdimen]{{output_94_0}.png}
+
+
+\paragraph{Setting a threshold for physical/non\sphinxhyphen{}physical sample sets}
+\label{\detokenize{A2_Jupyter_Notebooks:setting-a-threshold-for-physical-non-physical-sample-sets}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} selection of physical/non\PYGZhy{}physical sample sets}
+\PYG{n}{percentile} \PYG{o}{=} \PYG{l+m+mi}{95}
+
+\PYG{n}{threshold\PYGZus{}precal} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{percentile}\PYG{p}{(}\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{RMSE}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{percentile}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Threshold using the }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{percentile}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ percentile:  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{threshold}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} select values greater than the threshold}
+\PYG{n}{selected\PYGZus{}values\PYGZus{}precal} \PYG{o}{=} \PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{n}{concat\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{RMSE}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{threshold\PYGZus{}precal}\PYG{p}{]}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Threshold} \PYG{n}{using} \PYG{n}{the} \PYG{l+m+mi}{95} \PYG{n}{percentile}\PYG{p}{:}  \PYG{l+m+mf}{0.4981408917485908}
+\end{sphinxVerbatim}
+
+
+\paragraph{Visual inspection of non\sphinxhyphen{}physical sample sets}
+\label{\detokenize{A2_Jupyter_Notebooks:visual-inspection-of-non-physical-sample-sets}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} format the data frame so that it may be used for plotting}
+\PYG{n}{to\PYGZus{}plot\PYGZus{}precal} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{melt}\PYG{p}{(}\PYG{n}{selected\PYGZus{}values\PYGZus{}precal}\PYG{p}{,}
+                         \PYG{n}{id\PYGZus{}vars}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ME}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+                         \PYG{n}{value\PYGZus{}vars}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Kq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ks\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Alp}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Huz\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B\PYGZus{}rescale}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} build a plot with multiple panels of scatter plots where ME is the target metric}
+\PYG{n}{g} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{FacetGrid}\PYG{p}{(}\PYG{n}{to\PYGZus{}plot\PYGZus{}precal}\PYG{p}{,} \PYG{n}{col}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{variable}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} map the scatter plots to the facet grid panels}
+\PYG{n}{gh} \PYG{o}{=} \PYG{n}{g}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{scatterplot}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{value}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}  \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.7}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{plum}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=1069\sphinxpxdimen,height=208\sphinxpxdimen]{{output_99_0}.png}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} build a plot with multiple panels of histogram plots where ME is the target metric}
+\PYG{n}{g} \PYG{o}{=} \PYG{n}{sns}\PYG{o}{.}\PYG{n}{FacetGrid}\PYG{p}{(}\PYG{n}{to\PYGZus{}plot\PYGZus{}precal}\PYG{p}{,} \PYG{n}{col}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{variable}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} map the plots to the facet grid panels}
+\PYG{n}{gh} \PYG{o}{=} \PYG{n}{g}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{histplot}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{value}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{plum}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=1069\sphinxpxdimen,height=208\sphinxpxdimen]{{output_100_0}.png}
+
+\sphinxAtStartPar
+The following figure shows the flow discharge provided by the ensemble
+of parameters sets from Pre\sphinxhyphen{}Calibration versus the observed flow data.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-precalibration-flow}{plot\_precalibration\_flow}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} mean monthly indices}
+\PYG{n}{Q\PYGZus{}df\PYGZus{}precal} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{n}{selected\PYGZus{}values\PYGZus{}precal}\PYG{o}{.}\PYG{n}{index}\PYG{p}{]}\PYG{p}{,}
+                         \PYG{n}{Q\PYGZus{}df}\PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}} \PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,}
+                        \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate year, month mean}
+\PYG{n}{df\PYGZus{}precal\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df\PYGZus{}precal}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} plot observed versus pre\PYGZhy{}calibration outputs}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}precalibration\PYGZus{}flow}\PYG{p}{(}\PYG{n}{df\PYGZus{}sim}\PYG{o}{=}\PYG{n}{df\PYGZus{}precal\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=602\sphinxpxdimen,height=275\sphinxpxdimen]{{output_103_0}.png}
+
+\sphinxAtStartPar
+The following figure shows the flow discharge provided by the ensemble
+of parameters sets from both pre\sphinxhyphen{}calibration and GLUE and how these
+flows compare to the observed flow data.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+\sphinxstylestrong{Tip:} View the source code used to create this plot here:  \sphinxhref{https://immm-sfa.github.io/msd\_uncertainty\_ebook/A3\_plotting\_code.html\#plot-precalibration-glue}{plot\_precalibration\_glue}
+\end{sphinxadmonition}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Q\PYGZus{}df\PYGZus{}glue} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{n}{selected\PYGZus{}values\PYGZus{}glue}\PYG{o}{.}\PYG{n}{index}\PYG{p}{]}\PYG{p}{,}
+                       \PYG{n}{Q\PYGZus{}df}\PYG{o}{.}\PYG{n}{loc}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}} \PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,}
+                      \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate year, month mean}
+\PYG{n}{df\PYGZus{}glue\PYGZus{}mth\PYGZus{}mean} \PYG{o}{=} \PYG{n}{Q\PYGZus{}df\PYGZus{}glue}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{year}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{month}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}
+
+
+\PYG{c+c1}{\PYGZsh{} plot observed versus pre\PYGZhy{}calibration and GLUE outputs}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{msdbook}\PYG{o}{.}\PYG{n}{plot\PYGZus{}precalibration\PYGZus{}glue}\PYG{p}{(}\PYG{n}{df\PYGZus{}precal}\PYG{o}{=}\PYG{n}{df\PYGZus{}precal\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}glue}\PYG{o}{=}\PYG{n}{df\PYGZus{}glue\PYGZus{}mth\PYGZus{}mean}\PYG{p}{,}
+                                      \PYG{n}{df\PYGZus{}obs}\PYG{o}{=}\PYG{n}{df\PYGZus{}obs\PYGZus{}mth\PYGZus{}mean}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics[width=602\sphinxpxdimen,height=275\sphinxpxdimen]{{output_106_0}.png}
+
+
+\subsubsection{6\sphinxhyphen{}2 Comments on Pre\sphinxhyphen{}Calibration}
+\label{\detokenize{A2_Jupyter_Notebooks:comments-on-pre-calibration}}
+\sphinxAtStartPar
+Although Pre\sphinxhyphen{}calibrations provides a helpful and relatively simple
+alternative for statistical inferences, it has some disadvantages. For
+example, it is often subjective and challenging to provide a threshold
+for non\sphinxhyphen{}physical model outputs. Moreover, as discussed earlier different
+goodness\sphinxhyphen{}of\sphinxhyphen{}fit metrics can produce distinct physical and non\sphinxhyphen{}physical
+sample sets.
+
+\sphinxAtStartPar
+More information about pre\sphinxhyphen{}calibration can be found in \sphinxhref{https://link.springer.com/article/10.1007/s00382-010-0921-0}{(Edwards et al.,
+2010)},
+and \sphinxhref{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0170052}{Ruckert et al.,
+(2017)}.
 
 \sphinxAtStartPar
 

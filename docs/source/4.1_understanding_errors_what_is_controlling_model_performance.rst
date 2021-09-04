@@ -25,5 +25,4 @@ A comprehensive model diagnostic workflow typically entails the components demon
 
     Put this into practice! Click the following badge to try out an interactive tutorial on implementing a time-varying sensitivity analysis of HYMOD model parameters:
 
-    .. image:: https://mybinder.org/badge_logo.svg
-     :target: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fhymod.ipynb
+    `HYMOD Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fhymod.ipynb>`_

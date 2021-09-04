@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 AUG 2021 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 SEP 2021 12:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -622,6 +622,10 @@ Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 (./sphinxmessages.sty
 Package: sphinxmessages 2019/01/04 v2.0 Localized LaTeX macros (Sphinx team)
 )
+\nbsphinxpromptbox=\box112
+\nbsphinxcodecellspacing=\skip83
+\nbsphinxbox=\box113
+\nbsphinx@image@maxheight=\dimen197
 \@indexfile=\write4
 \openout4 = `addressinguncertaintyinmultisectordynamicsresearch.idx'.
 
@@ -630,31 +634,31 @@ Writing index file addressinguncertaintyinmultisectordynamicsresearch.idx
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count295
-\l__pdf_internal_box=\box112
+\l__pdf_internal_box=\box114
 )
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
 \openout1 = `addressinguncertaintyinmultisectordynamicsresearch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Trying to load font information for T1+qtm on input line 69
-.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 216.
+LaTeX Font Info:    ... okay on input line 216.
+LaTeX Font Info:    Trying to load font information for T1+qtm on input line 21
+6.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qtm.fd
 File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
@@ -662,13 +666,13 @@ File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count296
-\scratchdimen=\dimen197
-\scratchbox=\box113
+\scratchdimen=\dimen198
+\scratchbox=\box115
 \nofMPsegments=\count297
 \nofMParguments=\count298
 \everyMPshowfont=\toks31
 \MPscratchCnt=\count299
-\MPscratchDim=\dimen198
+\MPscratchDim=\dimen199
 \MPnumerator=\count300
 \makeMPintoPDFobject=\count301
 \everyMPtoPDFconversion=\toks32
@@ -717,8 +721,8 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box114
-Package hyperref Info: Link coloring ON on input line 69.
+\AtBeginShipoutBox=\box116
+Package hyperref Info: Link coloring ON on input line 216.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -731,105 +735,311 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 69.
-LaTeX Info: Redefining \pageref on input line 69.
-LaTeX Info: Redefining \nameref on input line 69.
+LaTeX Info: Redefining \ref on input line 216.
+LaTeX Info: Redefining \pageref on input line 216.
+LaTeX Info: Redefining \nameref on input line 216.
  (./addressinguncertaintyinmultisectordynamicsresearch.out)
 (./addressinguncertaintyinmultisectordynamicsresearch.out)
 \@outlinefile=\write5
 \openout5 = `addressinguncertaintyinmultisectordynamicsresearch.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 72.
+Package hyperref Info: Option `pageanchor' set `false' on input line 219.
+
+Runaway argument?
+M.\spacefactor \@m {}{} Reed, Antonia Hadjimichael, Keyvan Malek, 
+! Paragraph ended before \HyPsd@@ProtectSpacesFi was complete.
+<to be read again> 
+                   \par 
+l.219 \sphinxmaketitle
+                      
+? R
+OK, entering \nonstopmode...
+! Use of \HyPsd@RemoveMask doesn't match its definition.
+\@pdfauthor ->\par 
+                   \80\047{}Tina Karimi, Vivek Srikrishnan, Klaus Keller, \p...
+l.219 \sphinxmaketitle
+                      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Undefined control sequence.
+\HyPsd@ProtectSpaces ...d@RemoveMask #1\HyPsd@End 
+                                                  #1
+l.219 \sphinxmaketitle
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Runaway argument?
+{
+! Paragraph ended before \HyPsd@RemoveBraces was complete.
+<to be read again> 
+                   \par 
+l.219 \sphinxmaketitle
+                      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Extra }, or forgotten \endgroup.
+\pdfstringdef ...d@RemoveBraces \expandafter {#1|}
+                                                  \global \let #1\HyPsd@Stri...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Argument of \HyPsd@CheckCatcodes has an extra }.
+<inserted text> 
+                \par 
+l.219 \sphinxmaketitle
+                      
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+\global \let \@pdfauthor \HyPsd@String 
+! Paragraph ended before \HyPsd@CheckCatcodes was complete.
+<to be read again> 
+                   \par 
+l.219 \sphinxmaketitle
+                      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+Runaway argument?
+\@empty \HyPsd@End \@pdfauthor \expandafter \HyPsd@Subst \expandafter \ETC.
+! Paragraph ended before \HyPsd@RemoveMask was complete.
+<to be read again> 
+                   \par 
+l.219 \sphinxmaketitle
+                      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Extra }, or forgotten \endgroup.
+\sphinxmaketitle ...erFamily {\Huge \@title \par }
+                                                   {\itshape \LARGE \py@rele...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Use of \begin doesn't match its definition.
+\sphinxmaketitle ...\par } \vfill {\LARGE \begin {
+                                                  tabular}[t]{c} \@author \e...
+l.219 \sphinxmaketitle
+                      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \end doesn't match its definition.
+\sphinxmaketitle ...tabular}[t]{c} \@author \end {
+                                                  tabular}\kern -\tabcolsep ...
+l.219 \sphinxmaketitle
+                      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Extra }, or forgotten \endgroup.
+\sphinxmaketitle ...[t]{c} \@author \end {tabular}
+                                                  \kern -\tabcolsep \par } \...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten \endgroup.
+\sphinxmaketitle ...bular}\kern -\tabcolsep \par }
+                                                   \vfill \vfill {\large \@d...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Use of \end doesn't match its definition.
+\sphinxmaketitle ...\py@authoraddress \par }\end {
+                                                  flushright}\@thanks \end {...
+l.219 \sphinxmaketitle
+                      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Extra }, or forgotten \endgroup.
+\sphinxmaketitle ...ddress \par }\end {flushright}
+                                                  \@thanks \end {titlepage}\...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Use of \end doesn't match its definition.
+\sphinxmaketitle ...nd {flushright}\@thanks \end {
+                                                  titlepage}\setcounter {foo...
+l.219 \sphinxmaketitle
+                      
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Extra }, or forgotten \endgroup.
+\sphinxmaketitle ...ight}\@thanks \end {titlepage}
+                                                  \setcounter {footnote}{0}\...
+l.219 \sphinxmaketitle
+                      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing { inserted.
+<to be read again> 
+                   #
+l.219 \sphinxmaketitle
+                      
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing { inserted.
+<to be read again> 
+                   #
+l.219 \sphinxmaketitle
+                      
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\spacefactor' on input line 72.
+Overfull \vbox (700.19pt too high) has occurred while \output is active []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@m' on input line 72.
+! Argument of \@dottedtocline has an extra }.
+<inserted text> 
+                \par 
+l.221 \sphinxtableofcontents
+                            
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
 
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 72
-.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
-File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
-)<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
+Runaway argument?
+! Paragraph ended before \@dottedtocline was complete.
+<to be read again> 
+                   \par 
+l.221 \sphinxtableofcontents
+                            
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
 
 
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
-
-
-(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (780.69733pt too wide) in paragraph at lines 72--72
- [][]
+Underfull \hbox (badness 10000) has occurred while \output is active
+ []  
  []
 
-[1
+! Undefined control sequence.
+extract@sizefn ...e@funct@args remove@star #2@nil 
+                                                  def sizefn@info {#1}fi 
+l.221 \sphinxtableofcontents
+                            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2
+! Undefined control sequence.
+gen@sfcnt ->edef mandatory@arg {mandatory@arg 
+                                              f@size }empty@sfcnt 
+l.221 \sphinxtableofcontents
+                            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+empty@sfcnt ...@empty else @tempdimb optional@arg 
+                                                  @tempdimb #1{Fontspace sha...
+l.221 \sphinxtableofcontents
+                            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 
-] (./addressinguncertaintyinmultisectordynamicsresearch.toc [1
+LaTeX Font Warning: Fontspace shapespace `OT1/cmr/m/n'space willspace be
+(Font)space space space space space space space space space space space space s
+pace space scaledspace tospace sizespace 7.0pt on input line 221.
 
-])
-\tf@toc=\write6
-\openout6 = `addressinguncertaintyinmultisectordynamicsresearch.toc'.
+! Font OT1/cmr/m/n/7=7 at 7.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.221 \sphinxtableofcontents
+                            
+I wasn't able to read the size data for this font,
+so I will ignore the font specification.
+[Wizards can fix TFM files using TFtoPL/PLtoTF.]
+You might try inserting a different font spec;
+e.g., type `I\font<same font id>=<substitute font name>'.
 
- [2]
-Chapter 1.
-[1
-
-
-]
-<figure1_1_state_of_the_science.png, id=264, 1625.5932pt x 1034.6655pt>
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
-07.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
-File: t1txtt.fd 2000/12/15 v3.1
-)
-File: figure1_1_state_of_the_science.png Graphic file (type png)
-<use figure1_1_state_of_the_science.png>
-Package pdftex.def Info: figure1_1_state_of_the_science.png  used on input line
- 107.
-(pdftex.def)             Requested size: 469.74806pt x 298.98753pt.
- [2]
-[3 <./figure1_1_state_of_the_science.png>] [4
-
-]
-Chapter 2.
-<figure2_1_idealized_uc.png, id=308, 1204.5pt x 737.00343pt>
-File: figure2_1_idealized_uc.png Graphic file (type png)
-<use figure2_1_idealized_uc.png>
-Package pdftex.def Info: figure2_1_idealized_uc.png  used on input line 129.
-(pdftex.def)             Requested size: 469.75311pt x 287.44142pt.
-! Argument of \Hy@tempa has an extra }.
-<inserted text> 
-                \par 
-l.130 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
-                                                  \label{\detokenize{2_diagn...
-
-? 
-! Emergency stop.
-<inserted text> 
-                \par 
-l.130 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
-                                                  \label{\detokenize{2_diagn...
-End of file on the terminal!
+<<ot1tt.cmap>>
+! pdfTeX error (font): invalid font identifier.
+font@name ->OT1/cmr/m/n/7 
+                          
+l.221 \sphinxtableofcontents
+                            
 
  
 Here is how much of TeX's memory you used:
- 14075 strings out of 480608
- 206031 string characters out of 5903631
- 511106 words of memory out of 5000000
- 29558 multiletter control sequences out of 15000+600000
- 576348 words of font info for 59 fonts, out of 8000000 for 9000
+ 13477 strings out of 480608
+ 193805 string characters out of 5903631
+ 475250 words of memory out of 5000000
+ 29096 multiletter control sequences out of 15000+600000
+ 535953 words of font info for 26 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 38i,12n,51p,4170b,535s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,5n,51p,292b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

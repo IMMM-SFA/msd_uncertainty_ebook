@@ -44,7 +44,6 @@ Below we provide an example application of two scenario discovery methods, PRIM 
 
 .. seealso::
 
-    Put this into practice! Click the following badge to try out an interactive tutorial on performing factor mapping using logistic regression:
+    Put this into practice! Click the following link to try out an interactive tutorial on performing factor mapping using logistic regression:
 
-    .. image:: https://mybinder.org/badge_logo.svg
-         :target: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fbasin_users_logistic_regression.ipynb
+    `Logistic Regression Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_
