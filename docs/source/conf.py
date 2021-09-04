@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # -- Project information -----------------------------------------------------
 
-project = '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}'
+project = 'Addressing Uncertainty in MultiSector Dynamics Research'
 copyright = '2021, Battelle Memorial Institute'
 
 # The full version, including alpha/beta/rc tags
@@ -89,9 +89,11 @@ latex_logo = None
 
 
 latex_documents = [
-    (master_doc, 'addressinguncertaintyinmultisectordynamicsresearch.tex', project,
+    (master_doc,
+     'addressinguncertaintyinmultisectordynamicsresearch.tex', 
+     '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}',
      'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
      '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan'
-     '\\and Rohini Gupta, David Gold, B. Lee, Klaus Keller, Jennie S. Rice'
-     , 'book'),
+     '\\and Rohini Gupta, David Gold, B. Lee, Klaus Keller, Jennie S. Rice',
+     'book')
 ]

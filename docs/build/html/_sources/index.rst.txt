@@ -20,14 +20,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
    6_glossary
    A1_Uncertainty_Quantification
    A2_Jupyter_Notebooks
+   A3_plotting_code
 
 .. bibliography::
   :style: unsrt
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

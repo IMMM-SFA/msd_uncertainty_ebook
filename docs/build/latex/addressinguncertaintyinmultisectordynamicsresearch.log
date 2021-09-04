@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 SEP 2021 14:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 SEP 2021 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -688,16 +688,16 @@ e
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: a4paper
+* paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=452.9679pt
-* \textheight=700.50687pt
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
 * \topmargin=-30.06749pt
@@ -773,7 +773,7 @@ File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 ]
 Chapter 1.
 [7]
-<figure1_1_state_of_the_science.png, id=665, 1625.5932pt x 1034.6655pt>
+<figure1_1_state_of_the_science.png, id=663, 1625.5932pt x 1034.6655pt>
 LaTeX Font Info:    Trying to load font information for T1+txtt on input line 2
 48.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
@@ -783,17 +783,17 @@ File: figure1_1_state_of_the_science.png Graphic file (type png)
 <use figure1_1_state_of_the_science.png>
 Package pdftex.def Info: figure1_1_state_of_the_science.png  used on input line
  248.
-(pdftex.def)             Requested size: 452.9554pt x 288.29926pt.
+(pdftex.def)             Requested size: 469.74806pt x 298.98753pt.
  [8]
 [9 <./figure1_1_state_of_the_science.png>] [10
 
 ]
 Chapter 2.
-<figure2_1_idealized_uc.png, id=708, 1204.5pt x 737.00343pt>
+<figure2_1_idealized_uc.png, id=707, 1204.5pt x 737.00343pt>
 File: figure2_1_idealized_uc.png Graphic file (type png)
 <use figure2_1_idealized_uc.png>
 Package pdftex.def Info: figure2_1_idealized_uc.png  used on input line 270.
-(pdftex.def)             Requested size: 452.97293pt x 277.16281pt.
+(pdftex.def)             Requested size: 469.75311pt x 287.44142pt.
 ! Argument of \Hy@tempa has an extra }.
 <inserted text> 
                 \par 
@@ -813,182 +813,154 @@ I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-[11] [12 <./figure2_1_idealized_uc.png>] [13] [14
-
-]
+[11] [12 <./figure2_1_idealized_uc.png>] [13] [14]
 Chapter 3.
 <figure3_1_global_versus_local.png, id=800, 824.8416pt x 416.9979pt>
 File: figure3_1_global_versus_local.png Graphic file (type png)
 <use figure3_1_global_versus_local.png>
 Package pdftex.def Info: figure3_1_global_versus_local.png  used on input line 
 316.
-(pdftex.def)             Requested size: 452.97205pt x 229.00595pt.
+(pdftex.def)             Requested size: 469.76184pt x 237.49402pt.
 
 Package amsmath Warning: Foreign command \above;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 317.
 
-[15] [16 <./figure3_1_global_versus_local.png>]
-<figure3_2_factor_mapping.png, id=854, 1166.4378pt x 973.236pt>
+[15
+
+] [16 <./figure3_1_global_versus_local.png>]
+<figure3_2_factor_mapping.png, id=851, 1166.4378pt x 973.236pt>
 File: figure3_2_factor_mapping.png Graphic file (type png)
 <use figure3_2_factor_mapping.png>
 Package pdftex.def Info: figure3_2_factor_mapping.png  used on input line 353.
 (pdftex.def)             Requested size: 376.40381pt x 314.05554pt.
- [17 <./figure3_2_factor_mapping.png>] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 444--444
-[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 444--444
-[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 444--444
-[]\T1/qtm/m/n/10 Con-tin-u-ous (dis-tri-bu-
- []
-
-[19]
-<figure3_3_alternative_designs.png, id=916, 1169.5695pt x 746.79pt>
+ [17] [18 <./figure3_2_factor_mapping.png>] [19]
+<figure3_3_alternative_designs.png, id=910, 1169.5695pt x 746.79pt>
 File: figure3_3_alternative_designs.png Graphic file (type png)
 <use figure3_3_alternative_designs.png>
 Package pdftex.def Info: figure3_3_alternative_designs.png  used on input line 
 467.
 (pdftex.def)             Requested size: 376.40381pt x 240.3337pt.
- [20 <./figure3_3_alternative_designs.png>]
-LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 4
-90.
+ [20] [21 <./figure3_3_alternative_designs.png>] [22]
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 534.
+
+[23]
+<figure3_4_morris_method.png, id=1018, 799.3062pt x 561.297pt>
+File: figure3_4_morris_method.png Graphic file (type png)
+<use figure3_4_morris_method.png>
+Package pdftex.def Info: figure3_4_morris_method.png  used on input line 545.
+(pdftex.def)             Requested size: 469.75711pt x 329.89478pt.
+ [24 <./figure3_4_morris_method.png>] [25] [26]
+<figure3_5classificationofmethods.png, id=1122, 1343.2584pt x 914.4564pt>
+File: figure3_5classificationofmethods.png Graphic file (type png)
+<use figure3_5classificationofmethods.png>
+Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
+ne 659.
+(pdftex.def)             Requested size: 469.73756pt x 319.79942pt.
+ [27] [28 <./figure3_5classificationofmethods.png>]
+<figure3_6_softwaretoolkits.png, id=1150, 534.798pt x 641.232pt>
+File: figure3_6_softwaretoolkits.png Graphic file (type png)
+<use figure3_6_softwaretoolkits.png>
+Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 678
+.
+(pdftex.def)             Requested size: 469.76686pt x 563.31726pt.
+ [29] [30 <./figure3_6_softwaretoolkits.png>]
+Chapter 4.
+[31
+
+]
+<figure4_1_diagnostic_workflow.png, id=1194, 819.5418pt x 483.0045pt>
+File: figure4_1_diagnostic_workflow.png Graphic file (type png)
+<use figure4_1_diagnostic_workflow.png>
+Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
+706.
+(pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
+ [32 <./figure4_1_diagnostic_workflow.png>]
+<figure4_2_behavior_modes.png, id=1206, 1350.7263pt x 670.9065pt>
+File: figure4_2_behavior_modes.png Graphic file (type png)
+<use figure4_2_behavior_modes.png>
+Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 724.
+(pdftex.def)             Requested size: 469.75218pt x 233.32616pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.725 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.725 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+[33 <./figure4_2_behavior_modes.png>]
+<figure4_3_lake_problem_fluxes.png, id=1226, 1039.0017pt x 821.469pt>
+File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
+<use figure4_3_lake_problem_fluxes.png>
+Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
+748.
+(pdftex.def)             Requested size: 469.76599pt x 371.42502pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.749 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.749 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+[34] [35 <./figure4_3_lake_problem_fluxes.png>]
+<figure4_4_exploratory_workflow.png, id=1269, 697.8873pt x 549.9747pt>
+File: figure4_4_exploratory_workflow.png Graphic file (type png)
+<use figure4_4_exploratory_workflow.png>
+Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
+ 773.
+(pdftex.def)             Requested size: 469.75444pt x 370.19308pt.
+ [36] [37 <./figure4_4_exploratory_workflow.png>] [38]
+LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 7
+98.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
 )
-Underfull \hbox (badness 10000) in paragraph at lines 489--491
-[]\TS1/qtm/b/n/10 `\T1/qtm/b/n/10 Sobol SA us-ing SALib Jupyter Note-book <http
-s://mybinder.org/v2/gh/IMMM-
- []
-
-
-Overfull \hbox (126.63203pt too wide) in paragraph at lines 489--491
-\T1/qtm/b/n/10 SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097a
-c2?filepath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>\TS1/qtm/b/n/10 `\T1/q
-tm/b/n/10 _ 
- []
-
-[21]
-
-LaTeX Warning: Command \textellipsis invalid in math mode on input line 537.
-
-[22]
-<figure3_4_morris_method.png, id=1016, 799.3062pt x 561.297pt>
-File: figure3_4_morris_method.png Graphic file (type png)
-<use figure3_4_morris_method.png>
-Package pdftex.def Info: figure3_4_morris_method.png  used on input line 548.
-(pdftex.def)             Requested size: 452.97484pt x 318.10977pt.
- [23 <./figure3_4_morris_method.png>] [24] [25]
-<figure3_5classificationofmethods.png, id=1120, 1343.2584pt x 914.4564pt>
-File: figure3_5classificationofmethods.png Graphic file (type png)
-<use figure3_5classificationofmethods.png>
-Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
-ne 670.
-(pdftex.def)             Requested size: 452.95097pt x 308.37154pt.
- [26] [27 <./figure3_5classificationofmethods.png>]
-<figure3_6_softwaretoolkits.png, id=1149, 534.798pt x 641.232pt>
-File: figure3_6_softwaretoolkits.png Graphic file (type png)
-<use figure3_6_softwaretoolkits.png>
-Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 689
-.
-(pdftex.def)             Requested size: 452.97285pt x 543.19075pt.
- [28] [29 <./figure3_6_softwaretoolkits.png>] [30
-
-]
-Chapter 4.
-[31]
-<figure4_1_diagnostic_workflow.png, id=1196, 819.5418pt x 483.0045pt>
-File: figure4_1_diagnostic_workflow.png Graphic file (type png)
-<use figure4_1_diagnostic_workflow.png>
-Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
-717.
-(pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
-<figure4_2_behavior_modes.png, id=1203, 1350.7263pt x 670.9065pt>
-File: figure4_2_behavior_modes.png Graphic file (type png)
-<use figure4_2_behavior_modes.png>
-Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 743.
-(pdftex.def)             Requested size: 452.9547pt x 224.99307pt.
-
-! Argument of \Hy@tempa has an extra }.
-<inserted text> 
-                \par 
-l.744 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
-                                                  \label{\detokenize{4_sensi...
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
-
-Runaway argument?
-\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
-! Paragraph ended before \Hy@tempa was complete.
-<to be read again> 
-                   \par 
-l.744 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
-                                                  \label{\detokenize{4_sensi...
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-[32 <./figure4_1_diagnostic_workflow.png>] [33 <./figure4_2_behavior_modes.png>
-]
-<figure4_3_lake_problem_fluxes.png, id=1230, 1039.0017pt x 821.469pt>
-File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
-<use figure4_3_lake_problem_fluxes.png>
-Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
-767.
-(pdftex.def)             Requested size: 452.97675pt x 358.15088pt.
-
-! Argument of \Hy@tempa has an extra }.
-<inserted text> 
-                \par 
-l.768 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
-                                                  \label{\detokenize{4_sensi...
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
-
-Runaway argument?
-\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
-! Paragraph ended before \Hy@tempa was complete.
-<to be read again> 
-                   \par 
-l.768 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
-                                                  \label{\detokenize{4_sensi...
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-[34 <./figure4_3_lake_problem_fluxes.png>]
-<figure4_4_exploratory_workflow.png, id=1264, 697.8873pt x 549.9747pt>
-File: figure4_4_exploratory_workflow.png Graphic file (type png)
-<use figure4_4_exploratory_workflow.png>
-Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
- 792.
-(pdftex.def)             Requested size: 452.97179pt x 356.9674pt.
- [35] [36 <./figure4_4_exploratory_workflow.png>] [37]
-<figure14lake_problem_SD.png, id=1339, 1354.0989pt x 640.0713pt>
+<figure14lake_problem_SD.png, id=1346, 1354.0989pt x 640.0713pt>
 File: figure14lake_problem_SD.png Graphic file (type png)
 <use figure14lake_problem_SD.png>
-Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 826.
-(pdftex.def)             Requested size: 452.94926pt x 214.10535pt.
- [38] [39 <./figure14lake_problem_SD.png>] [40
-
-]
+Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 807.
+(pdftex.def)             Requested size: 469.74736pt x 222.04567pt.
+ [39 <./figure14lake_problem_SD.png>] [40]
 Chapter 5.
-[41] [42
+[41
+
+] [42
 
 ]
 Chapter 6.
@@ -999,80 +971,81 @@ Chapter 7.
 <figureA1_1_UQ_approaches.png, id=1403, 1504.8722pt x 1023.825pt>
 File: figureA1_1_UQ_approaches.png Graphic file (type png)
 <use figureA1_1_UQ_approaches.png>
-Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 876.
-(pdftex.def)             Requested size: 452.9577pt x 308.16531pt.
+Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 849.
+(pdftex.def)             Requested size: 469.74327pt x 319.5852pt.
 [45] [46 <./figureA1_1_UQ_approaches.png>]
-<figureA1_2_bootstrap_workflow.png, id=1423, 711.8595pt x 565.3923pt>
+<figureA1_2_bootstrap_workflow.png, id=1422, 711.8595pt x 565.3923pt>
 File: figureA1_2_bootstrap_workflow.png Graphic file (type png)
 <use figureA1_2_bootstrap_workflow.png>
 Package pdftex.def Info: figureA1_2_bootstrap_workflow.png  used on input line 
-898.
-(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
- [47 <./figureA1_2_bootstrap_workflow.png>]
-<figureA1_3_precal_workflow.png, id=1440, 711.8595pt x 565.3923pt>
+871.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+<figureA1_3_precal_workflow.png, id=1431, 711.8595pt x 565.3923pt>
 File: figureA1_3_precal_workflow.png Graphic file (type png)
 <use figureA1_3_precal_workflow.png>
-Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 914
+Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 887
 .
-(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
- [48 <./figureA1_3_precal_workflow.png>]
-<figureA1_4_mcmc_workflow.png, id=1473, 711.8595pt x 565.3923pt>
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [47] [48 <./figureA1_2_bootstrap_workflow.png>] [49 <./figureA1_3_precal_workf
+low.png>]
+<figureA1_4_mcmc_workflow.png, id=1478, 711.8595pt x 565.3923pt>
 File: figureA1_4_mcmc_workflow.png Graphic file (type png)
 <use figureA1_4_mcmc_workflow.png>
-Package pdftex.def Info: figureA1_4_mcmc_workflow.png  used on input line 958.
-(pdftex.def)             Requested size: 452.97076pt x 359.79657pt.
- [49] [50 <./figureA1_4_mcmc_workflow.png>]
-<figureA1_5_priors_posteriors.png, id=1535, 1355.0625pt x 1355.0625pt>
+Package pdftex.def Info: figureA1_4_mcmc_workflow.png  used on input line 921.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [50] [51 <./figureA1_4_mcmc_workflow.png>]
+<figureA1_5_priors_posteriors.png, id=1539, 1355.0625pt x 1355.0625pt>
 File: figureA1_5_priors_posteriors.png Graphic file (type png)
 <use figureA1_5_priors_posteriors.png>
 Package pdftex.def Info: figureA1_5_priors_posteriors.png  used on input line 9
-95.
-(pdftex.def)             Requested size: 452.96144pt x 452.98213pt.
- [51] [52 <./figureA1_5_priors_posteriors.png>] [53] [54]
+58.
+(pdftex.def)             Requested size: 469.75082pt x 469.7715pt.
+ [52] [53 <./figureA1_5_priors_posteriors.png>] [54] [55]
+[56
+
+]
 Chapter 8.
-<eqn2.png, id=1580, 188.1429pt x 68.4156pt>
+<eqn2.png, id=1589, 188.1429pt x 68.4156pt>
 File: eqn2.png Graphic file (type png)
 <use eqn2.png>
-Package pdftex.def Info: eqn2.png  used on input line 1066.
-(pdftex.def)             Requested size: 453.00766pt x 164.7436pt.
-<Figure_1.png, id=1581, 1229.5536pt x 638.385pt>
+Package pdftex.def Info: eqn2.png  used on input line 1029.
+(pdftex.def)             Requested size: 469.79625pt x 170.84854pt.
+<Figure_1.png, id=1590, 1229.5536pt x 638.385pt>
 File: Figure_1.png Graphic file (type png)
 <use Figure_1.png>
-Package pdftex.def Info: Figure_1.png  used on input line 1074.
-(pdftex.def)             Requested size: 452.95776pt x 235.17593pt.
-[55
-
- <./eqn2.png>]
+Package pdftex.def Info: Figure_1.png  used on input line 1037.
+(pdftex.def)             Requested size: 469.74927pt x 243.88435pt.
+[57 <./eqn2.png>]
 LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
-(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 1128.
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 1091.
 
 LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <10> not available
-(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1137.
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1100.
 
 LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
-1141.
+1104.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ts1txtt.fd
 File: ts1txtt.fd 2000/12/15 v3.1
-) [56 <./Figure_1.png>] [57]
-<fishery_output_6_0.png, id=1603, 1300.86pt x 650.43pt>
+) [58 <./Figure_1.png>] [59]
+<fishery_output_6_0.png, id=1611, 1300.86pt x 650.43pt>
 File: fishery_output_6_0.png Graphic file (type png)
 <use fishery_output_6_0.png>
-Package pdftex.def Info: fishery_output_6_0.png  used on input line 1202.
-(pdftex.def)             Requested size: 452.96559pt x 226.48279pt.
- [58 <./fishery_output_6_0.png>] [59] [60]
-<eqn4.png, id=1617, 97.8054pt x 23.1264pt>
+Package pdftex.def Info: fishery_output_6_0.png  used on input line 1165.
+(pdftex.def)             Requested size: 469.75827pt x 234.87912pt.
+ [60 <./fishery_output_6_0.png>] [61] [62]
+<eqn4.png, id=1626, 97.8054pt x 23.1264pt>
 File: eqn4.png Graphic file (type png)
 <use eqn4.png>
-Package pdftex.def Info: eqn4.png  used on input line 1370.
+Package pdftex.def Info: eqn4.png  used on input line 1333.
 (pdftex.def)             Requested size: 305.7142pt x 72.2737pt.
-<fishery_output_22_0.png, id=1619, 578.16pt x 289.08pt>
+<fishery_output_22_0.png, id=1628, 578.16pt x 289.08pt>
 File: fishery_output_22_0.png Graphic file (type png)
 <use fishery_output_22_0.png>
-Package pdftex.def Info: fishery_output_22_0.png  used on input line 1427.
-(pdftex.def)             Requested size: 452.96558pt x 226.48277pt.
- [61 <./eqn4.png>]
-[62 <./fishery_output_22_0.png>]
+Package pdftex.def Info: fishery_output_22_0.png  used on input line 1390.
+(pdftex.def)             Requested size: 469.75385pt x 234.8769pt.
+ [63 <./eqn4.png>]
+[64 <./fishery_output_22_0.png>]
 
 ! Package inputenc Error: Unicode character 𝑥 (U+1D465)
 (inputenc)                not set up for use with LaTeX.
@@ -1081,7 +1054,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 and has three inputs, 𝑥
+l.1462 and has three inputs, 𝑥
                                  1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
 
 You may provide a definition with
@@ -1095,7 +1068,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 and has three inputs, 𝑥1, 𝑥
+l.1462 and has three inputs, 𝑥1, 𝑥
                                         2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
 
 You may provide a definition with
@@ -1109,7 +1082,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 and has three inputs, 𝑥1, 𝑥2, 𝑥
+l.1462 and has three inputs, 𝑥1, 𝑥2, 𝑥
                                                3 where 𝑥𝑖 ∈ {[}−�...
 
 You may provide a definition with
@@ -1123,7 +1096,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ...e inputs, 𝑥1, 𝑥2, 𝑥3 where 𝑥
+l.1462 ...e inputs, 𝑥1, 𝑥2, 𝑥3 where 𝑥
                                                   𝑖 ∈ {[}−𝜋, 𝜋{]}.
 
 You may provide a definition with
@@ -1137,7 +1110,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ...puts, 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖
+l.1462 ...puts, 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖
                                                    ∈ {[}−𝜋, 𝜋{]}.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1150,7 +1123,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ..., 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈
+l.1462 ..., 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈
                                                    {[}−𝜋, 𝜋{]}.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1163,7 +1136,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ..., 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−
+l.1462 ..., 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−
                                                   𝜋, 𝜋{]}.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1176,7 +1149,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ...��2, 𝑥3 where 𝑥𝑖 ∈ {[}−𝜋
+l.1462 ...��2, 𝑥3 where 𝑥𝑖 ∈ {[}−𝜋
                                                   , 𝜋{]}.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1189,7 +1162,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1499 ...���3 where 𝑥𝑖 ∈ {[}−𝜋, 𝜋
+l.1462 ...���3 where 𝑥𝑖 ∈ {[}−𝜋, 𝜋
                                                   {]}.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1202,7 +1175,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1517 by 3. The sampler generates 𝑁
+l.1480 by 3. The sampler generates 𝑁
                                        ∗(2𝐷+2) samples, where in this e...
 
 You may provide a definition with
@@ -1216,7 +1189,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1517 by 3. The sampler generates 𝑁∗
+l.1480 by 3. The sampler generates 𝑁∗
                                           (2𝐷+2) samples, where in this e...
 
 You may provide a definition with
@@ -1230,7 +1203,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1517 by 3. The sampler generates 𝑁∗(2𝐷
+l.1480 by 3. The sampler generates 𝑁∗(2𝐷
                                                 +2) samples, where in this e...
 
 You may provide a definition with
@@ -1244,7 +1217,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1521 with 𝑁
+l.1484 with 𝑁
                 ∗(𝐷+2) rows instead.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1257,7 +1230,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1521 with 𝑁∗
+l.1484 with 𝑁∗
                    (𝐷+2) rows instead.
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1270,12 +1243,12 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1521 with 𝑁∗(𝐷
+l.1484 with 𝑁∗(𝐷
                         +2) rows instead.
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[63]
+[65]
 
 ! Package inputenc Error: Unicode character 𝑥 (U+1D465)
 (inputenc)                not set up for use with LaTeX.
@@ -1284,7 +1257,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1568 ...f our three parameters, we see that 𝑥
+l.1531 ...f our three parameters, we see that 𝑥
                                                   1 and 𝑥2
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1297,7 +1270,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1568 ...e parameters, we see that 𝑥1 and 𝑥
+l.1531 ...e parameters, we see that 𝑥1 and 𝑥
                                                   2
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1310,7 +1283,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1570 ...e parameters independently, whereas 𝑥
+l.1533 ...e parameters independently, whereas 𝑥
                                                   3
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1323,7 +1296,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1591 ...order interactions. Now we see that 𝑥
+l.1554 ...order interactions. Now we see that 𝑥
                                                   3 has non\sphinxhyphen{}ne...
 
 You may provide a definition with
@@ -1337,7 +1310,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1629 ...ere are strong interactions between 𝑥
+l.1592 ...ere are strong interactions between 𝑥
                                                   1 and 𝑥3. Note in
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1350,7 +1323,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1629 ...rong interactions between 𝑥1 and 𝑥
+l.1592 ...rong interactions between 𝑥1 and 𝑥
                                                   3. Note in
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1363,7 +1336,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1632 ...e, we would erroneously assume that 𝑥
+l.1595 ...e, we would erroneously assume that 𝑥
                                                   3 has no
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -1376,7 +1349,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1641 𝑥
+l.1604 𝑥
            2\sphinxhyphen{}𝑥3 index. Typically, these computing errors sh...
 
 You may provide a definition with
@@ -1390,341 +1363,318 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1641 𝑥2\sphinxhyphen{}𝑥
+l.1604 𝑥2\sphinxhyphen{}𝑥
                                3 index. Typically, these computing errors sh...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[64]
-<basin_map.png, id=1644, 871.33075pt x 547.47934pt>
+[66]
+<basin_map.png, id=1652, 871.33075pt x 547.47934pt>
 File: basin_map.png Graphic file (type png)
 <use basin_map.png>
-Package pdftex.def Info: basin_map.png  used on input line 1697.
-(pdftex.def)             Requested size: 452.97493pt x 284.62405pt.
- [65]
-Overfull \vbox (11.2721pt too high) detected at line 1761
- []
-
-[66 <./basin_map.png>] [67] [68]
-Underfull \vbox (badness 2119) detected at line 1935
- []
-
-[69]
-<notebook_logistic_output_11_1.png, id=1668, 494.84875pt x 1292.83pt>
+Package pdftex.def Info: basin_map.png  used on input line 1660.
+(pdftex.def)             Requested size: 469.75375pt x 295.17497pt.
+ [67] [68 <./basin_map.png>] [69] [70] [71]
+<notebook_logistic_output_11_1.png, id=1676, 494.84875pt x 1292.83pt>
 File: notebook_logistic_output_11_1.png Graphic file (type png)
 <use notebook_logistic_output_11_1.png>
 Package pdftex.def Info: notebook_logistic_output_11_1.png  used on input line 
-1949.
-(pdftex.def)             Requested size: 268.12799pt x 700.50478pt.
- [70] [71 <./notebook_logistic_output_11_1.png>]
+1912.
+(pdftex.def)             Requested size: 248.95657pt x 650.418pt.
+ [72] [73 <./notebook_logistic_output_11_1.png>]
 
-LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:sensitivity' on page 72 un
-defined on input line 2004.
-
-
-LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:TVSA' on page 72 undefined
- on input line 2011.
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:sensitivity' on page 74 un
+defined on input line 1967.
 
 
-LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:GLUE' on page 72 undefined
- on input line 2017.
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:TVSA' on page 74 undefined
+ on input line 1974.
 
 
-LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:precalibration' on page 72
- undefined on input line 2018.
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:GLUE' on page 74 undefined
+ on input line 1980.
 
-[72]
-<hymod.png, id=1689, 639.89063pt x 203.25937pt>
-File: hymod.png Graphic file (type png)
-<use hymod.png>
-Package pdftex.def Info: hymod.png  used on input line 2083.
-(pdftex.def)             Requested size: 452.96832pt x 143.89024pt.
- [73 <./hymod.png>]
-Overfull \vbox (13.10184pt too high) detected at line 2161
- []
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:precalibration' on page 74
+ undefined on input line 1981.
 
 [74]
+<hymod.png, id=1698, 639.89063pt x 203.25937pt>
+File: hymod.png Graphic file (type png)
+<use hymod.png>
+Package pdftex.def Info: hymod.png  used on input line 2046.
+(pdftex.def)             Requested size: 469.7623pt x 149.22481pt.
+ [75 <./hymod.png>]
+Overfull \vbox (15.1787pt too high) detected at line 2124
+ []
+
+[76]
 LaTeX Font Info:    Font shape `TS1/txtt/m/it' in size <10> not available
-(Font)              Font shape `TS1/txtt/m/sl' tried instead on input line 2188
+(Font)              Font shape `TS1/txtt/m/sl' tried instead on input line 2151
 .
- [75]
-<output_16_0.png, id=1708, 720.6925pt x 385.44pt>
+ [77]
+<output_16_0.png, id=1717, 720.6925pt x 385.44pt>
 File: output_16_0.png Graphic file (type png)
 <use output_16_0.png>
-Package pdftex.def Info: output_16_0.png  used on input line 2244.
-(pdftex.def)             Requested size: 452.96098pt x 242.2521pt.
- [76 <./output_16_0.png>] [77]
-<output_28_0.png, id=1719, 604.2575pt x 276.03125pt>
+Package pdftex.def Info: output_16_0.png  used on input line 2207.
+(pdftex.def)             Requested size: 469.7532pt x 251.23291pt.
+ [78 <./output_16_0.png>] [79] [80]
+<output_28_0.png, id=1733, 604.2575pt x 276.03125pt>
 File: output_28_0.png Graphic file (type png)
 <use output_28_0.png>
-Package pdftex.def Info: output_28_0.png  used on input line 2398.
-(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
- [78 <./output_28_0.png>] [79]
-<output_40_0.png, id=1730, 537.00626pt x 304.13625pt>
+Package pdftex.def Info: output_28_0.png  used on input line 2361.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+ [81 <./output_28_0.png>] [82]
+<output_40_0.png, id=1743, 537.00626pt x 304.13625pt>
 File: output_40_0.png Graphic file (type png)
 <use output_40_0.png>
-Package pdftex.def Info: output_40_0.png  used on input line 2516.
+Package pdftex.def Info: output_40_0.png  used on input line 2479.
 (pdftex.def)             Requested size: 402.75371pt x 228.10626pt.
- [80 <./output_40_0.png>] [81]
-<output_49_0.png, id=1747, 729.72626pt x 371.3875pt>
+
+[83 <./output_40_0.png>]
+<output_49_0.png, id=1755, 729.72626pt x 371.3875pt>
 File: output_49_0.png Graphic file (type png)
 <use output_49_0.png>
-Package pdftex.def Info: output_49_0.png  used on input line 2620.
-(pdftex.def)             Requested size: 452.9712pt x 230.53554pt.
-<output_52_0.png, id=1748, 735.74875pt x 371.3875pt>
+Package pdftex.def Info: output_49_0.png  used on input line 2583.
+(pdftex.def)             Requested size: 469.75122pt x 239.07558pt.
+ [84]
+<output_52_0.png, id=1761, 735.74875pt x 371.3875pt>
 File: output_52_0.png Graphic file (type png)
 <use output_52_0.png>
-Package pdftex.def Info: output_52_0.png  used on input line 2643.
-(pdftex.def)             Requested size: 452.98238pt x 228.64279pt.
- [82 <./output_49_0.png>] [83 <./output_52_0.png>]
-<output_59_0.png, id=1761, 726.715pt x 316.18124pt>
+Package pdftex.def Info: output_52_0.png  used on input line 2606.
+(pdftex.def)             Requested size: 469.76616pt x 237.11482pt.
+ [85 <./output_49_0.png>] [86 <./output_52_0.png>]
+<output_59_0.png, id=1774, 726.715pt x 316.18124pt>
 File: output_59_0.png Graphic file (type png)
 <use output_59_0.png>
-Package pdftex.def Info: output_59_0.png  used on input line 2709.
-(pdftex.def)             Requested size: 452.97598pt x 197.08209pt.
-<output_62_0.png, id=1762, 733.74126pt x 316.18124pt>
+Package pdftex.def Info: output_59_0.png  used on input line 2672.
+(pdftex.def)             Requested size: 469.76437pt x 204.38643pt.
+<output_62_0.png, id=1775, 733.74126pt x 316.18124pt>
 File: output_62_0.png Graphic file (type png)
 <use output_62_0.png>
-Package pdftex.def Info: output_62_0.png  used on input line 2726.
-(pdftex.def)             Requested size: 452.97798pt x 195.18605pt.
- [84 <./output_59_0.png>] [85 <./output_62_0.png>]
-<output_68_0.png, id=1775, 726.715pt x 339.2675pt>
+Package pdftex.def Info: output_62_0.png  used on input line 2689.
+(pdftex.def)             Requested size: 469.76074pt x 202.41801pt.
+[87 <./output_59_0.png>] [88 <./output_62_0.png>]
+<output_68_0.png, id=1787, 726.715pt x 339.2675pt>
 File: output_68_0.png Graphic file (type png)
 <use output_68_0.png>
-Package pdftex.def Info: output_68_0.png  used on input line 2789.
-(pdftex.def)             Requested size: 452.97598pt x 211.45668pt.
-<output_71_0.png, id=1776, 733.74126pt x 339.2675pt>
+Package pdftex.def Info: output_68_0.png  used on input line 2752.
+(pdftex.def)             Requested size: 469.76437pt x 219.29436pt.
+<output_71_0.png, id=1788, 733.74126pt x 339.2675pt>
 File: output_71_0.png Graphic file (type png)
 <use output_71_0.png>
-Package pdftex.def Info: output_71_0.png  used on input line 2806.
-(pdftex.def)             Requested size: 452.97798pt x 209.4222pt.
- [86 <./output_68_0.png>] [87 <./output_71_0.png>]
-<output_80_0.png, id=1798, 386.44376pt x 260.975pt>
+Package pdftex.def Info: output_71_0.png  used on input line 2769.
+(pdftex.def)             Requested size: 469.76074pt x 217.1874pt.
+ [89 <./output_68_0.png>]
+[90 <./output_71_0.png>]
+<output_80_0.png, id=1809, 386.44376pt x 260.975pt>
 File: output_80_0.png Graphic file (type png)
 <use output_80_0.png>
-Package pdftex.def Info: output_80_0.png  used on input line 2931.
+Package pdftex.def Info: output_80_0.png  used on input line 2894.
 (pdftex.def)             Requested size: 289.8321pt x 195.73077pt.
- [88 <./output_80_0.png>]
-<output_82_0.png, id=1804, 386.44376pt x 261.97874pt>
+ [91]
+<output_82_0.png, id=1815, 386.44376pt x 261.97874pt>
 File: output_82_0.png Graphic file (type png)
 <use output_82_0.png>
-Package pdftex.def Info: output_82_0.png  used on input line 2945.
+Package pdftex.def Info: output_82_0.png  used on input line 2908.
 (pdftex.def)             Requested size: 289.8321pt x 196.48756pt.
-<output_87_0.png, id=1805, 1073.00874pt x 208.78pt>
+ [92 <./output_80_0.png> <./output_82_0.png>]
+<output_87_0.png, id=1822, 1073.00874pt x 208.78pt>
 File: output_87_0.png Graphic file (type png)
 <use output_87_0.png>
-Package pdftex.def Info: output_87_0.png  used on input line 2983.
-(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
- [89 <./output_82_0.png>]
-<output_88_0.png, id=1811, 1073.00874pt x 208.78pt>
+Package pdftex.def Info: output_87_0.png  used on input line 2946.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+<output_88_0.png, id=1823, 1073.00874pt x 208.78pt>
 File: output_88_0.png Graphic file (type png)
 <use output_88_0.png>
-Package pdftex.def Info: output_88_0.png  used on input line 2993.
-(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
- [90 <./output_87_0.png> <./output_88_0.png>]
-<output_94_0.png, id=1823, 835.12pt x 930.47626pt>
+Package pdftex.def Info: output_88_0.png  used on input line 2956.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+
+[93 <./output_87_0.png> <./output_88_0.png>] [94]
+<output_94_0.png, id=1838, 835.12pt x 930.47626pt>
 File: output_94_0.png Graphic file (type png)
 <use output_94_0.png>
-Package pdftex.def Info: output_94_0.png  used on input line 3077.
-(pdftex.def)             Requested size: 452.97145pt x 504.66457pt.
- [91] [92 <./output_94_0.png>]
-<output_99_0.png, id=1834, 1073.00874pt x 208.78pt>
+Package pdftex.def Info: output_94_0.png  used on input line 3040.
+(pdftex.def)             Requested size: 469.76659pt x 523.3916pt.
+ [95 <./output_94_0.png>]
+<output_99_0.png, id=1844, 1073.00874pt x 208.78pt>
 File: output_99_0.png Graphic file (type png)
 <use output_99_0.png>
-Package pdftex.def Info: output_99_0.png  used on input line 3115.
-(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
-<output_100_0.png, id=1835, 1073.00874pt x 208.78pt>
+Package pdftex.def Info: output_99_0.png  used on input line 3078.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+<output_100_0.png, id=1845, 1073.00874pt x 208.78pt>
 File: output_100_0.png Graphic file (type png)
 <use output_100_0.png>
-Package pdftex.def Info: output_100_0.png  used on input line 3125.
-(pdftex.def)             Requested size: 452.96916pt x 88.14255pt.
-<output_103_0.png, id=1837, 604.2575pt x 276.03125pt>
+Package pdftex.def Info: output_100_0.png  used on input line 3088.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+
+[96 <./output_99_0.png> <./output_100_0.png>]
+<output_103_0.png, id=1853, 604.2575pt x 276.03125pt>
 File: output_103_0.png Graphic file (type png)
 <use output_103_0.png>
-Package pdftex.def Info: output_103_0.png  used on input line 3150.
-(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
- [93 <./output_99_0.png> <./output_100_0.png>]
-<output_106_0.png, id=1845, 604.2575pt x 276.03125pt>
+Package pdftex.def Info: output_103_0.png  used on input line 3113.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+<output_106_0.png, id=1855, 604.2575pt x 276.03125pt>
 File: output_106_0.png Graphic file (type png)
 <use output_106_0.png>
-Package pdftex.def Info: output_106_0.png  used on input line 3177.
-(pdftex.def)             Requested size: 452.97073pt x 206.93867pt.
- [94 <./output_103_0.png> <./output_106_0.png>]
-[95] [96
-
-]
+Package pdftex.def Info: output_106_0.png  used on input line 3140.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+ [97 <./output_103_0.png>]
+[98 <./output_106_0.png>]
 Chapter 9.
-[97] [98] [99] [100] [101] [102] [103]
-Underfull \vbox (badness 10000) detected at line 3647
+[99
+
+] [100] [101] [102] [103] [104] [105] [106]
+Underfull \vbox (badness 10000) detected at line 3610
  []
 
 
-Underfull \vbox (badness 10000) detected at line 3647
+Underfull \vbox (badness 10000) detected at line 3610
  []
 
-[104] [105]
-Underfull \vbox (badness 10000) detected at line 3738
+[107] [108] [109] [110
+
+] [111]
+Underfull \hbox (badness 10000) in paragraph at lines 3789--3791
+[]\T1/qtm/m/n/10 Praveen Ku-mar. Ty-pol-ogy of hy-dro-logic pre-dictabil-ity. \
+T1/qtm/m/it/10 Wa-ter Re-sources Re-search\T1/qtm/m/n/10 , 2011. URL:
  []
 
 
-Underfull \vbox (badness 10000) detected at line 3738
- []
-
-[106] [107] [108
-
-] [109]
-Underfull \hbox (badness 10000) in paragraph at lines 3826--3828
+Underfull \hbox (badness 10000) in paragraph at lines 3789--3791
 [][]$\T1/qtm/m/n/10 https : / / agupubs . onlinelibrary . wiley . com / doi / a
 bs / 10 . 1029 / 2010WR009769$[][] (vis-ited on 2020-04-15),
  []
 
-[110]
-Underfull \hbox (badness 5696) in paragraph at lines 3850--3852
-[]\T1/qtm/m/n/10 Steve Bankes. Ex-ploratory Mod-el-ing for Pol-icy Anal-y-sis. 
-\T1/qtm/m/it/10 Op-er-a-tions Re-search\T1/qtm/m/n/10 , 41(3):435^^U449,
+[112]
+Underfull \hbox (badness 10000) in paragraph at lines 3813--3815
+\T1/qtm/m/n/10 1993. URL: [][]$https : / / pubsonline . informs . org / doi / a
+bs / 10 . 1287 / opre . 41 . 3 . 435$[][] (vis-ited on 2018-09-11),
  []
 
-[111] [112] [113] [114]
-Underfull \hbox (badness 10000) in paragraph at lines 4147--4149
+[113] [114] [115] [116] [117]
+Underfull \hbox (badness 5832) in paragraph at lines 4110--4112
+[]\T1/qtm/m/n/10 S. R. Car-pen-ter, D. Lud-wig, and W. A. Brock. Man-age-ment o
+f Eu-troph-i-ca-tion for Lakes Sub-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4110--4112
 [][]$\T1/qtm/m/n/10 http : / / onlinelibrary . wiley . com / doi / 10 . 1890 / 
 1051-[]0761(1999 ) 009{[}0751 : MOEFLS{]}2 . 0 . CO ; 2 / abstract$[][],
  []
 
-[115] [116]
-Underfull \hbox (badness 10000) in paragraph at lines 4255--4257
-\T1/qtm/m/n/10 & Fran-cis _eprint: https://www.tandfonline.com/doi/pdf/10.1080/
-01621459.1991.10475138. URL:
+[118]
+Underfull \hbox (badness 5548) in paragraph at lines 4182--4184
+[]\T1/qtm/m/n/10 Ryan L. Sriver, Robert J. Lem-pert, Per Wikman-Svahn, and Klau
+s Keller. Char-ac-ter-iz-ing un-cer-
+ []
+
+[119]
+Underfull \hbox (badness 10000) in paragraph at lines 4215--4217
+\T1/qtm/m/n/10 Math-e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteucli
+d . org / journals / statistical-[]science / volume-[]23 / issue-[]2 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4255--4257
-[][]$\T1/qtm/m/n/10 https : / / www . tandfonline . com / doi / abs / 10 . 1080
- / 01621459 . 1991 . 10475138$[][] (vis-ited on 2021-06-14),
- []
-
-[117]
-Underfull \hbox (badness 10000) in paragraph at lines 4276--4278
-[]\T1/qtm/m/n/10 Michael Be-tan-court. A con-cep-tual in-tro-duc-tion to Hamil-
-to-nian Monte Carlo. \T1/qtm/m/it/10 arXiv preprint
+Underfull \hbox (badness 10000) in paragraph at lines 4215--4217
+\T1/qtm/m/n/10 Markov-[]Chain-[]Monte-[]Carlo-[]-[]Can-[]We-[]Trust-[]the-[]Thi
+rd / 10 . 1214 / 08-[]STS257 . full$[][] (vis-ited on 2021-06-14),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4288--4290
-[]\T1/qtm/m/n/10 NIM-BLE De-vel-op-ment Team. NIM-BLE: MCMC, Par-ti-cle Fil-ter
--ing, and Pro-grammable Hi-er-
+Underfull \hbox (badness 10000) in paragraph at lines 4230--4232
+[]\T1/qtm/m/n/10 John Ea-son and Se-len Cre-maschi. Adap-tive se-quen-tial sam-
+pling for sur-ro-gate model gen-er-a-tion
  []
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 4288--4290
-\T1/qtm/m/n/10 ar-chi-cal Mod-el-ing. May 2021. URL: [][]$https : / / zenodo . 
-org / record / 4829693$[][] (vis-ited on 2021-06-14),
+Underfull \hbox (badness 10000) in paragraph at lines 4230--4232
+\T1/qtm/m/n/10 URL: [][]$https : / / www . sciencedirect . com / science / arti
+cle / pii / S0098135414001719$[][] (vis-ited on 2021-06-14),
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+[120]
+Underfull \hbox (badness 10000) in paragraph at lines 4263--4265
 []\T1/qtm/m/n/10 An-drew Gel-man and Don-ald B. Ru-bin. In-fer-ence from It-er-
 a-tive Sim-u-la-tion Us-ing Mul-ti-ple
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+Underfull \hbox (badness 10000) in paragraph at lines 4263--4265
 \T1/qtm/m/n/10 Se-quences. \T1/qtm/m/it/10 Sta-tis-ti-cal Sci-ence\T1/qtm/m/n/1
 0 , 7(4):457^^U472, Novem-ber 1992. Pub-lisher: In-sti-tute of Math-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+Underfull \hbox (badness 10000) in paragraph at lines 4263--4265
 \T1/qtm/m/n/10 e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteuclid . o
 rg / journals / statistical-[]science / volume-[]7 / issue-[]4 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4300--4302
+Underfull \hbox (badness 10000) in paragraph at lines 4263--4265
 \T1/qtm/m/n/10 Inference-[]from-[]Iterative-[]Simulation-[]Using-[]Multiple-[]S
-equences / 10 . 1214 / ss / 1177011136 . full$[][] (vis-ited
- []
-
-[118]
-Underfull \hbox (badness 6758) in paragraph at lines 4303--4305
-[]\T1/qtm/m/n/10 Pierre Del Moral, Ar-naud Doucet, and Ajay Jasra. Se-quen-tial
- Monte Carlo sam-plers. \T1/qtm/m/it/10 Jour-
+equences / 10 . 1214 / ss / 1177011136 . full$[][] (vis-ited on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4303--4305
-\T1/qtm/m/n/10 _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-
-9868.2006.00553.x. URL: [][]$http :
+Underfull \hbox (badness 10000) in paragraph at lines 4266--4268
+\T1/qtm/m/it/10 the Royal Sta-tis-ti-cal So-ci-ety: Se-ries B (Sta-tis-ti-cal M
+ethod-ol-ogy)\T1/qtm/m/n/10 , 68(3):411^^U436, 2006. _eprint:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4303--4305
-\T1/qtm/m/n/10 / / rss . onlinelibrary . wiley . com / doi / abs / 10 . 1111 / 
-j . 1467-[]9868 . 2006 . 00553 . x$[][] (vis-ited on 2021-06-14),
+Underfull \hbox (badness 10000) in paragraph at lines 4266--4268
+\T1/qtm/m/n/10 https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2006
+.00553.x. URL: [][]$http : / / rss . onlinelibrary .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
-[]\T1/qtm/m/n/10 Ste-fano Cabras, Maria Eu-ge-nia Castel-lanos Nueda, and Erlis
- Ruli. Ap-prox-i-mate Bayesian
+Underfull \hbox (badness 10000) in paragraph at lines 4266--4268
+\T1/qtm/m/n/10 wiley . com / doi / abs / 10 . 1111 / j . 1467-[]9868 . 2006 . 0
+0553 . x$[][] (vis-ited on 2021-06-14), [][]doi:10.1111/j.1467-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
-\T1/qtm/m/n/10 Com-pu-ta-tion by Mod-elling Sum-mary Statis-tics in a Quasi-lik
-elihood Frame-work. \T1/qtm/m/it/10 Bayesian
+Underfull \hbox (badness 10000) in paragraph at lines 4275--4277
+\T1/qtm/m/n/10 volume-[]10 / issue-[]2 / Approximate-[]Bayesian-[]Computation-[
+]by-[]Modelling-[]Summary-[]Statistics-[]in-[]a-[]Quasi / 10 .
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
-\T1/qtm/m/it/10 Anal-y-sis\T1/qtm/m/n/10 , 10(2):411^^U439, June 2015. Pub-lish
-er: In-ter-na-tional So-ci-ety for Bayesian
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
-\T1/qtm/m/n/10 Anal-y-sis. URL: [][]$https : / / projecteuclid . org / journals
- / bayesian-[]analysis / volume-[]10 / issue-[]2 /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4312--4314
-\T1/qtm/m/n/10 Approximate-[]Bayesian-[]Computation-[]by-[]Modelling-[]Summary-
-[]Statistics-[]in-[]a-[]Quasi / 10 . 1214 / 14-[]BA921 .
- []
-
-
-Underfull \hbox (badness 6396) in paragraph at lines 4336--4338
+[121]
+Underfull \hbox (badness 10000) in paragraph at lines 4299--4301
 []\T1/qtm/m/n/10 An-drew Gel-man and Cosma Ro-hilla Shal-izi. Phi-los-o-phy and
  the prac-tice of Bayesian statis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
+Underfull \hbox (badness 10000) in paragraph at lines 4299--4301
 \T1/qtm/m/n/10 tics. \T1/qtm/m/it/10 British Jour-nal of Math-e-mat-i-cal and S
 ta-tis-ti-cal Psy-chol-ogy\T1/qtm/m/n/10 , 66(1):8^^U38, 2013. _eprint:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
+Underfull \hbox (badness 10000) in paragraph at lines 4299--4301
 \T1/qtm/m/n/10 https://bpspsychub.onlinelibrary.wiley.com/doi/pdf/10.1111/j.204
-4-8317.2011.02037.x. URL:
+4-8317.2011.02037.x. URL: [][]$https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4336--4338
-[][]$\T1/qtm/m/n/10 https : / / bpspsychub . onlinelibrary . wiley . com / doi 
-/ abs / 10 . 1111 / j . 2044-[]8317 . 2011 . 02037 . x$[][] (vis-ited on
+Underfull \hbox (badness 7133) in paragraph at lines 4299--4301
+\T1/qtm/m/n/10 / / bpspsychub . onlinelibrary . wiley . com / doi / abs / 10 . 
+1111 / j . 2044-[]8317 . 2011 . 02037 . x$[][] (vis-ited on 2021-06-14),
  []
 
 (./addressinguncertaintyinmultisectordynamicsresearch.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4344.
- [119]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4344.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4307.
+ [122]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4307.
 
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4344.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4344.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4307.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4307.
 
 Package rerunfilecheck Info: File `addressinguncertaintyinmultisectordynamicsre
 search.out' has not changed.
@@ -1733,12 +1683,12 @@ search.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4344.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4307.
  ) 
 Here is how much of TeX's memory you used:
- 15063 strings out of 480608
- 226477 string characters out of 5903631
- 677514 words of memory out of 5000000
+ 15066 strings out of 480608
+ 226509 string characters out of 5903631
+ 684055 words of memory out of 5000000
  30062 multiletter control sequences out of 15000+600000
  594727 words of font info for 80 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -1765,11 +1715,11 @@ sr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/loc
 al/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/local/tex
 live/2020/texmf-dist/fonts/type1/public/txfonts/tcxtt.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (119 p
-ages, 14322477 bytes).
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (122 p
+ages, 14323229 bytes).
 PDF statistics:
- 2250 PDF objects out of 2487 (max. 8388607)
- 1993 compressed objects within 20 object streams
- 468 named destinations out of 1000 (max. 500000)
+ 2266 PDF objects out of 2487 (max. 8388607)
+ 2005 compressed objects within 21 object streams
+ 471 named destinations out of 1000 (max. 500000)
  1209 words of extra memory for PDF output out of 10000 (max. 10000000)
 
