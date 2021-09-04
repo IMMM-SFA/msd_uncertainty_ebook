@@ -42,8 +42,6 @@ Below we provide an example application of two scenario discovery methods, PRIM 
 
 :numref:`Figure_4_5` shows the results of scenario discovery, performed through (a) PRIM and (b) logistic regression. Each point in the two panels indicates a potential state of the world, generated through Latin Hypercube Sampling. Each point is colored by whether the policy meets the above performance criterion, with blue indicating success and red indicating failure. PRIM identifies several orthogonal areas of interest, one of which is shown in panel (a). As discussed above, this necessary orthogonality limits how PRIM identifies areas of success (the area within the box). As factors  :math:`b` and :math:`q` interact in this system, the transition boundary between the regions of success and failure is not orthogonal to any of the axes. As a result, a large number of points in the bottom right and the top left of the figure are left outside of the identified region. Logistic regression can overcome this limitation by identifying a diagonal boundary between the two regions, seen in panel (b). This method also produces a gradient of estimated probability of success across these regions.
 
-.. seealso::
+.. note::
 
-    Put this into practice! Click the following link to try out an interactive tutorial on performing factor mapping using logistic regression:
-
-    `Logistic Regression Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_
+    Put this into practice! Click the following link to try out an interactive tutorial on performing factor mapping using logistic regression:  `Logistic Regression Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_

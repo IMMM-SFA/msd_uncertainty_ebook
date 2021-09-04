@@ -18,8 +18,6 @@ However, pre-calibration results in a very coarse characterization of uncertaint
 
 A related method, widely used in hydrological studies, is generalized likelihood uncertainty estimation, or GLUE :cite:`beven_future_1992`. Unlike pre-calibration, the underlying argument for GLUE relies on the concept of equifinality :cite:`beven_equifinality_2001`, which posits that it is impossible to find a uniquely well-performing parameter vector for models of abstract environmental systems :cite:`beven_equifinality_2001, vrugt_embracing_2018`. In other words, there exist multiple parameter vectors which perform equally or similarly well. As with pre-calibration, GLUE uses a goodness-of-fit measure (though this is called a “likelihood” in the GLUE literature, as opposed to a statistical likelihood function :cite:`stedinger_appraisal_2008`) to evaluate samples. After setting a threshold of acceptable performance with respect to that measure, samples are evaluated and classified into “behavioral” or “non-behavioral” according to the threshold.
 
-.. seealso::
+.. note::
 
-    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:
-
-     `Pre-Calibration Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fhymod.ipynb>`_
+    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:  `Pre-Calibration Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fhymod.ipynb>`_

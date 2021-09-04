@@ -95,8 +95,3 @@ latex_documents = [
      '\\and Rohini Gupta, David Gold, B. Lee, Klaus Keller, Jennie S. Rice'
      , 'book'),
 ]
-
-latex_elements = {
-    'papersize': 'a4paper',
-    'releasename': release
-}
