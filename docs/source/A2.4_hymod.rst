@@ -12,19 +12,19 @@ in the main text in the context of HYMOD, a rainfall-runoff model. The
 tutorial includes the following sections:
 
 Introduction to HYMOD and Sensitivity Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------
 
 `1- Introduction to a simple hydrologic model (HYMOD) <#hymod>`__ `2- An
 overview of sensitivity analysis using SALib <#sensitivity>`__ `3-
 Calculation of sensitivity analysis metrics <sa_metrics>`__
 
 Time-Varying Sensitivity Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------
 
 `4- Time-varying sensitivity analysis <#TVSA>`__
 
 Ensemble-based Parametric Uncertainty
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------
 
 `5- Generalized Likelihood Uncertainty Estimation (GLUE) <#GLUE>`__ `6-
 Pre-Calibration <#precalibration>`__
@@ -38,7 +38,8 @@ numerical models that simulate other complex non-linear systems.
 Introduction to HYMOD and Sensitivity Analysis
 ==============================================
 
-# 1- HYMOD
+1- HYMOD
+==============================================
 
 HYMOD is a simple hydrologic model (rainfall-runoff model) that
 simulates key hydrologic fluxes such as infiltration, streamflow and
@@ -59,7 +60,7 @@ formulated by the probability-distributed principle (Moore, 1985).
 Therefore the cumulative rate storage capacity :math:`(F(C))` can be
 calculated using the following relationship:
 
-.. math:: F(C) = 1 - (1 - \frac{C}{C_{MAX}})^{B_{exp}}
+.. math:: F(C) = 1 - (1 - \frac{C}{C_{MAX}})-{B_{exp}}
 
 where *:math:`C`* is the water storage capacity; **:math:`C_{MAX}`** is
 the parameter describing basin maximum water storage capacity (mm); and
@@ -88,7 +89,7 @@ in the quick tanks :math:`K_q` (day) and the slow tank :math:`K_s`
 Vrugt et al., (2008)
 
 1-1 Model Parameters
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 :math:`C_{MAX}`: parameters describing basin maximum water storage
 capacity (mm)
@@ -104,7 +105,7 @@ Kq values of all three linear reservoirs are the same)
 :math:`K_s`: Slow flow residence time of linear infinite reservoir
 
 1-2 Input data
-~~~~~~~~~~~~~~
+---------------
 
 The HYMOD model only requires precipitation and potential
 evapotranspiration as inputs. The Leaf River example that we use here is
@@ -238,7 +239,7 @@ We can use the following to read the input file:
 
 
 1-3 Baseline Model Simulation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 We can start our sensitivity analysis experiment with running HYMOD
 using its default parameters.
@@ -258,15 +259,15 @@ using its default parameters.
 
 
 1-4 Model Outputs
-~~~~~~~~~~~~~~~~~
+--------------------
 
 Model outputs include actual evapotranspiration, quick and fast
 streamflow, and combined runoff. In this tutorial we focus on the total
-daily runoff (:math:`m^3/s`). We can use the following script to plot
+daily runoff (:math:`m-3/s`). We can use the following script to plot
 simulated streamflow against observed streamflow.
 
 Variables
-~~~~~~~~~
+--------------------
 
 **PP**: Precipitation
 
@@ -284,15 +285,12 @@ Variables
 accounting component (as depth XH or volume XC)
 
 Plot the observed versus simulated streamflow.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------
 
-.. container:: alert alert-block alert-info
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_observed_vs_simulated_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow>`_
 
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow">plot_observed_vs_simulated_streamflow</a>
-
-.. code:: ipython3
+.. code:: python
 
     ax = msdbook.plot_observed_vs_simulated_streamflow(df=leaf_data, hymod_dict=model)
 
@@ -302,7 +300,8 @@ Plot the observed versus simulated streamflow.
 .. image:: _static/output_16_0.png
 
 
-# 2- Sensitivity Analysis
+2- Sensitivity Analysis
+==============================================
 
 Here we use the SALib Python library to explore how different HYMOD
 input parameters affect model streamflow simulations. For this exercise,
@@ -317,7 +316,7 @@ used to import SALib
 
 
 2-2 Model simulations for sensitivity analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------
 
 We first define the model input and their ranges.
 
@@ -385,7 +384,7 @@ analysis:
 
 
 Model Warm-up
-^^^^^^^^^^^^^
+_____________
 
 A hydrological model such as HYMOD usually includes ordinary
 differential equations that are sensitive to their initial condition.
@@ -415,7 +414,7 @@ period is one year.
 
 
 2-3 Visual inspection of the model outputs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 Here we create a figure that shows HYMOD streamflow outputs under
 different sample sets, and compare them with the observed streamflow.
@@ -442,12 +441,9 @@ different sample sets, and compare them with the observed streamflow.
     # aggregate the daily observed streamflow to monthly mean
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_observed_vs_sensitivity_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow>`_
 
-.. container:: alert alert-block alert-info
-
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow">plot_observed_vs_sensitivity_streamflow</a>
 
 .. code:: ipython3
 
@@ -456,18 +452,18 @@ different sample sets, and compare them with the observed streamflow.
 
 
 
-
 .. image:: _static/output_28_0.png
 
 
-# 3- Calculation of Sensitivity Analysis Indices
+3- Calculation of Sensitivity Analysis Indices
+===============================================
 
 There are different options to calculate sensitivity indices. The
 following section aggregates model streamflow outputs and calculates the
 sensitivity indices.
 
 3-1 Aggregated sensitivity analysis indices
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 This is the simplest way of calculating sensitivity analysis metrics,
 however, averaging all model response can lead to loss of information
@@ -507,7 +503,7 @@ that we further explore in the following sections.
 
 
 3-2 How do different performance metrics affect the results of our sensitivity analysis?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------------------------------
 
 Streamflow has many different properties. In this section, we discuss
 how the selection of metrics can lead to fundamentally different
@@ -659,7 +655,8 @@ combinations. For more discussion about this topic readers can refer to
 and `Foglia et al.,
 (2009) <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR007255>`__.
 
-# 4- Time-Varying Sensitivity Analysis
+4- Time-Varying Sensitivity Analysis
+=====================================
 
 Hydrological processes are often state-dependent, meaning that their
 responses are affected by the time-varying condition that they are in.
@@ -681,7 +678,7 @@ and `Xu et
 al. (2018) <https://link.springer.com/article/10.1007/s12206-018-0223-8>`__.
 
 4-1 Sensitivity analysis indices for each month
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 .. code:: ipython3
 
@@ -719,17 +716,15 @@ visualize it. Results are pre-loaded for efficiency.
    arr_mth_delta = df_mth_delta.values
 
 First-order Indices
-^^^^^^^^^^^^^^^^^^^
+___________________
 
 The following can be used to visualize the time-varying first-order
 indices. The first order represents the direct impacts of a specific
 parameter on model outputs.
 
-.. container:: alert alert-block alert-info
 
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap">plot_monthly_heatmap</a>
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_monthly_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap>`_
 
 .. code:: ipython3
 
@@ -754,7 +749,7 @@ indices are highest for B and Huz across all months and lowest for Alp,
 Ks, and Kq.
 
 Total-order indices
-^^^^^^^^^^^^^^^^^^^
+____________________
 
 We can also focus on the total order sensitivity index that includes
 first-order SA indices and interactions between parameters
@@ -778,7 +773,7 @@ between the parameters (particularly in regards to :math:`Kq`,
 :math:`Ks`, and :math:`Alp`) contribute to variance in the HYMOD output.
 
 4-2 Annual sensitivity analysis indices
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 .. code:: ipython3
 
@@ -818,13 +813,11 @@ outputs to annual time steps, and then calculates the SA indices.
    arr_yr_delta = df_mth_delta.values
 
 First-order indices
-^^^^^^^^^^^^^^^^^^^
+____________________
 
-.. container:: alert alert-block alert-info
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_annual_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap>`_
 
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap">plot_annual_heatmap</a>
 
 .. code:: ipython3
 
@@ -847,7 +840,7 @@ first order monthly sensitivities. Once again, sensitivities vary across
 year and Huz and B are the most consequential parameters.
 
 Total-order indices
-^^^^^^^^^^^^^^^^^^^
+___________________
 
 .. code:: ipython3
 
@@ -867,7 +860,7 @@ years and now that interactions are included, the Kq, Ks, and Alp
 variables impact the sensitivity of the streamflow output.
 
 4-3 Monthly time-varying sensitivity analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 Although time-varying sensitivity analysis at average monthly and
 average annual temporal resolutions is informative, TVSA is susceptible
@@ -904,13 +897,10 @@ the monthly TVSA.
    arr_vary_delta = df_vary_delta.values
 
 First-order indices
-^^^^^^^^^^^^^^^^^^^
+____________________
 
-.. container:: alert alert-block alert-info
-
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap">plot_varying_heatmap</a>
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_varying_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap>`_
 
 .. code:: ipython3
 
@@ -933,7 +923,7 @@ suggests that Kq is indeed a relevant parameter for influencing
 streamflow output when individual months are considered.
 
 Total order - time varying sensitivity analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+________________________________________________
 
 .. code:: ipython3
 
@@ -954,7 +944,8 @@ of Kq that is not apparent if aggregation is utilized.
 Ensemble-based Parametric Uncertainty
 =====================================
 
-# 5- Generalized Likelihood Uncertainty Estimation (GLUE)
+5- Generalized Likelihood Uncertainty Estimation (GLUE)
+=======================================================
 
 The Generalized Likelihood Uncertainty Estimation (GLUE) is an
 uncertainty analysis algorithm that has been widely used in hydrologic
@@ -981,10 +972,10 @@ GLUE usually includes the following steps `(Beven and Bineley,
 6) Visualize the sample sets
 
 5-1 Calculation of GLUE metrics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 Likelihood calculation (inverse error variance)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+________________________________________________
 
 There are various likelihood metrics that have been used in previous
 studies that use GLUE. A widely used example is inverse error variance
@@ -993,12 +984,12 @@ al. 2009 <https://link.springer.com/article/10.1007/s00477-008-0274-y>`__
 and `Beven and Bineley,
 1992 <https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi>`__):
 
-.. math::  IEV = {({\sigma_{e}}^{2})}^{-T} = ({{\frac{SSR}{n-2}}})^{-T}
+.. math::  IEV = {({\sigma_{e}}-{2})}-{-T} = ({{\frac{SSR}{n-2}}})-{-T}
 
 The other metric that can be used as an estimation of likelihood is
 normalized inverse error variance:
 
-.. math::  NIEV = \frac{IEV}{\sum_{i=1}^{n} IEV(i)}
+.. math::  NIEV = \frac{IEV}{\sum_{i=1}-{n} IEV(i)}
 
 where *SSR* is the sum of squared residuals; :math:`n` is the number of
 samples; and :math:`T` is an arbitrary coefficient. Low :math:`T` values
@@ -1029,9 +1020,6 @@ values concentrate on the best parameter sets.
 
     # display the first 5 rows of the dataframe
     df_metrics_SA.head()
-
-
-
 
 
 .. raw:: html
@@ -1115,7 +1103,7 @@ values concentrate on the best parameter sets.
 
 
 Distribution of likelihoods (inverse error variance) values
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+____________________________________________________________
 
 .. code:: ipython3
 
@@ -1133,7 +1121,7 @@ Distribution of likelihoods (inverse error variance) values
 
 
 Distribution of normalized inverse error variance values
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+____________________________________________________________
 
 .. code:: ipython3
 
@@ -1151,7 +1139,7 @@ Distribution of normalized inverse error variance values
 
 
 Selection of important sample sets and setting a threshold for physical/non-physical sample sets
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_________________________________________________________________________________________________
 
 .. code:: ipython3
 
@@ -1172,7 +1160,7 @@ Selection of important sample sets and setting a threshold for physical/non-phys
 
 
 5-2 Visual inspection of GLUE results
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 .. code:: ipython3
 
@@ -1212,7 +1200,7 @@ Selection of important sample sets and setting a threshold for physical/non-phys
 
 
 5-3 Comment on the GLUE results
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 Our results suggest that it is challenging to find an clear and
 interpretable relationship between different selected near-optimal
@@ -1234,7 +1222,8 @@ serial correlation. For more on these issues reader can refer to
 and `Beven And Binley,
 (2014) <https://onlinelibrary.wiley.com/doi/full/10.1002/hyp.10082>`__.
 
-# 6- Pre-Calibration
+6- Pre-Calibration
+===================
 
 Pre-calibration `(Edwards et al,
 2010) <https://link.springer.com/article/10.1007/s00382-010-0921-0>`__
@@ -1254,10 +1243,10 @@ output space which are non-physical (Implausible) 4) Map non-physical
 sets back to input space 5) Interpret the non-physical sample sets
 
 6-1 Pre-calibration calculations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 Distribution of mean error, RMSE, and Log[RMSE] under different sample sets
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+________________________________________________________________________________
 
 .. code:: ipython3
 
@@ -1295,7 +1284,7 @@ Distribution of mean error, RMSE, and Log[RMSE] under different sample sets
 
 
 Setting a threshold for physical/non-physical sample sets
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+________________________________________________________________
 
 .. code:: ipython3
 
@@ -1316,7 +1305,7 @@ Setting a threshold for physical/non-physical sample sets
 
 
 Visual inspection of non-physical sample sets
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+________________________________________________
 
 .. code:: ipython3
 
@@ -1357,11 +1346,8 @@ Visual inspection of non-physical sample sets
 The following figure shows the flow discharge provided by the ensemble
 of parameters sets from Pre-Calibration versus the observed flow data.
 
-.. container:: alert alert-block alert-info
-
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-flow">plot_precalibration_flow</a>
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_precalibration_flow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-flow>`_
 
 .. code:: ipython3
 
@@ -1387,11 +1373,8 @@ The following figure shows the flow discharge provided by the ensemble
 of parameters sets from both pre-calibration and GLUE and how these
 flows compare to the observed flow data.
 
-.. container:: alert alert-block alert-info
-
-   ::
-
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-glue">plot_precalibration_glue</a>
+.. note::
+    **Tip:** View the source code used to create this plot here:  `plot_precalibration_glue <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-glue>`_
 
 .. code:: ipython3
 
@@ -1415,7 +1398,7 @@ flows compare to the observed flow data.
 
 
 6-2 Comments on Pre-Calibration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 Although Pre-calibrations provides a helpful and relatively simple
 alternative for statistical inferences, it has some disadvantages. For
