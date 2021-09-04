@@ -1,7 +1,7 @@
 Logistic Regression Tutorial
 *************************
 
-.. note:: Run the tutorial interactively:  `Logistic Regression Tutorial <https://hub-binder.mybinder.ovh/user/immm-sfa-msd_uncertainty_ebook-pheczmlw/notebooks/notebooks/basin_users_logistic_regression.ipynb>`_
+.. note:: Run the tutorial interactively:  `Logistic Regression Tutorial <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_
 
 Tutorial: Logistic Regression for Factor Mapping
 ================================================
@@ -48,15 +48,15 @@ and create lists storing the names of the users of interest.
 .. code:: ipython3
 
     import msdbook
-    
+
     import numpy as np
     import pandas as pd
     import matplotlib as mpl
     import matplotlib.pyplot as plt
-    
+
     # load example data
     msdbook.install_package_data()
-    
+
     all_IDs = ['7000550','7200799','3704614'] # IDs for three that we will perform the analysis for
     usernames = ['Medium seniority irrigation',
                  'Low seniority irrigation',
@@ -103,7 +103,7 @@ this tutorial, we’ll load a file containing 1,000 parameter samples.
 
     LHsamples = msdbook.load_lhs_basin_sample()
     param_bounds = msdbook.load_basin_param_bounds()
-    
+
     param_names=['Irrigation demand multiplier','Reservoir loss','Transbasin demand multiplier',
                  'Municipal & industrial multiplier', 'Shoshone','Environmental flows',
                  'Evaporation change','Mean dry flow','Dry flow variance',
@@ -154,8 +154,8 @@ discovery.
     frequencies = np.arange(10, 110, 10)
     magnitudes = np.arange(10, 110, 10)
     realizations = 10
-    
-    
+
+
     # Load performance and pseudo r scores for each of the users
     results = [msdbook.load_user_heatmap_array(all_IDs[i]) / 100 for i in range(len(all_IDs))]
 
@@ -183,7 +183,7 @@ very small).
 .. code:: ipython3
 
     scores = [msdbook.load_user_pseudo_scores(all_IDs[i]) for i in range(len(all_IDs))]
-    
+
     freq = [1,0,0]
     mag = [7,3,7]
 
@@ -203,36 +203,36 @@ metrics for each user, but here we will demonstrate by mapping two).
     # setup figure
     fig, axes = plt.subplots(3,1, figsize=(6,18), tight_layout=True)
     fig.patch.set_facecolor('white')
-    
+
     for i in range(len(axes.flat)):
-        
+
         ax = axes.flat[i]
-        
+
         allSOWsperformance = results[i]
         all_pseudo_r_scores = scores[i]
-        
+
         # construct dataframe
         dta = pd.DataFrame(data=np.repeat(LHsamples, realizations, axis = 0), columns=param_names)
         dta['Success'] = allSOWsperformance[freq[i],mag[i],:]
-        
+
         pseudo_r_scores = all_pseudo_r_scores[str(frequencies[freq[i]])+'yrs_'+str(magnitudes[mag[i]])+'prc'].values
         top_predictors = np.argsort(pseudo_r_scores)[::-1][:2] #Sort scores and pick top 2 predictors
-        
+
         # define color map for dots representing SOWs in which the policy
         # succeeds (light blue) and fails (dark red)
         dot_cmap = mpl.colors.ListedColormap(np.array([[227,26,28],[166,206,227]])/255.0)
-        
+
         # define color map for probability contours
         contour_cmap = mpl.cm.get_cmap('RdBu')
-        
+
         # define probability contours
         contour_levels = np.arange(0.0, 1.05,0.1)
-        
+
         # define base values of the predictors
         SOW_values = np.array([1,1,1,1,0,0,1,1,1,1,1,0,0,0]) # default parameter values for base SOW
         base = SOW_values[top_predictors]
         ranges = param_bounds[top_predictors]
-        
+
         # define grid of x (1st predictor), and y (2nd predictor) dimensions
         # to plot contour map over
         xgrid = np.arange(param_bounds[top_predictors[0]][0],
@@ -241,18 +241,18 @@ metrics for each user, but here we will demonstrate by mapping two).
                           param_bounds[top_predictors[1]][1], np.around((ranges[1][1]-ranges[1][0])/500,decimals=4))
         all_predictors = [ dta.columns.tolist()[i] for i in top_predictors]
         dta['Interaction'] = dta[all_predictors[0]]*dta[all_predictors[1]]
-        
+
         # logistic regression here
         predictor_list = [all_predictors[i] for i in [0,1]]
         result = msdbook.fit_logit(dta, predictor_list)
-        
+
         # plot contour map
         contourset = msdbook.plot_contour_map(ax, result, dta, contour_cmap,
                                               dot_cmap, contour_levels, xgrid,
                                               ygrid, all_predictors[0], all_predictors[1], base)
-        
+
         ax.set_title(usernames[i])
-        
+
     # set up colorbar
     cbar_ax = fig.add_axes([0.98, 0.15, 0.05, 0.7])
     cbar = fig.colorbar(contourset, cax=cbar_ax)
@@ -304,4 +304,3 @@ success, i.e. different factor-value combinations are assigned different
 probabilities that a shortage level will be exceeded. This allows the
 decision makers to evaluate these insights while considering their risk
 aversion.
-
