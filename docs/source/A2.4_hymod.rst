@@ -1,7 +1,7 @@
 HYMOD Dynamics Tutorial
 *************************
 
-.. note:: Run the tutorial interactively:  `HYMOD Notebook <https://hub-binder.mybinder.ovh/user/immm-sfa-msd_uncertainty_ebook-pheczmlw/notebooks/notebooks/hymod.ipynb>`_
+.. note:: Run the tutorial interactively:  `HYMOD Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fhymod.ipynb>`_
 
 Tutorial: Sensitivity Analysis of the HYMOD Model
 =================================================
@@ -117,14 +117,14 @@ We can use the following to read the input file:
 .. code:: ipython3
 
     import msdbook
-    
+
     import numpy as np
     import pandas as pd
     import seaborn as sns
-    
+
     from sklearn import metrics
     from matplotlib import pyplot as plt
-    
+
     # load example data
     msdbook.install_package_data()
 
@@ -161,10 +161,10 @@ We can use the following to read the input file:
 
     # load the HYMOD input file
     leaf_data = msdbook.load_hymod_input_file()
-    
+
     # extract the first eleven years of data
     leaf_data = leaf_data.iloc[0:4015].copy()
-     
+
 
 .. code:: ipython3
 
@@ -182,11 +182,11 @@ We can use the following to read the input file:
         .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
         }
-    
+
         .dataframe tbody tr th {
             vertical-align: top;
         }
-    
+
         .dataframe thead th {
             text-align: right;
         }
@@ -246,13 +246,13 @@ using its default parameters.
 .. code:: ipython3
 
     # assign input parameters to generate a baseline simulated streamflow
-    Nq = 3  # Number of quickflow routing tanks 
-    Kq = 0.5 # Quickflow routing tanks' rate parameter    
-    Ks =  0.001 # Slowflow routing tank's rate parameter           
-    Alp = 0.5 # Quick/slow split parameter   
-    Huz = 100 # Maximum height of soil moisture accounting tank  
-    B = 1.0 # Scaled distribution function shape parameter    
-    
+    Nq = 3  # Number of quickflow routing tanks
+    Kq = 0.5 # Quickflow routing tanks' rate parameter
+    Ks =  0.001 # Slowflow routing tank's rate parameter
+    Alp = 0.5 # Quick/slow split parameter
+    Huz = 100 # Maximum height of soil moisture accounting tank
+    B = 1.0 # Scaled distribution function shape parameter
+
     # Note that the number of years is 11 years. One year of model warm-up and ten years are used for actual simulation
     model = msdbook.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
 
@@ -330,7 +330,7 @@ We first define the model input and their ranges.
                    [0, 0.1],  # Ks
                    [0, 1],    # Alp
                    [0.1, 500],  # Huz
-                   [0, 1.9]]  # B             
+                   [0, 1.9]]  # B
     }
 
 
@@ -344,7 +344,7 @@ analysis:
 .. code:: python
 
 
-   # generate 256 samples. This is an arbitrary number. 
+   # generate 256 samples. This is an arbitrary number.
    param_values_hymod = saltelli.sample(problem_hymod, 256)
 
    # dictionary to store outputs in
@@ -352,34 +352,34 @@ analysis:
 
    # run simulation for each parameter sample
    for i in range(0, len(param_values_hymod)):
-       
+
        # run model for each sensitivity analysis parameter sets
-       hymod_output = msdbook.hymod(Nq, 
-                                    param_values_hymod[i, 0], 
-                                    param_values_hymod[i, 1], 
-                                    param_values_hymod[i, 2], 
-                                    param_values_hymod[i, 3], 
-                                    param_values_hymod[i, 4], 
-                                    leaf_data, 
+       hymod_output = msdbook.hymod(Nq,
+                                    param_values_hymod[i, 0],
+                                    param_values_hymod[i, 1],
+                                    param_values_hymod[i, 2],
+                                    param_values_hymod[i, 3],
+                                    param_values_hymod[i, 4],
+                                    leaf_data,
                                     ndays=4015)
-       
+
        # store the simulated total flow discharge
        d_outputs[f"Q{i}"] = hymod_output["Q"]
 
-       
+
    Q_df_bw = pd.DataFrame(d_outputs)
 
 .. code:: ipython3
 
-    # load previously generated parameter values 
+    # load previously generated parameter values
     param_values_hymod = msdbook.load_hymod_params()
-    
+
     # number of samples
     n_samples = len(param_values_hymod)
-    
+
     # load previously generated hymod simulated outputs
     Q_df_bw = msdbook.load_hymod_simulation()
-    
+
     # column names of each sample simulation number
     sample_column_names = [i for i in Q_df_bw.columns if i[0] == 'Q']
 
@@ -409,7 +409,7 @@ period is one year.
 
     # exclude the first year of simulation from the simulations and reset the index
     Q_df = Q_df_bw.iloc[365:4015].copy().reset_index(drop=True)
-    
+
     # exclude the first year of the input data and reset the index
     leaf_data = leaf_data.iloc[365:4015].copy().reset_index(drop=True)
 
@@ -428,17 +428,17 @@ different sample sets, and compare them with the observed streamflow.
     Q_df['year'] = date_ts.year
     Q_df['month'] = date_ts.month
     Q_df['day'] = date_ts.day
-    
+
     # aggregate the simulated observed streamflow to monthly mean
     df_sim_mth_mean = Q_df.groupby(['year', 'month'])[sample_column_names].mean()
-    
+
     # do the same for the observed data
     date_ts = pd.date_range(start='1/1/2000', periods=len(leaf_data), freq='D')
     leaf_data['date'] = date_ts
     leaf_data['year'] = date_ts.year
     leaf_data['month'] = date_ts.month
     leaf_data['day'] = date_ts.day
-    
+
     # aggregate the daily observed streamflow to monthly mean
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
@@ -451,7 +451,7 @@ different sample sets, and compare them with the observed streamflow.
 
 .. code:: ipython3
 
-    ax = msdbook.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean, 
+    ax = msdbook.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean,
                                                          df_sim=df_sim_mth_mean)
 
 
@@ -477,7 +477,7 @@ that we further explore in the following sections.
 
     # overall aggregated indices
     Y = Q_df[sample_column_names].mean().to_numpy()
-    
+
     # Perform analysis
     Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
 
@@ -528,12 +528,12 @@ LOG(RMSE) focuses on model performance during low-flow events.
     me = Q_df[sample_column_names].apply(lambda x: (x-leaf_data["Strmflw"]), axis=0)
     mse = Q_df[sample_column_names].apply(lambda x: metrics.mean_squared_error(x, leaf_data["Strmflw"]), axis=0)
     rmse = mse**(1/2)
-    
+
     # add error metrics to a dictionary
     d_metrics = {'ME': me.mean().values,
                  'RMSE': rmse.values,
                  'LOG[RMSE]': np.log10(rmse.values)}
-    
+
     # convert to a dataframe
     df_metrics_SA = pd.DataFrame(d_metrics)
 
@@ -548,13 +548,13 @@ visualize it. Results are pre-loaded for efficiency.
 
    # conduct sensitivity analysis for each metric
    for index, i in enumerate(d_metrics.keys()):
-       
+
        # get the data as a numpy array for the target metric
        Y = d_metrics[i]
-       
+
        # use the metric to conduct SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add the sensitivity indices to the output data frame
        df_metric_sa_result.iloc[index, :] = Si['S1']
 
@@ -562,7 +562,7 @@ visualize it. Results are pre-loaded for efficiency.
 
     # load previously ran simulation
     df_metric_sa_result = msdbook.load_hymod_metric_simulation()
-    
+
     # view results
     df_metric_sa_result
 
@@ -577,11 +577,11 @@ visualize it. Results are pre-loaded for efficiency.
         .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
         }
-    
+
         .dataframe tbody tr th {
             vertical-align: top;
         }
-    
+
         .dataframe thead th {
             text-align: right;
         }
@@ -632,10 +632,10 @@ visualize it. Results are pre-loaded for efficiency.
 
     # create seaborn heatmap with required labels
     plt.subplots(figsize=(10, 5))
-    
+
     # labels for y-axis
     y_axis_labels = ['Mean Error', 'RSME', 'Log(RMSE)']
-    
+
     # plot heatmap
     ax = sns.heatmap(df_metric_sa_result, yticklabels=y_axis_labels,  cmap='rocket')
 
@@ -687,7 +687,7 @@ al. (2018) <https://link.springer.com/article/10.1007/s12206-018-0223-8>`__.
 
     # aggregate simulated streamflow data to monthly time series
     df_sim_by_mth_mean = Q_df.groupby('month')[sample_column_names].mean()
-    
+
     # aggregate observed streamflow data to monthly time series
     df_obs_by_mth_mean = leaf_data.groupby('month').mean()
 
@@ -703,17 +703,17 @@ visualize it. Results are pre-loaded for efficiency.
 
    # iterate through each month
    for i in range(0, 12):
-       
+
        # generate the simulation data
        Y = df_sim_by_mth_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_mth_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_mth_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_mth_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_mth_s1 = df_mth_s1.values
    arr_mth_delta = df_mth_delta.values
@@ -735,7 +735,7 @@ parameter on model outputs.
 
     # load previously ran data
     arr_mth_delta, arr_mth_s1 = msdbook.load_hymod_monthly_simulations()
-    
+
     # plot figure
     ax, ax2 = msdbook.plot_monthly_heatmap(arr_sim=arr_mth_s1.T,
                                            df_obs=df_obs_by_mth_mean,
@@ -784,7 +784,7 @@ between the parameters (particularly in regards to :math:`Kq`,
 
     # group by year and get mean
     df_sim_by_yr_mean = Q_df.groupby(['year'])[sample_column_names].mean()
-    
+
     # group input data and get mean
     df_obs_by_yr_mean = leaf_data.groupby(['year']).mean()
 
@@ -802,17 +802,17 @@ outputs to annual time steps, and then calculates the SA indices.
 
    # iterate through each year
    for i in range(0, 10):
-       
+
        # generate the simulation data
        Y = df_sim_by_yr_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_yr_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_yr_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_yr_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_yr_s1 = df_mth_s1.values
    arr_yr_delta = df_mth_delta.values
@@ -830,9 +830,9 @@ First-order indices
 
     # load previously ran data
     arr_yr_delta, arr_yr_s1 = msdbook.load_hymod_annual_simulations()
-    
+
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_s1.T, 
+    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_s1.T,
                                           df_obs=df_obs_by_yr_mean,
                                           title='First Order - Mean Annual SA')
 
@@ -852,7 +852,7 @@ Total-order indices
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_delta.T, 
+    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_delta.T,
                                           df_obs=df_obs_by_yr_mean,
                                           title='Total Order - Mean Annual SA and Observed flow')
 
@@ -881,24 +881,24 @@ the monthly TVSA.
 .. code:: python
 
    # set up dataframes to store outputs
-   df_vary_s1 = pd.DataFrame(np.zeros((df_obs_mth_mean.shape[0], 5)), 
+   df_vary_s1 = pd.DataFrame(np.zeros((df_obs_mth_mean.shape[0], 5)),
                              columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
 
    df_vary_delta = df_vary_s1.copy()
 
    # iterate through each month
    for i in range(0, df_obs_mth_mean.shape[0]):
-       
+
        # generate the simulation data
        Y = df_sim_mth_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_vary_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_vary_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_vary_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_vary_s1 = df_vary_s1.values
    arr_vary_delta = df_vary_delta.values
@@ -916,9 +916,9 @@ First-order indices
 
     # load in previously ran data
     arr_vary_delta, arr_vary_s1 = msdbook.load_hymod_varying_simulations()
-    
+
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_s1.T, 
+    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_s1.T,
                                           df_obs=df_obs_mth_mean,
                                           title='First Order - Time-Varying SA')
 
@@ -938,7 +938,7 @@ Total order - time varying sensitivity analysis
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_delta.T, 
+    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_delta.T,
                                           df_obs=df_obs_mth_mean,
                                           title='Total Order - Time-Varying SA')
 
@@ -993,12 +993,12 @@ al. 2009 <https://link.springer.com/article/10.1007/s00477-008-0274-y>`__
 and `Beven and Bineley,
 1992 <https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi>`__):
 
-.. math::  IEV = {({\sigma_{e}}^{2})}^{-T} = ({{\frac{SSR}{n-2}}})^{-T} 
+.. math::  IEV = {({\sigma_{e}}^{2})}^{-T} = ({{\frac{SSR}{n-2}}})^{-T}
 
 The other metric that can be used as an estimation of likelihood is
 normalized inverse error variance:
 
-.. math::  NIEV = \frac{IEV}{\sum_{i=1}^{n} IEV(i)} 
+.. math::  NIEV = \frac{IEV}{\sum_{i=1}^{n} IEV(i)}
 
 where *SSR* is the sum of squared residuals; :math:`n` is the number of
 samples; and :math:`T` is an arbitrary coefficient. Low :math:`T` values
@@ -1008,25 +1008,25 @@ values concentrate on the best parameter sets.
 .. code:: ipython3
 
     # From Vrugt et al (2008) : inverse error variance
-    
-    # T=0 means that we only select the best simulated values that are closer to the observed values 
+
+    # T=0 means that we only select the best simulated values that are closer to the observed values
     #  T=infinity means that all sample sets have the same probability
-    T= 0.70 
-    
+    T= 0.70
+
     # calculate metrics from Beven and Binley, 1992
     df_metrics_SA["SSR"] = df_metrics_SA["RMSE"]**2 * 3650
-    df_metrics_SA["InverseErrorVariance"] = (df_metrics_SA["SSR"] / df_metrics_SA.shape[0])**(-T) 
+    df_metrics_SA["InverseErrorVariance"] = (df_metrics_SA["SSR"] / df_metrics_SA.shape[0])**(-T)
     df_metrics_SA["Normalized_IEV"] = df_metrics_SA["InverseErrorVariance"] / df_metrics_SA["InverseErrorVariance"].sum()
-    
+
     # convert array to dataframe
     param_values_hymod_df = pd.DataFrame(param_values_hymod, columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
-    
+
     # combine the metrics and param values dataframes and calculate combined metrics
     concat_df = pd.concat([df_metrics_SA, param_values_hymod_df], axis=1)
     concat_df["Ks_rescale"] = concat_df["Ks"] / 0.1
     concat_df["Huz_rescale"] = concat_df["Huz"] / 500
     concat_df["B_rescale"] = concat_df["B"] / 2
-    
+
     # display the first 5 rows of the dataframe
     df_metrics_SA.head()
 
@@ -1041,11 +1041,11 @@ values concentrate on the best parameter sets.
         .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
         }
-    
+
         .dataframe tbody tr th {
             vertical-align: top;
         }
-    
+
         .dataframe thead th {
             text-align: right;
         }
@@ -1121,8 +1121,8 @@ Distribution of likelihoods (inverse error variance) values
 
     # density plot and histogram of the inverse error variance
     h = sns.histplot(data=df_metrics_SA,
-                     x="InverseErrorVariance", 
-                     kde=True, 
+                     x="InverseErrorVariance",
+                     kde=True,
                      bins=int(180/5),
                      color = 'gold')
 
@@ -1139,9 +1139,9 @@ Distribution of normalized inverse error variance values
 
     # density plot and histogram of the normalized inverse error variance
     h = sns.histplot(data=df_metrics_SA,
-                     x="Normalized_IEV", 
-                     kde=True, 
-                     bins=int(180/5), 
+                     x="Normalized_IEV",
+                     kde=True,
+                     bins=int(180/5),
                      color='darkred')
 
 
@@ -1157,10 +1157,10 @@ Selection of important sample sets and setting a threshold for physical/non-phys
 
     # selection of important sample sets
     percentile = 95
-    
+
     threshold = np.percentile(concat_df["InverseErrorVariance"], percentile)
     print(f"Threshold using the {percentile} percentile:  {threshold}")
-    
+
     # select values greater than the threshold
     selected_values_glue = concat_df[concat_df["InverseErrorVariance"] > threshold]
 
@@ -1178,15 +1178,15 @@ Selection of important sample sets and setting a threshold for physical/non-phys
 
     # format the data frame so that it may be used for plotting
     to_plot = pd.melt(selected_values_glue,
-                      id_vars=['ME'], 
-                      value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale']) 
+                      id_vars=['ME'],
+                      value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale'])
 
 
 .. code:: ipython3
 
     # build a plot with multiple panels of scatter plots where ME is the target metric
     g = sns.FacetGrid(to_plot, col="variable")
-    
+
     # map the scatter plots to the facet grid panels
     gf = g.map(sns.scatterplot, "value", "ME",  alpha=0.7)
 
@@ -1200,10 +1200,10 @@ Selection of important sample sets and setting a threshold for physical/non-phys
 
     # build a plot with multiple panels of histogram plots where ME is the target metric
     g = sns.FacetGrid(to_plot, col="variable")
-    
+
     # map the plots to the facet grid panels
     gf = g.map(sns.histplot, "value", kde=True)
-    
+
 
 
 
@@ -1263,27 +1263,27 @@ Distribution of mean error, RMSE, and Log[RMSE] under different sample sets
 
     # set up figure and axis objects
     fig, axs = plt.subplots(nrows=3, figsize=(14,16))
-    
+
     # axis 1 (first row in figure)
     a = sns.histplot(data=concat_df,
                      x="RMSE",
                      ax=axs[0],
                      kde=True,
-                     bins=int(180/5), 
+                     bins=int(180/5),
                      color='peachpuff').set_title('Distribution of RMSE in Different Sample Sets')
-    
+
     # axis 2 (second row in figure)
     b = sns.histplot(data=concat_df,
                      x="ME",
                      ax=axs[1],
                      kde=True,
-                     bins=int(180/5), 
-                     color='lightgreen').set_title('Distribution of ME in Different Sample Sets') 
-    
+                     bins=int(180/5),
+                     color='lightgreen').set_title('Distribution of ME in Different Sample Sets')
+
     # axis 3 (third row in figure)
     c = sns.histplot(data=concat_df,
                      x="LOG[RMSE]",
-                     ax=axs[2], 
+                     ax=axs[2],
                      kde=True,
                      bins=int(180/5),
                      color = 'lightseagreen').set_title('Distribution of LOG[RMSE] in Different Sample Sets')
@@ -1301,10 +1301,10 @@ Setting a threshold for physical/non-physical sample sets
 
     # selection of physical/non-physical sample sets
     percentile = 95
-    
+
     threshold_precal = np.percentile(concat_df["RMSE"], percentile)
     print(f"Threshold using the {percentile} percentile:  {threshold}")
-    
+
     # select values greater than the threshold
     selected_values_precal = concat_df[concat_df["RMSE"] > threshold_precal]
 
@@ -1321,16 +1321,16 @@ Visual inspection of non-physical sample sets
 .. code:: ipython3
 
     # format the data frame so that it may be used for plotting
-    to_plot_precal = pd.melt(selected_values_precal, 
-                             id_vars=['ME'], 
-                             value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale']) 
+    to_plot_precal = pd.melt(selected_values_precal,
+                             id_vars=['ME'],
+                             value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale'])
 
 
 .. code:: ipython3
 
     # build a plot with multiple panels of scatter plots where ME is the target metric
     g = sns.FacetGrid(to_plot_precal, col="variable")
-    
+
     # map the scatter plots to the facet grid panels
     gh = g.map(sns.scatterplot, "value", "ME",  alpha=0.7, color='plum')
 
@@ -1344,7 +1344,7 @@ Visual inspection of non-physical sample sets
 
     # build a plot with multiple panels of histogram plots where ME is the target metric
     g = sns.FacetGrid(to_plot_precal, col="variable")
-    
+
     # map the plots to the facet grid panels
     gh = g.map(sns.histplot, "value", kde=True, color='plum')
 
@@ -1365,14 +1365,14 @@ of parameters sets from Pre-Calibration versus the observed flow data.
 
 .. code:: ipython3
 
-    # mean monthly indices 
-    Q_df_precal = pd.concat([Q_df.iloc[:, selected_values_precal.index], 
-                             Q_df[['month' , 'year']]], 
-                            axis=1) 
-    
+    # mean monthly indices
+    Q_df_precal = pd.concat([Q_df.iloc[:, selected_values_precal.index],
+                             Q_df[['month' , 'year']]],
+                            axis=1)
+
     # calculate year, month mean
     df_precal_mth_mean = Q_df_precal.groupby(['year', 'month']).mean()
-    
+
     # plot observed versus pre-calibration outputs
     ax = msdbook.plot_precalibration_flow(df_sim=df_precal_mth_mean,
                                           df_obs=df_obs_mth_mean)
@@ -1395,14 +1395,14 @@ flows compare to the observed flow data.
 
 .. code:: ipython3
 
-    Q_df_glue = pd.concat([Q_df.iloc[:, selected_values_glue.index], 
-                           Q_df.loc[:,['month' , 'year']]], 
-                          axis=1) 
-    
+    Q_df_glue = pd.concat([Q_df.iloc[:, selected_values_glue.index],
+                           Q_df.loc[:,['month' , 'year']]],
+                          axis=1)
+
     # calculate year, month mean
     df_glue_mth_mean = Q_df_glue.groupby(['year', 'month']).mean()
-    
-    
+
+
     # plot observed versus pre-calibration and GLUE outputs
     ax = msdbook.plot_precalibration_glue(df_precal=df_precal_mth_mean,
                                           df_glue=df_glue_mth_mean,
@@ -1428,6 +1428,3 @@ More information about pre-calibration can be found in `(Edwards et al.,
 2010) <https://link.springer.com/article/10.1007/s00382-010-0921-0>`__,
 and `Ruckert et al.,
 (2017) <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0170052>`__.
-
-
-
