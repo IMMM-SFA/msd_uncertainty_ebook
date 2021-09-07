@@ -1,2 +1,0 @@
-Variance-based Methods
-**********************

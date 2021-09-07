@@ -1,16 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.5.27)  28 MAY 2021 11:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.9)  7 SEP 2021 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **addressinguncertaintyinmultisectordynamicsresearch.tex
 (./addressinguncertaintyinmultisectordynamicsresearch.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> (./sphinxmanual.cls
-Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2020/04/10 v1.4m Standard LaTeX document class
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+L3 programming layer <2021-02-18>
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count179
 \c@chapter=\count180
@@ -24,8 +23,6 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-)
-LaTeX Info: Redefining \and on input line 35.
 )
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
@@ -626,53 +623,57 @@ Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 (./sphinxmessages.sty
 Package: sphinxmessages 2019/01/04 v2.0 Localized LaTeX macros (Sphinx team)
 )
+\nbsphinxpromptbox=\box114
+\nbsphinxcodecellspacing=\skip83
+\nbsphinxbox=\box115
+\nbsphinx@image@maxheight=\dimen257
 \@indexfile=\write4
 \openout4 = `addressinguncertaintyinmultisectordynamicsresearch.idx'.
 
 
 Writing index file addressinguncertaintyinmultisectordynamicsresearch.idx
-LaTeX Font Info:    Trying to load font information for T1+qtm on input line 69
-.
+LaTeX Font Info:    Trying to load font information for T1+qtm on input line 21
+0.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qtm.fd
 File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
 )
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
-\l__pdf_internal_box=\box114
+\l__pdf_internal_box=\box116
 )
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
 \openout1 = `addressinguncertaintyinmultisectordynamicsresearch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 210.
+LaTeX Font Info:    ... okay on input line 210.
 
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count308
-\scratchdimen=\dimen257
-\scratchbox=\box115
+\scratchdimen=\dimen258
+\scratchbox=\box117
 \nofMPsegments=\count309
 \nofMParguments=\count310
 \everyMPshowfont=\toks31
 \MPscratchCnt=\count311
-\MPscratchDim=\dimen258
+\MPscratchDim=\dimen259
 \MPnumerator=\count312
 \makeMPintoPDFobject=\count313
 \everyMPtoPDFconversion=\toks32
@@ -703,13 +704,13 @@ e
 * \textheight=650.43001pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \topmargin=-30.06749pt
 * \headheight=12.0pt
-* \headsep=25.0pt
+* \headsep=18.06749pt
 * \topskip=10.0pt
-* \footskip=30.0pt
+* \footskip=25.29494pt
 * \marginparwidth=36.135pt
-* \marginparsep=11.0pt
+* \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -721,7 +722,7 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 69.
+Package hyperref Info: Link coloring ON on input line 210.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -734,176 +735,918 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count315
 )
-LaTeX Info: Redefining \ref on input line 69.
-LaTeX Info: Redefining \pageref on input line 69.
-LaTeX Info: Redefining \nameref on input line 69.
+LaTeX Info: Redefining \ref on input line 210.
+LaTeX Info: Redefining \pageref on input line 210.
+LaTeX Info: Redefining \nameref on input line 210.
  (./addressinguncertaintyinmultisectordynamicsresearch.out)
 (./addressinguncertaintyinmultisectordynamicsresearch.out)
 \@outlinefile=\write5
 \openout5 = `addressinguncertaintyinmultisectordynamicsresearch.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 72.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\spacefactor' on input line 72.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@m' on input line 72.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\spacefactor' on input line 72.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@m' on input line 72.
-
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 72
+<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
+LaTeX Font Info:    Trying to load font information for U+msa on input line 214
 .
-(/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
-File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
-)<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
-
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 214
+.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 21
+5.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
+) [2
 
 ]
-(./addressinguncertaintyinmultisectordynamicsresearch.toc [1
-
-])
+(./addressinguncertaintyinmultisectordynamicsresearch.toc [3] [4])
 \tf@toc=\write6
 \openout6 = `addressinguncertaintyinmultisectordynamicsresearch.toc'.
 
- [2]
-Chapter 1.
-[1
-
+ [5] [6
 
 ]
-<figure1_state_of_the_science.png, id=326, 385.44pt x 245.41687pt>
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
-07.
+Chapter 1.
+[7]
+<figure1_1_state_of_the_science.png, id=663, 1625.5932pt x 1034.6655pt>
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 2
+48.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/txfonts/t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 )
-File: figure1_state_of_the_science.png Graphic file (type png)
-<use figure1_state_of_the_science.png>
-Package pdftex.def Info: figure1_state_of_the_science.png  used on input line 1
-07.
-(pdftex.def)             Requested size: 469.75385pt x 299.11229pt.
- [2]
-[3 <./figure1_state_of_the_science.png>] [4
+File: figure1_1_state_of_the_science.png Graphic file (type png)
+<use figure1_1_state_of_the_science.png>
+Package pdftex.def Info: figure1_1_state_of_the_science.png  used on input line
+ 248.
+(pdftex.def)             Requested size: 469.74806pt x 298.98753pt.
+ [8]
+[9 <./figure1_1_state_of_the_science.png>] [10
 
 ]
 Chapter 2.
-<figure2_idealized_uc.png, id=344, 1204.5pt x 737.00343pt>
-File: figure2_idealized_uc.png Graphic file (type png)
-<use figure2_idealized_uc.png>
-Package pdftex.def Info: figure2_idealized_uc.png  used on input line 129.
+<figure2_1_idealized_uc.png, id=707, 1204.5pt x 737.00343pt>
+File: figure2_1_idealized_uc.png Graphic file (type png)
+<use figure2_1_idealized_uc.png>
+Package pdftex.def Info: figure2_1_idealized_uc.png  used on input line 270.
 (pdftex.def)             Requested size: 469.75311pt x 287.44142pt.
-[5] [6 <./figure2_idealized_uc.png>] [7] [8]
-Chapter 3.
-<figure3_global_versus_local.png, id=363, 1204.5pt x 350.05782pt>
-File: figure3_global_versus_local.png Graphic file (type png)
-<use figure3_global_versus_local.png>
-Package pdftex.def Info: figure3_global_versus_local.png  used on input line 17
-3.
-(pdftex.def)             Requested size: 469.75311pt x 136.52733pt.
-[9
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.271 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
 
-] [10 <./figure3_global_versus_local.png>]
-<figure4_factor_mapping.png, id=375, 1204.5pt x 1005.00468pt>
-File: figure4_factor_mapping.png Graphic file (type png)
-<use figure4_factor_mapping.png>
-Package pdftex.def Info: figure4_factor_mapping.png  used on input line 213.
-(pdftex.def)             Requested size: 376.40381pt x 314.06319pt.
- [11] [12 <./figure4_factor_mapping.png>] [13]
-<figure5_alternative_designs.png, id=390, 385.44pt x 246.1697pt>
-File: figure5_alternative_designs.png Graphic file (type png)
-<use figure5_alternative_designs.png>
-Package pdftex.def Info: figure5_alternative_designs.png  used on input line 32
-2.
-(pdftex.def)             Requested size: 376.40381pt x 240.39949pt.
- [14] [15 <./figure5_alternative_designs.png>] [16]
-LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 3
-94.
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.271 ...l.} {[}\hyperlink{cite.index:id6}{5}{]}.}
+                                                  \label{\detokenize{2_diagn...
+
+? 
+[11] [12 <./figure2_1_idealized_uc.png>] [13]
+LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 301.
+ [14]
+Chapter 3.
+<figure3_1_global_versus_local.png, id=804, 824.8416pt x 416.9979pt>
+File: figure3_1_global_versus_local.png Graphic file (type png)
+<use figure3_1_global_versus_local.png>
+Package pdftex.def Info: figure3_1_global_versus_local.png  used on input line 
+322.
+(pdftex.def)             Requested size: 469.76184pt x 237.49402pt.
+
+Package amsmath Warning: Foreign command \above;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 323.
+
+[15
+
+] [16 <./figure3_1_global_versus_local.png>]
+<figure3_2_factor_mapping.png, id=854, 1166.4378pt x 973.236pt>
+File: figure3_2_factor_mapping.png Graphic file (type png)
+<use figure3_2_factor_mapping.png>
+Package pdftex.def Info: figure3_2_factor_mapping.png  used on input line 359.
+(pdftex.def)             Requested size: 376.40381pt x 314.05554pt.
+ [17] [18 <./figure3_2_factor_mapping.png>] [19]
+<figure3_3_alternative_designs.png, id=913, 1169.5695pt x 746.79pt>
+File: figure3_3_alternative_designs.png Graphic file (type png)
+<use figure3_3_alternative_designs.png>
+Package pdftex.def Info: figure3_3_alternative_designs.png  used on input line 
+473.
+(pdftex.def)             Requested size: 376.40381pt x 240.3337pt.
+ [20] [21 <./figure3_3_alternative_designs.png>] [22]
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 540.
+
+[23]
+<figure3_4_morris_method.png, id=1021, 799.3062pt x 561.297pt>
+File: figure3_4_morris_method.png Graphic file (type png)
+<use figure3_4_morris_method.png>
+Package pdftex.def Info: figure3_4_morris_method.png  used on input line 551.
+(pdftex.def)             Requested size: 469.75711pt x 329.89478pt.
+ [24 <./figure3_4_morris_method.png>] [25] [26]
+<figure3_5classificationofmethods.png, id=1124, 1343.2584pt x 914.4564pt>
+File: figure3_5classificationofmethods.png Graphic file (type png)
+<use figure3_5classificationofmethods.png>
+Package pdftex.def Info: figure3_5classificationofmethods.png  used on input li
+ne 665.
+(pdftex.def)             Requested size: 469.73756pt x 319.79942pt.
+ [27] [28 <./figure3_5classificationofmethods.png>]
+<figure3_6_softwaretoolkits.png, id=1152, 534.798pt x 641.232pt>
+File: figure3_6_softwaretoolkits.png Graphic file (type png)
+<use figure3_6_softwaretoolkits.png>
+Package pdftex.def Info: figure3_6_softwaretoolkits.png  used on input line 684
+.
+(pdftex.def)             Requested size: 469.76686pt x 563.31726pt.
+ [29] [30 <./figure3_6_softwaretoolkits.png>]
+Chapter 4.
+[31
+
+]
+<figure4_1_diagnostic_workflow.png, id=1196, 819.5418pt x 483.0045pt>
+File: figure4_1_diagnostic_workflow.png Graphic file (type png)
+<use figure4_1_diagnostic_workflow.png>
+Package pdftex.def Info: figure4_1_diagnostic_workflow.png  used on input line 
+712.
+(pdftex.def)             Requested size: 376.40381pt x 221.83836pt.
+ [32 <./figure4_1_diagnostic_workflow.png>]
+<figure4_2_behavior_modes.png, id=1208, 1350.7263pt x 670.9065pt>
+File: figure4_2_behavior_modes.png Graphic file (type png)
+<use figure4_2_behavior_modes.png>
+Package pdftex.def Info: figure4_2_behavior_modes.png  used on input line 730.
+(pdftex.def)             Requested size: 469.75218pt x 233.32616pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.731 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.731 ... {[}\hyperlink{cite.index:id57}{130}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+[33 <./figure4_2_behavior_modes.png>]
+<figure4_3_lake_problem_fluxes.png, id=1228, 1039.0017pt x 821.469pt>
+File: figure4_3_lake_problem_fluxes.png Graphic file (type png)
+<use figure4_3_lake_problem_fluxes.png>
+Package pdftex.def Info: figure4_3_lake_problem_fluxes.png  used on input line 
+754.
+(pdftex.def)             Requested size: 469.76599pt x 371.42502pt.
+
+! Argument of \Hy@tempa has an extra }.
+<inserted text> 
+                \par 
+l.755 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+Runaway argument?
+\@captype {\hyper@link@ }\def \reserved@b {\hyper@link@ [link]}\futurelet \ETC.
+! Paragraph ended before \Hy@tempa was complete.
+<to be read again> 
+                   \par 
+l.755 ...{[}\hyperlink{cite.index:id165}{137}{]}.}
+                                                  \label{\detokenize{4_sensi...
+
+? 
+[34] [35 <./figure4_3_lake_problem_fluxes.png>]
+<figure4_4_exploratory_workflow.png, id=1271, 697.8873pt x 549.9747pt>
+File: figure4_4_exploratory_workflow.png Graphic file (type png)
+<use figure4_4_exploratory_workflow.png>
+Package pdftex.def Info: figure4_4_exploratory_workflow.png  used on input line
+ 779.
+(pdftex.def)             Requested size: 469.75444pt x 370.19308pt.
+ [36] [37 <./figure4_4_exploratory_workflow.png>] [38]
+LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 8
+04.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
-) [17] [18]
-Chapter 4.
-[19
-
-] [20
-
-]
+)
+<figure14lake_problem_SD.png, id=1348, 1354.0989pt x 640.0713pt>
+File: figure14lake_problem_SD.png Graphic file (type png)
+<use figure14lake_problem_SD.png>
+Package pdftex.def Info: figure14lake_problem_SD.png  used on input line 813.
+(pdftex.def)             Requested size: 469.74736pt x 222.04567pt.
+ [39 <./figure14lake_problem_SD.png>] [40]
 Chapter 5.
-[21] [22
+[41
+
+] [42
 
 ]
 Chapter 6.
-[23] [24] [25] [26
+[43] [44
 
 ]
 Chapter 7.
-[27] [28
+<figureA1_1_UQ_approaches.png, id=1405, 1504.8722pt x 1023.825pt>
+File: figureA1_1_UQ_approaches.png Graphic file (type png)
+<use figureA1_1_UQ_approaches.png>
+Package pdftex.def Info: figureA1_1_UQ_approaches.png  used on input line 855.
+(pdftex.def)             Requested size: 469.74327pt x 319.5852pt.
+[45] [46 <./figureA1_1_UQ_approaches.png>]
+<figureA1_2_bootstrap_workflow.png, id=1424, 711.8595pt x 565.3923pt>
+File: figureA1_2_bootstrap_workflow.png Graphic file (type png)
+<use figureA1_2_bootstrap_workflow.png>
+Package pdftex.def Info: figureA1_2_bootstrap_workflow.png  used on input line 
+877.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+<figureA1_3_precal_workflow.png, id=1433, 711.8595pt x 565.3923pt>
+File: figureA1_3_precal_workflow.png Graphic file (type png)
+<use figureA1_3_precal_workflow.png>
+Package pdftex.def Info: figureA1_3_precal_workflow.png  used on input line 893
+.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [47] [48 <./figureA1_2_bootstrap_workflow.png>] [49 <./figureA1_3_precal_workf
+low.png>]
+<figureA1_4_mcmc_workflow.png, id=1480, 711.8595pt x 565.3923pt>
+File: figureA1_4_mcmc_workflow.png Graphic file (type png)
+<use figureA1_4_mcmc_workflow.png>
+Package pdftex.def Info: figureA1_4_mcmc_workflow.png  used on input line 927.
+(pdftex.def)             Requested size: 469.76355pt x 373.12556pt.
+ [50] [51 <./figureA1_4_mcmc_workflow.png>]
+<figureA1_5_priors_posteriors.png, id=1541, 1355.0625pt x 1355.0625pt>
+File: figureA1_5_priors_posteriors.png Graphic file (type png)
+<use figureA1_5_priors_posteriors.png>
+Package pdftex.def Info: figureA1_5_priors_posteriors.png  used on input line 9
+64.
+(pdftex.def)             Requested size: 469.75082pt x 469.7715pt.
+ [52] [53 <./figureA1_5_priors_posteriors.png>] [54] [55]
+[56
 
 ]
 Chapter 8.
-[29] [30] [31] [32] [33] [34] [35] [36]
+<eqn2.png, id=1591, 188.1429pt x 68.4156pt>
+File: eqn2.png Graphic file (type png)
+<use eqn2.png>
+Package pdftex.def Info: eqn2.png  used on input line 1035.
+(pdftex.def)             Requested size: 469.79625pt x 170.84854pt.
+<Figure_1.png, id=1592, 1229.5536pt x 638.385pt>
+File: Figure_1.png Graphic file (type png)
+<use Figure_1.png>
+Package pdftex.def Info: Figure_1.png  used on input line 1043.
+(pdftex.def)             Requested size: 469.74927pt x 243.88435pt.
+[57 <./eqn2.png>]
+LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
+1110.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/txfonts/ts1txtt.fd
+File: ts1txtt.fd 2000/12/15 v3.1
+) [58 <./Figure_1.png>] [59]
+<fishery_output_6_0.png, id=1610, 1300.86pt x 650.43pt>
+File: fishery_output_6_0.png Graphic file (type png)
+<use fishery_output_6_0.png>
+Package pdftex.def Info: fishery_output_6_0.png  used on input line 1171.
+(pdftex.def)             Requested size: 469.75827pt x 234.87912pt.
+ [60 <./fishery_output_6_0.png>]
+LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <10> not available
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1235.
+
+ [61] [62]
+<eqn4.png, id=1626, 97.8054pt x 23.1264pt>
+File: eqn4.png Graphic file (type png)
+<use eqn4.png>
+Package pdftex.def Info: eqn4.png  used on input line 1339.
+(pdftex.def)             Requested size: 305.7142pt x 72.2737pt.
+<fishery_output_22_0.png, id=1628, 578.16pt x 289.08pt>
+File: fishery_output_22_0.png Graphic file (type png)
+<use fishery_output_22_0.png>
+Package pdftex.def Info: fishery_output_22_0.png  used on input line 1396.
+(pdftex.def)             Requested size: 469.75385pt x 234.8769pt.
+ [63 <./eqn4.png>]
+[64 <./fishery_output_22_0.png>]
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 and has three inputs, 𝑥
+                                 1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 and has three inputs, 𝑥1, 𝑥
+                                        2, 𝑥3 where 𝑥𝑖 ∈ {[}−�...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 and has three inputs, 𝑥1, 𝑥2, 𝑥
+                                               3 where 𝑥𝑖 ∈ {[}−�...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ...e inputs, 𝑥1, 𝑥2, 𝑥3 where 𝑥
+                                                  𝑖 ∈ {[}−𝜋, 𝜋{]}.
+
+? 
+
+! Package inputenc Error: Unicode character 𝑖 (U+1D456)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ...puts, 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖
+                                                   ∈ {[}−𝜋, 𝜋{]}.
+? 
+
+! Package inputenc Error: Unicode character ∈ (U+2208)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ..., 𝑥1, 𝑥2, 𝑥3 where 𝑥𝑖 ∈
+                                                   {[}−𝜋, 𝜋{]}.
+? 
+
+! Package inputenc Error: Unicode character − (U+2212)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ..., 𝑥2, 𝑥3 where 𝑥𝑖 ∈ {[}−
+                                                  𝜋, 𝜋{]}.
+? 
+
+! Package inputenc Error: Unicode character 𝜋 (U+1D70B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ...��2, 𝑥3 where 𝑥𝑖 ∈ {[}−𝜋
+                                                  , 𝜋{]}.
+? 
+
+! Package inputenc Error: Unicode character 𝜋 (U+1D70B)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1468 ...���3 where 𝑥𝑖 ∈ {[}−𝜋, 𝜋
+                                                  {]}.
+? 
+
+! Package inputenc Error: Unicode character 𝑁 (U+1D441)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1486 by 3. The sampler generates 𝑁
+                                       ∗(2𝐷+2) samples, where in this e...
+
+? 
+
+! Package inputenc Error: Unicode character ∗ (U+2217)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1486 by 3. The sampler generates 𝑁∗
+                                          (2𝐷+2) samples, where in this e...
+
+? 
+
+! Package inputenc Error: Unicode character 𝐷 (U+1D437)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1486 by 3. The sampler generates 𝑁∗(2𝐷
+                                                +2) samples, where in this e...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑁 (U+1D441)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1490 with 𝑁
+                ∗(𝐷+2) rows instead.
+? 
+
+! Package inputenc Error: Unicode character ∗ (U+2217)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1490 with 𝑁∗
+                   (𝐷+2) rows instead.
+? 
+
+! Package inputenc Error: Unicode character 𝐷 (U+1D437)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1490 with 𝑁∗(𝐷
+                        +2) rows instead.
+? 
+[65]
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1537 ...f our three parameters, we see that 𝑥
+                                                  1 and 𝑥2
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1537 ...e parameters, we see that 𝑥1 and 𝑥
+                                                  2
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1539 ...e parameters independently, whereas 𝑥
+                                                  3
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1560 ...order interactions. Now we see that 𝑥
+                                                  3 has non\sphinxhyphen{}ne...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1598 ...ere are strong interactions between 𝑥
+                                                  1 and 𝑥3. Note in
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1598 ...rong interactions between 𝑥1 and 𝑥
+                                                  3. Note in
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1601 ...e, we would erroneously assume that 𝑥
+                                                  3 has no
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1610 𝑥
+           2\sphinxhyphen{}𝑥3 index. Typically, these computing errors sh...
+
+? 
+
+! Package inputenc Error: Unicode character 𝑥 (U+1D465)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1610 𝑥2\sphinxhyphen{}𝑥
+                               3 index. Typically, these computing errors sh...
+
+? 
+[66]
+<basin_map.png, id=1652, 871.33075pt x 547.47934pt>
+File: basin_map.png Graphic file (type png)
+<use basin_map.png>
+Package pdftex.def Info: basin_map.png  used on input line 1666.
+(pdftex.def)             Requested size: 469.75375pt x 295.17497pt.
+ [67] [68 <./basin_map.png>] [69] [70] [71]
+<notebook_logistic_output_11_1.png, id=1676, 494.84875pt x 1292.83pt>
+File: notebook_logistic_output_11_1.png Graphic file (type png)
+<use notebook_logistic_output_11_1.png>
+Package pdftex.def Info: notebook_logistic_output_11_1.png  used on input line 
+1918.
+(pdftex.def)             Requested size: 248.95657pt x 650.418pt.
+ [72] [73 <./notebook_logistic_output_11_1.png>]
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:sensitivity' on page 74 un
+defined on input line 1973.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:TVSA' on page 74 undefined
+ on input line 1980.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:GLUE' on page 74 undefined
+ on input line 1986.
+
+
+LaTeX Warning: Hyper reference `A2_Jupyter_Notebooks:precalibration' on page 74
+ undefined on input line 1987.
+
+[74]
+<hymod.png, id=1698, 639.89063pt x 203.25937pt>
+File: hymod.png Graphic file (type png)
+<use hymod.png>
+Package pdftex.def Info: hymod.png  used on input line 2052.
+(pdftex.def)             Requested size: 469.7623pt x 149.22481pt.
+ [75 <./hymod.png>]
+Overfull \vbox (15.1787pt too high) detected at line 2130
+ []
+
+[76] [77]
+<output_16_0.png, id=1716, 720.6925pt x 385.44pt>
+File: output_16_0.png Graphic file (type png)
+<use output_16_0.png>
+Package pdftex.def Info: output_16_0.png  used on input line 2213.
+(pdftex.def)             Requested size: 469.7532pt x 251.23291pt.
+ [78 <./output_16_0.png>] [79] [80]
+<output_28_0.png, id=1732, 604.2575pt x 276.03125pt>
+File: output_28_0.png Graphic file (type png)
+<use output_28_0.png>
+Package pdftex.def Info: output_28_0.png  used on input line 2367.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+ [81 <./output_28_0.png>] [82]
+<output_40_0.png, id=1742, 537.00626pt x 304.13625pt>
+File: output_40_0.png Graphic file (type png)
+<use output_40_0.png>
+Package pdftex.def Info: output_40_0.png  used on input line 2485.
+(pdftex.def)             Requested size: 402.75371pt x 228.10626pt.
+
+[83 <./output_40_0.png>]
+<output_49_0.png, id=1754, 729.72626pt x 371.3875pt>
+File: output_49_0.png Graphic file (type png)
+<use output_49_0.png>
+Package pdftex.def Info: output_49_0.png  used on input line 2589.
+(pdftex.def)             Requested size: 469.75122pt x 239.07558pt.
+ [84]
+<output_52_0.png, id=1760, 735.74875pt x 371.3875pt>
+File: output_52_0.png Graphic file (type png)
+<use output_52_0.png>
+Package pdftex.def Info: output_52_0.png  used on input line 2612.
+(pdftex.def)             Requested size: 469.76616pt x 237.11482pt.
+ [85 <./output_49_0.png>] [86 <./output_52_0.png>]
+<output_59_0.png, id=1773, 726.715pt x 316.18124pt>
+File: output_59_0.png Graphic file (type png)
+<use output_59_0.png>
+Package pdftex.def Info: output_59_0.png  used on input line 2678.
+(pdftex.def)             Requested size: 469.76437pt x 204.38643pt.
+<output_62_0.png, id=1774, 733.74126pt x 316.18124pt>
+File: output_62_0.png Graphic file (type png)
+<use output_62_0.png>
+Package pdftex.def Info: output_62_0.png  used on input line 2695.
+(pdftex.def)             Requested size: 469.76074pt x 202.41801pt.
+[87 <./output_59_0.png>] [88 <./output_62_0.png>]
+<output_68_0.png, id=1786, 726.715pt x 339.2675pt>
+File: output_68_0.png Graphic file (type png)
+<use output_68_0.png>
+Package pdftex.def Info: output_68_0.png  used on input line 2758.
+(pdftex.def)             Requested size: 469.76437pt x 219.29436pt.
+<output_71_0.png, id=1787, 733.74126pt x 339.2675pt>
+File: output_71_0.png Graphic file (type png)
+<use output_71_0.png>
+Package pdftex.def Info: output_71_0.png  used on input line 2775.
+(pdftex.def)             Requested size: 469.76074pt x 217.1874pt.
+ [89 <./output_68_0.png>]
+[90 <./output_71_0.png>]
+<output_80_0.png, id=1808, 386.44376pt x 260.975pt>
+File: output_80_0.png Graphic file (type png)
+<use output_80_0.png>
+Package pdftex.def Info: output_80_0.png  used on input line 2900.
+(pdftex.def)             Requested size: 289.8321pt x 195.73077pt.
+ [91]
+<output_82_0.png, id=1814, 386.44376pt x 261.97874pt>
+File: output_82_0.png Graphic file (type png)
+<use output_82_0.png>
+Package pdftex.def Info: output_82_0.png  used on input line 2914.
+(pdftex.def)             Requested size: 289.8321pt x 196.48756pt.
+ [92 <./output_80_0.png> <./output_82_0.png>]
+<output_87_0.png, id=1821, 1073.00874pt x 208.78pt>
+File: output_87_0.png Graphic file (type png)
+<use output_87_0.png>
+Package pdftex.def Info: output_87_0.png  used on input line 2952.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+<output_88_0.png, id=1822, 1073.00874pt x 208.78pt>
+File: output_88_0.png Graphic file (type png)
+<use output_88_0.png>
+Package pdftex.def Info: output_88_0.png  used on input line 2962.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+
+[93 <./output_87_0.png> <./output_88_0.png>] [94]
+<output_94_0.png, id=1837, 835.12pt x 930.47626pt>
+File: output_94_0.png Graphic file (type png)
+<use output_94_0.png>
+Package pdftex.def Info: output_94_0.png  used on input line 3046.
+(pdftex.def)             Requested size: 469.76659pt x 523.3916pt.
+ [95 <./output_94_0.png>]
+<output_99_0.png, id=1843, 1073.00874pt x 208.78pt>
+File: output_99_0.png Graphic file (type png)
+<use output_99_0.png>
+Package pdftex.def Info: output_99_0.png  used on input line 3084.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+<output_100_0.png, id=1844, 1073.00874pt x 208.78pt>
+File: output_100_0.png Graphic file (type png)
+<use output_100_0.png>
+Package pdftex.def Info: output_100_0.png  used on input line 3094.
+(pdftex.def)             Requested size: 469.75125pt x 91.40791pt.
+
+[96 <./output_99_0.png> <./output_100_0.png>]
+<output_103_0.png, id=1852, 604.2575pt x 276.03125pt>
+File: output_103_0.png Graphic file (type png)
+<use output_103_0.png>
+Package pdftex.def Info: output_103_0.png  used on input line 3119.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+<output_106_0.png, id=1854, 604.2575pt x 276.03125pt>
+File: output_106_0.png Graphic file (type png)
+<use output_106_0.png>
+Package pdftex.def Info: output_106_0.png  used on input line 3146.
+(pdftex.def)             Requested size: 453.19202pt x 207.03134pt.
+ [97 <./output_103_0.png>]
+[98 <./output_106_0.png>]
 Chapter 9.
-[37
+[99
 
-] [38
+] [100] [101] [102] [103] [104] [105] [106]
+Underfull \vbox (badness 10000) detected at line 3616
+ []
 
-]
-Chapter 10.
-(./addressinguncertaintyinmultisectordynamicsresearch.ind) [39]
+
+Underfull \vbox (badness 10000) detected at line 3616
+ []
+
+[107] [108] [109] [110
+
+] [111]
+Underfull \hbox (badness 10000) in paragraph at lines 3795--3797
+[]\T1/qtm/m/n/10 Praveen Ku-mar. Ty-pol-ogy of hy-dro-logic pre-dictabil-ity. \
+T1/qtm/m/it/10 Wa-ter Re-sources Re-search\T1/qtm/m/n/10 , 2011. URL:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3795--3797
+[][]$\T1/qtm/m/n/10 https : / / agupubs . onlinelibrary . wiley . com / doi / a
+bs / 10 . 1029 / 2010WR009769$[][] (vis-ited on 2020-04-15),
+ []
+
+[112]
+Underfull \hbox (badness 10000) in paragraph at lines 3819--3821
+\T1/qtm/m/n/10 1993. URL: [][]$https : / / pubsonline . informs . org / doi / a
+bs / 10 . 1287 / opre . 41 . 3 . 435$[][] (vis-ited on 2018-09-11),
+ []
+
+[113] [114] [115] [116] [117]
+Underfull \hbox (badness 5832) in paragraph at lines 4116--4118
+[]\T1/qtm/m/n/10 S. R. Car-pen-ter, D. Lud-wig, and W. A. Brock. Man-age-ment o
+f Eu-troph-i-ca-tion for Lakes Sub-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4116--4118
+[][]$\T1/qtm/m/n/10 http : / / onlinelibrary . wiley . com / doi / 10 . 1890 / 
+1051-[]0761(1999 ) 009{[}0751 : MOEFLS{]}2 . 0 . CO ; 2 / abstract$[][],
+ []
+
+[118]
+Underfull \hbox (badness 5548) in paragraph at lines 4188--4190
+[]\T1/qtm/m/n/10 Ryan L. Sriver, Robert J. Lem-pert, Per Wikman-Svahn, and Klau
+s Keller. Char-ac-ter-iz-ing un-cer-
+ []
+
+[119]
+Underfull \hbox (badness 10000) in paragraph at lines 4221--4223
+\T1/qtm/m/n/10 Math-e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteucli
+d . org / journals / statistical-[]science / volume-[]23 / issue-[]2 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4221--4223
+\T1/qtm/m/n/10 Markov-[]Chain-[]Monte-[]Carlo-[]-[]Can-[]We-[]Trust-[]the-[]Thi
+rd / 10 . 1214 / 08-[]STS257 . full$[][] (vis-ited on 2021-06-14),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4236--4238
+[]\T1/qtm/m/n/10 John Ea-son and Se-len Cre-maschi. Adap-tive se-quen-tial sam-
+pling for sur-ro-gate model gen-er-a-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4236--4238
+\T1/qtm/m/n/10 URL: [][]$https : / / www . sciencedirect . com / science / arti
+cle / pii / S0098135414001719$[][] (vis-ited on 2021-06-14),
+ []
+
+[120]
+Underfull \hbox (badness 10000) in paragraph at lines 4269--4271
+[]\T1/qtm/m/n/10 An-drew Gel-man and Don-ald B. Ru-bin. In-fer-ence from It-er-
+a-tive Sim-u-la-tion Us-ing Mul-ti-ple
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4269--4271
+\T1/qtm/m/n/10 Se-quences. \T1/qtm/m/it/10 Sta-tis-ti-cal Sci-ence\T1/qtm/m/n/1
+0 , 7(4):457^^U472, Novem-ber 1992. Pub-lisher: In-sti-tute of Math-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4269--4271
+\T1/qtm/m/n/10 e-mat-i-cal Statis-tics. URL: [][]$https : / / projecteuclid . o
+rg / journals / statistical-[]science / volume-[]7 / issue-[]4 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4269--4271
+\T1/qtm/m/n/10 Inference-[]from-[]Iterative-[]Simulation-[]Using-[]Multiple-[]S
+equences / 10 . 1214 / ss / 1177011136 . full$[][] (vis-ited on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4272--4274
+\T1/qtm/m/it/10 the Royal Sta-tis-ti-cal So-ci-ety: Se-ries B (Sta-tis-ti-cal M
+ethod-ol-ogy)\T1/qtm/m/n/10 , 68(3):411^^U436, 2006. _eprint:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4272--4274
+\T1/qtm/m/n/10 https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2006
+.00553.x. URL: [][]$http : / / rss . onlinelibrary .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4272--4274
+\T1/qtm/m/n/10 wiley . com / doi / abs / 10 . 1111 / j . 1467-[]9868 . 2006 . 0
+0553 . x$[][] (vis-ited on 2021-06-14), [][]doi:10.1111/j.1467-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4281--4283
+\T1/qtm/m/n/10 volume-[]10 / issue-[]2 / Approximate-[]Bayesian-[]Computation-[
+]by-[]Modelling-[]Summary-[]Statistics-[]in-[]a-[]Quasi / 10 .
+ []
+
+[121]
+Underfull \hbox (badness 10000) in paragraph at lines 4305--4307
+[]\T1/qtm/m/n/10 An-drew Gel-man and Cosma Ro-hilla Shal-izi. Phi-los-o-phy and
+ the prac-tice of Bayesian statis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4305--4307
+\T1/qtm/m/n/10 tics. \T1/qtm/m/it/10 British Jour-nal of Math-e-mat-i-cal and S
+ta-tis-ti-cal Psy-chol-ogy\T1/qtm/m/n/10 , 66(1):8^^U38, 2013. _eprint:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4305--4307
+\T1/qtm/m/n/10 https://bpspsychub.onlinelibrary.wiley.com/doi/pdf/10.1111/j.204
+4-8317.2011.02037.x. URL: [][]$https :
+ []
+
+
+Underfull \hbox (badness 7133) in paragraph at lines 4305--4307
+\T1/qtm/m/n/10 / / bpspsychub . onlinelibrary . wiley . com / doi / abs / 10 . 
+1111 / j . 2044-[]8317 . 2011 . 02037 . x$[][] (vis-ited on 2021-06-14),
+ []
+
+(./addressinguncertaintyinmultisectordynamicsresearch.ind) [122]
 (./addressinguncertaintyinmultisectordynamicsresearch.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `addressinguncertaintyinmultisectordynamicsre
 search.out' has not changed.
-(rerunfilecheck)             Checksum: CFDFE8E76528191E7CEF8AB4EB0C584A;14478.
+(rerunfilecheck)             Checksum: 667001284E4D0213D56E19118D5E0002;30920.
  ) 
 Here is how much of TeX's memory you used:
- 13716 strings out of 478994
- 204918 string characters out of 5858184
- 711347 words of memory out of 5000000
- 30727 multiletter control sequences out of 15000+600000
- 462595 words of font info for 68 fonts, out of 8000000 for 9000
+ 14787 strings out of 478994
+ 225639 string characters out of 5858185
+ 745471 words of memory out of 5000000
+ 31379 multiletter control sequences out of 15000+600000
+ 462828 words of font info for 79 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 83i,17n,88p,3812b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,19n,88p,4170b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
-ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-21/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/public/tex-gyre/qhvbi.pfb></usr/local/texlive/2021/texmf-dis
-t/fonts/type1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
-e1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
-lic/tex-gyre/qtmri.pfb>
-Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (43 pa
-ges, 1085625 bytes).
+live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive
+/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dis
+t/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2021/texmf-dist/font
+s/type1/public/tex-gyre/qhvri.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
+e1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/tex-gyre/qtmr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/te
+x-gyre/qtmri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts
+/t1xbtt.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts/t1xt
+t.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb>
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/txfonts/tcxtt.pfb>
+Output written on addressinguncertaintyinmultisectordynamicsresearch.pdf (122 p
+ages, 14314213 bytes).
 PDF statistics:
- 741 PDF objects out of 1000 (max. 8388607)
- 663 compressed objects within 7 object streams
- 108 named destinations out of 1000 (max. 500000)
- 510 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2261 PDF objects out of 2487 (max. 8388607)
+ 2001 compressed objects within 21 object streams
+ 471 named destinations out of 1000 (max. 500000)
+ 1209 words of extra memory for PDF output out of 10000 (max. 10000000)
 

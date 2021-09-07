@@ -1,0 +1,20 @@
+.. _sensitivity_analysis_methods:
+
+Sensitivity Analysis Methods
+############################
+
+In this section, we describe some of the most widely applied sensitivity analysis methods along with their mathematical definitions. We also provide a detailed discussion on applying each method, as well as a comparison of and their features and limitations.
+
+.. include:: 3.4.1_derivative_based_methods.rst
+
+.. include:: 3.4.2_elementary_effect_methods.rst
+
+.. include:: 3.4.3_regression_based_methods.rst
+
+.. include:: 3.4.4_regional_sensitivity_analysis.rst
+
+.. include:: 3.4.5_variance_based_methods.rst
+
+.. include:: 3.4.6_analysis_of_variance_anova.rst
+
+.. include:: 3.4.7_moment_independent_density_based_methods.rst

@@ -1,0 +1,7 @@
+Questions from Dave:
+
+1. Should variables within text be written as equations? Example: "In this case, factor X2 makes the largest contribution to the variability of output Y and". Should X2 and Y be equations?
+2. My computer is being annoying and wls does not like sphynx, so I haven't been able to test by compiling
+3. Are figure names changing? I see the same names in the static folder, but secion 3.1 refers to a different file
+4. Is :cite:t: appropriate for citations in text (i.e. Saltelli et al. 2004 illustrate...)
+5. When using :numref: for figures, does that create the phrase "Figure X" or just "X" (for example if I write: :numref:`Figure_4`, does it produce "Figure 4" or just "4"?)
