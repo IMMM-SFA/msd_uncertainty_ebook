@@ -1,10 +1,8 @@
 **/data
 
-# documentation
 
 # do not ignore the pdf
-*/docs/build
-!*/docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf
+!*/addressinguncertaintyinmultisectordynamicsresearch.pdf
 
 # system
 .DS_Store
