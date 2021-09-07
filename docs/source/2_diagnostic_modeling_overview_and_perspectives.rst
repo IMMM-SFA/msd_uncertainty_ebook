@@ -18,6 +18,7 @@ This text prescribes a formal model diagnostic approach to IM3 computational exp
     * Eker, S., Rovenskaya, E., Obersteiner, M., Langan, S., 2018. Practice and perspectives in the validation of resource management models. *Nature Communications* 9, 1–10. https://doi.org/10.1038/s41467-018-07811-9
 
     The following articles can be used as supplemental reading:
+
     * Canham, C.D., Cole, J.J., Lauenroth, W.K. (Eds.), 2003. Models in Ecosystem Science. Princeton University Press. https://doi.org/10.2307/j.ctv1dwq0tq
 
 

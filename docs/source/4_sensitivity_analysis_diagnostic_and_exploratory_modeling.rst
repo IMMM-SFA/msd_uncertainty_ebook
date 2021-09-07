@@ -19,5 +19,6 @@ Sensitivity Analysis: Diagnostic & Exploratory Modeling
 
 
     The following articles can be used as supplemental reading:
+
     * Marchau, V.A.W.J., Walker, W.E., Bloemen, P.J.T.M., Popper, S.W. (Eds.), 2019. Decision Making under Deep Uncertainty: From Theory to Practice. Springer International Publishing. https://doi.org/10.1007/978-3-030-05252-2
     * Sterman, J.D., 1994. Learning in and about complex systems. System Dynamics Review 10, 291–330. https://doi.org/10.1002/sdr.4260100214
