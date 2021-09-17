@@ -1,3 +1,7 @@
+.. raw:: latex
+
+    \appendix
+
 .. _A1_uncertainty_quantification:
 
 **************************

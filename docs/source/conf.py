@@ -12,7 +12,10 @@
 #
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('../../'))
+sys.path.append(os.path.abspath("../../extensions"))
+
 
 
 # -- Project information -----------------------------------------------------
@@ -38,7 +41,8 @@ extensions = [
     'sphinxcontrib.bibtex',
     'sphinx.ext.githubpages',
     'sphinx.ext.viewcode',
-    'nbsphinx'
+    'nbsphinx',
+    'appendix'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -90,7 +94,7 @@ latex_logo = None
 
 latex_documents = [
     (master_doc,
-     'addressinguncertaintyinmultisectordynamicsresearch.tex', 
+     'addressinguncertaintyinmultisectordynamicsresearch.tex',
      '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}',
      'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
      '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan'
