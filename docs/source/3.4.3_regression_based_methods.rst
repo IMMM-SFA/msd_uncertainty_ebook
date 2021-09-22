@@ -1,6 +1,6 @@
 Regression-based Methods
 ************************
-Regression analysis is another one of the oldest ways of investigating parametric importance and sensitivity :cite:p:`saltelli2004sensitivity`. Here, we describe some of the most popular regression-based sensitivity indices. One of the main sensitivity indices of this category is the standardized regression coefficient (SRC). To calculate SRC, a linear regression relationship needs to be fitted between the input vector, :math:`x`, and the model output of interest by using a least-square minimizing method:
+Regression analysis is one of the oldest ways of investigating parametric importance and sensitivity :cite:p:`saltelli2004sensitivity`. Here, we describe some of the most popular regression-based sensitivity indices. One of the main sensitivity indices of this category is the standardized regression coefficient (SRC). To calculate SRC, a linear regression relationship needs to be fitted between the input vector, :math:`x`, and the model output of interest by using a least-square minimizing method:
 
 .. math::
   y = b_0 + \sum_{i=1}^N b_ix_i

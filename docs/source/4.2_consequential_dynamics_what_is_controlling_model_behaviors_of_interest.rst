@@ -41,5 +41,8 @@ It is worth mentioning that current sensitivity analysis methods are somewhat ch
 
 Despite these challenges, recent advanced sensitivity analysis methods can help illuminate which factors in a system are most important in shaping boundary conditions (tipping points) between different regimes and determining changes in behavior modes. Reviewing such methods is outside the scope of this text, but the reader is directed to the examples of :cite:t:`eker2018practice` and :cite:t:`hadjimichael2020navigating`, who apply parameterised perturbation on the functional relationships of a system to study the effects of model structural uncertainty on model outputs and bifurcations, and :cite:t:`hekimouglu2016sensitivity` and :cite:t:`steinmann2020behavior` who, following wide sampling of uncertain inputs, cluster the resulting time series in modes of behavior and identify most important factors for each.
 
+.. note::
+
+    Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover consequential dynamics:  `Factor Discovery Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Ffishery_dynamics.ipynb>`_
 
 
