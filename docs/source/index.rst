@@ -44,8 +44,19 @@ Addressing Uncertainty in MultiSector Dynamics Research
 
 .. toctree::
     :maxdepth: 1
-    :caption: References
+    :caption: Glossary
     :glob:
 
     6_glossary
+    
+
+.. raw:: latex
+
+    \backmatter
+
+.. toctree::
+    :maxdepth: 1
+    :caption: References
+    :glob:
+
     R.Bibliography
