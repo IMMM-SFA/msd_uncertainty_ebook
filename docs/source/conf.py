@@ -24,7 +24,7 @@ project = 'Addressing Uncertainty in MultiSector Dynamics Research'
 copyright = '2021, Battelle Memorial Institute'
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.1.0'
+release = ''
 
 
 # -- General configuration ---------------------------------------------------
@@ -91,6 +91,7 @@ master_doc = 'index'
 # the title page.
 latex_logo = None
 
+latex_elements = { 'releasename': '' }
 
 latex_documents = [
     (master_doc,
