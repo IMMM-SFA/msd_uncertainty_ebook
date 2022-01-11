@@ -9,7 +9,7 @@ The most popular EE method is the Method of Morris :cite:p:`morris1991factorial`
   S_i = \mu_i^* = \frac{1}{r}\sum_{j=1}^r EE^j_i = \frac{1}{r}\sum_{j=1}^r \frac{g(\bar{x}_1,...\bar{x}_i+\Delta_i,...\bar{x}_N)-g(\bar{x}_1,...\bar{x}_i,...\bar{x}_N)}{\Delta_i}c_i
 
 
-with :math:`r` representing the number of repetitions (or trajectories) in the input space, usually set between 4 and 10 :cite:`saltelli2004sensitivity`. Each xj represents the points of each trajectory, with :math:`j=1,…, r`, selected as described in the sampling strategy for this method, found above. This method also produces the standard deviation of the EEs:
+with :math:`r` representing the number of sample repetitions (also refered to as trajectories) in the input space, usually set between 4 and 10 :cite:`saltelli2004sensitivity`. Each :math:`x_j` represents the points of each trajectory, with :math:`j=1,…, r`, selected as described in the sampling strategy for this method, found above. This method also produces the standard deviation of the EEs:
 
 .. math::
 
