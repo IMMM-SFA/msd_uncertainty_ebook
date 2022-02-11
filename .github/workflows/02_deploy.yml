@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install latex dependencies
+        run: sudo apt-get update -y && sudo apt-get install -y texlive latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+      - name: Update pip and install python dependencies
+        working-directory: 'docs/'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Build html and pdf ebook
+        working-directory: 'docs/'
+        run: make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+        continue-on-error: true
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: landing/package-lock.json
+      - name: Install landing page dependencies
+        working-directory: 'landing/'
+        run: npm install
+      - name: Build landing page
+        working-directory: 'landing/'
+        env:
+          NODE_ENV: production
+        run: npm run build
+      - name: Commit documentation changes
+        run: |
+          cd landing/build
+          git init
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'deploy' -a || true
+      - name: Push changes to gh-pages
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          directory: landing/build
+          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}

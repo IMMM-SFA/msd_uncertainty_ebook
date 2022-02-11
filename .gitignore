@@ -1,9 +1,5 @@
 **/data
 
-
-# do not ignore the pdf
-!*/addressinguncertaintyinmultisectordynamicsresearch.pdf
-
 # system
 .DS_Store
 
