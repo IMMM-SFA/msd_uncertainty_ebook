@@ -5,4 +5,4 @@ Low-discrepancy sequences is another sampling technique that employs a pseudo-ra
 
 .. note::
 
-    Put this into practice! Click the following link to try out an interactive tutorial which uses Sobol sequence sampling for the purposes of a Sobol sensitivity analysis:  `Sobol SA using SALib Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
+    Put this into practice! Click the following link to try out an interactive tutorial which uses Sobol sequence sampling for the purposes of a Sobol sensitivity analysis:  `Sobol SA using SALib Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
