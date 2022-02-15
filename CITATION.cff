@@ -24,7 +24,7 @@ authors:
   orcid: "https://orcid.org/"
 - family-names: "Gold"
   given-names: "David"
-  orcid: "https://orcid.org/"
+  orcid: "https://orcid.org/0000-0002-0854-1819"
 - family-names: "Lee"
   given-names: "B."
   orcid: "https://orcid.org/"
@@ -34,6 +34,9 @@ authors:
 - family-names: "Rice"
   given-names: "Jennie S."
   orcid: "https://orcid.org/0000-0002-7833-9456"
+- family-names: "Thurber"
+  given-names: "Travis"
+  orcid: "https://orcid.org/0000-0002-4370-9971"
 title: "Addressing Uncertainty in Multisector Dynamics Research"
 version: 0.0.0-alpha
 doi: 10.5281/<fillin>
