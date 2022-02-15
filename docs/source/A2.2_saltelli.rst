@@ -1,7 +1,7 @@
 Sobol SA Tutorial
 *************************
 
-.. note:: Run the tutorial interactively:  `Sobol SA Tutorial <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/6baaa2d214ca3d8a53f01f5bfb7340bf1e097ac2?filepath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
+.. note:: Run the tutorial interactively:  `Sobol SA Tutorial <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
 
 Tutorial: Sensitivity Analysis (SA) using the Saltelli sampling scheme with Sobol SA
 ====================================================================================
