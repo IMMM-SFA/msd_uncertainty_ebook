@@ -12,16 +12,19 @@
 #
 import os
 import sys
+from datetime import datetime
 
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.append(os.path.abspath("../../extensions"))
 
+# current datetime to use as the version
+today = f"Last updated: {datetime.utcnow().strftime('%b %d, %Y')}"
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'Addressing Uncertainty in MultiSector Dynamics Research'
-copyright = '2021, Battelle Memorial Institute'
+copyright = '2022, Battelle Memorial Institute'
 
 # The full version, including alpha/beta/rc tags
 release = ''
@@ -37,7 +40,6 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.githubpages',
     'sphinxcontrib.bibtex',
     'sphinx.ext.githubpages',
     'sphinx.ext.viewcode',
@@ -61,6 +63,10 @@ exclude_patterns = ['**.ipynb_checkpoints']
 # the link text is the figure caption).
 numfig = True
 
+numfig_format = {
+    'section': 'Chapter %s',
+}
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -71,7 +77,15 @@ html_theme = 'alabaster'
 # theme options for alabaster
 html_theme_options = {
     'note_bg': '#D6EAF8',
-    'seealso_bg': '#D6EAF8'
+    'seealso_bg': '#D6EAF8',
+    'description': f'''
+Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,
+Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta,
+David Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis Thurber
+<br/><br/>
+{today}
+    ''',
+    'show_powered_by': False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -91,14 +105,18 @@ master_doc = 'index'
 # the title page.
 latex_logo = None
 
-latex_elements = { 'releasename': '' }
+latex_elements = {
+    'releasename': '',
+    'tableofcontents': '',
+    'maketitle': '',
+}
 
 latex_documents = [
     (master_doc,
      'addressinguncertaintyinmultisectordynamicsresearch.tex',
      '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}',
      'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
-     '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan'
-     '\\and Rohini Gupta, David Gold, B. Lee, Klaus Keller, Jennie S. Rice',
+     '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta'
+     '\\and David Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis Thurber',
      'book')
 ]
