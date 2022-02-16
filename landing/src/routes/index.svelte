@@ -83,11 +83,11 @@
 		<div
 			class="text-md italic text-slate-50 text-shadow pt-1 px-3 text-center lg:text-left leading-tight backdrop-blur-sm"
 		>
-			<div style="">Pat Reed, Antonia Hadjimichael, Keyvan Malek,</div>
+			<div style="">Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,</div>
 			<div style="text-indent: -8px;">
-				Tina Karimi, Chris Vernon, Vivek Srikrishnan, Rohini Gupta,
+				Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta,
 			</div>
-			<div style="text-indent: -16px;">David Gold, B Lee, Klaus Keller, Jennie Rice</div>
+			<div style="text-indent: -16px;">David Gold, Ben Lee, Klaus Keller, Jennie Rice, Travis Thurber</div>
 		</div>
 	</div>
 </div>
