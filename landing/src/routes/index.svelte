@@ -1,5 +1,6 @@
 <script context="module">
 	export const router = false;
+	const pdfURL = import.meta.env.VITE_PDF_URL ? String(import.meta.env.VITE_PDF_URL) : null;
 </script>
 
 <script>
@@ -25,7 +26,7 @@
 			icon: DocumentDownload,
 			title: 'PDF',
 			text: 'Download and read offline!',
-			url: 'docs/addressinguncertaintyinmultisectordynamicsresearch.pdf'
+			url: pdfURL ?? 'docs/addressinguncertaintyinmultisectordynamicsresearch.pdf',
 		},
 		{
 			icon: Code,

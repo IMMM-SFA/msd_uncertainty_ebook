@@ -28,6 +28,15 @@ jobs:
           node-version: '16'
           cache: 'npm'
           cache-dependency-path: landing/package-lock.json
+      - name: Get current datetime in ISO format
+        id: datetime
+        run: echo "::set-output name=datetime::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+      - name: Create GitHub release
+        id: gh_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf
+          tag_name: ${{ steps.datetime.outputs.datetime }}
       - name: Install landing page dependencies
         working-directory: 'landing/'
         run: npm install
@@ -35,6 +44,7 @@ jobs:
         working-directory: 'landing/'
         env:
           NODE_ENV: production
+          VITE_PDF_URL: ${{ fromJSON(steps.gh_release.outputs.assets)[0].browser_download_url }}
         run: npm run build
       - name: Commit documentation changes
         run: |
