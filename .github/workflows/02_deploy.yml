@@ -21,7 +21,10 @@ jobs:
           pip install -r requirements.txt
       - name: Build html and pdf ebook
         working-directory: 'docs/'
-        run: make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+        run: |
+          make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+          make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+          make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
         continue-on-error: true
       - uses: actions/setup-node@v2
         with:
