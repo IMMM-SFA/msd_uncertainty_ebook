@@ -31,5 +31,6 @@ This text itself represents our strong commitment to open science and will evolv
 
 **Suggested Citation:**
 
-ADD CITATION WITH DOI
+Reed, Patrick M., Hadjimichael, Antonia, Malek, Keyvan, Karimi, Tina, Vernon, Chris R., Srikrishnan, Vivek, Gupta, Rohini, Gold, David, Lee, Ben, Keller, Klaus, Rice, Jennie S., & Thurber, Travis. (2022). Addressing Uncertainty in Multisector Dynamics Research. Zenodo. https://doi.org/10.5281/zenododoi: 10.5281/zenodo.6110623
+
 

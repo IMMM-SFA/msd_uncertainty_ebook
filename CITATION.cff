@@ -1,43 +1,4 @@
 cff-version: 1.2.0
-preferred-citation:
-  type: book
-  authors:
-    - family-names: "Reed"
-      given-names: "Patrick M."
-      orcid: "https://orcid.org/0000-0002-7963-6102"
-    - family-names: "Hadjimichael"
-      given-names: "Antonia"
-      orcid: "https://orcid.org/0000-0001-7330-6834"
-    - family-names: "Malek"
-      given-names: "Keyvan"
-      orcid: "https://orcid.org/0000-0002-9818-0083"
-    - family-names: "Karimi"
-      given-names: "Tina"
-      orcid: "https://orcid.org/0000-0003-2801-8854"
-    - family-names: "Vernon"
-      given-names: "Chris R."
-      orcid: "https://orcid.org/0000-0002-3406-6214"
-    - family-names: "Srikrishnan"
-      given-names: "Vivek"
-      orcid: "https://orcid.org/0000-0003-0049-3805"
-    - family-names: "Gupta"
-      given-names: "Rohini"
-      orcid: "https://orcid.org/0000-0003-3538-0675"
-    - family-names: "Gold"
-      given-names: "David"
-      orcid: "https://orcid.org/0000-0002-0854-1819"
-    - family-names: "Lee"
-      given-names: "Ben"
-      orcid: "https://orcid.org/0000-0003-0658-7458"
-    - family-names: "Keller"
-      given-names: "Klaus"
-      orcid: "https://orcid.org/0000-0002-5451-8687"
-    - family-names: "Rice"
-      given-names: "Jennie S."
-      orcid: "https://orcid.org/0000-0002-7833-9456"
-    - family-names: "Thurber"
-      given-names: "Travis"
-      orcid: "https://orcid.org/0000-0002-4370-9971"
 message: "Please cite our work as follows:"
 authors:
 - family-names: "Reed"
@@ -77,7 +38,6 @@ authors:
   given-names: "Travis"
   orcid: "https://orcid.org/0000-0002-4370-9971"
 title: "Addressing Uncertainty in Multisector Dynamics Research"
-version: latest
-doi: "10.5281/zenodo.6110623"
+doi: 10.5281/zenodo.6110623
 date-released: 2022-02-17
 url: "https://immm-sfa.github.io/msd_uncertainty_ebook/"
