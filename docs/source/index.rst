@@ -10,6 +10,23 @@ Addressing Uncertainty in MultiSector Dynamics Research
 
 .. raw:: latex
 
+    \frontmatter
+    \sphinxmaketitle
+
+.. include:: preface.rst
+
+.. raw:: latex
+
+    \newpage
+
+.. include:: acknowledgements.rst
+
+.. raw:: latex
+
+    \sphinxtableofcontents
+
+.. raw:: latex
+
     \mainmatter
 
 .. toctree::
