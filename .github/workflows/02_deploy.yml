@@ -44,7 +44,7 @@ jobs:
         working-directory: 'landing/'
         env:
           NODE_ENV: production
-          VITE_PDF_URL: ${{ fromJSON(steps.gh_release.outputs.assets)[0].browser_download_url }}
+          VITE_PDF_URL: https://github.com/IMMM-SFA/msd_uncertainty_ebook/releases/download/${{ steps.date.outputs.date }}v${{ github.run_number }}/addressinguncertaintyinmultisectordynamicsresearch.pdf
         run: npm run build
       - name: Commit documentation changes
         run: |
