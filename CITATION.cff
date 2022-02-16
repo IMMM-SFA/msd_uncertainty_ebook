@@ -1,5 +1,7 @@
 cff-version: 1.2.0
-message: "Please cite it our work as follows:"
+preferred-citation:
+  type: book
+message: "Please cite our work as follows:"
 authors:
 - family-names: "Reed"
   given-names: "Patrick M."
@@ -38,7 +40,6 @@ authors:
   given-names: "Travis"
   orcid: "https://orcid.org/0000-0002-4370-9971"
 title: "Addressing Uncertainty in Multisector Dynamics Research"
-version: 0.0.0-alpha
 doi: 10.5281/<fillin>
-date-released: 2022-02-15
+date-released: 2022-02-17
 url: "https://immm-sfa.github.io/msd_uncertainty_ebook/"
