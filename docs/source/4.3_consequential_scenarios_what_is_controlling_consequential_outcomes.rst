@@ -9,6 +9,7 @@ As overviewed in :numref:`perspectives`, most models are abstractions of systems
 .. figure:: _static/figure4_4_exploratory_workflow.png
     :alt: Figure 4_4
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     A typical exploratory modeling workflow
@@ -36,6 +37,7 @@ Below we provide an example application of two scenario discovery methods, PRIM 
 .. figure:: _static/figure14lake_problem_SD.png
     :alt: Figure 14.
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Scenario discovery for the lake problem, using (a) PRIM and (b) logistic regression.

@@ -7,6 +7,7 @@ How To Choose A Sensitivity Analysis Method: Model Traits And Dimensionality
 .. figure:: _static/figure3_5classificationofmethods.png
     :alt: Figure 3_5
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Classification of the sensitivity analysis methods overviewed in this section, with regards to their computational cost (horizontal axis), their appropriateness to model complexity (vertical axis), and the purpose they can be used for (colored bars). d: number of uncertain factors considered; ANOVA: Analysis of Variance; FAST: Fourier Amplitude Sensitivity Test; PRIM: Patient Rule Induction Method; CART: Classification and Regression Trees; SRCC: Spearman’s rank correlation coefficient: NSE: Nash–Sutcliffe efficiency; SRC: standardized regression coefficient; PCC: Pearson correlation coefficient. This figure is synthesized from variants found in :cite:p:`iooss2015review, pianosi2016sensitivity`.

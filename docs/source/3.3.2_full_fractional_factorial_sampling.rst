@@ -9,6 +9,7 @@ Fractional factorial sampling is a widely used alternative to full factorial sam
 .. figure:: _static/figure3_3_alternative_designs.png
     :alt: Figure 3.3
     :width: 500px
+    :figclass: margin-caption
     :align: center
 
     Alternative designs of experiments and their computational costs for three uncertain factors :math:`(x_1,` :math:`x_2,` and :math:`x_3)`. (a) Full factorial design sampling of three factors at four levels, at a total of 64 samples; (b) exponential growth of necessary number of samples when applying full factorial design at four levels; (c) fractional factorial design of three factors at four levels, at a total of 32 samples; and (d) Latin Hypercube sample of three factors with uniform distributions, at a total of 32 samples.

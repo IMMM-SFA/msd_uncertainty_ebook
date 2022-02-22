@@ -7,6 +7,7 @@ Model diagnostics provide a rich basis for hypothesis testing, model innovation,
 .. figure:: _static/figure2_1_idealized_uc.png
     :alt: Figure 2.1
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Idealized uncertainty characterization and global sensitivity analysis for two coupled simulation models. Uncertainty coming from various sources (e.g., inputs, model structures, coupling relationships) is propagated through the coupled model(s) to generate empirical distributions of outputs of interest (uncertainty characterization). This model output uncertainty can be decomposed to its origins, by means of sensitivity analysis. Figure adapted from :cite:t:`saltelli2019so`.

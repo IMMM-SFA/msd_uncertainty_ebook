@@ -1,5 +1,9 @@
 
-**Preface**
+.. _preface:
+
+*******
+Preface
+*******
 
 This online book is meant to provide an open science “living” resource on uncertainty characterization methods for the MultiSector Dynamics (MSD) community and other technical communities confronting sustainability, climate, and energy transition challenges. The last decade has seen rapid growth in science efforts seeking to address the interconnected nature of these challenges across scales, sectors, and systems. Accompanying these advances is the growing realization that the deep integration of research from many disciplinary fields is non-trivial and raises important questions. How and why models are developed seems to have an obvious answer (“to gain understanding”). But what does it actually mean to gain understanding? What if a small change in a model or its data fundamentally changes our perceptions of what we thought we understood? What controls the outcomes of our model(s)? How do we understand the implications of model coupling, such as when one model is on the receiving end of several other models that are considered “input data”? 
 
@@ -28,9 +32,3 @@ Readers from different sector-specific and disciplinary-specific backgrounds can
 Academic or junior researchers can utilize this freely available text for training and teaching resources that include hands-on coding experiences.
 
 This text itself represents our strong commitment to open science and will evolve as a living resource as the communities of researchers provide feedback, innovations, and future tools.
-
-**Suggested Citation:**
-
-Reed, Patrick M., Hadjimichael, Antonia, Malek, Keyvan, Karimi, Tina, Vernon, Chris R., Srikrishnan, Vivek, Gupta, Rohini, Gold, David, Lee, Ben, Keller, Klaus, Rice, Jennie S., & Thurber, Travis. (2022). Addressing Uncertainty in Multisector Dynamics Research. Zenodo. https://doi.org/10.5281/zenodo.6110623
-
-

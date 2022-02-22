@@ -7,6 +7,7 @@ Pre-calibration :cite:`beven_future_1992, edwards_precalibrating_2011, boukouval
 .. figure:: _static/figureA1_3_precal_workflow.png
     :alt: Figure A1.3
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Workflow for pre-calibration.

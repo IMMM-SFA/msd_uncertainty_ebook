@@ -72,20 +72,17 @@ numfig_format = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_book_theme'
 
-# theme options for alabaster
+# theme options
 html_theme_options = {
-    'note_bg': '#D6EAF8',
-    'seealso_bg': '#D6EAF8',
-    'description': f'''
-Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,
-Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta,
-David Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis Thurber
-<br/><br/>
-{today}
-    ''',
-    'show_powered_by': False,
+    'path_to_docs': '/docs',
+    'repository_url': 'https://github.com/IMMM-SFA/msd_uncertainty_ebook',
+    'use_issues_button': True,
+    'use_download_button': True,
+    'use_repository_button': True,
+    'extra_navbar': f'<span style="display:block;text-align:left">{today}</span>',
+    'home_page_in_toc': False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -116,7 +113,7 @@ latex_documents = [
      'addressinguncertaintyinmultisectordynamicsresearch.tex',
      '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}',
      'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
-     '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta'
-     '\\and David Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis Thurber',
+     '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta'
+     '\\and David F. Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis B. Thurber',
      'book')
 ]

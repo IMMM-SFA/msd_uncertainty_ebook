@@ -5,8 +5,9 @@ Consequential changes in dynamic systems can take many forms, but most dynamic b
 
 .. _Figure_4_2:
 .. figure:: _static/figure4_2_behavior_modes.png
-    :alt: Figure 11.
+    :alt: Figure 4.2
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Common modes of behavior in dynamic systems, occurring based on the presence of positive and negative feedback relationships, and linear and non-linear interactions. Adapted from :cite:t:`sterman2001system`.
@@ -29,6 +30,7 @@ Panels (a-c) in :numref:`Figure_4_3` plot the fluxes of phosphorus into the lake
 .. figure:: _static/figure4_3_lake_problem_fluxes.png
     :alt: Figure 4.3
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Fluxes of phosphorus with regards to mass of phosphorus in the lake and sensitivity analysis results, assuming :math:`b=0.42` and :math:`q=2`. (a) Fluxes of phosphorus assuming no emmisions policy and no natural inflows. (b-c) Fluxes phosphorus when applying two different emissions policies. The "Best economic policy" and the "Most realiable policy" have been identified by :cite:t:`quinn2017direct` and can be found at :cite:t:`quinn_julianneqlake_problem_dps_2017`. (d) Results of a sensitivity analysis on the parameters of the model most consequential to the reliability of the "Most reliable policy". The code to replicate the sensitivity analysis can be found at :cite:t:`hadka_project-platypusrhodium_2017`. Panels (a-c) are used courtesy of Julianne Quinn, University of Virginia.

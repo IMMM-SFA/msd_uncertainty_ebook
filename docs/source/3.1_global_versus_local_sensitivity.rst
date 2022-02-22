@@ -11,6 +11,7 @@ Historically, there have been two broad categories of sensitivity analysis techn
 .. figure:: _static/figure3_1_global_versus_local.png
     :alt: Figure 3.1
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Treatment of a two-dimensional space of variability by local (panels a-b) and global (panel c) sensitivity analyses. Panels depict contour plots with the value of a model response (:math:`y`) changing with changes in the values of input terms :math:`x_1` and :math:`x_2`. Local sensitivity analysis is only an appropriate approach to sensitivity in the case of linear models without interactions between terms, for example in panel (a), where :math:`y=3x_1+5x_2`. In the case of more complex models, for example in panels (b-c), where :math:`y={1 \above 1pt e^{x^2_1+x^2_2}} + {50 \above 1pt e^{(0.1x_1)^2+(0.1x_2)^3}}`, local sensitivity will miscalculate sensitivity indices as the assessed changes in the value :math:`y` depend on the assumed base values chose for :math:`x_1` and :math:`x_2` (panel (b)). In these cases, global sensitivity methods should be used instead (panel (c)). The points in panel (c) are generated using a uniform random sample of :math:`n=50`, but many other methods are available.

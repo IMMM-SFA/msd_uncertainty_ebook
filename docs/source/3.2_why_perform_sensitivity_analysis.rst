@@ -25,6 +25,7 @@ The nature and context of the model shapes the specific objectives of applying a
 .. figure:: _static/figure3_2_factor_mapping.png
     :alt: Figure 3.2
     :width: 500px
+    :figclass: margin-caption
     :align: center
 
     Factor prioritization, factor fixing and factor mapping settings of sensitivity analysis.

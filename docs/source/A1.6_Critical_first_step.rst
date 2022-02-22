@@ -13,6 +13,7 @@ Priors can also be classified in terms of the information encoded by them, demon
 .. figure:: _static/figureA1_5_priors_posteriors.png
     :alt: Figure A1.5
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Impact of priors on posterior inferences. These plots show the results of inference for a linear regression model with 15 data points. The true value of the parameter is equal to -3. All priors have mean 0. In panel (a), a non-informative prior allows the tails of the posterior to extend freely, which may result in unreasonably large parameter values. In panel (b), a weakly informative prior constrains the tails more, but allows them to extend without too much restriction. In panel (c), an informative prior strongly constrains the tails of the posterior and biases the inference closer towards the prior mean (the posterior mean is -0.89 in this case, and closer to -3 in the other two cases).

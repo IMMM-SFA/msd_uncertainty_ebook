@@ -23,6 +23,7 @@ which is a measure of parametric interactions. Higher values of :math:`\sigma_i`
 .. figure:: _static/figure3_4_morris_method.png
     :alt: Figure 3.4
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Illustrative results of the Morris Method. Factors :math:`x_1`, :math:`x_2`, :math:`x_4`, and :math:`x_5` have an influence on the model outputs, with :math:`x_1`, :math:`x_4`, and :math:`x_5` having interactive or non-linear effects. Whether or not a factor should be considered influential to the output depends on the output selected and is specific to the research context and purpose of the analysis, as discussed in :numref:`why_SA`.

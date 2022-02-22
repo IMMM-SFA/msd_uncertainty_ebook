@@ -15,6 +15,7 @@ A comprehensive model diagnostic workflow typically entails the components demon
 .. figure:: _static/figure4_1_diagnostic_workflow.png
     :alt: Figure 4.1
     :width: 500px
+    :figclass: margin-caption
     :align: center
 
     Diagnostic evaluation of model fidelity using sensitivity analysis methods.

@@ -8,18 +8,51 @@
 Addressing Uncertainty in MultiSector Dynamics Research
 =======================================================
 
+.. only:: html
+
+    .. epigraph::
+
+        Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,
+        Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta,
+        David F. Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis B. Thurber
+    
+    A practical guide to sensitivity analysis and diagnostic model evaluation techniques for confronting the computational and conceptual challenges of multi-model, transdisciplinary workflows.
+
+    **Topics in the Book**
+
+    * `An overview of diagnostic modeling and perspectives on model evaluation <2_diagnostic_modeling>`_
+    * `A framework for the basic methods and concepts used in sensitivity analysis <3_sensitivity_analysis_the_basics>`_
+    * `Technical applications supporting diagnostic model evaluation and exploration <4_sensitivity_analysis>`_
+    
+    **Interactive Tutorials**
+
+    * `Factor Discovery <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Ffishery_dynamics.ipynb>`_
+    * `Model Calibration <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb>`_
+    * `Sobol Sensitivity Analysis <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
+    * `Factor Mapping using Logistic Regression <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_
+
+    .. tip::
+
+        .. raw:: html
+
+            <p>
+                Use the sidebar on the left to quickly navigate the eBook!
+                <br/>
+                Click or tap the <i style="padding: 0 0.25rem;" class="fas fa-bars"></i> icon to show and hide the sidebar.
+            </p>
+
 .. raw:: latex
 
     \frontmatter
     \sphinxmaketitle
 
-.. include:: preface.rst
+.. toctree::
+    :hidden:
+    :glob:
 
-.. raw:: latex
-
-    \newpage
-
-.. include:: acknowledgements.rst
+    preface
+    citation
+    acknowledgements
 
 .. raw:: latex
 
@@ -30,9 +63,12 @@ Addressing Uncertainty in MultiSector Dynamics Research
     \mainmatter
 
 .. toctree::
+    :hidden:
+    :includehidden:
     :numbered: 4
     :maxdepth: 4
     :caption: Contents
+    :name: mastertoc
     :glob:
 
     1_introduction
@@ -46,6 +82,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     \appendix
 
 .. appendix::
+    :hidden:
     :numbered: 4
     :maxdepth: 4
     :caption: Appendices
@@ -60,6 +97,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     \backmatter
 
 .. toctree::
+    :hidden:
     :maxdepth: 1
     :caption: Glossary
     :glob:
@@ -72,6 +110,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     \backmatter
 
 .. toctree::
+    :hidden:
     :maxdepth: 1
     :caption: References
     :glob:
