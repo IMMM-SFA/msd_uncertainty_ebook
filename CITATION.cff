@@ -1,8 +1,5 @@
 cff-version: 1.2.0
 message: "Please cite our work as follows:"
-abstract: "A practical guide to sensitivity analysis and diagnostic model evaluation techniques for confronting the computational and conceptual challenges of multi-model, transdisciplinary workflows."
-license: CC-BY-NC-ND
-type: book
 authors:
 - family-names: "Reed"
   given-names: "Patrick M."
