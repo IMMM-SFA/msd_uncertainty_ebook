@@ -20,9 +20,9 @@ Addressing Uncertainty in MultiSector Dynamics Research
 
     **Topics in the Book**
 
-    * `An overview of diagnostic modeling and perspectives on model evaluation <2_diagnostic_modeling>`_
-    * `A framework for the basic methods and concepts used in sensitivity analysis <3_sensitivity_analysis_the_basics>`_
-    * `Technical applications supporting diagnostic model evaluation and exploration <4_sensitivity_analysis>`_
+    * `An overview of diagnostic modeling and perspectives on model evaluation <2_diagnostic_modeling_overview_and_perspectives.html>`_
+    * `A framework for the basic methods and concepts used in sensitivity analysis <3_sensitivity_analysis_the_basics.html>`_
+    * `Technical applications supporting diagnostic model evaluation and exploration <4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html>`_
     
     **Interactive Tutorials**
 
