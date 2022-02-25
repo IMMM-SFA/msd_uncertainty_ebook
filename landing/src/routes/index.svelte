@@ -82,7 +82,7 @@
 			<div style="text-indent: -8px;">
 				Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta,
 			</div>
-			<div style="text-indent: -16px;">David F. Gold, Ben Lee, Klaus Keller, Jennie Rice, Travis B. Thurber</div>
+			<div style="text-indent: -16px;">David F. Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis B. Thurber</div>
 		</div>
 	</div>
 </div>

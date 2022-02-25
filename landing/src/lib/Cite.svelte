@@ -7,7 +7,8 @@
         'APA': `Reed, P.M., Hadjimichael, A., Malek, K., Karimi, T., Vernon, C.R., Srikrishnan, V., Gupta, R.S., Gold, D.F., Lee, B., Keller, K., Rice, J.S., & Thurber, T.B. (2022). Addressing Uncertainty in Multisector Dynamics Research [Book]. Zenodo. https://doi.org/10.5281/zenodo.6110623`,
         'BibTeX': `@book{Reed_Addressing_Uncertainty_2022,
     author = {Reed, Patrick M. and Hadjimichael, Antonia and Malek, Keyvan and Karimi, Tina and Vernon, Chris R. and Srikrishnan, Vivek and Gupta, Rohini S. and Gold, David F. and Lee, Ben and Keller, Klaus and Rice, Jennie S. and Thurber, Travis B.},
-    doi = {10.5281/zenodo.6110623},]
+    doi = {10.5281/zenodo.6110623},
+    publisher = {Zenodo},
     title = {{Addressing Uncertainty in Multisector Dynamics Research}},
     url = {https://immm-sfa.github.io/msd_uncertainty_ebook/},
     year = {2022}
