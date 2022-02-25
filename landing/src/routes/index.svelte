@@ -6,16 +6,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { BookOpen, DocumentDownload, PencilAlt, Code } from '@steeze-ui/heroicons';
+	import { BookOpen, DocumentDownload, Code } from '@steeze-ui/heroicons';
 	import { Facebook, Linkedin, Twitter } from '@steeze-ui/feather-icons';
+	import Cite from '$lib/Cite.svelte'
 
 	const entrypoints = [
-		// {
-		//     icon: PencilAlt,
-		//     title: 'Notebook',
-		//     text: 'Interact live while reading!',
-		//     url: 'todo.html',
-		// },
 		{
 			icon: BookOpen,
 			title: 'HTML',
@@ -146,7 +141,7 @@
 		{/each}
 	</div>
 </div>
-<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
+<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-6">
 	<div class="text-lg text-slate-50 lg:mt-6">Share with your network!</div>
 	<div class="flex flex-row items-center justify-center mt-3 w-full">
 		<a href={twitterShare} class="rounded-lg drop-shadow p-2 mx-3 bg-sky-700 hover:bg-sky-500">
@@ -158,6 +153,12 @@
 		<a href={linkedinShare} class="rounded-lg drop-shadow p-2 mx-3 bg-sky-700 hover:bg-sky-500">
 			<Icon src={Linkedin} class="icon w-6 text-slate-50" />
 		</a>
+	</div>
+</div>
+<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
+	<div class="text-lg text-slate-50 lg:mt-6">Cite the eBook!</div>
+	<div class="flex flex-row items-center justify-center mt-3 w-full">
+		<Cite />
 	</div>
 </div>
 <div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
