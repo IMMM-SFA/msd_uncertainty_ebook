@@ -11,18 +11,26 @@ This notebook demonstrates the application of sensitivity analysis to
 discover factors that shape the behavior modes of a socio-ecological
 system with dynamic human action.
 
-The model represents a system of prey and predator fish, with a human
-actor harvesting the prey fish. The system is simple but very rich in
-the dynamic behaviors it exhibits. You can read more about this system
-at `Hadjimichael et
+The system of differential equations below represent a system of prey
+(defined in the equation below as x) and predator (defined as y) fish,
+with a human actor harvesting the prey fish. You can read more about
+this system at `Hadjimichael et
 al. (2020) <https://doi.org/10.1155/2020/4170453>`__.
+
 
 .. image:: _static/eqn2.png
 
+The table below defines the parameters in the system and also denotes
+the baseline and ranges associated with each uncertain parameter.
+
+.. image:: _static/table1.png
+
+The system is simple but very rich in the dynamic behaviors it exhibits.
 This complexity is accompanied by the presence of several equilibria
 that come in and out of existence with different parameter values. The
 equilibria also change in their stability according to different
-parameter values, giving rise to different behavior modes.
+parameter values, giving rise to different behavior modes as shown by
+the diverse predator and prey abundace trajectories in the figure below.
 
 .. image:: _static/Figure_1.png
 
@@ -56,106 +64,98 @@ previous analysis to perform ‘well enough’ for all objectives across a
 wide range of states of the world (referred to as the ‘robust’
 harvesting policy).
 
+Let’s get started!
+------------------
+
+In this tutorial, we will be loading in data that has been produced in
+Hadjimichael et al. (2020). Before we start our analysis, we’ll load the
+relevant Python libraries. **NOTE**: To step through the notebook,
+execute each gray (code) box by typing “Shift+Enter”.
+
 .. code:: ipython3
 
+    #Import necessary libraries
+    
     import msdbook
-
     import numpy as np
     import matplotlib.pyplot as plt
-
     from SALib.sample import saltelli
     from SALib.analyze import sobol
     from matplotlib import patheffects as pe
-
+    
     # load example data
     msdbook.install_package_data()
-
+    
     %matplotlib inline
     %config InlineBackend.print_figure_kwargs = {'bbox_inches':None}
-
-
-
-.. parsed-literal::
-
-    Downloading example data for msdbook version 0.1.5...
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/uncertain_params_bounds.txt
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_metric_s1.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_vary_delta.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_mth_s1.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/solutions.resultfile
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/3704614_heatmap.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/LHsamples_original_1000.txt
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/3704614_pseudo_r_scores.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/param_values.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_yr_s1.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_mth_delta.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7000550_pseudo_r_scores.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/collapse_days.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_params_256samples.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_vary_s1.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7000550_heatmap.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7200799_heatmap.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_yr_delta.npy
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7200799_pseudo_r_scores.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/LeafCatch.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_simulations_256samples.csv
-    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/Robustness.txt
 
 
 Step 1: Load identified solutions and explore performance
 ---------------------------------------------------------
 
-Identify and load the most robust and profit-maximizing solutions
+Here we load in the solution set obtained in Hadjimichael et al. (2020).
+The solution set contains the decision variables and objectives
+associated with a variety of harvesting policies. For this tutorial, we
+focus on comparing two policies: harvesting profits and one that
+performs robustly across all objectives. Below, we are reading in the
+decision variables and objectives from an external file that can be
+found within the msdbook package data.
 
 .. code:: ipython3
 
     robustness = msdbook.load_robustness_data()
     results = msdbook.load_profit_maximization_data()
-
+    
     robust_solution = np.argmax(robustness[:,-1]) #pick robust solution
     profit_solution = np.argmin(results[:,6]) #pick profitable solution
-    objective_performance = -results[:,6:]
-
+    objective_performance = -results[:,6:] #Retain objective values 
+    
     # Get decision variables for each of the policies
     highprofitpolicy = results[profit_solution,0:6]
     mostrobustpolicy = results[robust_solution,0:6]
 
 
-Plot the identified solutions with regards to their objective
+Next we plot the identified solutions with regards to their objective
 performance in a parallel axis plot
 
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_objective_performance <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-objective-performance>`_
+.. container:: alert alert-block alert-info
+
+   ::
+
+      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-objective-performance">plot_objective_performance</a>
 
 .. code:: ipython3
 
     ax, ax1 = msdbook.plot_objective_performance(objective_performance, profit_solution, robust_solution)
 
 
-
-
-.. image:: _static/fishery_output_6_0.png
-
-
-The results of the optimization are presented in a parallel axis plot
-where each of the five objectives (and one constraint) are represented
-as an axis. Each solution on the Pareto front is represented as a line
-where the color of the line indicates the value of the NPV objective.
-The preference for objective values is in the upward direction.
-Therefore, the ideal solution would be a line straight across the top of
-the plot that satisfies every objective. However, no such line exists
-because there are tradeoffs when sets of objectives are prioritized over
-the others. When lines cross in between axes, this indicates a tradeoff
-between objectives (as seen in the first two axes).The solution that is
-most robust in the NPV objective has the highest value on the first axis
-and is outlined in dark gold. The solution that is most robust across
-all objectives is outlined in a brighter yellow.
+The solution set from the optimization in Hadjimichael et al. (2020) are
+presented in a parallel axis plot where each of the five objectives (and
+one constraint) are represented as an axis. Each solution on the Pareto
+front is represented as a line where the color of the line indicates the
+value of the NPV objective. The preference for objective values is in
+the upward direction. Therefore, the ideal solution would be a line
+straight across the top of the plot that satisfies every objective.
+However, no such line exists because there are tradeoffs when sets of
+objectives are prioritized over the others. When lines cross in between
+axes, this indicates a tradeoff between objectives (as seen in the first
+two axes).The solution that is most robust in the NPV objective has the
+highest value on the first axis and is outlined in dark gold. The
+solution that is most robust across all objectives is outlined in a
+brighter yellow. A parallel axis is an effective visual to characterize
+high-dimensional tradeoffs in the system and visualize differences in
+performance across policies.
 
 Step 2: Use SALib to generate a sample for a Sobol sensitivity analysis
 -----------------------------------------------------------------------
 
-To do so, we first need to define the problem dictionary that allows us
-to generate alternative states of the world.
+In Step 1, we showed how the optimized harvesting policies performed in
+the objective space, which utilized the baseline parameters outlined in
+the table above. Now, we are interested in understanding how sensitive
+our two policies are to alternative states of the world that may be
+characterized by different parameter values. To do so, we first need to
+define the problem dictionary that allows us to generate these
+alternative states of the world.
 
 .. code:: ipython3
 
@@ -168,8 +168,8 @@ to generate alternative states of the world.
     }
 
 
-You can use the following to generate a Saltelli sample using the
-following:
+Then we use the following command to generate a Saltelli sample from
+these defined ranges:
 
 .. code:: python
 
@@ -188,12 +188,14 @@ this reason, we will load one from file that was previously generated.
 Step 3: Evaluate the system over all generated states of the world
 ------------------------------------------------------------------
 
-We need to identify the states where the predator population collapses,
-as an inadvertent consequence of applying the harvesting strategy under
-a state of the world different from the one originally assumed. Due to
-how long this step takes to execute within the tutorial, we will read in
-the solutions from an external file. However, the block of code below
-shows how evaluation can be implemented.
+Now we re-evaluate how well the policies do in the new states of the
+world. In order to characterize failure of a policy, we identify the
+states where the predator population collapses, as an inadvertent
+consequence of applying the harvesting strategy under a state of the
+world different from the one originally assumed. Due to how long this
+step takes to execute within the tutorial, we will read in the solutions
+from an external file. However, the block of code below shows how
+evaluation can be implemented.
 
 .. code:: python
 
@@ -202,7 +204,7 @@ shows how evaluation can be implemented.
 
    # evaluate performance under every state
    for i in range(len(param_values)):
-
+       
        additional_inputs = np.append(['Previous_Prey'],
                                      [param_values[i,0],
                                       param_values[i,1],
@@ -213,7 +215,7 @@ shows how evaluation can be implemented.
                                       param_values[i,6],
                                       param_values[i,7],
                                       param_values[i,8]])
-
+       
        collapse_days[i,0]=fish_game(highprofitpolicy, additional_inputs)[1][0]
        collapse_days[i,1]=fish_game(mostrobustpolicy, additional_inputs)[1][0]
 
@@ -226,86 +228,43 @@ shows how evaluation can be implemented.
 Step 4: Calculate sensitivity indices
 -------------------------------------
 
+Now we use a Sobol sensitivity analysis to calculate first-order,
+second-order, and total-order sensitivity indices for each parameter and
+for each of the two policies. These indicies help determine which
+factors explain the most variability in the number of days of predator
+population collapse.
+
 .. code:: ipython3
 
-    Si_profit = sobol.analyze(problem, collapse_days[:, 0],
-                              calc_second_order=False,
-                              conf_level=0.95,
+    #Perform the Sobol SA for the profit-maximizing solution
+    Si_profit = sobol.analyze(problem, collapse_days[:, 0], 
+                              calc_second_order=False, 
+                              conf_level=0.95, 
                               print_to_console=True)
 
 
-
-.. parsed-literal::
-
-                  ST   ST_conf
-    a       0.278724  0.051918
-    b       0.188124  0.027986
-    c       0.015588  0.012159
-    d       0.077655  0.016051
-    h       0.025096  0.014796
-    K       0.033239  0.014006
-    m       0.845465  0.071372
-    sigmaX  0.000708  0.000851
-    sigmaY  0.000849  0.000470
-                  S1   S1_conf
-    a       0.126405  0.042938
-    b       0.060739  0.034380
-    c       0.003333  0.008758
-    d       0.011388  0.025792
-    h       0.010233  0.013034
-    K       0.016699  0.015731
-    m       0.609991  0.072196
-    sigmaX  0.000531  0.001607
-    sigmaY  0.000337  0.002014
-
-
 .. code:: ipython3
 
-    Si_robustness = sobol.analyze(problem,
-                                  collapse_days[:, 1],
-                                  calc_second_order=False,
-                                  conf_level=0.95,
+    #Perform the Sobol SA for the robust solution
+    Si_robustness = sobol.analyze(problem, 
+                                  collapse_days[:, 1], 
+                                  calc_second_order=False, 
+                                  conf_level=0.95, 
                                   print_to_console=True)
 
 
-
-.. parsed-literal::
-
-                  ST   ST_conf
-    a       0.226402  0.038177
-    b       0.066819  0.017905
-    c       0.004395  0.004478
-    d       0.024509  0.006695
-    h       0.009765  0.006605
-    K       0.020625  0.010860
-    m       0.897971  0.070086
-    sigmaX  0.000136  0.000152
-    sigmaY  0.000739  0.001088
-                  S1   S1_conf
-    a       0.087936  0.045617
-    b       0.000554  0.019070
-    c      -0.002970  0.004227
-    d       0.001206  0.015897
-    h       0.004554  0.008202
-    K       0.003843  0.012294
-    m       0.751301  0.063511
-    sigmaX -0.000325  0.001155
-    sigmaY -0.001887  0.003287
-
-
 Looking at the total-order indices, (ST) factors :math:`m`, :math:`a`,
-:math:`b`, :math:`d` and :math:`K` appear to affect the stability of
-this system. Looking at the first-order indices (S1), we also see that
-besides factors :math:`m` and :math:`a`, all other factors are important
-in this system through their interactions, which make up the difference
-between their S1 and ST indices. This shows the danger of limiting
-sensitivity analyses to first order effects, as factor importance might
-be significantly misjudged.
+:math:`b`, :math:`d` and :math:`K` explain a non-negligible amount of
+variance therefore have an effect on the stability of this system.
+Looking at the first-order indices (S1), we also see that besides
+factors :math:`m` and :math:`a`, all other factors are important in this
+system through their interactions, which make up the difference between
+their S1 and ST indices. This shows the danger of limiting sensitivity
+analyses to first order effects, as factor importance might be
+significantly misjudged.
 
 These findings are supported by the analytical condition of equilibrium
 stability in this system:
-
-.. image:: _static/eqn4.png
 
 In an unharvested system, this condition is both necessary and
 sufficient for the equilibrium of the two species coexisting to be
@@ -337,7 +296,7 @@ We first define the stability condition, as a function of :math:`b` and
 
     def inequality(b, m, h, K):
         return ((b**m)/(h*K)**(1-m))
-
+    
     # boundary interval that separates successful and failed states of the world
     b = np.linspace(start=0.005, stop=1, num=1000)
     m = np.linspace(start=0.1, stop=1.5, num=1000)
@@ -347,8 +306,12 @@ We first define the stability condition, as a function of :math:`b` and
     a = inequality(b, m, h, K)
     a = a.clip(0,2)
 
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_factor_performance <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-factor-performance>`_
+
+.. container:: alert alert-block alert-info
+
+   ::
+
+      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-factor-performance">plot_factor_performance</a>
 
 .. code:: ipython3
 
@@ -356,20 +319,15 @@ We first define the stability condition, as a function of :math:`b` and
     ax1, ax2 = msdbook.plot_factor_performance(param_values, collapse_days, b, m, a)
 
 
-
-
-.. image:: _static/fishery_output_22_0.png
-
-
 These figures show the combinations of factors that lead to success or
-failure in different states of the world when the NPV-maximizing and
-Robust policies are utilized. Each point is a state of the world,
-characterized by specific values of the parameters, and ideally, we
-would like the color of the point to be blue, to represent that there
-are a low number of days with a predator collapse in that world. The
-gray curve denotes the highly non-linear nature of the boundary that
-separates successful and failed states of the world. The figures
-demonstrate the following key points:
+failure in different states of the world for the profit-maximizing and
+robust policies. Each point is a state of the world, characterized by
+specific values of the parameters, and ideally, we would like the color
+of the point to be blue, to represent that there are a low number of
+days with a predator collapse in that world. The gray curve denotes the
+highly non-linear nature of the boundary, defined by the stability
+condition, that separates successful and failed states of the world. The
+figures demonstrate the following key points:
 
 First, as asserted above, the policies interact with the system in
 different and complex ways. In the presence of human action, the
@@ -381,3 +339,28 @@ Secondly, the robust policy manages to avoid collapse in many more of
 the sampled states of the world, indicated by the number of blue points.
 This presents a clear tradeoff between profit-maximizing performance and
 robustness against uncertainty.
+
+Tips to Apply Sobol SA and Scenario Discovery to your Problem
+-------------------------------------------------------------
+
+In this tutorial, we demonstrated a Sobol SA to identify the most
+important factors driving the behavior of a system (i.e. the number of
+the collapse days). In order to apply this methodology to your problem,
+you will need to have a set of optimized policies for your system that
+you are interested in analyzing. The general workflow is as follows:
+
+1. Choose sampling bounds for your parameters and set up the problem
+   dictionary as in Step 2 above.
+2. Generate samples, or alternative states of the world using the
+   ``saltelli.sample`` function.
+3. Evaluate your policies on the alternative states of the world. For
+   your application, you will also need to develop a rule for
+   determining success or failure of your policy in a new SOW. In this
+   tutorial, success was denoted by a small number of collapse days.
+   Ultimately, the rule will be specific to your application and can
+   include various satisficing criteria.
+4. Calculate the Sobol indices and discover the most important
+   parameters driving success and failure.
+5. Finally, use a similar plotting procedure as in step 5 to identify
+   the combination of parameter values that lead to success and failure
+   in the system.
