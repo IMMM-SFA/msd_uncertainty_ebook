@@ -89,6 +89,31 @@ execute each gray (code) box by typing “Shift+Enter”.
     %matplotlib inline
     %config InlineBackend.print_figure_kwargs = {'bbox_inches':None}
 
+.. parsed-literal::
+
+    Downloading example data for msdbook version 0.1.5...
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/uncertain_params_bounds.txt
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_metric_s1.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_vary_delta.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_mth_s1.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/solutions.resultfile
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/3704614_heatmap.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/LHsamples_original_1000.txt
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/3704614_pseudo_r_scores.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/param_values.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_yr_s1.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_mth_delta.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7000550_pseudo_r_scores.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/collapse_days.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_params_256samples.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_vary_s1.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7000550_heatmap.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7200799_heatmap.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/sa_by_yr_delta.npy
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/7200799_pseudo_r_scores.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/LeafCatch.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_simulations_256samples.csv
+    Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/Robustness.txt
 
 Step 1: Load identified solutions and explore performance
 ---------------------------------------------------------
@@ -127,6 +152,9 @@ performance in a parallel axis plot
 .. code:: ipython3
 
     ax, ax1 = msdbook.plot_objective_performance(objective_performance, profit_solution, robust_solution)
+
+
+.. image:: _static/fishery_output_6_0.png
 
 
 The solution set from the optimization in Hadjimichael et al. (2020) are
@@ -266,6 +294,8 @@ significantly misjudged.
 These findings are supported by the analytical condition of equilibrium
 stability in this system:
 
+.. image:: _static/eqn4.png
+
 In an unharvested system, this condition is both necessary and
 sufficient for the equilibrium of the two species coexisting to be
 stable.
@@ -317,6 +347,9 @@ We first define the stability condition, as a function of :math:`b` and
 
     # generate plot
     ax1, ax2 = msdbook.plot_factor_performance(param_values, collapse_days, b, m, a)
+
+    
+.. image:: _static/fishery_output_22_0.png
 
 
 These figures show the combinations of factors that lead to success or
