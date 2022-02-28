@@ -72,7 +72,7 @@
 			style="text-indent:-16px;"
 			class="text-3xl font-bold text-slate-50 text-shadow pb-1 px-3 text-center lg:text-left leading-tight backdrop-blur-sm"
 		>
-			Addressing Uncertainty in<br />Multisector Dynamics Research
+			Addressing Uncertainty in<br />MultiSector Dynamics Research
 		</div>
 		<div class="h-16 border-y-4 border-slate-50 border-double" />
 		<div
@@ -166,7 +166,7 @@
 		This e-book was developed by the <a
 			href="https://im3.pnnl.gov"
 			class="font-bold text-slate-500 hover:text-sky-700"
-			>Integrated Multisector, Multiscale Modeling (IM3)</a
+			>Integrated MultiSector, Multiscale Modeling (IM3)</a
 		>
 		project, supported by the
 		<a href="https://www.energy.gov/" class="font-bold text-slate-500 hover:text-sky-700"
