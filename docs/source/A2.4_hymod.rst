@@ -56,6 +56,8 @@ The tutorial includes the following steps:
 1 - Introduction to HYMOD
 =========================
 
+.. _hymod:
+
 1.1 Overview
 
 HYMOD is a hydrologic model (rainfall-runoff model) that simulates key
