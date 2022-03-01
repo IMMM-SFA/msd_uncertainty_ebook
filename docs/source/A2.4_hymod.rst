@@ -34,24 +34,24 @@ The tutorial includes the following steps:
 1. Introduction to HYMOD
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-`1.1 - Introduction to a simple hydrologic model (HYMOD) <#hymod>`
+`1.1 - Introduction to a simple hydrologic model (HYMOD) <#hymod>`__
 
-`1.2 - Input Data <#inputs>`
+`1.2 - Input Data <#inputs>`__
 
-`1.3 - Running a basic simulation <#baseline>`
+`1.3 - Running a basic simulation <#baseline>`__
 
-`1.4 - Model outputs <#outputs>`
+`1.4 - Model outputs <#outputs>`__
 
 2. Global Sensitivity Analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`2.1 - Design of Experiments <#sensitivity>`
+`2.1 - Design of Experiments <#sensitivity>`__
 
-`2.2 - Sensitivity analysis for one output <#sa_metrics>`
+`2.2 - Sensitivity analysis for one output <#sa_metrics>`__
 
-`2.3 - Sensitivity analysis across multiple outputs <#diff_performance>`
+`2.3 - Sensitivity analysis across multiple outputs <#diff_performance>`__
 
-`2.4 - Time-varying sensitivity analysis <#TVSA>`
+`2.4 - Time-varying sensitivity analysis <#TVSA>`__
 
 1 - Introduction to HYMOD
 =========================
@@ -102,7 +102,8 @@ Kq values of all three linear reservoirs are the same)
 
 :math:`K_s`: Slow flow residence time of linear infinite reservoir
 
-.. image:: _statichymod_schematic-DAVE.png
+
+.. image:: _static/hymod_schematic-DAVE.png
 
 Vertical Processes
 ~~~~~~~~~~~~~~~~~~
