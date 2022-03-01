@@ -40,6 +40,16 @@ Addressing Uncertainty in MultiSector Dynamics Research
                 <br/>
                 Click or tap the <i style="padding: 0 0.25rem;" class="fas fa-bars"></i> icon to show and hide the sidebar.
             </p>
+    
+    .. admonition:: Info
+
+        .. raw:: html
+
+            <p>
+                See something that could be improved? <a target="_blank" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new">Open an issue</a> on GitHub!
+                <br/>
+                Click or tap the <i style="padding: 0 0.25rem;" class="fab fa-github"></i> icon to find this link again.
+            </p>
 
 .. raw:: latex
 

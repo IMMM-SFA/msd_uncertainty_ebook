@@ -4,7 +4,9 @@ Acknowledgements
 
 This e-book was developed by the `Integrated Multisector, Multiscale Modeling (IM3) project <https://im3.pnnl.gov>`_, supported by the `U.S. Department of Energy <https://www.energy.gov/>`_, `Office of Science <https://www.energy.gov/science/office-science>`_, as part of research in the `MultiSector Dynamics <https://climatemodeling.science.energy.gov/program/multisector-dynamics>`_, Earth and Environmental System Modeling Program.
 
-Open source under license CC BY-NC-ND 4.0
+Open source under license `CC BY-NC-ND-4.0 <https://creativecommons.org/licenses/by-nc-nd/4.0/>`_.
+
+Portions of cover image by `V.Cid7413 <https://commons.wikimedia.org/wiki/File:The_Amazing_Earth.jpg>`_, distributed under a `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0>`_ license.
 
 Open Source Disclaimer:
 

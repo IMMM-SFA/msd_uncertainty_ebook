@@ -91,7 +91,7 @@
 >
 	<div class="hidden md:block font-['ornaments'] text-slate-500 text-4xl mx-6">p</div>
 	<div class="max-w-4xl">
-		A practical guide to sensitivity analysis and diagnostic model evaluation techniques for
+		A living guide to sensitivity analysis and diagnostic model evaluation techniques for
 		confronting the computational and conceptual challenges of multi-model, transdisciplinary
 		workflows.
 	</div>
