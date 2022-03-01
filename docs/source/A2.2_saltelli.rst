@@ -113,7 +113,7 @@ resulting Saltelli sample.
 
 
 
-.. image:: ./figs/output_7_0.png
+.. image:: _static/output_7_0.png
 
 
 Step 3: Execute the Ishigami function over our sample set
