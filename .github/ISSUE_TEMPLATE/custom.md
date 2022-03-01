@@ -1,18 +1,9 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: Publication Feedback
-labels: documentation, triage
-assignees: crvernon, thurber
-
----
-
----
 name: Publication Feedback
 about: Provide feedback on the eBook!
-title: "Feedback:"
-labels: "Docs, Needs Triage"
-assignees: "thurber,crvernon"
+title: Publication Feedback
+labels: documentation, triage
+assignees: thurber, crvernon
 ---
 
 #### What did you enjoy about the eBook?
