@@ -927,10 +927,9 @@ interaction between Alp and Ks.
 .. image:: _static/hymod6.png
 
 
+2.4 Time-Varying Sensitivity Analysis
 
 .. _TVSA:
-
-2.4 Time-Varying Sensitivity Analysis
 
 In section 2.5 we saw how performing sensitivity analysis on different
 measurements of model output can yeild in different results on the
