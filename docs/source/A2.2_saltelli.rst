@@ -281,7 +281,11 @@ above. You will need to:
    permits. You should additionally read the references noted in Step 5
    above to understand more about identify important factors.
 
-## References [1] Saltelli, A. (2002). “Making best use of model
+
+References
+------------------------------------------
+
+[1] Saltelli, A. (2002). “Making best use of model
 evaluations to compute sensitivity indices.” Computer Physics
 Communications, 145(2):280-297, doi:10.1016/S0010-4655(02)00280-1.
 
