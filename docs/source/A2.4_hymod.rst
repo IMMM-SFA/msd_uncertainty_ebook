@@ -51,7 +51,7 @@ The tutorial includes the following steps:
 
 `2.3 - Sensitivity analysis across multiple outputs <#diffperformance>`__
 
-`2.4 - Time-varying sensitivity analysis <#TVSA>`__
+`2.4 - Time-varying sensitivity analysis <#time>`__
 
 1 - Introduction to HYMOD
 =========================
@@ -929,7 +929,7 @@ interaction between Alp and Ks.
 
 2.4 Time-Varying Sensitivity Analysis
 
-.. _TVSA:
+.. _time:
 
 In section 2.5 we saw how performing sensitivity analysis on different
 measurements of model output can yeild in different results on the
