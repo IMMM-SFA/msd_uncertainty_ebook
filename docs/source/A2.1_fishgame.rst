@@ -143,11 +143,11 @@ found within the msdbook package data.
 Next we plot the identified solutions with regards to their objective
 performance in a parallel axis plot
 
-.. container:: alert alert-block alert-info
+.. tip ::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-objective-performance">plot_objective_performance</a>
+        <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-objective-performance">plot_objective_performance</a></p>
 
 .. code:: ipython3
 
@@ -361,11 +361,11 @@ We first define the stability condition, as a function of :math:`b` and
     a = a.clip(0,2)
 
 
-.. container:: alert alert-block alert-info
+.. tip ::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-factor-performance">plot_factor_performance</a>
+        <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-factor-performance">plot_factor_performance</a></p>
 
 .. code:: ipython3
 
