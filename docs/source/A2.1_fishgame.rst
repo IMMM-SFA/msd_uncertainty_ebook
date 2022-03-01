@@ -281,6 +281,30 @@ population collapse.
                                   print_to_console=True)
 
 
+.. parsed-literal::
+
+                  ST   ST_conf
+    a       0.226402  0.036146
+    b       0.066819  0.013347
+    c       0.004395  0.004023
+    d       0.024509  0.006993
+    h       0.009765  0.005488
+    K       0.020625  0.009494
+    m       0.897971  0.066470
+    sigmaX  0.000136  0.000149
+    sigmaY  0.000739  0.001040
+                  S1   S1_conf
+    a       0.087936  0.044236
+    b       0.000554  0.021474
+    c      -0.002970  0.004590
+    d       0.001206  0.015881
+    h       0.004554  0.007998
+    K       0.003843  0.012661
+    m       0.751301  0.071862
+    sigmaX -0.000325  0.001245
+    sigmaY -0.001887  0.002768
+
+
 Looking at the total-order indices, (ST) factors :math:`m`, :math:`a`,
 :math:`b`, :math:`d` and :math:`K` explain a non-negligible amount of
 variance therefore have an effect on the stability of this system.
