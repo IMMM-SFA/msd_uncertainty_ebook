@@ -346,11 +346,11 @@ streamflow, and combined runoff. In this tutorial we focus on the total
 daily runoff, QQ (:math:`m^3/s`). We can use the following script to
 plot simulated streamflow against observed streamflow.
 
-.. container:: alert alert-block alert-info
+.. tip ::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow">plot_observed_vs_simulated_streamflow</a>
+        <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow">plot_observed_vs_simulated_streamflow</a></p>
 
 .. code:: ipython3
 
@@ -579,11 +579,11 @@ observed streamflow.
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
 
-.. container:: alert alert-block alert-info
+.. tip::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow">plot_observed_vs_sensitivity_streamflow</a>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow">plot_observed_vs_sensitivity_streamflow</a></p>
 
 .. code:: ipython3
 
@@ -987,11 +987,11 @@ The following can be used to visualize the time-varying first-order
 indices. The first order represents the direct impacts of a specific
 parameter on model outputs.
 
-.. container:: alert alert-block alert-info
+.. tip::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap">plot_monthly_heatmap</a>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap">plot_monthly_heatmap</a></p>
 
 .. code:: ipython3
 
@@ -1086,11 +1086,11 @@ outputs to annual time steps, and then calculates the SA indices.
 First-order indices
 ^^^^^^^^^^^^^^^^^^^
 
-.. container:: alert alert-block alert-info
+.. tip::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap">plot_annual_heatmap</a>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap">plot_annual_heatmap</a></p>
 
 .. code:: ipython3
 
@@ -1173,11 +1173,11 @@ the monthly TVSA.
 First-order indices
 ^^^^^^^^^^^^^^^^^^^
 
-.. container:: alert alert-block alert-info
+.. tip::
 
-   ::
+   .. raw:: html
 
-      <b>Tip:</b> View the source code used to create this plot here:  <a href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap">plot_varying_heatmap</a>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap">plot_varying_heatmap</a></p>
 
 .. code:: ipython3
 
