@@ -161,25 +161,25 @@ are printed to show what they look like:
 .. code:: ipython3
 
     import msdbook
-    
+
     import numpy as np
     import pandas as pd
     import seaborn as sns
-    
+
     from sklearn import metrics
     from matplotlib import pyplot as plt
-    
+
     # load example data
     msdbook.install_package_data()
-    
+
     # load the Leaf River HYMOD input file
     leaf_data = msdbook.load_hymod_input_file()
-    
+
     # extract the first eleven years of data
     leaf_data = leaf_data.iloc[0:4015].copy()
-    
+
     print('Leaf River Data structure:')
-    
+
     # There are only three columns in the file including precipitation, potential evapotranspiration and  streamflow
     leaf_data.head()
 
@@ -221,11 +221,11 @@ are printed to show what they look like:
         .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
         }
-    
+
         .dataframe tbody tr th {
             vertical-align: top;
         }
-    
+
         .dataframe thead th {
             text-align: right;
         }
@@ -288,16 +288,16 @@ while rainfall labels are shown on the right y-axis.
     # make an axis for the hydrograph
     fig, strmflw_ax = plt.subplots(figsize=[12,6])
     strmflw_ax.set_ylim([0, 50])
-    
+
     #make a second y-axis for the hyetograph
     precip_ax = strmflw_ax.twinx()
     precip_ax.set_ylim([0, 200])
     precip_ax.invert_yaxis()
-    
+
     precip = leaf_data['Precip']
     strmflw_ax.plot(range(0, len(leaf_data['Precip'])), leaf_data['Strmflw'], color='lightcoral')
     strmflw_ax.set_ylabel('Streamflow (mm/day)')
-    
+
     precip_ax.bar(range(0, len(leaf_data['Precip'])), leaf_data['Precip'], width=2)
     precip_ax.set_ylabel('Rainfall (mm/day)')
     precip_ax.legend(['Precip'], loc='center right')
@@ -326,13 +326,13 @@ parameters.
 .. code:: ipython3
 
     # assign input parameters to generate a baseline simulated streamflow
-    Nq = 3  # Number of quickflow routing tanks 
-    Kq = 0.5 # Quickflow routing tanks' rate parameter    
-    Ks =  0.001 # Slowflow routing tank's rate parameter           
-    Alp = 0.5 # Quick/slow split parameter   
-    Huz = 100 # Maximum height of soil moisture accounting tank  
-    B = 1.0 # Scaled distribution function shape parameter    
-    
+    Nq = 3  # Number of quickflow routing tanks
+    Kq = 0.5 # Quickflow routing tanks' rate parameter
+    Ks =  0.001 # Slowflow routing tank's rate parameter
+    Alp = 0.5 # Quick/slow split parameter
+    Huz = 100 # Maximum height of soil moisture accounting tank
+    B = 1.0 # Scaled distribution function shape parameter
+
     # Note that the number of years is 11. One year of model warm-up and ten years are used for actual simulation
     model = msdbook.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
 
@@ -350,7 +350,7 @@ plot simulated streamflow against observed streamflow.
 
    .. raw:: html
 
-        <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow">plot_observed_vs_simulated_streamflow</a></p>
+        <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-simulated-streamflow">plot_observed_vs_simulated_streamflow</a></p>
 
 .. code:: ipython3
 
@@ -389,7 +389,7 @@ performance during low-flow events.
     mae = np.mean(abs(leaf_data['Strmflw'] - model['Q']))
     mse = metrics.mean_squared_error(model['Q'], leaf_data['Strmflw'])
     rmse = mse**(1/2)
-    
+
     print('MAE: ' + str(mae) + '\nRMSE: ' + str(mse) + '\nLOG(RMSE): ' + str(rmse))
 
 
@@ -459,7 +459,7 @@ model uncertainties and their ranges, this dictionary is named
                    [0, 0.1],  # Ks
                    [0, 1],    # Alp
                    [0.1, 500],  # Huz
-                   [0, 1.9]]  # B             
+                   [0, 1.9]]  # B
     }
 
 After defining our uncertainites and ranges, we’ll use SALib to sample
@@ -490,34 +490,34 @@ to conduct this analysis:
 
    # run simulation for each parameter sample
    for i in range(0, len(param_values_hymod)):
-       
+
        # run model for each sensitivity analysis parameter sets
-       hymod_output = msdbook.hymod(Nq, 
-                                    param_values_hymod[i, 0], 
-                                    param_values_hymod[i, 1], 
-                                    param_values_hymod[i, 2], 
-                                    param_values_hymod[i, 3], 
-                                    param_values_hymod[i, 4], 
-                                    leaf_data, 
+       hymod_output = msdbook.hymod(Nq,
+                                    param_values_hymod[i, 0],
+                                    param_values_hymod[i, 1],
+                                    param_values_hymod[i, 2],
+                                    param_values_hymod[i, 3],
+                                    param_values_hymod[i, 4],
+                                    leaf_data,
                                     ndays=4015)
-       
+
        # store the simulated total flow discharge
        d_outputs[f"Q{i}"] = hymod_output["Q"]
 
-       
+
    Q_df_bw = pd.DataFrame(d_outputs)
 
 .. code:: ipython3
 
-    # load previously generated parameter values 
+    # load previously generated parameter values
     param_values_hymod = msdbook.load_hymod_params()
-    
+
     # number of samples
     n_samples = len(param_values_hymod)
-    
+
     # load previously generated hymod simulated outputs
     Q_df_bw = msdbook.load_hymod_simulation()
-    
+
     # column names of each sample simulation number
     sample_column_names = [i for i in Q_df_bw.columns if i[0] == 'Q']
 
@@ -547,7 +547,7 @@ period is one year.
 
     # exclude the first year of simulation from the simulations and reset the index
     Q_df = Q_df_bw.iloc[365:4015].copy().reset_index(drop=True)
-    
+
     # exclude the first year of the input data and reset the index
     leaf_data = leaf_data.iloc[365:4015].copy().reset_index(drop=True)
 
@@ -564,17 +564,17 @@ observed streamflow.
     Q_df['year'] = date_ts.year
     Q_df['month'] = date_ts.month
     Q_df['day'] = date_ts.day
-    
+
     # aggregate the simulated observed streamflow to monthly mean
     df_sim_mth_mean = Q_df.groupby(['year', 'month'])[sample_column_names].mean()
-    
+
     # do the same for the observed data
     date_ts = pd.date_range(start='1/1/2000', periods=len(leaf_data), freq='D')
     leaf_data['date'] = date_ts
     leaf_data['year'] = date_ts.year
     leaf_data['month'] = date_ts.month
     leaf_data['day'] = date_ts.day
-    
+
     # aggregate the daily observed streamflow to monthly mean
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
@@ -583,11 +583,11 @@ observed streamflow.
 
    .. raw:: html
 
-      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow">plot_observed_vs_sensitivity_streamflow</a></p>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow">plot_observed_vs_sensitivity_streamflow</a></p>
 
 .. code:: ipython3
 
-    ax = msdbook.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean, 
+    ax = msdbook.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean,
                                                          df_sim=df_sim_mth_mean)
 
 
@@ -620,7 +620,7 @@ tutorial, and the matrix of simulated streamflows, Y.
 
     # overall aggregated indices
     Y = Q_df[sample_column_names].mean().to_numpy()
-    
+
     # Perform analysis
     Si = sobol.analyze(problem_hymod, Y)
 
@@ -630,9 +630,9 @@ order Si’s for each parameter, then visualize the results with bar plots
 .. code:: ipython3
 
     print('First order indices = ', Si['S1'])
-    
+
     print('Total order indicies = ', Si['ST'])
-    
+
     sns.set_style('white')
     fig = plt.figure(figsize=(8,4))
     ax1 = fig.add_subplot(121)
@@ -640,7 +640,7 @@ order Si’s for each parameter, then visualize the results with bar plots
     ax1.set_xticklabels(['','Kq', 'Ks', 'Alp', 'Huz', 'B'])
     ax1.set_ylabel('First order Si')
     ax1.set_ylim([0,1])
-    
+
     ax2 = fig.add_subplot(122)
     ax2.bar(np.arange(5), Si['ST'])
     ax2.set_xticklabels(['','Kq', 'Ks', 'Alp', 'Huz', 'B'])
@@ -709,12 +709,12 @@ LOG(RMSE) focuses on model performance during low-flow events.
     mae = Q_df[sample_column_names].apply(lambda x: abs(x-leaf_data["Strmflw"]), axis=0)
     mse = Q_df[sample_column_names].apply(lambda x: metrics.mean_squared_error(x, leaf_data["Strmflw"]), axis=0)
     rmse = mse**(1/2)
-    
+
     # add error metrics to a dictionary
     d_metrics = {'MAE': mae.mean().values,
                  'RMSE': rmse.values,
                  'LOG[RMSE]': np.log10(rmse.values)}
-    
+
     # convert to a dataframe
     df_metrics_SA = pd.DataFrame(d_metrics)
 
@@ -726,16 +726,16 @@ visualize it.
 
     df_metric_s1_result = pd.DataFrame(np.zeros((3, 5)), columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
     df_metric_sT_result = pd.DataFrame(np.zeros((3, 5)), columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
-    
+
     # conduct sensitivity analysis for each metric
     for index, i in enumerate(d_metrics.keys()):
-        
+
         # get the data as a numpy array for the target metric
         Y = d_metrics[i]
-        
+
         # use the metric to conduct SA
         Si = sobol.analyze(problem_hymod, Y, print_to_console=False)
-        
+
         # add the sensitivity indices to the output data frame
         df_metric_s1_result.iloc[index, :] = Si['S1']
         df_metric_sT_result.iloc[index, :] = Si['ST']
@@ -747,17 +747,17 @@ visualize it.
     ax1 = fig.add_subplot(121)
     # labels for y-axis
     y_axis_labels = ['Mean Absoulte Error', 'RSME', 'Log(RMSE)']
-    
+
     # plot heatmap
     ax1 = sns.heatmap(df_metric_s1_result, yticklabels=y_axis_labels, annot=True,  cmap='inferno_r', cbar_kws={'label': 'Si'}, cbar=False)
     ax1.figure.axes[-1].yaxis.label.set_size(14)
     ax1.set_title('First Order Sensitivity')
-                     
+
     ax2 = fig.add_subplot(122)
     ax2 = sns.heatmap(df_metric_sT_result, yticklabels=y_axis_labels, annot=True,  cmap='inferno_r', cbar_kws={'label': 'Si'})
     ax2.figure.axes[-1].yaxis.label.set_size(14)
     ax2.set_title('Total Order Sensitivity')
-                     
+
 
 
 
@@ -813,54 +813,54 @@ interaction between Alp and Ks.
     import seaborn as sns
     import math
     sns.set_style('whitegrid', {'axes_linewidth': 0, 'axes.edgecolor': 'white'})
-     
+
     def is_significant(value, confidence_interval, threshold="conf"):
         if threshold == "conf":
             return value - abs(confidence_interval) > 0
         else:
             return value - abs(float(threshold)) > 0
-     
+
     def grouped_radial(SAresults, parameters, radSc=2.0, scaling=1, widthSc=0.5, STthick=1, varNameMult=1.3, colors=None, groups=None, gpNameMult=1.5, threshold="conf"):
         # Derived from https://github.com/calvinwhealton/SensitivityAnalysisPlots
         fig, ax = plt.subplots(1, 1)
         color_map = {}
-         
+
         # initialize parameters and colors
         if groups is None:
-             
+
             if colors is None:
                 colors = ["k"]
-             
+
             for i, parameter in enumerate(parameters):
                 color_map[parameter] = colors[i % len(colors)]
-        else:        
+        else:
             if colors is None:
                 colors = sns.color_palette("deep", max(3, len(groups)))
-             
+
             for i, key in enumerate(groups.keys()):
                 #parameters.extend(groups[key])
-                 
+
                 for parameter in groups[key]:
                     color_map[parameter] = colors[i % len(colors)]
-         
+
         n = len(parameters)
         angles = radSc*math.pi*np.arange(0, n)/n
         x = radSc*np.cos(angles)
         y = radSc*np.sin(angles)
-         
+
         # plot second-order indices
         for i, j in itertools.combinations(range(n), 2):
             #key1 = parameters[i]
             #key2 = parameters[j]
-             
+
             if is_significant(SAresults["S2"][i][j], SAresults["S2_conf"][i][j], threshold):
                 angle = math.atan((y[j]-y[i])/(x[j]-x[i]))
-                     
+
                 if y[j]-y[i] < 0:
                     angle += math.pi
-                     
+
                 line_hw = scaling*(max(0, SAresults["S2"][i][j])**widthSc)/2
-                     
+
                 coords = np.empty((4, 2))
                 coords[0, 0] = x[i] - line_hw*math.sin(angle)
                 coords[1, 0] = x[i] + line_hw*math.sin(angle)
@@ -870,50 +870,50 @@ interaction between Alp and Ks.
                 coords[1, 1] = y[i] - line_hw*math.cos(angle)
                 coords[2, 1] = y[j] - line_hw*math.cos(angle)
                 coords[3, 1] = y[j] + line_hw*math.cos(angle)
-     
+
                 ax.add_artist(plt.Polygon(coords, color="0.75"))
-             
+
         # plot total order indices
         for i, key in enumerate(parameters):
             if is_significant(SAresults["ST"][i], SAresults["ST_conf"][i], threshold):
                 ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["ST"][i]**widthSc)/2, color='w'))
                 ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["ST"][i]**widthSc)/2, lw=STthick, color='0.4', fill=False))
-         
+
         # plot first-order indices
         for i, key in enumerate(parameters):
             if is_significant(SAresults["S1"][i], SAresults["S1_conf"][i], threshold):
                 ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["S1"][i]**widthSc)/2, color='0.4'))
-                
+
         # add labels
-        for i, key in enumerate(parameters):                
+        for i, key in enumerate(parameters):
             ax.text(varNameMult*x[i], varNameMult*y[i], key, ha='center', va='center',
                     rotation=angles[i]*360/(2*math.pi) - 90,
                     color=color_map[key])
-             
+
         if groups is not None:
             for i, group in enumerate(groups.keys()):
                 print(group)
                 group_angle = np.mean([angles[j] for j in range(n) if parameters[j] in groups[group]])
-                 
+
                 ax.text(gpNameMult*radSc*math.cos(group_angle), gpNameMult*radSc*math.sin(group_angle), group, ha='center', va='center',
                     rotation=group_angle*360/(2*math.pi) - 90,
                     color=colors[i % len(colors)])
-                 
+
         ax.set_facecolor('white')
         ax.set_xticks([])
         ax.set_yticks([])
         plt.axis('equal')
         plt.axis([-2*radSc, 2*radSc, -2*radSc, 2*radSc])
         #plt.show()
-     
-         
+
+
         return fig
-    
+
     # define groups for parameter uncertainties
     groups={"Soil Moisture" : ["Huz", "B"],
             "Routing" : ["Alp", "Kq", "Ks"]}
-     
-     
+
+
     fig = grouped_radial(Si, ['Kq', 'Ks', 'Alp', 'Huz', 'B'], groups=groups, threshold=0.025)
 
 
@@ -949,7 +949,7 @@ predictions generated by HYMOD.
 
     # aggregate simulated streamflow data to monthly time series
     df_sim_by_mth_mean = Q_df.groupby('month')[sample_column_names].mean()
-    
+
     # aggregate observed streamflow data to monthly time series
     df_obs_by_mth_mean = leaf_data.groupby('month').mean()
 
@@ -965,17 +965,17 @@ visualize it. Results are pre-loaded for efficiency.
 
    # iterate through each month
    for i in range(0, 12):
-       
+
        # generate the simulation data
        Y = df_sim_by_mth_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_mth_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_mth_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_mth_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_mth_s1 = df_mth_s1.values
    arr_mth_delta = df_mth_delta.values
@@ -991,13 +991,13 @@ parameter on model outputs.
 
    .. raw:: html
 
-      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap">plot_monthly_heatmap</a></p>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-monthly-heatmap">plot_monthly_heatmap</a></p>
 
 .. code:: ipython3
 
     # load previously ran data
     arr_mth_delta, arr_mth_s1 = msdbook.load_hymod_monthly_simulations()
-    
+
     # plot figure
     ax, ax2 = msdbook.plot_monthly_heatmap(arr_sim=arr_mth_s1.T,
                                            df_obs=df_obs_by_mth_mean,
@@ -1050,7 +1050,7 @@ output.
 
     # group by year and get mean
     df_sim_by_yr_mean = Q_df.groupby(['year'])[sample_column_names].mean()
-    
+
     # group input data and get mean
     df_obs_by_yr_mean = leaf_data.groupby(['year']).mean()
 
@@ -1068,17 +1068,17 @@ outputs to annual time steps, and then calculates the SA indices.
 
    # iterate through each year
    for i in range(0, 10):
-       
+
        # generate the simulation data
        Y = df_sim_by_yr_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_yr_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_yr_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_yr_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_yr_s1 = df_mth_s1.values
    arr_yr_delta = df_mth_delta.values
@@ -1090,15 +1090,15 @@ First-order indices
 
    .. raw:: html
 
-      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap">plot_annual_heatmap</a></p>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-annual-heatmap">plot_annual_heatmap</a></p>
 
 .. code:: ipython3
 
     # load previously ran data
     arr_yr_delta, arr_yr_s1 = msdbook.load_hymod_annual_simulations()
-    
+
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_s1.T, 
+    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_s1.T,
                                           df_obs=df_obs_by_yr_mean,
                                           title='First Order - Mean Annual SA')
 
@@ -1119,7 +1119,7 @@ Total-order indices
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_delta.T, 
+    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_delta.T,
                                           df_obs=df_obs_by_yr_mean,
                                           title='Total Order - Mean Annual SA and Observed flow')
 
@@ -1148,24 +1148,24 @@ the monthly TVSA.
 .. code:: python
 
    # set up dataframes to store outputs
-   df_vary_s1 = pd.DataFrame(np.zeros((df_obs_mth_mean.shape[0], 5)), 
+   df_vary_s1 = pd.DataFrame(np.zeros((df_obs_mth_mean.shape[0], 5)),
                              columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
 
    df_vary_delta = df_vary_s1.copy()
 
    # iterate through each month
    for i in range(0, df_obs_mth_mean.shape[0]):
-       
+
        # generate the simulation data
        Y = df_sim_mth_mean.iloc[i, :].to_numpy()
-       
+
        # run SA
        Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-       
+
        # add to output dataframes
        df_vary_s1.iloc[i, :] = np.maximum(Si['S1'], 0)
-       df_vary_delta.iloc[i, :] = np.maximum(Si['delta'], 0)  
-       
+       df_vary_delta.iloc[i, :] = np.maximum(Si['delta'], 0)
+
    # convert to arrays
    arr_vary_s1 = df_vary_s1.values
    arr_vary_delta = df_vary_delta.values
@@ -1177,15 +1177,15 @@ First-order indices
 
    .. raw:: html
 
-      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap">plot_varying_heatmap</a></p>
+      <p>View the source code used to create this plot here:  <a target="_blank" href="https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-varying-heatmap">plot_varying_heatmap</a></p>
 
 .. code:: ipython3
 
     # load in previously ran data
     arr_vary_delta, arr_vary_s1 = msdbook.load_hymod_varying_simulations()
-    
+
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_s1.T, 
+    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_s1.T,
                                           df_obs=df_obs_mth_mean,
                                           title='First Order - Time-Varying SA')
 
@@ -1205,7 +1205,7 @@ Total order - time varying sensitivity analysis
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_delta.T, 
+    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_delta.T,
                                           df_obs=df_obs_mth_mean,
                                           title='Total Order - Time-Varying SA')
 
