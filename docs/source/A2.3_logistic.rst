@@ -20,7 +20,7 @@ water policy changes. The UCRB spans 25,682 km2 in western Colorado and
 is home to approximately 300,000 residents and 1,012 km2 of irrigated
 land. Several thousand irrigation ditches divert water from the main
 river and its tributaties for irrigation (shown as small black dots in
-the figure). Transmountain diversions of approximately 567,4000,000 m3
+the figure). Transmountain diversions of approximately 567,400,000 m3
 per year are exported for irrigation, industrial and municipal uses in
 northern and eastern Colorado, serving the major population centers of
 Denver and Colorado Springs. These diversions are carried through
@@ -36,28 +36,38 @@ planners simulate the system across an ensemble of scenarios using the
 state of Colorado’s StateMod platform. The model simulates streamflow,
 diversions, instream demands, and reservoir operations.
 
-Focusing on decision-relevant metrics, the scenario discovery is applied
-to the water shortages experienced by each individual user (i.e., not on
-a single basin-wide or sector-wide metric). For this training example,
-we’ll be performing scenario discovery for three different water users,
-two irrigation users and one municipal user.
+Hadjimichael et al. (2020) employ an exploratory analysis by simulating
+a large ensemble of plausible scenarios using StateMod and then
+identifying consequential decision-relevant combinations of uncertain
+factors, termed scenario discovery. Focusing on decision-relevant
+metrics (metrics that are important to the user, the scenario discovery
+is applied to the water shortages experienced by each individual user
+(i.e., not on a single basin-wide or sector-wide metric). For this
+training example, we’ll be performing scenario discovery for three
+different water users: two irrigation users and one municipal user.
 
-Before we start our analysis, we’ll load the relevant Python libraries
-and create lists storing the names of the users of interest.
+Let’s get started!
+------------------
+
+In this tutorial, we will be loading in data that has been produced in
+Hadjimichael et al. (2020). Before we start our analysis, we’ll load the
+relevant Python libraries, example data, and information for the three
+users.
 
 .. code:: ipython3
 
+    #import libraries 
     import msdbook
-
     import numpy as np
     import pandas as pd
     import matplotlib as mpl
     import matplotlib.pyplot as plt
-
-    # load example data
+    
+    # load example data from Hadjimichael et al. (2020)
     msdbook.install_package_data()
-
-    all_IDs = ['7000550','7200799','3704614'] # IDs for three that we will perform the analysis for
+    
+    # Select the IDs for the three users that we will perform the analysis for
+    all_IDs = ['7000550','7200799','3704614'] 
     usernames = ['Medium seniority irrigation',
                  'Low seniority irrigation',
                  'Transbasin municipal diversion']
@@ -92,18 +102,31 @@ and create lists storing the names of the users of interest.
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/Robustness.txt
 
 
-Step 1: Load Latin Hypercube Sample and set up problem
+Step 1: Load Latin hypercube sample and set up problem
 ------------------------------------------------------
 
 To examine regional vulnerability, we generate an ensemble of plausible
-future states of the worlds (SOWs) using Latin Hypercube Sampling. For
-this tutorial, we’ll load a file containing 1,000 parameter samples.
+future states of the world (SOWs) using Latin Hypercube Sampling. For
+this tutorial, we’ll load a file containing 1,000 samples across 14
+parameters. The sampled parameters encompass plausible changes to the
+future state of the basin, including changes to hydrology, water demands
+(irrigation, municipal & industry, transbasin), and institutional and
+environmental factors (environmental flows, reservoir storage, operation
+of the Shoshone Power Plant). These samples are taken from ranges
+identified in ``param_bounds``. Below we load in the 1000 samples, the
+range of values that the samples can take for each parameter, and the
+parameter names. More information on what each parameter constitutes can
+be found in Table 1 of Hadjimichael et al., 2020.
 
 .. code:: ipython3
 
-    LHsamples = msdbook.load_lhs_basin_sample()
+    #Identify the bounds for each of the 14 parameters 
     param_bounds = msdbook.load_basin_param_bounds()
-
+    
+    #Load in the parameter samples 
+    LHsamples = msdbook.load_lhs_basin_sample()
+    
+    #Create an array of the parameter names
     param_names=['Irrigation demand multiplier','Reservoir loss','Transbasin demand multiplier',
                  'Municipal & industrial multiplier', 'Shoshone','Environmental flows',
                  'Evaporation change','Mean dry flow','Dry flow variance',
@@ -142,8 +165,8 @@ Python <https://www.statsmodels.org/stable/index.html>`__ package. The
 data required for the full analysis is too large to include in this
 tutorial, but results can be found in the data file loaded below.
 
-The results files contain the occurence of different frequency and
-magnitude combinations under the experiment, in increments of 10,
+The results files contain the occurence of different shortage frequency
+and magnitude combinations under the experiment, in increments of 10,
 between 0 and 100. These combinations (100 for each user) are
 alternative decision-relevant metrics that can be used for scenario
 discovery.
@@ -154,8 +177,7 @@ discovery.
     frequencies = np.arange(10, 110, 10)
     magnitudes = np.arange(10, 110, 10)
     realizations = 10
-
-
+    
     # Load performance and pseudo r scores for each of the users
     results = [msdbook.load_user_heatmap_array(all_IDs[i]) / 100 for i in range(len(all_IDs))]
 
@@ -170,7 +192,7 @@ of the data set:
 
 .. math:: R^2_{McFadden}=1-\frac{ln \hat{L}(M_{full})}{ln \hat{L}(M_{intercept})}
 
-Where :math:`ln \hat{L}(M_{full})` is the log likelihood of the full
+Here :math:`ln \hat{L}(M_{full})` is the log likelihood of the full
 model (including the predictor) and :math:`ln \hat{L}(M_{intercept})` is
 the log likelihood of the intercept model (which predicts the mean
 probability of success across all SOWs).
@@ -182,8 +204,10 @@ very small).
 
 .. code:: ipython3
 
+    #Load the pseudo-R^2 scores
     scores = [msdbook.load_user_pseudo_scores(all_IDs[i]) for i in range(len(all_IDs))]
-
+    
+    # Select indices of frequency and magnitudes that will be used for the visualization
     freq = [1,0,0]
     mag = [7,3,7]
 
@@ -203,36 +227,36 @@ metrics for each user, but here we will demonstrate by mapping two).
     # setup figure
     fig, axes = plt.subplots(3,1, figsize=(6,18), tight_layout=True)
     fig.patch.set_facecolor('white')
-
+    
     for i in range(len(axes.flat)):
-
+        
         ax = axes.flat[i]
-
+        
         allSOWsperformance = results[i]
         all_pseudo_r_scores = scores[i]
-
+        
         # construct dataframe
         dta = pd.DataFrame(data=np.repeat(LHsamples, realizations, axis = 0), columns=param_names)
         dta['Success'] = allSOWsperformance[freq[i],mag[i],:]
-
+        
         pseudo_r_scores = all_pseudo_r_scores[str(frequencies[freq[i]])+'yrs_'+str(magnitudes[mag[i]])+'prc'].values
         top_predictors = np.argsort(pseudo_r_scores)[::-1][:2] #Sort scores and pick top 2 predictors
-
+        
         # define color map for dots representing SOWs in which the policy
         # succeeds (light blue) and fails (dark red)
         dot_cmap = mpl.colors.ListedColormap(np.array([[227,26,28],[166,206,227]])/255.0)
-
+        
         # define color map for probability contours
         contour_cmap = mpl.cm.get_cmap('RdBu')
-
+        
         # define probability contours
         contour_levels = np.arange(0.0, 1.05,0.1)
-
+        
         # define base values of the predictors
         SOW_values = np.array([1,1,1,1,0,0,1,1,1,1,1,0,0,0]) # default parameter values for base SOW
         base = SOW_values[top_predictors]
         ranges = param_bounds[top_predictors]
-
+        
         # define grid of x (1st predictor), and y (2nd predictor) dimensions
         # to plot contour map over
         xgrid = np.arange(param_bounds[top_predictors[0]][0],
@@ -241,24 +265,30 @@ metrics for each user, but here we will demonstrate by mapping two).
                           param_bounds[top_predictors[1]][1], np.around((ranges[1][1]-ranges[1][0])/500,decimals=4))
         all_predictors = [ dta.columns.tolist()[i] for i in top_predictors]
         dta['Interaction'] = dta[all_predictors[0]]*dta[all_predictors[1]]
-
+        
         # logistic regression here
         predictor_list = [all_predictors[i] for i in [0,1]]
         result = msdbook.fit_logit(dta, predictor_list)
-
+        
         # plot contour map
         contourset = msdbook.plot_contour_map(ax, result, dta, contour_cmap,
                                               dot_cmap, contour_levels, xgrid,
                                               ygrid, all_predictors[0], all_predictors[1], base)
-
+        
         ax.set_title(usernames[i])
-
+        
     # set up colorbar
     cbar_ax = fig.add_axes([0.98, 0.15, 0.05, 0.7])
     cbar = fig.colorbar(contourset, cax=cbar_ax)
     cbar_ax.set_ylabel('Probability of Success', fontsize=16)
     cbar_ax.tick_params(axis='y', which='major', labelsize=12)
 
+
+
+.. parsed-literal::
+
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/statsmodels/base/model.py:127: ValueWarning: unknown kwargs ['disp']
+      warnings.warn(msg, ValueWarning)
 
 
 .. parsed-literal::
@@ -280,9 +310,9 @@ metrics for each user, but here we will demonstrate by mapping two).
 
 The figure above demonstrates how different combinations of the
 uncertain factors lead to success or failure in different states of the
-world, which are denoted by the blue and red dots. The probability of
-success and failure are further denoted by the contours in the figure.
-Several insights can be drawn from this figure.
+world, which are denoted by the blue and red dots respectively. The
+probability of success and failure are further denoted by the contours
+in the figure. Several insights can be drawn from this figure.
 
 First, using metrics chosen to be decision-relevant (specific to each
 user) causes different factors to be identified as most important by
@@ -304,3 +334,35 @@ success, i.e. different factor-value combinations are assigned different
 probabilities that a shortage level will be exceeded. This allows the
 decision makers to evaluate these insights while considering their risk
 aversion.
+
+Tips to Apply Scenario Discovery to Your Own Problem
+----------------------------------------------------
+
+In this tutorial, we demonstrated how to perform a scenario discovery
+analysis for three different users in the UCRB. The analysis allowed us
+to determine which parameters the users would be most affected by and to
+visualize how different ranges of these parameters lead to success and
+failure for different users. This framework can be applicable to any
+other application where it is of interest to characterize success and
+failure based on uncertain parameter ranges. In order to apply the same
+framework to your own problem:
+
+1. Choose sampling bounds for your parameters of interest, which will
+   represent uncertainties that characterize your system.
+2. Generate samples for these parameters (this can be done using the
+   ``saltelli.sample`` function or externally).
+3. Define what constitutes success and failure in your problem. In this
+   tutorial, success was defined based on not surpassing the historical
+   drought frequency. Choose a metric that is relevant to your problem
+   and decision-makers that might be involved. If your model involves an
+   optimization, you can also define metrics based on meeting certain
+   values of these objectives.
+4. Run the parameter sets through your model and calculate success and
+   failure based on your metrics and across different users if
+   applicable. This step will allow you to create the scatter plot part
+   of the final figure.
+5. If it is of interest, the contours on the figure can be created by
+   fitting the logistic regression model in a similiar manner as denoted
+   in Steps 3 and 5 of the tutorial.
+
+
