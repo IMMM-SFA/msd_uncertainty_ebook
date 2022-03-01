@@ -13,7 +13,3 @@ assignees: thurber, crvernon
 #### Did you find a typo, inconsistency, or error?
 
 [Paste the URL or header of the page and describe the issue with sufficient detail.]
-
-#### Have a differing hypothesis or counterpoint on the subject matter?
-
-[Concisely state your case and provide key citations; be kind and professional!]
