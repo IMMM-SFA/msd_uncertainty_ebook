@@ -49,7 +49,7 @@ The tutorial includes the following steps:
 
 `2.2 - Sensitivity analysis for one output <#sa_metrics>`__
 
-`2.3 - Sensitivity analysis across multiple outputs <#diff_performance>`__
+`2.3 - Sensitivity analysis across multiple outputs <#diffperformance>`__
 
 `2.4 - Time-varying sensitivity analysis <#TVSA>`__
 
@@ -317,6 +317,7 @@ while rainfall labels are shown on the right y-axis.
 .. image:: _static/hymod1.png
 
 .. _baseline:
+
 1.3 Running a Baseline Model Simulation
 
 We’ll start our experiment by running HYMOD using its default
@@ -337,6 +338,7 @@ parameters.
 
 
 .. _outputs:
+
 1.4 Model Outputs
 
 Model outputs include actual evapotranspiration, quick and fast
@@ -596,6 +598,7 @@ observed streamflow.
 
 
 .. _sa_metrics:
+
 2.2 Sensitivity of streamflows to model parameters
 
 Now we’ll examine how each of HYMOD’s parameters impact the variance of
@@ -682,7 +685,7 @@ interactions between parameters causing the total order indicies to be
 nearly identical to the first order indicies.
 
 
-.. _diff_performance:
+.. _diffperformance:
 
 2.3 How do different performance metrics affect the results of our
 sensitivity analysis?
@@ -926,6 +929,7 @@ interaction between Alp and Ks.
 
 
 .. _TVSA:
+
 2.4 Time-Varying Sensitivity Analysis
 
 In section 2.5 we saw how performing sensitivity analysis on different
