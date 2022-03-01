@@ -47,7 +47,7 @@ The tutorial includes the following steps:
 
 `2.1 - Design of Experiments <#sensitivity>`__
 
-`2.2 - Sensitivity analysis for one output <#sa_metrics>`__
+`2.2 - Sensitivity analysis for one output <#sametrics>`__
 
 `2.3 - Sensitivity analysis across multiple outputs <#diffperformance>`__
 
@@ -597,7 +597,7 @@ observed streamflow.
 
 
 
-.. _sa_metrics:
+.. _sametrics:
 
 2.2 Sensitivity of streamflows to model parameters
 
