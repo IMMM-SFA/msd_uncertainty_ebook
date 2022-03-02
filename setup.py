@@ -49,7 +49,7 @@ setup(
             'nbsphinx~=0.8.6',
             'setuptools~=57.0.0',
             'sphinx~=4.0.2',
-            'sphinx-rtd-theme~=0.5.2',
+            'sphinx-book-theme~=0.2.0',
             'sphinxcontrib-bibtex~=2.4.1',
             'twine~=3.4.1'
         ]
