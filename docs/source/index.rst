@@ -46,7 +46,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
         .. raw:: html
 
             <p>
-                See something that could be improved? <a target="_blank" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new">Open an issue</a> on GitHub!
+                Report a typo or just pass along something you like about the book by <a target="_blank" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?assignees=thurber%2C+crvernon&labels=documentation%2C+triage&template=custom.md&title=Publication+Feedback">opening an issue</a> on GitHub!
                 <br/>
                 Click or tap the <i style="padding: 0 0.25rem;" class="fab fa-github"></i> icon to find this link again.
             </p>
