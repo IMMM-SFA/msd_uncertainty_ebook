@@ -14,7 +14,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
 
         Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,
         Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta,
-        David F. Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis B. Thurber
+        David F. Gold, Ben Lee, Klaus Keller, Travis B. Thurber, Jennie S. Rice
     
     A practical guide to sensitivity analysis and diagnostic model evaluation techniques for confronting the computational and conceptual challenges of multi-model, transdisciplinary workflows.
 
