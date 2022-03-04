@@ -111,6 +111,6 @@ latex_documents = [
      '\\textbf{Addressing Uncertainty in MultiSector Dynamics Research}',
      'Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek'
      '\\and Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta'
-     '\\and David F. Gold, Ben Lee, Klaus Keller, Jennie S. Rice, Travis B. Thurber',
+     '\\and David F. Gold, Ben Lee, Klaus Keller, Travis B. Thurber, Jennie S. Rice',
      'book')
 ]

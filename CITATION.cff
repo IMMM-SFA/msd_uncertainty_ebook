@@ -31,12 +31,12 @@ authors:
 - family-names: "Keller"
   given-names: "Klaus"
   orcid: "https://orcid.org/0000-0002-5451-8687"
-- family-names: "Rice"
-  given-names: "Jennie S."
-  orcid: "https://orcid.org/0000-0002-7833-9456"
 - family-names: "Thurber"
   given-names: "Travis B."
   orcid: "https://orcid.org/0000-0002-4370-9971"
+- family-names: "Rice"
+  given-names: "Jennie S."
+  orcid: "https://orcid.org/0000-0002-7833-9456"
 title: "Addressing Uncertainty in Multisector Dynamics Research"
 doi: 10.5281/zenodo.6110623
 date-released: 2022-02-17
