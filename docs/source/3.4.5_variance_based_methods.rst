@@ -14,7 +14,7 @@ with :math:`E` and :math:`V` denoting the expected value and the variance, respe
 Higher-order sensitivity indices explore the interaction between two or more parameters that contribute to model output variations. For example, a second-order index indicates how interactions between a pair of factors can lead to change in model output variance and is calculated using the following relationship:
 
 .. math::
-  S_i^2=\frac{V_{x_{i,j}}[E_{x_{\sim i,j}}(x_i,x_j)]}{V(y)}
+  S_{ij}^2=\frac{V_{x_{i,j}}[E_{x_{\sim i,j}}(x_i,x_j)]}{V(y)}
 
 with :math:`i \ne j`. Higher order indices can be calculated by similar extensions (i.e., fixing additional operators together), but it is usually computationally expensive in practice.
 
