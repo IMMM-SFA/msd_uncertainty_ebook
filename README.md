@@ -2,7 +2,7 @@
 
 ## Addressing Uncertainty in MultiSector Dynamics Research
 
-[Read the living document here](https://immm-sfa.github.io/msd_uncertainty_ebook/)!
+### [Read the living document here](https://immm-sfa.github.io/msd_uncertainty_ebook/)!
 
 To provide feedback or report a bug, please [open an issue](https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new).
 
