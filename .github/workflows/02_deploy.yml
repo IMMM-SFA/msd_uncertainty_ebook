@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install latex dependencies
-        run: sudo apt-get update -y && sudo apt-get install -y texlive latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+        run: sudo apt-get update -y && sudo apt-get install -y texlive latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended ghostscript
       - name: Update pip and install python dependencies
         working-directory: 'docs/'
         run: |
@@ -23,9 +23,13 @@ jobs:
         working-directory: 'docs/'
         run: |
           make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
-          make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
-          make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+          make latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
+          make latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
         continue-on-error: true
+      - name: Concatenate eBook cover with eBook
+        run: |
+          mv docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf docs/build/latex/ebook_content.pdf
+          gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf -dBATCH docs/ebook_cover.pdf docs/build/latex/ebook_content.pdf
       - uses: actions/setup-node@v2
         with:
           node-version: '16'

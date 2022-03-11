@@ -6,16 +6,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { BookOpen, DocumentDownload, PencilAlt, Code } from '@steeze-ui/heroicons';
+	import { BookOpen, DocumentDownload, Code } from '@steeze-ui/heroicons';
 	import { Facebook, Linkedin, Twitter } from '@steeze-ui/feather-icons';
+	import Cite from '$lib/Cite.svelte'
 
 	const entrypoints = [
-		// {
-		//     icon: PencilAlt,
-		//     title: 'Notebook',
-		//     text: 'Interact live while reading!',
-		//     url: 'todo.html',
-		// },
 		{
 			icon: BookOpen,
 			title: 'HTML',
@@ -77,7 +72,7 @@
 			style="text-indent:-16px;"
 			class="text-3xl font-bold text-slate-50 text-shadow pb-1 px-3 text-center lg:text-left leading-tight backdrop-blur-sm"
 		>
-			Addressing Uncertainty in<br />Multisector Dynamics Research
+			Addressing Uncertainty in<br />MultiSector Dynamics Research
 		</div>
 		<div class="h-16 border-y-4 border-slate-50 border-double" />
 		<div
@@ -85,9 +80,9 @@
 		>
 			<div style="">Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,</div>
 			<div style="text-indent: -8px;">
-				Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini Gupta,
+				Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta,
 			</div>
-			<div style="text-indent: -16px;">David Gold, Ben Lee, Klaus Keller, Jennie Rice, Travis Thurber</div>
+			<div style="text-indent: -16px;">David F. Gold, Ben Lee, Klaus Keller, Travis B. Thurber, Jennie S. Rice</div>
 		</div>
 	</div>
 </div>
@@ -96,7 +91,7 @@
 >
 	<div class="hidden md:block font-['ornaments'] text-slate-500 text-4xl mx-6">p</div>
 	<div class="max-w-4xl">
-		A practical guide to sensitivity analysis and diagnostic model evaluation techniques for
+		A living guide to sensitivity analysis and diagnostic model evaluation techniques for
 		confronting the computational and conceptual challenges of multi-model, transdisciplinary
 		workflows.
 	</div>
@@ -146,7 +141,7 @@
 		{/each}
 	</div>
 </div>
-<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
+<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-6">
 	<div class="text-lg text-slate-50 lg:mt-6">Share with your network!</div>
 	<div class="flex flex-row items-center justify-center mt-3 w-full">
 		<a href={twitterShare} class="rounded-lg drop-shadow p-2 mx-3 bg-sky-700 hover:bg-sky-500">
@@ -161,11 +156,17 @@
 	</div>
 </div>
 <div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
+	<div class="text-lg text-slate-50 lg:mt-6">Cite the eBook!</div>
+	<div class="flex flex-row items-center justify-center mt-3 w-full">
+		<Cite />
+	</div>
+</div>
+<div class="w-full flex flex-col items-center justify-center text-center px-3 pb-12">
 	<div class="max-w-4xl text-sm italic text-slate-400">
 		This e-book was developed by the <a
 			href="https://im3.pnnl.gov"
 			class="font-bold text-slate-500 hover:text-sky-700"
-			>Integrated Multisector, Multiscale Modeling (IM3)</a
+			>Integrated MultiSector, Multiscale Modeling (IM3)</a
 		>
 		project, supported by the
 		<a href="https://www.energy.gov/" class="font-bold text-slate-500 hover:text-sky-700"

@@ -11,6 +11,7 @@ The act of quantification requires specific assumptions about distributional for
 .. figure:: _static/figureA1_1_UQ_approaches.png
     :alt: Figure A1.1
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Overview of selected existing approaches for uncertainty quantification and their appropriateness given the number of uncertain model parameters and the number of available model simulations. Green shading denotes regions suitable for uncertainty quantification and red shading indicates regions more appropriate for uncertainty characterization.

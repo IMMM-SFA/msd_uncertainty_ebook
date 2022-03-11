@@ -1,52 +1,74 @@
 HYMOD Dynamics Tutorial
 *************************
 
-.. note:: Run the tutorial interactively:  `HYMOD Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb>`_
+.. note::
+    
+    | Run the tutorial interactively using Binder:  `HYMOD Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb>`_.
+    | Please be aware that Binder notebooks can take up to 10 minutes to launch.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
 
 Tutorial: Sensitivity Analysis of the HYMOD Model
 =================================================
 
-This tutorial has been developed to showcase some of the sensitivity
-analysis and uncertainty quantification concepts and tools established
-in the main text in the context of HYMOD, a rainfall-runoff model. The
-tutorial includes the following sections:
+The purpose of this tutorial is to demonstrate the global sensitivity
+analysis concepts and tools established in the Section 3.1 of the main
+text of this eBook. This demonstration will highlight the central role
+of design of experiments (Section 3.3), when implementing global
+sensitivity analysis tools described in Section 3.4.
 
-Introduction to HYMOD and Sensitivity Analysis
-----------------------------------------------
+We’ll explore these tools and concepts using the HYdrological MODel
+(HYMOD), a rainfall-runoff model developed and used for river flow
+forecasting. HYMOD was chosen for demonstration because its purpose is
+to abstract highly complex and non-linear systems. The methods
+demonstrated in thistutorial can be applied to numerical models that
+simulate other complex non-linear systems.
 
-`1- Introduction to a simple hydrologic model (HYMOD) <#hymod>`__ `2- An
-overview of sensitivity analysis using SALib <#sensitivity>`__ `3-
-Calculation of sensitivity analysis metrics <sa_metrics>`__
+This tutorial will first introduce HYMOD and use it to simulate
+streamflows in a river basin. Next, we’ll employ sensitivity analysis
+concepets described in Section 3 of the main text to examine how values
+of HYMOD’s parameters impact streamflow predictions. We’ll then explore
+how the effects of these parameters may change over time using
+time-varying sensitivtiy analysis. Finally, we’ll demonstrate concepts
+presented in Chapter 7 through two ensemble-based methods of uncertainty
+quantification - Generalized Likelihood Uncertainty Estimation (GLUE)
+and Pre-Calibration.
 
-Time-Varying Sensitivity Analysis
----------------------------------
+The tutorial includes the following steps:
 
-`4- Time-varying sensitivity analysis <#TVSA>`__
+1. Introduction to HYMOD
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ensemble-based Parametric Uncertainty
--------------------------------------
+`1.1 - Introduction to a simple hydrologic model (HYMOD) <#hymod>`__
 
-`5- Generalized Likelihood Uncertainty Estimation (GLUE) <#GLUE>`__ `6-
-Pre-Calibration <#precalibration>`__
+`1.2 - Input Data <#inputs>`__
 
-It is important to note that, although in this tutorial we focus on
-HYMOD, which is a hydrologic model, it can also be thought of as an
-example of a model that abstracts complex non-linear systems. Therefore,
-many of the methods that we use in the tutorial can be applied to
-numerical models that simulate other complex non-linear systems.
+`1.3 - Running a basic simulation <#baseline>`__
 
-Introduction to HYMOD and Sensitivity Analysis
-==============================================
+`1.4 - Model outputs <#outputs>`__
 
-1- HYMOD
-==============================================
+2. Global Sensitivity Analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-HYMOD is a simple hydrologic model (rainfall-runoff model) that
-simulates key hydrologic fluxes such as infiltration, streamflow and
-evapotranspiration. The model has been originally developed and used for
-river flow forecasting. However, in the last two decades the model has
-been widely used to explore different sensitivity analysis (e.g.,
-`Herman et al.,
+`2.1 - Design of Experiments <#sensitivity>`__
+
+`2.2 - Sensitivity analysis for one output <#sametrics>`__
+
+`2.3 - Sensitivity analysis across multiple outputs <#diffperformance>`__
+
+`2.4 - Time-varying sensitivity analysis <#time>`__
+
+1 - Introduction to HYMOD
+=========================
+
+.. _hymod:
+
+1.1 Overview
+
+HYMOD is a hydrologic model (rainfall-runoff model) that simulates key
+hydrologic fluxes such as infiltration, streamflow and
+evapotranspiration. The model was originally developed and used for
+river flow forecasting, but it has also been been used to explore
+different sensitivity analysis (e.g., `Herman et al.,
 2013 <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20124>`__),
 uncertainty quantification (e.g., `Smith et al.,
 2008 <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006WR005205>`__),
@@ -54,45 +76,27 @@ and optimization (e.g., `Ye et al.,
 2014 <https://www.sciencedirect.com/science/article/pii/S0022169414006362?casa_token=IRqE19Hkfa8AAAAA:_fXOqfwpzxMpchvu8_0njCe0Ok9H29Gyw2F46l9PzG9UVODDTUg6wIOSiyp6uybGevNVnZ7N>`__)
 concepts.
 
-There are two main assumptions in the model: 1) Rainfall is generated
-through infiltration excess overland flow. 2) Runoff generation can be
-formulated by the probability-distributed principle (Moore, 1985).
-Therefore the cumulative rate storage capacity :math:`(F(C))` can be
-calculated using the following relationship:
+HYMOD accepts two inputs - daily precepitation and daily potential
+evapotranspiration (PET)- and generates predicitons of daily streamflow.
+HYMOD abstracts the highly non-linear process of runoff routing by
+dividing the flow into two components: quick flow, representing
+precipitation that quickly runs off the surface of the watershed into
+the stream, and slow flow, that moves through the soil and takes much
+longer to arrive at the stream.
 
-.. math:: F(C) = 1 - (1 - \frac{C}{C_{MAX}})-{B_{exp}}
+To generate streamflow predictions, HYMOD first models vertical
+processes within the watershed to determine how much water infiltrates
+and evaporates from the soil at a given time step. It then determines
+how much water should be partitioned into quick flow and slow flow
+processes. Within each process it abstracts residence time (the time it
+takes a unit volume of water to move through the watershed and into the
+stream) using a series of “reservoirs” each with a calibrated residence
+time.
 
-where *:math:`C`* is the water storage capacity; **:math:`C_{MAX}`** is
-the parameter describing basin maximum water storage capacity (mm); and
-**:math:`B_{exp}`** is the parameter describing the degree of spatial
-variability within the basin.
+HYMOD’s representation of hydrologic processes are shown Figure 1 below
+and controlled by the following parameters:
 
-The portion of precipitation that exceeds the water storage capacity is
-treated as runoff. The evapotranspiration is equal to potential
-evapotranspiration (:math:`PET`) if enough water is available.
-Otherwise, it equals the available water storage.
-
-Then, based on a parameter :math:`Alpha`, the runoff is divided into
-quick flow and slow flow, which are routed through three identical quick
-flow tanks :math:`Q1, Q2, Q3` and a parallel slow flow tank,
-respectively.
-
-The flow rates in the routing system are described by the resident time
-in the quick tanks :math:`K_q` (day) and the slow tank :math:`K_s`
-(day), respectively.
-
-.. figure:: _static/hymod.png
-   :alt: Title
-
-   alt text
-
-Vrugt et al., (2008)
-
-1-1 Model Parameters
---------------------
-
-:math:`C_{MAX}`: parameters describing basin maximum water storage
-capacity (mm)
+:math:`H_{uz}`: the maximum water storage capacity of the soil (mm)
 
 :math:`B_{exp}`: parameters describing the degree of spatial variability
 within the basin between 0 and Huz
@@ -104,16 +108,59 @@ Kq values of all three linear reservoirs are the same)
 
 :math:`K_s`: Slow flow residence time of linear infinite reservoir
 
-1-2 Input data
----------------
+
+.. image:: _static/hymod_schematic-DAVE.png
+
+Vertical Processes
+~~~~~~~~~~~~~~~~~~
+
+HYMOD models the fraction of water that is stored in the soil
+:math:`(F(XH_{uz}))` using the following relationship:
+
+.. math:: F(XH_{uz}) = 1 - (1 - \frac{XH_{uz}}{H_{uz}})^{B}
+
+where :math:`XH_{uz}` is the water storage capacity of the soil;
+:math:`H_{uz}` is the parameter describing basin maximum water
+storage capacity (mm); and :math:`B` is the parameter describing the
+degree of spatial variability within the basin.
+
+The portion of precipitation that exceeds the water storage capacity is
+treated as runoff.
+
+Horizontal Processes
+~~~~~~~~~~~~~~~~~~~~
+
+To route runoff to streamflow, the excess runoff from the vertical
+processes is split into quick flow and slow flow. The proportion of
+runoff partitioned into quick flow and slow flow is determined by a
+parameter :math:`Alp`, which ranges between 0 and 1. Quick flow is
+routed through :math:`N` identical quick flow tanks :math:`Q1, Q2... QN`
+(shown above as :math:`N=3`). The rate at which runoff moves through the
+quick flow system is described by the residence time of the quick frlow
+tanks, :math:`Kq` (day). Slow flow is routed through a parallel slow
+flow tank and the rate at which slow flow is routed is described by the
+slow flow residences time, :math:`Ks` (day).
+
+Citation: Wagener, T., Boyle, D. P., Lees, M. J., Wheater, H. S., Gupta,
+H. V., & Sorooshian, S. (2001). A framework for development and
+application of hydrological models. Hydrology and Earth System Sciences,
+5(1), 13-26.
+
+.. _inputs:
+
+1.2 Input data
 
 The HYMOD model only requires precipitation and potential
-evapotranspiration as inputs. The Leaf River example that we use here is
-also a widely used test case of HYMOD. The dataset also includes
-observed runoff that we later use to evaluate the performace of each
-sensitvity analysis sample set.
+evapotranspiration as inputs. For this example, we’ll run HYMOD using
+data from the Leaf River, a humid catchment located north of Collins
+Mississippi that has been widely used to explore HYMOD. The dataset also
+includes daily observed runoff that we later use to evaluate the
+performace of each sensitvity analysis sample set.
 
-We can use the following to read the input file:
+In the following section of code, we’ll load the necessary python
+libraries and read in the input file. For this exercise we’ll only use
+the first eleven years of data. The first five rows of the input dataset
+are printed to show what they look like:
 
 .. code:: ipython3
 
@@ -129,6 +176,16 @@ We can use the following to read the input file:
     # load example data
     msdbook.install_package_data()
 
+    # load the Leaf River HYMOD input file
+    leaf_data = msdbook.load_hymod_input_file()
+
+    # extract the first eleven years of data
+    leaf_data = leaf_data.iloc[0:4015].copy()
+
+    print('Leaf River Data structure:')
+
+    # There are only three columns in the file including precipitation, potential evapotranspiration and  streamflow
+    leaf_data.head()
 
 
 .. parsed-literal::
@@ -156,22 +213,7 @@ We can use the following to read the input file:
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/LeafCatch.csv
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_simulations_256samples.csv
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/Robustness.txt
-
-
-.. code:: ipython3
-
-    # load the HYMOD input file
-    leaf_data = msdbook.load_hymod_input_file()
-
-    # extract the first eleven years of data
-    leaf_data = leaf_data.iloc[0:4015].copy()
-
-
-.. code:: ipython3
-
-    # There are only three columns in the file including precipitation, potential evapotranspiration and  streamflow
-    leaf_data.head()
-
+    Leaf River Data structure:
 
 
 
@@ -238,11 +280,52 @@ We can use the following to read the input file:
 
 
 
-1-3 Baseline Model Simulation
-------------------------------
+To visualize catchment hydrology, streamflow and precipitation data are
+usually plotted together as a combined hydrograph (streamflow ) and
+hyetograph (rainfall, from Greek.hyetos, “rain”). Streamflow is plotted
+as a time series, while rainfall is shown as an inverted bar plot along
+the top of the graph. Streamflow labels are shown on the left y-axis,
+while rainfall labels are shown on the right y-axis.
 
-We can start our sensitivity analysis experiment with running HYMOD
-using its default parameters.
+.. code:: ipython3
+
+    # make an axis for the hydrograph
+    fig, strmflw_ax = plt.subplots(figsize=[12,6])
+    strmflw_ax.set_ylim([0, 50])
+
+    #make a second y-axis for the hyetograph
+    precip_ax = strmflw_ax.twinx()
+    precip_ax.set_ylim([0, 200])
+    precip_ax.invert_yaxis()
+
+    precip = leaf_data['Precip']
+    strmflw_ax.plot(range(0, len(leaf_data['Precip'])), leaf_data['Strmflw'], color='lightcoral')
+    strmflw_ax.set_ylabel('Streamflow (mm/day)')
+
+    precip_ax.bar(range(0, len(leaf_data['Precip'])), leaf_data['Precip'], width=2)
+    precip_ax.set_ylabel('Rainfall (mm/day)')
+    precip_ax.legend(['Precip'], loc='center right')
+    strmflw_ax.legend(['Streamflow'],bbox_to_anchor=(1, 0.48))
+
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.legend.Legend at 0x7f53b95c6850>
+
+
+
+
+.. image:: _static/hymod1.png
+
+.. _baseline:
+
+1.3 Running a Baseline Model Simulation
+
+We’ll start our experiment by running HYMOD using its default
+parameters.
 
 .. code:: ipython3
 
@@ -254,59 +337,84 @@ using its default parameters.
     Huz = 100 # Maximum height of soil moisture accounting tank
     B = 1.0 # Scaled distribution function shape parameter
 
-    # Note that the number of years is 11 years. One year of model warm-up and ten years are used for actual simulation
+    # Note that the number of years is 11. One year of model warm-up and ten years are used for actual simulation
     model = msdbook.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
 
 
-1-4 Model Outputs
---------------------
+.. _outputs:
+
+1.4 Model Outputs
 
 Model outputs include actual evapotranspiration, quick and fast
 streamflow, and combined runoff. In this tutorial we focus on the total
-daily runoff (:math:`m-3/s`). We can use the following script to plot
-simulated streamflow against observed streamflow.
+daily runoff, QQ (:math:`m^3/s`). We can use the following script to
+plot simulated streamflow against observed streamflow.
 
-Variables
---------------------
+.. tip:: View the source code used to create this plot here: `plot_observed_vs_simulated_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-simulated-streamflow>`_
 
-**PP**: Precipitation
-
-**ET**: Evapotranspiration
-
-**OV**: Runoff
-
-**Qq**: Quick Flow
-
-**Qs**: Slow Flow
-
-**QQ**: Streamflow (Quick Flow + Slow Flow)
-
-**XHuz** and **XCuz**: Current moisture state of soil moisture
-accounting component (as depth XH or volume XC)
-
-Plot the observed versus simulated streamflow.
-----------------------------------------------
-
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_observed_vs_simulated_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-simulated-streamflow>`_
-
-.. code:: python
+.. code:: ipython3
 
     ax = msdbook.plot_observed_vs_simulated_streamflow(df=leaf_data, hymod_dict=model)
 
 
 
+.. image:: _static/hymod2.png
 
-.. image:: _static/output_16_0.png
 
 
-2- Sensitivity Analysis
-==============================================
+So how does our model perform? We can investigate model performance
+across several metrics:
 
-Here we use the SALib Python library to explore how different HYMOD
-input parameters affect model streamflow simulations. For this exercise,
-we only use Sobol variance-based method. The following commands can be
-used to import SALib
+1: Mean Absolute Error (MAE); MAE conveys how the model performs on
+average across the 10 year simulation period, with smaller values
+indicating better performance. The absolute value is taken so that
+positive and negative errors do not cancel each other out.
+
+.. math:: MAE = \frac{1}{N}\sum_{t=0}^N\left\lvert Q_{sim,t}-Q_{obs,t}\right\rvert
+
+2: Root Mean Square Error (RMSE); RMSE is sum of square errors across
+the 10 year simulation period. RMSE is sensitive to large errors between
+the historical record and the simulated flows, and thus is useful for
+highlighting the model’s ability to capture of extreme flood events.
+
+.. math:: RMSE = \sqrt{\frac{1}{N}\sum_{t=1}^{N}(Q_{sim,t}-Q_{obs,t})^2}
+
+3: Log-Root Mean Square Error (Log(RMSE)) LOG(RMSE) focuses on model
+performance during low-flow events.
+
+.. math:: LOG(RMSE) = log(RMSE)
+
+.. code:: ipython3
+
+    mae = np.mean(abs(leaf_data['Strmflw'] - model['Q']))
+    mse = metrics.mean_squared_error(model['Q'], leaf_data['Strmflw'])
+    rmse = mse**(1/2)
+
+    print('MAE: ' + str(mae) + '\nRMSE: ' + str(mse) + '\nLOG(RMSE): ' + str(rmse))
+
+
+.. parsed-literal::
+
+    MAE: 1.0787471470460999
+    RMSE: 4.375695937555197
+    LOG(RMSE): 2.0918164206151544
+
+
+The error metrics show that HYMOD performs reasonably well, the MAE is
+around 1 :math:`m^3/s`, the RMSE is on the order of 10% of the largest
+observed streamflow and the LOG(RMSE) is fairly low.
+
+2- Global Sensitivity Analysis
+==============================
+
+.. _sensitivity:
+
+2.1 Experimental Design and Setup
+
+Now we’ll examine how sensitive streamflow simulations generated by
+HYMOD are to the model’s input parameters. We’ll perform global
+sensitivity analysis (see Section 3.1 of the main text) using the SALib
+Python library.
 
 .. code:: ipython3
 
@@ -314,11 +422,33 @@ used to import SALib
     from SALib.analyze import sobol
     from SALib.analyze import delta
 
+A first and critical step when conducting sensitivity analysis is
+determining the experimental design (see Design of Experiments, Section
+3.4 of the main text). Our experimental design involves defining the
+uncertainties that we’ll be examining, the output of interest, the
+ranges of each uncertainty that will be explored and the strategy for
+sampling the uncertainty space.
 
-2-2 Model simulations for sensitivity analysis
---------------------------------------------------
+For this experiment we’ll explore the five parameters highlighted in
+Figure 1. We’ll draw their ranges from existing literature on the model
+(note Jon H. paper). We’ll use a Sobol sampling an a quasi-random
+sampling with low sequences approach to sample the uncertainty space
+(Section 3.3.4).
 
-We first define the model input and their ranges.
+In this demonstration we’ll utilize Sobol Sensitivity Analysis, a
+variance based method (Section 3.4.5).
+
+To explore HYMOD’s behavoir, we’ll examine the sensitivity of four model
+ouputs to input parameters: 1) predicted flow, 2) Mean Absolute Error
+(compared with the calibaration data set), 3) Root Mean Square Error and
+4) Log Root Mean Square Error.
+
+This analysis will employ SALib, a Python implementation also utilized
+in the other SA tutorial (make this more formal).
+
+To start our analysis, we’ll create a dictionary that describes our
+model uncertainties and their ranges, this dictionary is named
+“problem_hymod” (SALib refers to these dictionaries as “problems”).
 
 .. code:: ipython3
 
@@ -332,18 +462,27 @@ We first define the model input and their ranges.
                    [0, 1.9]]  # B
     }
 
+After defining our uncertainites and ranges, we’ll use SALib to sample
+the uncertainty space and run the model for each of the sample sets. We
+will load a sample that has already been created ``param_values_hymod``
+for demonstration purposes. For HYMOD, literature recommends running at
+least N = 10,000 samples, to keep this demonstration easy to run
+however, we utilize only 256 sobol samples of uncertainties. To generate
+accurate approximations of second order sensitivity indicies SALib
+generates N*(2k+2) sets of samples, where N=256 and k=5 (number of
+uncertainties). For the math behind why this is needed, see (Saltelli,
+A., 2002. Making best use of model evaluations to compute sensitivity
+indices. Computer Physics Communications 145, 280–297.
+https://doi.org/10.1016/S0010-4655(02)00280-1).
 
-Now we need to sample and then run the model for each of the sample
-sets. We will load a sample that has already been created
-``param_values_hymod`` for demonstration purposes. The actual model
-simulation takes an extended period, so we also load the simulation data
-from a previous run. The following demonstrates how to conduct this
-analysis:
+The actual model simulation takes an extended period, so we also load
+the simulation data from a previous run. The following demonstrates how
+to conduct this analysis:
 
 .. code:: python
 
 
-   # generate 256 samples. This is an arbitrary number.
+   # generate 256 samples.
    param_values_hymod = saltelli.sample(problem_hymod, 256)
 
    # dictionary to store outputs in
@@ -383,8 +522,8 @@ analysis:
     sample_column_names = [i for i in Q_df_bw.columns if i[0] == 'Q']
 
 
-Model Warm-up
-_____________
+Running HYMOD - Model Warm-up
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A hydrological model such as HYMOD usually includes ordinary
 differential equations that are sensitive to their initial condition.
@@ -413,11 +552,9 @@ period is one year.
     leaf_data = leaf_data.iloc[365:4015].copy().reset_index(drop=True)
 
 
-2-3 Visual inspection of the model outputs
-----------------------------------------------------
-
-Here we create a figure that shows HYMOD streamflow outputs under
-different sample sets, and compare them with the observed streamflow.
+Now that HYMOD has been warmed up, we’ll examine how HYMOD’s streamflow
+outputs vary under different sample sets, and compare them with the
+observed streamflow.
 
 .. code:: ipython3
 
@@ -441,9 +578,8 @@ different sample sets, and compare them with the observed streamflow.
     # aggregate the daily observed streamflow to monthly mean
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_observed_vs_sensitivity_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow>`_
 
+.. tip:: View the source code used to create this plot here: `plot_observed_vs_sensitivity_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow>`_
 
 .. code:: ipython3
 
@@ -452,22 +588,29 @@ different sample sets, and compare them with the observed streamflow.
 
 
 
-.. image:: _static/output_28_0.png
+
+.. image:: _static/hymod3.png
 
 
-3- Calculation of Sensitivity Analysis Indices
-===============================================
 
-There are different options to calculate sensitivity indices. The
-following section aggregates model streamflow outputs and calculates the
-sensitivity indices.
+.. _sametrics:
 
-3-1 Aggregated sensitivity analysis indices
-----------------------------------------------------
+2.2 Sensitivity of streamflows to model parameters
 
-This is the simplest way of calculating sensitivity analysis metrics,
-however, averaging all model response can lead to loss of information
-that we further explore in the following sections.
+Now we’ll examine how each of HYMOD’s parameters impact the variance of
+simulated streamflows. Using SALib we’ll calculate the first order and
+total order sensitivity indicies of each model parameter. The first
+order sensitivity index measure’s the individual impact that a given
+parameter has on the variance of the simulated streamflows. The total
+order index measures the impact of a given parameter along with all
+interactions that other parameters have with the given parameter on
+simulated streamflows.
+
+We’ll start with an matrix, Y, which contains our simulated streamflows
+for every uncertainty sample. We’ll then use the sobol.analyze function
+from SALib to calculate the sensitivity indicies (Si). The arguments for
+this function are the problem dictionary defined in part 2.2 of this
+tutorial, and the matrix of simulated streamflows, Y.
 
 .. code:: ipython3
 
@@ -475,35 +618,73 @@ that we further explore in the following sections.
     Y = Q_df[sample_column_names].mean().to_numpy()
 
     # Perform analysis
-    Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
+    Si = sobol.analyze(problem_hymod, Y)
 
+Now we can examine our results, we’ll print the first order and total
+order Si’s for each parameter, then visualize the results with bar plots
 
 .. code:: ipython3
 
     print('First order indices = ', Si['S1'])
 
+    print('Total order indicies = ', Si['ST'])
+
+    sns.set_style('white')
+    fig = plt.figure(figsize=(8,4))
+    ax1 = fig.add_subplot(121)
+    ax1.bar(np.arange(5), Si['S1'])
+    ax1.set_xticklabels(['','Kq', 'Ks', 'Alp', 'Huz', 'B'])
+    ax1.set_ylabel('First order Si')
+    ax1.set_ylim([0,1])
+
+    ax2 = fig.add_subplot(122)
+    ax2.bar(np.arange(5), Si['ST'])
+    ax2.set_xticklabels(['','Kq', 'Ks', 'Alp', 'Huz', 'B'])
+    ax2.set_ylabel('Total order Si')
+    ax2.set_ylim([0,1])
+
 
 
 .. parsed-literal::
 
-    First order indices =  [0.00810372 0.0049972  0.00508833 0.60039872 0.28942293]
+    First order indices =  [9.55550001e-05 7.49249463e-04 5.62386413e-04 7.03327551e-01
+     2.53701895e-01]
+    Total order indicies =  [1.76174200e-06 1.63288175e-03 3.41378460e-04 6.88983864e-01
+     2.53922146e-01]
 
 
-.. code:: ipython3
+.. parsed-literal::
 
-    Si['S1'].sum()
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: FixedFormatter should only be used together with FixedLocator
+      if __name__ == '__main__':
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel_launcher.py:15: UserWarning: FixedFormatter should only be used together with FixedLocator
+      from ipykernel import kernelapp as app
 
 
 
 
 .. parsed-literal::
 
-    0.9080109105125653
+    (0.0, 1.0)
 
 
 
-3-2 How do different performance metrics affect the results of our sensitivity analysis?
--------------------------------------------------------------------------------------------
+
+.. image:: _static/hymod4.png
+
+
+
+Our findings indicate that in this instance, the streamflow estimate
+from HYMOD is highly sensitive to soil moisture parameters Huz and B and
+hardly affected by the routing parameters. Notably, there is very little
+interactions between parameters causing the total order indicies to be
+nearly identical to the first order indicies.
+
+
+.. _diffperformance:
+
+2.3 How do different performance metrics affect the results of our
+sensitivity analysis?
 
 Streamflow has many different properties. In this section, we discuss
 how the selection of metrics can lead to fundamentally different
@@ -521,12 +702,12 @@ LOG(RMSE) focuses on model performance during low-flow events.
 .. code:: ipython3
 
     # calculate error metrics
-    me = Q_df[sample_column_names].apply(lambda x: (x-leaf_data["Strmflw"]), axis=0)
+    mae = Q_df[sample_column_names].apply(lambda x: abs(x-leaf_data["Strmflw"]), axis=0)
     mse = Q_df[sample_column_names].apply(lambda x: metrics.mean_squared_error(x, leaf_data["Strmflw"]), axis=0)
     rmse = mse**(1/2)
 
     # add error metrics to a dictionary
-    d_metrics = {'ME': me.mean().values,
+    d_metrics = {'MAE': mae.mean().values,
                  'RMSE': rmse.values,
                  'LOG[RMSE]': np.log10(rmse.values)}
 
@@ -535,150 +716,230 @@ LOG(RMSE) focuses on model performance during low-flow events.
 
 
 We can use the following to calculate the SA indices for each metric and
-visualize it. Results are pre-loaded for efficiency.
-
-.. code:: python
-
-   # performance analysis
-   df_metric_sa_result = pd.DataFrame(np.zeros((3, 5)), columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
-
-   # conduct sensitivity analysis for each metric
-   for index, i in enumerate(d_metrics.keys()):
-
-       # get the data as a numpy array for the target metric
-       Y = d_metrics[i]
-
-       # use the metric to conduct SA
-       Si = delta.analyze(problem_hymod, param_values_hymod, Y, print_to_console=False)
-
-       # add the sensitivity indices to the output data frame
-       df_metric_sa_result.iloc[index, :] = Si['S1']
+visualize it.
 
 .. code:: ipython3
 
-    # load previously ran simulation
-    df_metric_sa_result = msdbook.load_hymod_metric_simulation()
+    df_metric_s1_result = pd.DataFrame(np.zeros((3, 5)), columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
+    df_metric_sT_result = pd.DataFrame(np.zeros((3, 5)), columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
 
-    # view results
-    df_metric_sa_result
+    # conduct sensitivity analysis for each metric
+    for index, i in enumerate(d_metrics.keys()):
 
+        # get the data as a numpy array for the target metric
+        Y = d_metrics[i]
 
+        # use the metric to conduct SA
+        Si = sobol.analyze(problem_hymod, Y, print_to_console=False)
 
-
-
-.. raw:: html
-
-    <div>
-    <style scoped>
-        .dataframe tbody tr th:only-of-type {
-            vertical-align: middle;
-        }
-
-        .dataframe tbody tr th {
-            vertical-align: top;
-        }
-
-        .dataframe thead th {
-            text-align: right;
-        }
-    </style>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>Kq</th>
-          <th>Ks</th>
-          <th>Alp</th>
-          <th>Huz</th>
-          <th>B</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>0.008104</td>
-          <td>0.004997</td>
-          <td>0.005088</td>
-          <td>0.600399</td>
-          <td>0.289423</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>0.106927</td>
-          <td>0.018771</td>
-          <td>0.191237</td>
-          <td>0.300762</td>
-          <td>0.027852</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>0.134509</td>
-          <td>0.030292</td>
-          <td>0.206209</td>
-          <td>0.296245</td>
-          <td>0.033833</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-
+        # add the sensitivity indices to the output data frame
+        df_metric_s1_result.iloc[index, :] = Si['S1']
+        df_metric_sT_result.iloc[index, :] = Si['ST']
 
 .. code:: ipython3
 
     # create seaborn heatmap with required labels
-    plt.subplots(figsize=(10, 5))
-
+    fig = plt.figure(figsize=(12,4))
+    ax1 = fig.add_subplot(121)
     # labels for y-axis
-    y_axis_labels = ['Mean Error', 'RSME', 'Log(RMSE)']
+    y_axis_labels = ['Mean Absoulte Error', 'RSME', 'Log(RMSE)']
 
     # plot heatmap
-    ax = sns.heatmap(df_metric_sa_result, yticklabels=y_axis_labels,  cmap='rocket')
+    ax1 = sns.heatmap(df_metric_s1_result, yticklabels=y_axis_labels, annot=True,  cmap='inferno_r', cbar_kws={'label': 'Si'}, cbar=False)
+    ax1.figure.axes[-1].yaxis.label.set_size(14)
+    ax1.set_title('First Order Sensitivity')
+
+    ax2 = fig.add_subplot(122)
+    ax2 = sns.heatmap(df_metric_sT_result, yticklabels=y_axis_labels, annot=True,  cmap='inferno_r', cbar_kws={'label': 'Si'})
+    ax2.figure.axes[-1].yaxis.label.set_size(14)
+    ax2.set_title('Total Order Sensitivity')
 
 
 
 
-.. image:: _static/output_40_0.png
+
+.. parsed-literal::
+
+    Text(0.5, 1.0, 'Total Order Sensitivity')
 
 
-The results indicate that different goodness-of-fit metrics can produce
-different sensitivity indices. This is because streamflow time series
-have several dimensions and regimes (e.g., extreme high flow and low
-flow) and focusing on only one metric will neglect the sensitivity of
-other dimensions.
 
-Therefore, we can argue that a single goodness-of-fit measure will never
-be able to capture the entire response of model to different parametric
-combinations. For more discussion about this topic readers can refer to
-`Liu and Sun
-(2010) <https://www.sciencedirect.com/science/article/pii/S1574954110000580?via%3Dihub>`__
-and `Foglia et al.,
-(2009) <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR007255>`__.
 
-4- Time-Varying Sensitivity Analysis
-=====================================
+.. image:: _static/hymod5.png
 
-Hydrological processes are often state-dependent, meaning that their
-responses are affected by the time-varying condition that they are in.
-For example, rainfall-runoff processes are different in winter and
-summer. These processes are also different during wet years and dry
-years.
 
-Hydrological processes are also path-dependent, meaning that previous
-time-steps on the model affect the present and future simulation of
-different hydrologic components. To take these properties into account,
-we can zoom into different time periods to explore how the sensitivity
-of model parameters evolve in different time steps. This is referred to
-as time-varying sensitivity analysis.
 
-For more information about time-varying sensitivity analysis, readers
-can refer to `Herman et
-al. (2013) <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20124>`__
-and `Xu et
-al. (2018) <https://link.springer.com/article/10.1007/s12206-018-0223-8>`__.
+The first order sensitivity indicies indicate that HYMOD’s sensitivity
+to its parameters is different depending on how its output is measured.
+Unsurprisingly, the mean absolute error is highly sensitive to the soil
+moisture accounting parameters Huz and B, just like the overall
+streamflow predictions above. However, when we examine RMSE and
+log(RMSE), the routing parameters Alp become sensitive, and the
+sensitivity to parameter B is reduced. As described above, RMSE and
+LOG(RMSE) respond to model performance in high-flow and low flow periods
+respectively. Our results indicate that for these flow regimes Alp, the
+parameter that governs the split between quick and slow flow is an
+important factor. While still the parameter with the highest most effect
+on all three measures, Huz is much less influential for RMSE and
+LOG(RMSE) than it is for MAE.
 
-4-1 Sensitivity analysis indices for each month
-----------------------------------------------------
+The total order sensitivity indicies review a different, more complex
+story. While the MAE sensitivity is relatively governed by first order
+effects (like the streamflow predictions above), the RMSE and LOG(RMSE)
+error metrics show significant interactions. Alp has the highest total
+order sensitivity for RMSE and is eqal to Huz for Log(RMSE). Kq, which
+has a relatively low first order sensitivity index, shows strong
+contribution to variance when interactions are taken into account.
+
+Radial convergence plots are a helpful way to visualize the interactions
+between parameters. These plots array the model parameters in a circle
+and plot the first order, total order and second order Sobol sensitivity
+indices for each parameter. The first order sensitivity is shown as the
+size of a closed circle, the total order as the size of a larger open
+circle and the second order as the thickness of a line connecting two
+parameters. Below is an example of a radial convergence plot for the
+LOG(RMSE) measure. The plot indicates strong interactions between the
+Huz and Alp parameters, as well as Alp and Kq. There is also an
+interaction between Alp and Ks.
+
+.. code:: ipython3
+
+    import numpy as np
+    import itertools
+    import seaborn as sns
+    import math
+    sns.set_style('whitegrid', {'axes_linewidth': 0, 'axes.edgecolor': 'white'})
+
+    def is_significant(value, confidence_interval, threshold="conf"):
+        if threshold == "conf":
+            return value - abs(confidence_interval) > 0
+        else:
+            return value - abs(float(threshold)) > 0
+
+    def grouped_radial(SAresults, parameters, radSc=2.0, scaling=1, widthSc=0.5, STthick=1, varNameMult=1.3, colors=None, groups=None, gpNameMult=1.5, threshold="conf"):
+        # Derived from https://github.com/calvinwhealton/SensitivityAnalysisPlots
+        fig, ax = plt.subplots(1, 1)
+        color_map = {}
+
+        # initialize parameters and colors
+        if groups is None:
+
+            if colors is None:
+                colors = ["k"]
+
+            for i, parameter in enumerate(parameters):
+                color_map[parameter] = colors[i % len(colors)]
+        else:
+            if colors is None:
+                colors = sns.color_palette("deep", max(3, len(groups)))
+
+            for i, key in enumerate(groups.keys()):
+                #parameters.extend(groups[key])
+
+                for parameter in groups[key]:
+                    color_map[parameter] = colors[i % len(colors)]
+
+        n = len(parameters)
+        angles = radSc*math.pi*np.arange(0, n)/n
+        x = radSc*np.cos(angles)
+        y = radSc*np.sin(angles)
+
+        # plot second-order indices
+        for i, j in itertools.combinations(range(n), 2):
+            #key1 = parameters[i]
+            #key2 = parameters[j]
+
+            if is_significant(SAresults["S2"][i][j], SAresults["S2_conf"][i][j], threshold):
+                angle = math.atan((y[j]-y[i])/(x[j]-x[i]))
+
+                if y[j]-y[i] < 0:
+                    angle += math.pi
+
+                line_hw = scaling*(max(0, SAresults["S2"][i][j])**widthSc)/2
+
+                coords = np.empty((4, 2))
+                coords[0, 0] = x[i] - line_hw*math.sin(angle)
+                coords[1, 0] = x[i] + line_hw*math.sin(angle)
+                coords[2, 0] = x[j] + line_hw*math.sin(angle)
+                coords[3, 0] = x[j] - line_hw*math.sin(angle)
+                coords[0, 1] = y[i] + line_hw*math.cos(angle)
+                coords[1, 1] = y[i] - line_hw*math.cos(angle)
+                coords[2, 1] = y[j] - line_hw*math.cos(angle)
+                coords[3, 1] = y[j] + line_hw*math.cos(angle)
+
+                ax.add_artist(plt.Polygon(coords, color="0.75"))
+
+        # plot total order indices
+        for i, key in enumerate(parameters):
+            if is_significant(SAresults["ST"][i], SAresults["ST_conf"][i], threshold):
+                ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["ST"][i]**widthSc)/2, color='w'))
+                ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["ST"][i]**widthSc)/2, lw=STthick, color='0.4', fill=False))
+
+        # plot first-order indices
+        for i, key in enumerate(parameters):
+            if is_significant(SAresults["S1"][i], SAresults["S1_conf"][i], threshold):
+                ax.add_artist(plt.Circle((x[i], y[i]), scaling*(SAresults["S1"][i]**widthSc)/2, color='0.4'))
+
+        # add labels
+        for i, key in enumerate(parameters):
+            ax.text(varNameMult*x[i], varNameMult*y[i], key, ha='center', va='center',
+                    rotation=angles[i]*360/(2*math.pi) - 90,
+                    color=color_map[key])
+
+        if groups is not None:
+            for i, group in enumerate(groups.keys()):
+                print(group)
+                group_angle = np.mean([angles[j] for j in range(n) if parameters[j] in groups[group]])
+
+                ax.text(gpNameMult*radSc*math.cos(group_angle), gpNameMult*radSc*math.sin(group_angle), group, ha='center', va='center',
+                    rotation=group_angle*360/(2*math.pi) - 90,
+                    color=colors[i % len(colors)])
+
+        ax.set_facecolor('white')
+        ax.set_xticks([])
+        ax.set_yticks([])
+        plt.axis('equal')
+        plt.axis([-2*radSc, 2*radSc, -2*radSc, 2*radSc])
+        #plt.show()
+
+
+        return fig
+
+    # define groups for parameter uncertainties
+    groups={"Soil Moisture" : ["Huz", "B"],
+            "Routing" : ["Alp", "Kq", "Ks"]}
+
+
+    fig = grouped_radial(Si, ['Kq', 'Ks', 'Alp', 'Huz', 'B'], groups=groups, threshold=0.025)
+
+
+.. parsed-literal::
+
+    Soil Moisture
+    Routing
+
+
+
+.. image:: _static/hymod6.png
+
+
+2.4 Time-Varying Sensitivity Analysis
+
+.. _time:
+
+In section 2.5 we saw how performing sensitivity analysis on different
+measurements of model output can yeild in different results on the
+importance of each uncertain input. In this section we’ll examine how
+performing this analysis over time can yeild additional insight into the
+performance of HYMOD. We’ll first examine how model sensitivities vary
+by month, then examine how they change across each year of the
+simulation.
+
+For this demonstration, we’ll focus only on the monthly streamflow
+predictions generated by HYMOD.
+
+2.4.1 Sensitivity analysis indices for each month
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -716,15 +977,13 @@ visualize it. Results are pre-loaded for efficiency.
    arr_mth_delta = df_mth_delta.values
 
 First-order Indices
-___________________
+^^^^^^^^^^^^^^^^^^^
 
 The following can be used to visualize the time-varying first-order
 indices. The first order represents the direct impacts of a specific
 parameter on model outputs.
 
-
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_monthly_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-monthly-heatmap>`_
+.. tip:: View the source code used to create this plot here: `plot_monthly_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-monthly-heatmap>`_
 
 .. code:: ipython3
 
@@ -739,17 +998,19 @@ parameter on model outputs.
 
 
 
-.. image:: _static/output_49_0.png
+.. image:: _static/hymod7.png
+
 
 
 This figure demonstrates the first order sensitivity indices when the
 streamflow data are aggregated by month. The purple line represents the
 observed monthly discharge. The figure indicates that the first order
 indices are highest for B and Huz across all months and lowest for Alp,
-Ks, and Kq.
+Ks, and Kq. Note that in the months with the highest flow, Ks becomes an
+influential parameter.
 
 Total-order indices
-____________________
+^^^^^^^^^^^^^^^^^^^
 
 We can also focus on the total order sensitivity index that includes
 first-order SA indices and interactions between parameters
@@ -764,16 +1025,18 @@ first-order SA indices and interactions between parameters
 
 
 
-.. image:: _static/output_52_0.png
+.. image:: _static/hymod8.png
+
 
 
 Notably, the total order sensitivity results are different than the
 first order sensitivity results, which indicates that interactions
-between the parameters (particularly in regards to :math:`Kq`,
-:math:`Ks`, and :math:`Alp`) contribute to variance in the HYMOD output.
+between the parameters (particularly in regards to routing parameters
+:math:`Kq`, :math:`Ks`, and :math:`Alp`) contribute to changes in HYMOD
+output.
 
-4-2 Annual sensitivity analysis indices
----------------------------------------
+2.4.2 Annual sensitivity analysis indices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -813,11 +1076,9 @@ outputs to annual time steps, and then calculates the SA indices.
    arr_yr_delta = df_mth_delta.values
 
 First-order indices
-____________________
+^^^^^^^^^^^^^^^^^^^
 
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_annual_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-annual-heatmap>`_
-
+.. tip:: View the source code used to create this plot here: `plot_annual_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-annual-heatmap>`_
 
 .. code:: ipython3
 
@@ -832,7 +1093,8 @@ ____________________
 
 
 
-.. image:: _static/output_59_0.png
+.. image:: _static/hymod9.png
+
 
 
 The first order sensitivities at the annual scale are not unlike the
@@ -840,7 +1102,7 @@ first order monthly sensitivities. Once again, sensitivities vary across
 year and Huz and B are the most consequential parameters.
 
 Total-order indices
-___________________
+^^^^^^^^^^^^^^^^^^^
 
 .. code:: ipython3
 
@@ -851,18 +1113,18 @@ ___________________
 
 
 
+.. image:: _static/hymod10.png
 
-.. image:: _static/output_62_0.png
 
 
 Our results indicate that sensitivity analysis indices vary in different
 years and now that interactions are included, the Kq, Ks, and Alp
 variables impact the sensitivity of the streamflow output.
 
-4-3 Monthly time-varying sensitivity analysis
-----------------------------------------------------
+2.4.3 Monthly time-varying sensitivity analysis
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Although time-varying sensitivity analysis at average monthly and
+Although time-varying sensitivity analysis (TVSA) at average monthly and
 average annual temporal resolutions is informative, TVSA is susceptible
 to the aggregation issue that we discussed earlier in section 3-2. To
 avoid that we can further discretize our time domain to zoom into
@@ -897,10 +1159,9 @@ the monthly TVSA.
    arr_vary_delta = df_vary_delta.values
 
 First-order indices
-____________________
+^^^^^^^^^^^^^^^^^^^
 
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_varying_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-varying-heatmap>`_
+.. tip:: View the source code used to create this plot here: `plot_varying_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-varying-heatmap>`_
 
 .. code:: ipython3
 
@@ -914,8 +1175,8 @@ ____________________
 
 
 
+.. image:: _static/hymod11.png
 
-.. image:: _static/output_68_0.png
 
 
 Compared to the TVSA when streamflow was aggregated, this figure
@@ -923,7 +1184,7 @@ suggests that Kq is indeed a relevant parameter for influencing
 streamflow output when individual months are considered.
 
 Total order - time varying sensitivity analysis
-________________________________________________
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: ipython3
 
@@ -935,479 +1196,47 @@ ________________________________________________
 
 
 
-.. image:: _static/output_71_0.png
+.. image:: _static/hymod12.png
+
 
 
 As above, the total order sensitivities further indicate the importance
 of Kq that is not apparent if aggregation is utilized.
 
-Ensemble-based Parametric Uncertainty
-=====================================
-
-5- Generalized Likelihood Uncertainty Estimation (GLUE)
-=======================================================
-
-The Generalized Likelihood Uncertainty Estimation (GLUE) is an
-uncertainty analysis algorithm that has been widely used in hydrologic
-studies. The main argument behind GLUE is rooted in model calibration
-and the concept of equifinality. Calibration of complex simulation tools
-such as hydrological models often produces more than one optimal or
-near-optimal solutions and these solutions have equivalent chances to be
-chosen `(Beven and Freer,
-2001) <https://www.sciencedirect.com/science/article/abs/pii/S0022169401004218>`__.
-This situation is called equifinality. GLUE provides a methodological
-framework to handle this problem and consider more than one optimal
-calibration set.
-
-GLUE usually includes the following steps `(Beven and Bineley,
-1992) <https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi>`__:
-
-1) Definition of a likelihood function
-2) Definition of ranges of parameters
-3) Sensitivity analysis
-4) Calculating likelihood (goodness-of-fit) values for each model
-   simulation
-5) Define a threshold and find sample sets that have higher likelihoods
-   than the threshold
-6) Visualize the sample sets
-
-5-1 Calculation of GLUE metrics
----------------------------------------
-
-Likelihood calculation (inverse error variance)
-________________________________________________
-
-There are various likelihood metrics that have been used in previous
-studies that use GLUE. A widely used example is inverse error variance
-(IEV; `Vrugt et
-al. 2009 <https://link.springer.com/article/10.1007/s00477-008-0274-y>`__
-and `Beven and Bineley,
-1992 <https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.3360060305?casa_token=o2ooj-6wmC4AAAAA:WpVg1ysAtD59QbSpdHKX6IOjfjeHsOfqxCC6RvoXgiW6bDBRGNfdkOv-AH6h3WhT7-2mD4xmwzMi>`__):
-
-.. math::  IEV = {({\sigma_{e}}-{2})}-{-T} = ({{\frac{SSR}{n-2}}})-{-T}
-
-The other metric that can be used as an estimation of likelihood is
-normalized inverse error variance:
-
-.. math::  NIEV = \frac{IEV}{\sum_{i=1}-{n} IEV(i)}
-
-where *SSR* is the sum of squared residuals; :math:`n` is the number of
-samples; and :math:`T` is an arbitrary coefficient. Low :math:`T` values
-lead to equal weights placed on each sample set while higher :math:`T`
-values concentrate on the best parameter sets.
-
-.. code:: ipython3
-
-    # From Vrugt et al (2008) : inverse error variance
-
-    # T=0 means that we only select the best simulated values that are closer to the observed values
-    #  T=infinity means that all sample sets have the same probability
-    T= 0.70
-
-    # calculate metrics from Beven and Binley, 1992
-    df_metrics_SA["SSR"] = df_metrics_SA["RMSE"]**2 * 3650
-    df_metrics_SA["InverseErrorVariance"] = (df_metrics_SA["SSR"] / df_metrics_SA.shape[0])**(-T)
-    df_metrics_SA["Normalized_IEV"] = df_metrics_SA["InverseErrorVariance"] / df_metrics_SA["InverseErrorVariance"].sum()
-
-    # convert array to dataframe
-    param_values_hymod_df = pd.DataFrame(param_values_hymod, columns=['Kq', 'Ks', 'Alp', 'Huz', 'B'])
-
-    # combine the metrics and param values dataframes and calculate combined metrics
-    concat_df = pd.concat([df_metrics_SA, param_values_hymod_df], axis=1)
-    concat_df["Ks_rescale"] = concat_df["Ks"] / 0.1
-    concat_df["Huz_rescale"] = concat_df["Huz"] / 500
-    concat_df["B_rescale"] = concat_df["B"] / 2
-
-    # display the first 5 rows of the dataframe
-    df_metrics_SA.head()
-
-
-.. raw:: html
-
-    <div>
-    <style scoped>
-        .dataframe tbody tr th:only-of-type {
-            vertical-align: middle;
-        }
-
-        .dataframe tbody tr th {
-            vertical-align: top;
-        }
-
-        .dataframe thead th {
-            text-align: right;
-        }
-    </style>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>ME</th>
-          <th>RMSE</th>
-          <th>LOG[RMSE]</th>
-          <th>SSR</th>
-          <th>InverseErrorVariance</th>
-          <th>Normalized_IEV</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>-1.067901</td>
-          <td>2.601592</td>
-          <td>0.415239</td>
-          <td>24704.2204</td>
-          <td>0.23241</td>
-          <td>0.000217</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>-1.067901</td>
-          <td>2.601592</td>
-          <td>0.415239</td>
-          <td>24704.2204</td>
-          <td>0.23241</td>
-          <td>0.000217</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>-1.067901</td>
-          <td>2.601592</td>
-          <td>0.415239</td>
-          <td>24704.2204</td>
-          <td>0.23241</td>
-          <td>0.000217</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>-1.067901</td>
-          <td>2.601592</td>
-          <td>0.415239</td>
-          <td>24704.2204</td>
-          <td>0.23241</td>
-          <td>0.000217</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>-1.067901</td>
-          <td>2.601592</td>
-          <td>0.415239</td>
-          <td>24704.2204</td>
-          <td>0.23241</td>
-          <td>0.000217</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-
-
-Distribution of likelihoods (inverse error variance) values
-____________________________________________________________
-
-.. code:: ipython3
-
-    # density plot and histogram of the inverse error variance
-    h = sns.histplot(data=df_metrics_SA,
-                     x="InverseErrorVariance",
-                     kde=True,
-                     bins=int(180/5),
-                     color = 'gold')
-
-
-
-
-.. image:: _static/output_80_0.png
-
-
-Distribution of normalized inverse error variance values
-____________________________________________________________
-
-.. code:: ipython3
-
-    # density plot and histogram of the normalized inverse error variance
-    h = sns.histplot(data=df_metrics_SA,
-                     x="Normalized_IEV",
-                     kde=True,
-                     bins=int(180/5),
-                     color='darkred')
-
-
-
-
-.. image:: _static/output_82_0.png
-
-
-Selection of important sample sets and setting a threshold for physical/non-physical sample sets
-_________________________________________________________________________________________________
-
-.. code:: ipython3
-
-    # selection of important sample sets
-    percentile = 95
-
-    threshold = np.percentile(concat_df["InverseErrorVariance"], percentile)
-    print(f"Threshold using the {percentile} percentile:  {threshold}")
-
-    # select values greater than the threshold
-    selected_values_glue = concat_df[concat_df["InverseErrorVariance"] > threshold]
-
-
-
-.. parsed-literal::
-
-    Threshold using the 95 percentile:  0.4981408917485908
-
-
-5-2 Visual inspection of GLUE results
---------------------------------------
-
-.. code:: ipython3
-
-    # format the data frame so that it may be used for plotting
-    to_plot = pd.melt(selected_values_glue,
-                      id_vars=['ME'],
-                      value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale'])
-
-
-.. code:: ipython3
-
-    # build a plot with multiple panels of scatter plots where ME is the target metric
-    g = sns.FacetGrid(to_plot, col="variable")
-
-    # map the scatter plots to the facet grid panels
-    gf = g.map(sns.scatterplot, "value", "ME",  alpha=0.7)
-
-
-
-
-.. image:: _static/output_87_0.png
-
-
-.. code:: ipython3
-
-    # build a plot with multiple panels of histogram plots where ME is the target metric
-    g = sns.FacetGrid(to_plot, col="variable")
-
-    # map the plots to the facet grid panels
-    gf = g.map(sns.histplot, "value", kde=True)
-
-
-
-
-
-.. image:: _static/output_88_0.png
-
-
-5-3 Comment on the GLUE results
---------------------------------------
-
-Our results suggest that it is challenging to find an clear and
-interpretable relationship between different selected near-optimal
-sample sets at least by visual inspection. The main reason for this is
-that HYMOD includes a complex non-linear system of equations that is
-also affected by initial conditions and complexity of its input time
-series. Therefore, it does not have a clear control.
-
-Glue has been widely used in hydrology, the original paper has more than
-5000 citations. However, the likelihood measure that GLUE uses is not
-actually a statistically sound likelihood metric and is in fact a
-goodness-of-fit measure. Therefore, it might not produce valid insights
-when dealing with situations of non-normality, heteroscedasticity, and
-serial correlation. For more on these issues reader can refer to
-`Stedinger et al.,
-(2008) <https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR006822%4010.1002/%28ISSN%291944-7973.ASSESS1>`__,
-`Mantovan and Todini,
-(2006) <https://www.sciencedirect.com/science/article/pii/S0022169406002162?casa_token=Ml8dhBrO5PkAAAAA:Ake1YuQo0OxK6BaaG-8wIdHa_kd4cuUpm7WiHBFur-G_DlRze6Z0_GkwWH3qHDLKwbJDO9mN>`__,
-and `Beven And Binley,
-(2014) <https://onlinelibrary.wiley.com/doi/full/10.1002/hyp.10082>`__.
-
-6- Pre-Calibration
-===================
-
-Pre-calibration `(Edwards et al,
-2010) <https://link.springer.com/article/10.1007/s00382-010-0921-0>`__
-is a simplified method to deal with uncertainty in complex environmental
-models. Pre-calibration can also be thought of as another method that
-tackles the shortcomings and conceptual challenges involved in
-calibration of complex environmental models. In pre-calibration instead
-of finding the best solutions, we focus on finding the sample sets that
-create outputs that are against the common understanding of the system.
-These parameter sets are called non-physical parameter sets. In other
-words, the probability that these parameters are among the best sample
-sets is zero or near zero and can be neglected in practice.
-
-Pre-calibration can include the following steps: 1) Sensitivity analysis
-2) Definition of non-physical boundaries 3) Delineating regions in the
-output space which are non-physical (Implausible) 4) Map non-physical
-sets back to input space 5) Interpret the non-physical sample sets
-
-6-1 Pre-calibration calculations
---------------------------------------
-
-Distribution of mean error, RMSE, and Log[RMSE] under different sample sets
-________________________________________________________________________________
-
-.. code:: ipython3
-
-    # set up figure and axis objects
-    fig, axs = plt.subplots(nrows=3, figsize=(14,16))
-
-    # axis 1 (first row in figure)
-    a = sns.histplot(data=concat_df,
-                     x="RMSE",
-                     ax=axs[0],
-                     kde=True,
-                     bins=int(180/5),
-                     color='peachpuff').set_title('Distribution of RMSE in Different Sample Sets')
-
-    # axis 2 (second row in figure)
-    b = sns.histplot(data=concat_df,
-                     x="ME",
-                     ax=axs[1],
-                     kde=True,
-                     bins=int(180/5),
-                     color='lightgreen').set_title('Distribution of ME in Different Sample Sets')
-
-    # axis 3 (third row in figure)
-    c = sns.histplot(data=concat_df,
-                     x="LOG[RMSE]",
-                     ax=axs[2],
-                     kde=True,
-                     bins=int(180/5),
-                     color = 'lightseagreen').set_title('Distribution of LOG[RMSE] in Different Sample Sets')
-
-
-
-
-.. image:: _static/output_94_0.png
-
-
-Setting a threshold for physical/non-physical sample sets
-________________________________________________________________
-
-.. code:: ipython3
-
-    # selection of physical/non-physical sample sets
-    percentile = 95
-
-    threshold_precal = np.percentile(concat_df["RMSE"], percentile)
-    print(f"Threshold using the {percentile} percentile:  {threshold}")
-
-    # select values greater than the threshold
-    selected_values_precal = concat_df[concat_df["RMSE"] > threshold_precal]
-
-
-
-.. parsed-literal::
-
-    Threshold using the 95 percentile:  0.4981408917485908
-
-
-Visual inspection of non-physical sample sets
-________________________________________________
-
-.. code:: ipython3
-
-    # format the data frame so that it may be used for plotting
-    to_plot_precal = pd.melt(selected_values_precal,
-                             id_vars=['ME'],
-                             value_vars=['Kq', 'Ks_rescale', 'Alp', 'Huz_rescale', 'B_rescale'])
-
-
-.. code:: ipython3
-
-    # build a plot with multiple panels of scatter plots where ME is the target metric
-    g = sns.FacetGrid(to_plot_precal, col="variable")
-
-    # map the scatter plots to the facet grid panels
-    gh = g.map(sns.scatterplot, "value", "ME",  alpha=0.7, color='plum')
-
-
-
-
-.. image:: _static/output_99_0.png
-
-
-.. code:: ipython3
-
-    # build a plot with multiple panels of histogram plots where ME is the target metric
-    g = sns.FacetGrid(to_plot_precal, col="variable")
-
-    # map the plots to the facet grid panels
-    gh = g.map(sns.histplot, "value", kde=True, color='plum')
-
-
-
-
-.. image:: _static/output_100_0.png
-
-
-The following figure shows the flow discharge provided by the ensemble
-of parameters sets from Pre-Calibration versus the observed flow data.
-
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_precalibration_flow <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-flow>`_
-
-.. code:: ipython3
-
-    # mean monthly indices
-    Q_df_precal = pd.concat([Q_df.iloc[:, selected_values_precal.index],
-                             Q_df[['month' , 'year']]],
-                            axis=1)
-
-    # calculate year, month mean
-    df_precal_mth_mean = Q_df_precal.groupby(['year', 'month']).mean()
-
-    # plot observed versus pre-calibration outputs
-    ax = msdbook.plot_precalibration_flow(df_sim=df_precal_mth_mean,
-                                          df_obs=df_obs_mth_mean)
-
-
-
-
-.. image:: _static/output_103_0.png
-
-
-The following figure shows the flow discharge provided by the ensemble
-of parameters sets from both pre-calibration and GLUE and how these
-flows compare to the observed flow data.
-
-.. note::
-    **Tip:** View the source code used to create this plot here:  `plot_precalibration_glue <https://immm-sfa.github.io/msd_uncertainty_ebook/A3_plotting_code.html#plot-precalibration-glue>`_
-
-.. code:: ipython3
-
-    Q_df_glue = pd.concat([Q_df.iloc[:, selected_values_glue.index],
-                           Q_df.loc[:,['month' , 'year']]],
-                          axis=1)
-
-    # calculate year, month mean
-    df_glue_mth_mean = Q_df_glue.groupby(['year', 'month']).mean()
-
-
-    # plot observed versus pre-calibration and GLUE outputs
-    ax = msdbook.plot_precalibration_glue(df_precal=df_precal_mth_mean,
-                                          df_glue=df_glue_mth_mean,
-                                          df_obs=df_obs_mth_mean)
-
-
-
-
-.. image:: _static/output_106_0.png
-
-
-6-2 Comments on Pre-Calibration
------------------------------------
-
-Although Pre-calibrations provides a helpful and relatively simple
-alternative for statistical inferences, it has some disadvantages. For
-example, it is often subjective and challenging to provide a threshold
-for non-physical model outputs. Moreover, as discussed earlier different
-goodness-of-fit metrics can produce distinct physical and non-physical
-sample sets.
-
-More information about pre-calibration can be found in `(Edwards et al.,
-2010) <https://link.springer.com/article/10.1007/s00382-010-0921-0>`__,
-and `Ruckert et al.,
-(2017) <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0170052>`__.
+Tips to Apply this methodology to your own problem
+==================================================
+
+In this tutorial, we demonstrated how to use global sensitivtiy analysis
+to explore a complex, non-linear model. We showed how measuring
+sensitivity across multiple measures of model performance and temporal
+aggregations yeilding differing results about model
+sensitivity/behavoir. While these results may seem contraditory, they
+provide useful insight into the behavoir of HYMOD. Would we expect the
+same parameters to control high flow and low flow regimes within the
+model? Maybe, depending on the system, but also, maybe not. This
+analysis can provide insight into how the model responds to its input
+parameters, allowing us to compare the results to our expectaions. This
+may allow us to find problems with our intial assumptions, or call
+attention to model features that can be improved or expanded upon.
+Depending on the model and context, it may also yield insight into the
+workings of the underlying system.
+
+To run this tutorial on your own model you will need to:
+
+1. Design your experiment by choosing sampling bounds for your
+   parameters and setting up the problem dictionary as in step 2-2
+2. Choose the parameters of interest
+3. Generate samples using the saltelli.sample function. This step is
+   problem-dependent and note that the Sobol method can be
+   computationally intensive depending on the model being analyzed. More
+   complex models will be slower to run and will also require more
+   samples to calculate accurate estimates of Sobol indices. Once you
+   complete this process, pay attention to the confidence bounds on your
+   sensitivity indices to see whether you need to run more samples.
+4. Run the parameter sets through your model and record each of the
+   desired model outputs.
+5. Calculate the Sobol indices for each performance criteria. Now, the Y
+   will be a numpy array with your external model output and you will
+   need to include the parameter samples as an additional argument.
+6. Follow the procedure in step 2.6 to disaggregate performance across
+   time

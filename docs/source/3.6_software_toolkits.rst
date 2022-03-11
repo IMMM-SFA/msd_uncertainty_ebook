@@ -10,6 +10,7 @@ This section presents available open source sensitivity analysis software tools,
 .. figure:: _static/figure3_6_softwaretoolkits.png
     :alt: Figure 3_6
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     Sensitivity analysis packages available in different programming language platforms (R, Python, Julia, MATLAB, and C++), with the number of methods they support. Packages supporting more than five methods are indicated in pink. Packages updated since 2018 are indicated with asterisks. 

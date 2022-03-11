@@ -24,6 +24,7 @@ We can briefly distinguish the key terms of uncertainty quantification (UQ) and 
 .. figure:: _static/figure1_1_state_of_the_science.png
     :alt: Figure 1.1
     :width: 700px
+    :figclass: margin-caption
     :align: center
 
     State-of-the-art in different modeling communities, as reported in the survey distributed to IM3 teams. *Deterministic Historical Evaluation*: model evaluation under fully determined conditions defined using historical observations; *Local Sensitivity Analysis*: model evaluation performed by varying uncertain factors around specific reference values; *Global Sensitivity Analysis*: model evaluation performed by varying uncertain factors throughout their entire feasible value space; *Uncertainty Characterization*: model evaluation under alternative factor hypotheses to explore their implications for model output uncertainty; *Uncertainty Quantification*: representation of model output uncertainty using probability distributions; *Traditional statistical inference*: use of analysis results to describe deterministic or probabilistic outcomes resulting from the presence of uncertainty; *Narrative scenarios*: use of a limited decision-relevant number of scenarios to describe (sets of) changing system outcomes; *Exploratory modeling for scenario discovery*: use of large ensembles of uncertain conditions to discover decision-relevant combinations of uncertain factors.
