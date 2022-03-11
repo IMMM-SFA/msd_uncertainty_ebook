@@ -1,3 +1,4 @@
 {
-    "upload_type": "book"
+    "upload_type": "publication",
+    "publication_type": "book",
 }
