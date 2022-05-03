@@ -21,4 +21,4 @@ A related method, widely used in hydrological studies, is generalized likelihood
 
 .. note::
 
-    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:  `Pre-Calibration Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb>`_
+    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:  `Pre-Calibration Jupyter Notebook <nb_hymod_>`_
