@@ -3,7 +3,7 @@ Logistic Regression Tutorial
 
 .. note::
 
-    | Run the tutorial interactively using Binder:  `Logistic Regression Tutorial <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_.
+    | Run the tutorial interactively using Binder:  `Logistic Regression Tutorial <nb_logistic_regression_>`_.
     | Please be aware that Binder notebooks can take up to 10 minutes to launch.
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
 

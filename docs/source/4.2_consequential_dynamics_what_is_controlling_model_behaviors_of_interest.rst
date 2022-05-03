@@ -45,4 +45,4 @@ Despite these challenges, recent advanced sensitivity analysis methods can help 
 
 .. note::
 
-    Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover consequential dynamics:  `Factor Discovery Jupyter Notebook <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Ffishery_dynamics.ipynb>`_
+    Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover consequential dynamics:  `Factor Discovery Jupyter Notebook <nb_fishery_dynamics_>`_

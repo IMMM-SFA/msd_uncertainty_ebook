@@ -28,10 +28,10 @@ Addressing Uncertainty in MultiSector Dynamics Research
     
     **Interactive Tutorials**
 
-    * `Factor Discovery <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Ffishery_dynamics.ipynb>`_
-    * `Model Calibration <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb>`_
-    * `Sobol Sensitivity Analysis <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb>`_
-    * `Factor Mapping using Logistic Regression <https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fbasin_users_logistic_regression.ipynb>`_
+    * `Factor Discovery <nb_fishery_dynamics_>`_
+    * `Model Calibration <nb_hymod_>`_
+    * `Sobol Sensitivity Analysis <nb_saltelli_sobol_>`_
+    * `Factor Mapping using Logistic Regression <nb_logistic_regression_>`_
 
     .. tip::
 
