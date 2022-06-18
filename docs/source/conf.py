@@ -24,10 +24,10 @@ today = f"Last updated: {datetime.utcnow().strftime('%b %d, %Y')}"
 # -- Notebook URLs -----------------------------------------------------------
 
 rst_prolog = """
-.. _nb_logistic_regression: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fbasin_users_logistic_regression.ipynb
-.. _nb_saltelli_sobol: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fsa_saltelli_sobol_ishigami.ipynb
-.. _nb_hymod: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Fhymod.ipynb
-.. _nb_fishery_dynamics: https://mybinder.org/v2/gh/IMMM-SFA/msd_uncertainty_ebook/main?labpath=notebooks%2Ffishery_dynamics.ipynb
+.. _nb_logistic_regression: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/basin_users_logistic_regression.ipynb
+.. _nb_saltelli_sobol: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/sa_saltelli_sobol_ishigami.ipynb
+.. _nb_hymod: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/hymod.ipynb
+.. _nb_fishery_dynamics: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/fishery_dynamics.ipynb
 """
 
 
