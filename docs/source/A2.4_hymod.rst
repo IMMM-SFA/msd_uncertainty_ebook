@@ -3,8 +3,8 @@ HYMOD Dynamics Tutorial
 
 .. note::
     
-    | Run the tutorial interactively using Binder:  `HYMOD Notebook <nb_hymod_>`_.
-    | Please be aware that Binder notebooks can take up to 10 minutes to launch.
+    | Run the tutorial interactively:  `HYMOD Notebook <nb_hymod_>`_.
+    | Please be aware that notebooks can take a couple minutes to launch.
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
 
 Tutorial: Sensitivity Analysis of the HYMOD Model
