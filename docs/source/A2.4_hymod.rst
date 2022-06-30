@@ -350,7 +350,7 @@ streamflow, and combined runoff. In this tutorial we focus on the total
 daily runoff, QQ (:math:`m^3/s`). We can use the following script to
 plot simulated streamflow against observed streamflow.
 
-.. tip:: View the source code used to create this plot here: `plot_observed_vs_simulated_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-simulated-streamflow>`_
+.. tip:: View the source code used to create this plot here: `plot_observed_vs_simulated_streamflow <https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-observed-vs-simulated-streamflow>`_
 
 .. code:: ipython3
 
@@ -579,7 +579,7 @@ observed streamflow.
     df_obs_mth_mean = leaf_data.groupby(['year', 'month']).mean()
 
 
-.. tip:: View the source code used to create this plot here: `plot_observed_vs_sensitivity_streamflow <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow>`_
+.. tip:: View the source code used to create this plot here: `plot_observed_vs_sensitivity_streamflow <https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-observed-vs-sensitivity-streamflow>`_
 
 .. code:: ipython3
 
@@ -983,7 +983,7 @@ The following can be used to visualize the time-varying first-order
 indices. The first order represents the direct impacts of a specific
 parameter on model outputs.
 
-.. tip:: View the source code used to create this plot here: `plot_monthly_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-monthly-heatmap>`_
+.. tip:: View the source code used to create this plot here: `plot_monthly_heatmap <https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-monthly-heatmap>`_
 
 .. code:: ipython3
 
@@ -1078,7 +1078,7 @@ outputs to annual time steps, and then calculates the SA indices.
 First-order indices
 ^^^^^^^^^^^^^^^^^^^
 
-.. tip:: View the source code used to create this plot here: `plot_annual_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-annual-heatmap>`_
+.. tip:: View the source code used to create this plot here: `plot_annual_heatmap <https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-annual-heatmap>`_
 
 .. code:: ipython3
 
@@ -1161,7 +1161,7 @@ the monthly TVSA.
 First-order indices
 ^^^^^^^^^^^^^^^^^^^
 
-.. tip:: View the source code used to create this plot here: `plot_varying_heatmap <https://immm-sfa.github.io/msd_uncertainty_ebook/docs/html/A3_plotting_code.html#plot-varying-heatmap>`_
+.. tip:: View the source code used to create this plot here: `plot_varying_heatmap <https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-varying-heatmap>`_
 
 .. code:: ipython3
 
