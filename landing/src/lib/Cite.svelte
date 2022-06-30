@@ -10,7 +10,7 @@
     doi = {10.5281/zenodo.6110623},
     publisher = {Zenodo},
     title = {{Addressing Uncertainty in Multisector Dynamics Research}},
-    url = {https://immm-sfa.github.io/msd_uncertainty_ebook/},
+    url = {https://uc-ebook.org},
     year = {2022}
 }`,
     };

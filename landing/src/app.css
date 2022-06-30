@@ -4,8 +4,8 @@
 
 @font-face {
 	font-family: 'ornaments';
-	src: url('/msd_uncertainty_ebook/fonts/nymphette-webfont.woff') format('woff'),
-		url('/msd_uncertainty_ebook/fonts/nymphette-webfont.woff2') format('woff'),
+	src: url('/fonts/nymphette-webfont.woff') format('woff'),
+		url('/fonts/nymphette-webfont.woff2') format('woff'),
 		url('fonts/nymphette-webfont.woff') format('woff'),
 		url('fonts/nymphette-webfont.woff2') format('woff');
 }
