@@ -8,7 +8,7 @@ A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios Tut
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
 
 
-B.6 A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios
+A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios
 ================================================================================
 
 In this notebook, we will be covering the basics of fitting a Hidden
@@ -22,7 +22,7 @@ representative of plausible future climate in the region. We ultimately
 show how to place the synthetically generated flows in the context of
 physically-informed CMIP5 projections to compare the two methods.
 
-B6.1 Background
+Background
 ---------------
 
 In the Western United States, and particularly the Colorado River Basin,
@@ -66,7 +66,7 @@ operations, and policies.
 Let’s Get Started!
 ==================
 
-B6.2 Observed Record
+Observed Record
 --------------------
 
 First let’s take a look at the observed data from 1909-2013 for a
@@ -120,7 +120,7 @@ Below we create a plot of the annual streamflow.
 
 
 
-.. image:: hmm_9_0.png
+.. image:: _static/hmm_9_0.png
 
 
 Let’s calculate an 11-year rolling mean of the same data to get a sense
@@ -153,7 +153,7 @@ of long-term trends.
 
 
 
-.. image:: hmm_11_0.png
+.. image:: _static/hmm_11_0.png
 
 
 The Colorado Compact, which presecribes flows between the Upper and
@@ -221,13 +221,13 @@ rectangles below.
 
 
 
-.. image:: hmm_14_0.png
+.. image:: _static/hmm_14_0.png
 
 
 By this metric, the Upper Colorado Basin region has experienced two
 decadal droughts historically.
 
-B6.3 Synthetic Stationary Generator to Better Quantify Natural Variability
+Synthetic Stationary Generator to Better Quantify Natural Variability
 --------------------------------------------------------------------------
 
 It is important to remember that streamflow that we have observed in the
@@ -249,7 +249,7 @@ characteristic of the region. The figure below shows an example of a
 .. raw:: html
 
   <figure>
-      <center><img src="_static/HMM_example.png" style="width:75%"></center>
+      <center><img src="_static/_static/hmm_example.png" style="width:75%"></center>
   <figcaption style="text-align:center"> Two-state Gaussian HMM with mean and standard deviation parameters</figcaption>
   </figure>
 
@@ -296,7 +296,7 @@ state and hidden_states = 1 to the wet state.
 
 
 
-.. image:: hmm_21_0.png
+.. image:: _static/hmm_21_0.png
 
 
 In the figure above, we see that the years with the higher log flows
@@ -326,7 +326,7 @@ Let’s also plot the distribution of the wet and dry state.
 
 
 
-.. image:: hmm_25_0.png
+.. image:: _static/hmm_25_0.png
 
 
 The wet state distribution is characterized by a greater mean flow, but
@@ -402,7 +402,7 @@ the historical period.
 
 
 
-.. image:: hmm_28_0.png
+.. image:: _static/hmm_28_0.png
 
 
 You can sample from the model and create more 105-year traces and note
@@ -415,7 +415,7 @@ when humans can adapt by conserving or building more infrastructure?). A
 hydrologic drought need not manifest into an agricultural or operational
 drought of the same magnitude if stored surface water is available.
 
-B6.4 Non-Stationary Synthetic Generator to Impose Climate Changes
+Non-Stationary Synthetic Generator to Impose Climate Changes
 -----------------------------------------------------------------
 
 Now, we create flows under non-stationary conditions to get a better
@@ -604,7 +604,7 @@ Now let’s see what this synthetic trace looks like.
 
 
 
-.. image:: hmm_37_0.png
+.. image:: _static/hmm_37_0.png
 
 
 Above is the example trace from the new non-stationary model. You may
@@ -693,14 +693,14 @@ across these realizations.
 
 
 
-.. image:: hmm_40_0.png
+.. image:: _static/hmm_40_0.png
 
 
 Note how many more instances of the decadal droughts we are creating
 with the non-stationary generator than our observed 105-year trace which
 creates a rich space in which we can test our models.
 
-B6.5 Placing CMIP5 Projections in the Context of Non-Stationary Flows
+Placing CMIP5 Projections in the Context of Non-Stationary Flows
 ---------------------------------------------------------------------
 
 We have broadened the drought conditions that we are creating which that
@@ -810,7 +810,7 @@ Let’s plot our results:
 
 
 
-.. image:: hmm_49_0.png
+.. image:: _static/hmm_49_0.png
 
 
 We see the influence of the dry state mean and dry-dry transition
@@ -829,7 +829,7 @@ that are characterized by many different drought characteristics, you
 will likely find that a generator approach will serve this purpose
 better.
 
-B6.6 Tips to Create an HMM-Based Generator for your Problem
+Tips to Create an HMM-Based Generator for your Problem
 -----------------------------------------------------------
 
 In this tutorial, we demonstrated how to fit an HMM-based generator for
@@ -857,7 +857,7 @@ apply this methodology to your problem, you will need to first ask:
 If you meet these requirements, feel free to proceed through fitting the
 model using the code available in the notebook.
 
-B6.7 References
+References
 ---------------
 
 Ault, T. R., Cole, J. E., Overpeck, J. T., Pederson, G. T., & Meko, D.
