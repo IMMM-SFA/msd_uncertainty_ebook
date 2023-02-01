@@ -32,13 +32,15 @@ setup(
     include_package_data=True,
     install_requires=[
         "numpy>=1.21.1",
+        "scipy>=1.8.1",
         "SALib>=1.4.4",
         "statsmodels>=0.12.2",
         "pandas>=1.3.1",
         "matplotlib>=3.4.2",
         "seaborn>=0.11.2",
         "requests>=2.25.1",
-        "scikit-learn>=0.24.2"
+        "scikit-learn>=0.24.2",
+        "hmmlearn==0.2.7"
     ],
     extras_require={
         'dev': [
