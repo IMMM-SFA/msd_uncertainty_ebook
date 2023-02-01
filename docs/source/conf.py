@@ -28,6 +28,7 @@ rst_prolog = """
 .. _nb_saltelli_sobol: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/sa_saltelli_sobol_ishigami.ipynb
 .. _nb_hymod: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/hymod.ipynb
 .. _nb_fishery_dynamics: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/fishery_dynamics.ipynb
+.. _nb_discovery: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/Bedford_Greene_SD_tutorial.ipynb
 .. _nb_hmm: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/fishery_dynamics/Hidden-Markov Modeling Approaches to Creating Synthetic Streamflow Scenarios.ipynb
 """
 
