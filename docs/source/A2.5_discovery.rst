@@ -3,7 +3,7 @@ Time-evolving scenario discovery for infrastructure pathways
 
 .. note::
 
-    | Run the tutorial interactively:  `HMM Notebook <nb_discovery_>`_.
+    | Run the tutorial interactively:  `Scenario Discovery Notebook <nb_discovery_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
 
@@ -95,9 +95,9 @@ sampled SOWs where the pathway policy meets the peformance criteria:
 
 :math:`R =\frac{1}{N}\sum_{j=1}^{N}\Lambda_{\theta,j}`
 
-Where, $:raw-latex:`\Lambda`\_{:raw-latex:`\theta`,j}=
+Where, :math:`\Lambda\_{\theta,j}=`
 
-.. raw:: latex
+.. math::
 
    \begin{cases}
    1, \quad \textrm{if}\ F(\theta)_{j}\leq \Phi_j \\
