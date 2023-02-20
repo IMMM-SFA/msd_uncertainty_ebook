@@ -12,63 +12,25 @@ Time-evolving scenario discovery for infrastructure pathways
 Time-evolving scenario discovery for infrastructure pathways
 ============================================================
 
-The purpose of this tutorial is to explore time-evolving vulnerability
-for systems that dynamically adapt to changing conditions. Using an
-example from water supply planning, we’ll first examine how performance
-of a dynamic infrastructure pathway policy changes over time, then use
-factor mapping (main text Chapter 4.3) to understand which combinations
-of uncertaities generate vulnerability for two water utilities. Next,
-we’ll perform factor prioritization (main text Chapter 4.3) to determine
-which uncertainties have the most influence on water supply performance.
-Finally, we’ll provide an open platform to explore vulnerability across
-multiple measures of performance and different combinations of
-uncertainties.
+The purpose of this tutorial is to explore time-evolving vulnerability for systems that dynamically adapt to changing conditions. Using an example from water supply planning, we'll first examine how performance of a dynamic infrastructure pathway policy changes over time, then use factor mapping (main text Chapter 4.3) to understand which combinations of uncertaities generate vulnerability for two water utilities. Next, we'll perform factor prioritization (main text Chapter 4.3) to determine which uncertainties have the most influence on water supply performance. Finally, we'll provide an open platform to explore vulnerability across multiple measures of performance and different combinations of uncertainties.
 
 Background
 ----------
 
-The Bedford-Greene metropolitan area (Figure 1) is a stylized water
-resources test case where two urban water utilities seek to develop an
-infrastructure and investment and management strategy to confront
-growing demands and changing climate. The utilities have agreed to
-jointly construct a new water treatment plant on Lake Classon, a large
-regional resource. Both utilities have also identified a set of
-individual infrastructure options to construct if necessary.
+The Bedford-Greene metropolitan area (Figure 1) is a stylized water resources test case where two urban water utilities seek to develop an infrastructure and investment and management strategy to confront growing demands and changing climate. The utilities have agreed to jointly construct a new water treatment plant on Lake Classon, a large regional resource. Both utilities have also identified a set of individual infrastructure options to construct if necessary.
 
 .. figure:: _static/Map_small.png
    :alt: Figure 1
 
    Figure 1
 
-The utilities are formulating a cooperative and adaptive regional
-management strategy that uses a risk-of-failure (ROF) metric to trigger
-both short term drought mitigation actions (water use restrictions and
-treated transfers between utilities) and long-term infrastructure
-investment decisions (shown in Figure 2a). Both utilities have specified
-a set of risk triggers and developed a construction order for available
-infrastructure options.
+The utilities are formulating a cooperative and adaptive regional management strategy that uses a risk-of-failure (ROF) metric to trigger both short term drought mitigation actions (water use restrictions and treated transfers between utilities) and long-term infrastructure investment decisions (shown in Figure 2a). Both utilities have specified a set of risk triggers and developed a construction order for available infrastructure options.
 
-The utilities have run a Monte Carlo simulation to evaluate how these
-policies respond to a wide array of future states of the world, each
-representing a different sample of uncertainties including demand growth
-rates, changes to streamflows and financial variables.
+The utilities have run a Monte Carlo simulation to evaluate how these policies respond to a wide array of future States Of the World (SOWs). Each SOW represents a different combinations of thirteen uncertain system inputs including demand growth rates, changes to streamflows and financial variables. In this context, a fully specified SOW is composed of one sample of uncertain model inputs (e.g. one projection of demand growth rate coupled with one future streamflow scenario and one projection of future financial conditions). The water utilities used Latin Hypercube sampling (Chapter 3.3 of the main text) to develop an ensemble of 1,000 plausible future SOWs. The Monte Carlo simulation evaluates each candidate water supply infrastructure investment and management policy across all 1,000 SOWs, as shown in Figure 2b. For more details on the Monte Carlo sampling for this type  of analysis, see Trindade et al., (2019).
 
-The ROF-based policies respond to each SOW by generating a unique
-infrastructure pathway - a sequence of infrastructure investment
-decisions over time. Infrastructure pathways over a set of 1,000 future
-SOWs are shown in Figure 2b. Infrastructure options are arrayed along
-the vertical axis and the sequence of infrastructure investments
-triggered by the policy is plotted as pathways over time. Since the
-adaptive rule system generates a unique infrastructure sequence for each
-scenario, Figure 2b summarizes the ensemble of pathways by clustering
-SOWs according to infrastructure intensity. Dark green lines represent
-SOWs where the utilities heavily invest in new infrastructure, light
-green lines represent SOWs with low infrastructure investment and medium
-shaded lines represent moderate investment. The shading behind each
-pathway represents the frequency that each infrastructure option was
-triggered over time across sampled scenarios.
+The ROF-based policies respond to each SOW by generating a unique infrastructure pathway - a sequence of infrastructure investment decisions over time. Infrastructure pathways over a set of 1,000 future SOWs are shown in Figure 2c. Infrastructure options are arrayed along the vertical axis and the sequence of infrastructure investments triggered by the policy is plotted as pathways over time.  Since the adaptive rule system generates a unique infrastructure sequence for each scenario, Figure 2c summarizes the ensemble of pathways by clustering SOWs according to infrastructure intensity. Dark green lines represent SOWs where the utilities heavily invest in new infrastructure, light green lines represent SOWs with low infrastructure investment and medium shaded lines represent moderate investment. The shading behind each pathway represents the frequency that each infrastructure option was triggered over time across sampled scenarios
 
-.. figure:: _static/PolicyandPathways_small.png
+.. figure:: _static/Policy_MonteCarlo_Pathways_small.png
    :alt: Figure 2
 
    Figure 2
@@ -108,18 +70,9 @@ And :math:`\Phi` is a vector of performance criteria for utility
 :math:`j`, :math:`\theta` is the portfolio and :math:`N` is the total
 number of sampled SOWs.
 
-Below, we’ll visualize how robustness for the two utilities evolves over
-the 45-year planning horizon. We’ll assess robustness across three time
-periods, near-term (first 10 years), mid-term (22 years) and long term
-(45 years).
+Below, we'll visualize how robustness for the two utilities evolves over the 45-year planning horizon. We'll assess robustness across three time periods, near-term (first 10 years), mid-term (22 years) and long term (45 years).
 
-We start by loading robustness values for the both utilities. These
-values are calculated by applying the robustness metric above across
-2,000 simulated SOWs. To make this exercise computationally tractable,
-we’ve precomputed these values, which can be found in the files
-“short_term_robustness.csv”, “mid_term_robustness.csv” and
-“long_term_robustness.csv”. These values are calculated using the
-function “check_rdm_meet_criteria” within the helper functions.
+We start by loading robustness values for the both utilities. These values are calculated by applying the robustness metric above across 2,000 simulated SOWs. To make this exercise computationally tractable, we've precomputed these values, which can be found in the files "short_term_robustness.csv", "mid_term_robustness.csv" and "long_term_robustness.csv". These values are calculated using the function "check_rdm_meet_criteria" within the helper functions.
 
 .. code:: ipython3
 
@@ -165,13 +118,7 @@ function “check_rdm_meet_criteria” within the helper functions.
 Exploring performance evolution
 -------------------------------
 
-The figure above reveals that the robustness of both water utilities
-degrades over time, with Bedford’s robustness declining further than
-Greene. This suggests that the proposed pathway policy is likely
-insufficient to meet the long-term needs of the two utilities. But how
-is the current policy insufficient? To answer that question we examine
-the performance measures that fail to meet performance criteria for each
-utility across the three planning horizons.
+The figure above reveals that the robustness of both water utilities degrades over time, with Bedford's robustness declining further than Greene. This suggests that the proposed pathway policy is likely insufficient to meet the long-term needs of the two utilities. But how is the current policy insufficient? To answer that question we examine the performance measures that fail to meet performance criteria for each utility across the three planning horizons.
 
 .. code:: ipython3
 
@@ -243,25 +190,9 @@ utility across the three planning horizons.
 .. image:: _static/discovery_6_1.png
 
 
-In the figures above, we observe that the vulnerability of both
-utilities changes in different ways. Early in the simulation period,
-Bedford is vulnerable to failures in reliability (though the robustness
-figure created in step B5.2 reveals that these failures are very rare).
-As the simulation period progresses, Bedford’s vulnerability expands to
-include failures in restriction frequency and worst-case cost. These
-failures indicate that the utility has an overall inability to manage
-drought conditions and future conditions progress.
+In the figures above, we observe that the vulnerability of both utilities changes in different ways. Early in the simulation period, Bedford is vulnerable to failures in reliability (though the robustness figure created in step B5.2 reveals that these failures are very rare). As the simulation period progresses, Bedford's vulnerability expands to include failures in restriction frequency and worst-case cost. These failures indicate that the utility has an overall inability to manage drought conditions and future conditions progress.
 
-Greene shows a very different evolution in vulnerability. Early in the
-simulation period, failures manifest in the restriction frequency
-objective, suggesting that the utility must rely on water use
-restrictions to maintain supply reliability. As the simulation
-progresses however, the vulnerability evolves. When evaluated across the
-45-year planning horizon, a new failure modes emerges - financial
-failure manifesting in peak financial cost and stranded assets. This
-suggests that the proposed pathway policy may be over-investing in new
-infrastructure, straining the utility’s budget with large debt payments
-that are unnecessary to maintain supply reliability.
+Greene shows a very different evolution in vulnerability. Early in the simulation period, failures manifest in the restriction frequency objective, suggesting that the utility must rely on water use restrictions to maintain supply reliability. As the simulation progresses however, the vulnerability evolves. When evaluated across the 45-year planning horizon, a new failure modes emerges - financial failure manifesting in peak financial cost and stranded assets. This suggests that the proposed pathway policy may be over-investing in new infrastructure, straining the utility's budget with large debt payments that are unnecessary to maintain supply reliability.
 
 How do deep uncertainties generate vulnerability
 ------------------------------------------------
@@ -330,37 +261,14 @@ meet performance criteria.
 .. image:: _static/discovery_9_2.png
 
 
-In the figures above, we learn more about how the vulnerability of the
-two utilities evolves over time. Bedford begins with very few possible
-failures but appears vulnerable to high demand growth scenarios under
-future scenarios with high demands. When evaluated across a 22-year
-planning horizon, Bedford is vulnerable when the near-term demand growth
-is high and water use restrictions are less effective than predicted.
-Under the full 45-year planning horizon, Bedford is vulnerable to
-sustained high levels of demand growth, failing if either near-term or
-mid-term demand growth exceeds expected levels.
+In the figures above, we learn more about how the vulnerability of the two utilities evolves over time. Bedford begins with very few possible failures but appears vulnerable to high demand growth scenarios under future scenarios with high demands. When evaluated across a 22-year planning horizon, Bedford is vulnerable when the near-term demand growth is high and water use restrictions are less effective than predicted. Under the full 45-year planning horizon, Bedford is vulnerable to sustained high levels of demand growth, failing if either near-term or mid-term demand growth exceeds expected levels.
 
-Greene’s vulnerability evolves differently. It begins with vulnerability
-to high demand growth, but as the simulation progresses (and
-infrastructure is constructed), the utility becomes vulnerable to
-low-demand growth futures which cause the failures in financial criteria
-shown in section B.5.3. This indicates that the pathway policy
-over-builds in many SOWs, and becomes financially unstable if demand
-does not grow sufficiently to provide revenue to cover debt service
-payments.
+Greene's vulnerability evolves differently. It begins with vulnerability to high demand growth, but as the simulation progresses (and infrastructure is constructed), the utility becomes vulnerable to low-demand growth futures which cause the failures in financial criteria shown in section B.5.3. This indicates that the pathway policy over-builds in many SOWs, and becomes financially unstable if demand does not grow sufficiently to provide revenue to cover debt service payments.
 
 Which uncertainties have the most influence on time-evolving performance?
 -------------------------------------------------------------------------
 
-The factor maps generated in B.5.4 present the vulnerability generated
-by the two most important deep uncertainties as determined by Gradient
-Boosted Trees. Yet the factor prioritization shows that more than two
-uncertainties are influential to regional performance. Further, we can
-observe that individual uncertainties have different impacts on each
-performance obejctive, and these impacts may change over time. In the
-cells below, explore the impact of deep uncertainty by generating factor
-maps for different combinations of deep uncertain factors, objectives
-and time horizons.
+The factor maps generated in B.5.4 present the vulnerability generated by the two most important deep uncertainties as determined by Gradient Boosted Trees. Yet the factor prioritization shows that more than two uncertainties are influential to regional performance. Further, we can observe that individual uncertainties have different impacts on each performance obejctive, and these impacts may change over time. In the cells below, explore the impact of deep uncertainty by generating factor maps for different combinations of deep uncertain factors, objectives and time horizons.
 
 .. code:: ipython3
 
@@ -409,17 +317,7 @@ and time horizons.
 
 
 
-The Figure above shows the factor importance as determined by gradient
-boosted trees for both utilities across the three planning horizons.
-While near-term demand growth is important for both utilities under all
-three planning horizons, the importance of other factors evolves over
-time. For example, restriction effectiveness plays an important role for
-Greene under the 22-year planning horizon but disappears under the
-45-year planning horizon. In contrast, the bond interest rate is
-important for predicting success over the 45-year planning horizon, but
-does not appear important over the 10- or 22-year planning horizons.
-These findings highlight how assumptions about the planning period can
-have a large impact on modeling outcomes.
+The Figure above shows the factor importance as determined by gradient boosted trees for both utilities across the three planning horizons. While near-term demand growth is important for both utilities under all three planning horizons, the importance of other factors evolves over time. For example, restriction effectiveness plays an important role for Greene under the 22-year planning horizon but disappears under the 45-year planning horizon. In contrast, the bond interest rate is important for predicting success over the 45-year planning horizon, but does not appear important over the 10- or 22-year planning horizons. These findings highlight how assumptions about the planning period can have a large impact on modeling outcomes.
 
 Open exploration
 ----------------
@@ -479,3 +377,8 @@ problem:
    measures across multiple time horizons
 5. Draw from the supporting code for this tutorial to perform scneario
    discovery and visualize results
+
+
+References
+--------------------------------------------------
+Trindade, B. C., Reed, P. M., & Characklis, G. W. (2019). Deeply uncertain pathways: Integrated multi-city regional water supply infrastructure investment and portfolio management. Advances in Water Resources, 134, 103442.
