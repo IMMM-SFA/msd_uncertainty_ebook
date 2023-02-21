@@ -208,9 +208,9 @@ meet performance criteria.
 .. code:: ipython3
 
     # import the performance data across 2000 SOWs for three time periods
-    short_term_performance = np.loadtxt('data/Short_term_performance.csv', delimiter= ',')
-    mid_term_performance = np.loadtxt('data/Mid_term_performance.csv', delimiter = ',')
-    long_term_performance = np.loadtxt('data/Long_term_performance.csv', delimiter = ',')
+    short_term_performance = np.loadtxt('data/short_term_performance.csv', delimiter= ',')
+    mid_term_performance = np.loadtxt('data/mid_term_performance.csv', delimiter = ',')
+    long_term_performance = np.loadtxt('data/long_term_performance.csv', delimiter = ',')
 
     satisficing_criteria = [.98, .2, .8, .1, 5]
 
