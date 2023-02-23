@@ -1,6 +1,7 @@
 from hmmlearn.hmm import GaussianHMM
 import numpy as np
- 
+
+
 def fitHMM(Q, nSamples):
     # fit Gaussian HMM to Q
     model = GaussianHMM(n_components=2, n_iter=1000).fit(np.reshape(Q[35::],[len(Q[35::]),1]))

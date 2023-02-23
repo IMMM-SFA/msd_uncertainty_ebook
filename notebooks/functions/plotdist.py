@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+
 def plotDistribution(Q, mus, sigmas, P):
  
     # calculate stationary distribution
@@ -21,7 +22,7 @@ def plotDistribution(Q, mus, sigmas, P):
         pi[1]*ss.norm.pdf(x,mus[1],sigmas[1])
  
     
-    fig = plt.figure()
+    fig, ax = plt.subplots(figsize=(12, 8))
     ax = fig.add_subplot(111)
     ax.hist(Q, color='k', alpha=0.5, density=True)
     l1, = ax.plot(x_0, fx_0, c='r', linewidth=2, label='Dry State Distn')
@@ -34,4 +35,7 @@ def plotDistribution(Q, mus, sigmas, P):
     plt.legend() 
     plt.xticks(fontsize = 14)
     plt.yticks(fontsize = 14)
+    plt.show()
+    plt.close(fig)
+    
     return None
