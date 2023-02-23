@@ -22,8 +22,8 @@ def plotDistribution(Q, mus, sigmas, P):
         pi[1]*ss.norm.pdf(x,mus[1],sigmas[1])
  
     
-    fig, ax = plt.subplots(figsize=(12, 8))
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+
     ax.hist(Q, color='k', alpha=0.5, density=True)
     l1, = ax.plot(x_0, fx_0, c='r', linewidth=2, label='Dry State Distn')
     l2, = ax.plot(x_1, fx_1, c='b', linewidth=2, label='Wet State Distn')
@@ -33,9 +33,11 @@ def plotDistribution(Q, mus, sigmas, P):
     handles, labels = plt.gca().get_legend_handles_labels()
     matplotlib.rc('legend', fontsize = 16)
     plt.legend() 
+    
     plt.xticks(fontsize = 14)
     plt.yticks(fontsize = 14)
+    
     plt.show()
-    plt.close(fig)
+    plt.close()
     
     return None
