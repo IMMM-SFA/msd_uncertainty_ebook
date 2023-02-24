@@ -29,14 +29,14 @@ rst_prolog = """
 .. _nb_hymod: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/hymod.ipynb
 .. _nb_fishery_dynamics: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/fishery_dynamics.ipynb
 .. _nb_discovery: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/Bedford_Greene_SD_tutorial.ipynb
-.. _nb_hmm: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/Hidden-Markov Modeling Approaches to Creating Synthetic Streamflow Scenarios.ipynb
+.. _nb_hmm: https://uc-ebook.msdlive.org/user-redirect/lab/tree/examples/Hidden-Markov_Modeling_Approaches_to_Creating_Synthetic_Streamflow_Scenarios.ipynb
 """
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'Addressing Uncertainty in MultiSector Dynamics Research'
-copyright = '2022, Battelle Memorial Institute'
+copyright = '2022-current, Battelle Memorial Institute'
 
 # The full version, including alpha/beta/rc tags
 release = ''
