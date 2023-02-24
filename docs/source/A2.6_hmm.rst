@@ -261,7 +261,7 @@ example.
 .. raw:: html
 
   <figure>
-      <center><img src="_static/hmm_example.png" style="width:75%"></center>
+      <center><img src="_static/HMM_example.png" style="width:75%"></center>
   <figcaption style="text-align:center"> Two-state Gaussian HMM with mean and standard deviation parameters</figcaption>
   </figure>
 
