@@ -15,7 +15,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
         Patrick M. Reed, Antonia Hadjimichael, Keyvan Malek,
         Tina Karimi, Chris R. Vernon, Vivek Srikrishnan, Rohini S. Gupta,
         David F. Gold, Ben Lee, Klaus Keller, Travis B. Thurber, Jennie S. Rice
-    
+
     A practical guide to sensitivity analysis and diagnostic model evaluation techniques for confronting the computational and conceptual challenges of multi-model, transdisciplinary workflows.
 
     **Topics in the Book**
@@ -25,13 +25,15 @@ Addressing Uncertainty in MultiSector Dynamics Research
     * `An overview of diagnostic modeling and perspectives on model evaluation <2_diagnostic_modeling_overview_and_perspectives.html>`_
     * `A framework for the basic methods and concepts used in sensitivity analysis <3_sensitivity_analysis_the_basics.html>`_
     * `Technical applications supporting diagnostic model evaluation and exploration <4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html>`_
-    
+
     **Interactive Tutorials**
 
     * `Factor Discovery <nb_fishery_dynamics_>`_
     * `Model Calibration <nb_hymod_>`_
     * `Sobol Sensitivity Analysis <nb_saltelli_sobol_>`_
     * `Factor Mapping using Logistic Regression <nb_logistic_regression_>`_
+    * `Time-evolving scenario discovery for infrastructure pathways <nb_discovery_>`_
+    * `A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios <nb_hmm_>`_
 
     .. tip::
 
@@ -42,7 +44,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
                 <br/>
                 Click or tap the <i style="padding: 0 0.25rem;" class="fas fa-bars"></i> icon to show and hide the sidebar.
             </p>
-    
+
     .. admonition:: Info
 
         .. raw:: html
@@ -115,7 +117,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     :glob:
 
     6_glossary
-    
+
 
 .. raw:: latex
 
