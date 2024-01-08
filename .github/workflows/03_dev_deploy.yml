@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feature/dev-site ]
 
 jobs:
   build:
@@ -21,6 +21,8 @@ jobs:
           pip install -r requirements.txt
       - name: Build html and pdf ebook
         working-directory: 'docs/'
+        env:
+          NODE_ENV: development
         run: |
           make html latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
           make latexpdf --keep-going LATEXMKOPTS="-interaction=nonstopmode" || true
@@ -35,19 +37,16 @@ jobs:
           node-version: '16'
           cache: 'npm'
           cache-dependency-path: landing/package-lock.json
-      - name: Get current datetime in ISO format
-        id: date
-        run: echo "::set-output name=date::$(date -u +'%Y-%m-%d')"
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --delete
         env:
           SOURCE_DIR: 'notebooks'
           DEST_DIR: 'notebooks'
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_DEV }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+          AWS_REGION: ${{ secrets.AWS_REGION_DEV }}
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -57,29 +56,27 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
+          file: Dockerfile_dev
           push: true
-          tags: thurber/uc-ebook.org:latest
-      - name: Create GitHub release
-        id: gh_release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf
-          tag_name: ${{ steps.date.outputs.date }}v${{ github.run_number }}
+          tags: thurber/uc-ebook.org:dev
       - name: Install landing page dependencies
         working-directory: 'landing/'
         run: npm install
       - name: Build landing page
         working-directory: 'landing/'
         env:
-          NODE_ENV: production
-          VITE_PDF_URL: https://github.com/IMMM-SFA/msd_uncertainty_ebook/releases/download/${{ steps.date.outputs.date }}v${{ github.run_number }}/addressinguncertaintyinmultisectordynamicsresearch.pdf
+          NODE_ENV: development
+          VITE_PDF_URL: https://uc-ebook.org/dev/images/addressinguncertaintyinmultisectordynamicsresearch.pdf
         run: npm run build
       - name: Commit documentation changes
         run: |
-          git clone --depth=1 --branch=gh-pages https://github.com/IMMM-SFA/msd_uncertainty_ebook.git previous_deploy
-          mkdir ./landing/build/dev
-          cp -r ./previous_deploy/dev/* ./landing/build/dev/
-          cd ./landing/build
+          git clone --depth=1 --branch=gh-pages https://github.com/IMMM-SFA/msd_uncertainty_ebook.git deploy
+          rm -rf ./deploy/.git
+          rm -rf ./deploy/dev
+          mkdir ./deploy/dev
+          cp -r ./landing/build/* ./deploy/dev/
+          cp ./docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf ./deploy/dev/images/
+          cd ./deploy
           git init
           git add -A
           git config --local user.email "action@github.com"
@@ -88,7 +85,7 @@ jobs:
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
-          branch: gh-pages
-          directory: landing/build
+          branch: gh-pages-test
+          directory: deploy
           force: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
