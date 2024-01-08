@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ main, feature/dev-site ]
+    branches: [ main, dev ]
 
 jobs:
   build:

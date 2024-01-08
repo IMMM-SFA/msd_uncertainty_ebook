@@ -1,8 +1,8 @@
-name: Deploy
+name: Deploy Dev
 
 on:
   push:
-    branches: [ feature/dev-site ]
+    branches: [ dev ]
 
 jobs:
   build:
@@ -66,7 +66,6 @@ jobs:
         working-directory: 'landing/'
         env:
           NODE_ENV: development
-          VITE_PDF_URL: https://uc-ebook.org/dev/images/addressinguncertaintyinmultisectordynamicsresearch.pdf
         run: npm run build
       - name: Commit documentation changes
         run: |
@@ -75,7 +74,6 @@ jobs:
           rm -rf ./deploy/dev
           mkdir ./deploy/dev
           cp -r ./landing/build/* ./deploy/dev/
-          cp ./docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf ./deploy/dev/images/
           cd ./deploy
           git init
           git add -A
@@ -85,7 +83,7 @@ jobs:
       - name: Push changes to gh-pages
         uses: ad-m/github-push-action@master
         with:
-          branch: gh-pages-test
+          branch: gh-pages
           directory: deploy
           force: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
