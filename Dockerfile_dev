@@ -2,7 +2,7 @@ FROM jupyter/minimal-notebook:2022-05-03
 
 USER root
 
-RUN git clone --depth=1 --branch=feature/dev-site https://github.com/IMMM-SFA/msd_uncertainty_ebook.git msd_uncertainty_ebook
+RUN git clone --depth=1 --branch=dev https://github.com/IMMM-SFA/msd_uncertainty_ebook.git msd_uncertainty_ebook
 RUN cd msd_uncertainty_ebook && pip install .
 
 # Now create a symlinked data folder inside the msdbook package that links to /home/demo/data folder
