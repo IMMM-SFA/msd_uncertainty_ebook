@@ -50,6 +50,7 @@ setup(
             'mathjax~=0.1.2',
             'nbsphinx~=0.8.6',
             'setuptools~=57.0.0',
+            'sphinxcontrib-applehelp==1.0.7',
             'sphinx~=4.0.2',
             'sphinx-book-theme~=0.2.0',
             'sphinxcontrib-bibtex~=2.4.1',
