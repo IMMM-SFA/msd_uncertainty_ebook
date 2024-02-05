@@ -1,0 +1,72 @@
+name: Contribution Proposal
+description: 
+  Want to contribute to our eBook?  Fill the following proposal form and we will review your contribution idea shortly.
+labels: ["needs triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Please fill out the form completly
+        **NOTE**: We require that all contributions including any code, data, or other content provided with them be fully open source.
+
+  - type: textarea
+    id: issue-name
+    attributes:
+      label: Name
+      description: Please provide your name
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-email
+    attributes:
+      label: Email
+      description: Please provide your email address
+    validations:
+      required: true
+        
+  - type: textarea
+    id: issue-institution
+    attributes:
+      label: Institution
+      description: Please provide your institution
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-source
+    attributes:
+      label: Referral 
+      description: How did you hear about the eBook?
+    validations:
+      required: true
+    
+  - type: dropdown
+    id: issue-category
+    attributes:
+      label: Topic Area
+      description: Select the part of the eBook you are hoping to contribute to.
+      options:
+        - General
+        - Sensitivity Analysis
+        - Uncertainty Quantification
+        - Jupyter Notebook
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Description
+      description: Please provide a detailed description of the content you wish to contribute.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-info
+    attributes:
+      label: Additional Information
+      description: Please provide any additional information you want to share.
+    validations:
+      required: true
