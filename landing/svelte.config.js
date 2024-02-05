@@ -13,7 +13,7 @@ const config = {
 			assets: 'build'
 		}),
 		paths: {
-			base: ''
+			base: process.env.NODE_ENV === 'development' ? '/dev' : ''
 		}
 	}
 };

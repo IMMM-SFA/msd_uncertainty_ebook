@@ -17,19 +17,23 @@ from datetime import datetime
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.append(os.path.abspath("../../extensions"))
 
+# if this is a dev build, the paths need to be adjusted
+dev_web = '/dev' if ('NODE_ENV' in os.environ and os.environ['NODE_ENV'] == 'development') else ''
+dev_nb = '.dev' if ('NODE_ENV' in os.environ and os.environ['NODE_ENV'] == 'development') else ''
+
 # current datetime to use as the version
 today = f"Last updated: {datetime.utcnow().strftime('%b %d, %Y')}"
 
 
 # -- Notebook URLs -----------------------------------------------------------
 
-rst_prolog = """
-.. _nb_logistic_regression: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/basin_users_logistic_regression.ipynb
-.. _nb_saltelli_sobol: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/sa_saltelli_sobol_ishigami.ipynb
-.. _nb_hymod: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/hymod.ipynb
-.. _nb_fishery_dynamics: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/fishery_dynamics.ipynb
-.. _nb_discovery: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/Bedford_Greene_SD_tutorial.ipynb
-.. _nb_hmm: https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/Hidden-Markov_Modeling_Approaches_to_Creating_Synthetic_Streamflow_Scenarios.ipynb
+rst_prolog = f"""
+.. _nb_logistic_regression: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/basin_users_logistic_regression.ipynb
+.. _nb_saltelli_sobol: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/sa_saltelli_sobol_ishigami.ipynb
+.. _nb_hymod: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/hymod.ipynb
+.. _nb_fishery_dynamics: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/fishery_dynamics.ipynb
+.. _nb_discovery: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/Bedford_Greene_SD_tutorial.ipynb
+.. _nb_hmm: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/Hidden-Markov_Modeling_Approaches_to_Creating_Synthetic_Streamflow_Scenarios.ipynb
 """
 
 
@@ -88,7 +92,7 @@ html_theme = 'sphinx_book_theme'
 
 # theme options
 html_theme_options = {
-    'path_to_docs': '/docs',
+    'path_to_docs': f'{dev_web}/docs',
     'repository_url': 'https://github.com/IMMM-SFA/msd_uncertainty_ebook',
     'use_issues_button': True,
     'use_download_button': True,
