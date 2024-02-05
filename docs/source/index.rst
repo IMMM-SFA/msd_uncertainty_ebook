@@ -67,6 +67,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     preface
     citation
     acknowledgements
+    code_of_conduct
 
 .. raw:: latex
 
