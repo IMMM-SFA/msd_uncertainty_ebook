@@ -1,6 +1,6 @@
 name: Contribution Proposal
 description: 
-  Want to contribute to our eBook?  Fill the following proposal form and we will review your contribution idea shortly.
+  Want to contribute to our eBook?  Fill the following proposal form and we will review your contribution idea shortly.  See our `contribution documentation <https://uc-ebook.org/dev/docs/html/contributing.html>`_ for additional information.
 labels: ["needs triage"]
 
 body:
