@@ -44,17 +44,16 @@ setup(
     ],
     extras_require={
         'dev': [
-            'autodoc~=0.5.0',
-            'build~=0.5.1',
-            'ipython~=8.0.1',
-            'mathjax~=0.1.2',
-            'nbsphinx~=0.8.6',
-            'setuptools~=57.0.0',
-            'sphinxcontrib-applehelp==1.0.7',
-            'sphinx~=4.0.2',
-            'sphinx-book-theme~=0.2.0',
-            'sphinxcontrib-bibtex~=2.4.1',
-            'twine~=3.4.1'
+            'autodoc>=0.5.0',
+            'build>=0.5.1',
+            'ipython>=8.0.1',
+            'mathjax>=0.1.2',
+            'nbsphinx>=0.8.6',
+            'setuptools>=57.0.0',
+            'sphinx>=4.0.2',
+            'sphinx-book-theme>=0.2.0',
+            'sphinxcontrib-bibtex>=2.4.1',
+            'twine>=3.4.1'
         ]
     }
 )
