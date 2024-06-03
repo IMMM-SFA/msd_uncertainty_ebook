@@ -1,5 +1,5 @@
 ## Tutorial Contribution
-The following upon submission starts the review process for your draft Jupyter notebook contribution to the eBook.  Please see our [contribution documentation](https://uc-ebook.org/dev/docs/html/contributing.html) for additional guidance.
+The following upon submission starts the review process for your draft Jupyter notebook contribution to the eBook.  Please see our [contribution documentation](https://uc-ebook.org/docs/html/contributing.html) for additional guidance.
 
 ## Contribution Issue Link
 Please reference the link to your approved contribution issue here: # (issue)
@@ -12,7 +12,7 @@ Please ensure that you are able to check all of the following boxes before submi
 - [ ] Any data or code reused in your submission are correctly cited giving credit to the original authors. 
 - [ ] The notebook provided is written in English and able to be a stand-alone product that needs no further explanation past what is written in the notebook to make use of it.
 - [ ] The provided work is not merely a regurgitation of an existing tutorial or demonstration but represents a novel contribution.
-- [ ] All contributions and communication thereof must abide by our [code of conduct](https://uc-ebook.org/dev/docs/html/code_of_conduct.html).
+- [ ] All contributions and communication thereof must abide by our [code of conduct](https://uc-ebook.org/docs/html/code_of_conduct.html).
 
 ## Additional information
 

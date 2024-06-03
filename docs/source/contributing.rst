@@ -10,9 +10,9 @@ Please consider the following requirements for contribution:
 - Any data or code reused in your submission must be correctly cited giving credit to the original authors. 
 - The notebook provided must be written in English and able to be a stand-alone product that needs no further explanation past what is written in the notebook to make use of it.
 - The provided work is not merely a regurgitation of an existing tutorial or demonstration but represents a novel contribution.
-- All contributions and communication thereof must abide by our `code of conduct <https://uc-ebook.org/dev/docs/html/code_of_conduct.html>`_.
+- All contributions and communication thereof must abide by our `code of conduct <https://uc-ebook.org/docs/html/code_of_conduct.html>`_.
 
 
-If you feel your work meets the criteria above, please submit a proposal issue `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/dev/.github/ISSUE_TEMPLATE/contribution_proposal.yml>`_.  If your proposal is approved, please submit your draft notebook for review as an attachment using our submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/dev/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_.  We will then review your submission and provide feedback.  Once your contribution has been deemed ready to deploy, we will generate a DOI for your work, launch it to our MSD-LIVE set of interactive notebooks, and feature the contribution in the index of our eBook.
+If you feel your work meets the criteria above, please submit a proposal issue `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/.github/ISSUE_TEMPLATE/contribution_proposal.yml>`_.  If your proposal is approved, please submit your draft notebook for review as an attachment using our submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/dev/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_.  We will then review your submission and provide feedback.  Once your contribution has been deemed ready to deploy, we will generate a DOI for your work, launch it to our MSD-LIVE set of interactive notebooks, and feature the contribution in the index of our eBook.
 
 Please feel free to reach out with any further questions.

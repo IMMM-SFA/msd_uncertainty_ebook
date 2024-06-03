@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         ## Please fill out the form completly
-        See our `contribution documentation <https://uc-ebook.org/dev/docs/html/contributing.html>`_ for additional information.
+        See our `contribution documentation <https://uc-ebook.org/docs/html/contributing.html>`_ for additional information.
         **NOTE**: We require that all contributions including any code, data, or other content provided with them be fully open source.
 
   - type: textarea
