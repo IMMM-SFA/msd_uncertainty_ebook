@@ -1,0 +1,24 @@
+Pre-Calibration
+###############
+
+Pre-calibration :cite:`beven_future_1992, edwards_precalibrating_2011, boukouvalas_bayesian_2014` involves the identification of a plausible set of parameters using some prespecified screening criterion, such as the distance from the model results to the observations (based on an appropriate metric for the desired matching features, such as root-mean-squared error). A typical workflow is shown in :numref:`Figure_A1_3`. Parameter values are obtained by systematically sampling the input space (see :numref:`design_of_experiments`). After the model is evaluated at the samples, only those passing the distance criterion are retained. This selects a subset of the parameter space as “plausible” based on the screening criterion, though there is no assignment of probabilities within this plausible region.
+
+.. _Figure_A1_3:
+.. figure:: _static/figureA1_3_precal_workflow.png
+    :alt: Figure A1.3
+    :width: 700px
+    :figclass: margin-caption
+    :align: center
+
+    Workflow for pre-calibration.
+
+Pre-calibration can be useful for models which are inexpensive enough that a reasonable
+number of samples can be used to represent the parameter space, but which are too expensive to facilitate full uncertainty quantification. High-dimensional parameter spaces, which can be problematic for the uncertainty quantification methods below, may also be explored using pre-calibration. One key prerequisite to using this method is the ability to place a meaningful distance metric on the output space.
+
+However, pre-calibration results in a very coarse characterization of uncertainty, especially when considering a large number of parameters, as more samples are needed to fully characterize the parameter space. Due to the inability to evaluate the relative probability of regions of the parameter space beyond the binary plausible-and-implausible characterization, pre-calibration can also result in degraded hindcast and projection skills and parameter estimates :cite:`makowski_using_2002, shafii_uncertainty-based_2014, ruckert_assessing_2017`.
+
+A related method, widely used in hydrological studies, is generalized likelihood uncertainty estimation, or GLUE :cite:`beven_future_1992`. Unlike pre-calibration, the underlying argument for GLUE relies on the concept of equifinality :cite:`beven_equifinality_2001`, which posits that it is impossible to find a uniquely well-performing parameter vector for models of abstract environmental systems :cite:`beven_equifinality_2001, vrugt_embracing_2018`. In other words, there exist multiple parameter vectors which perform equally or similarly well. As with pre-calibration, GLUE uses a goodness-of-fit measure (though this is called a “likelihood” in the GLUE literature, as opposed to a statistical likelihood function :cite:`stedinger_appraisal_2008`) to evaluate samples. After setting a threshold of acceptable performance with respect to that measure, samples are evaluated and classified into “behavioral” or “non-behavioral” according to the threshold.
+
+.. note::
+
+    Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:  `Pre-Calibration Jupyter Notebook <nb_hymod_>`_

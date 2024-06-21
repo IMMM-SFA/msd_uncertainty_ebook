@@ -1,0 +1,46 @@
+.. _design_of_experiments:
+
+Design of Experiments
+#####################
+
+Before conducting a sensitivity analysis, the first element that needs to be clarified is the uncertainty space of the model :cite:p:`helton2006survey,pianosi2016sensitivity`. In other words, how many and which factors making up the mathematical model are considered uncertain and can potentially affect the model output and the inferences drawn from it. Uncertain factors can be model parameters, model structures, inputs, or alternative model resolution levels (scales), all of which can be assessed through the tools presented in this text. Depending on the kind of factor, its variability can be elicited through various means: expert opinion, values reported in the literature, historical observations, its physical meaning (e.g., population values in a city can never be negative), or through the use of more formal UQ methods (:numref:`A1_uncertainty_quantification`). The model uncertainty space represents the entire space of variability present in each of the uncertain factors of a model. The complexity of most real-world models means that the response function, :math:`y=g(x)`, mapping inputs to outputs, is hardly ever available in an analytical form and therefore analytically computing the sensitivity of the output to each uncertain factor becomes impossible. In these cases, sensitivity analysis is only feasible through numerical procedures that employ different strategies to sample the uncertainty space and calculate sensitivity indices.
+
+A sampling strategy is often referred to as a *design of experiments* and represents a methodological choice made before conducting any sensitivity analysis. Experimental design was first introduced by :cite:t:`fisher1936design` in the context of laboratory or field-based experiments. Its application in sensitivity analysis is similar to setting up a physical experiment in that it is used to discover the behavior of a system under specific conditions. An ideal design of experiments should provide a framework for the extraction of all plausible information about the impact of each factor on the output of the model. The design of experiments is used to set up a simulation platform with the minimum computational cost to answer specific questions that cannot be readily drawn from the data through analytical or common data mining techniques. Models representing coupled human-natural systems usually have a large number of inputs, state variables and parameters, but not all of them exert fundamental control over the numerical process, despite their uncertainty, nor have substantial impacts on the model output, either independently or through their interactions. Each factor influences the model output in different ways that need to be discovered. For example, the influence of a parameter on model output can be linear or non-linear and can be continuous or only be active during specific times or at particular states of the system :cite:p:`herman2013time, massmann2014new`. An effective and efficient design of experiments allows the analyst to explore these complex relationships and evaluate different behaviors of the model for various scientific questions :cite:p:`van2016sensitivity`. The rest of this section overviews some of the most commonly used designs of experiments. Table 1 summarizes the designs discussed.
+
+.. list-table:: Summary of designs of experiments overviewed in this section. * Depends on the sample size.
+  :header-rows: 1
+
+  * - *Design of experiments*
+    - *Factor interactions considered*
+    - *Treatment of factor domains*
+  * - One-At-a-Time (OAT)
+    - No - main effects only
+    - Continuous (distributions)
+  * - Full Factorial Sampling
+    - Yes - including total effects
+    - Discrete (levels)
+  * - Fractional Factorial Sampling
+    - Yes - only lower-order effects*
+    - Discrete (levels)
+  * - Latin Hypercube (LH) Sampling
+    - Yes - including total effects*
+    - Continuous (distributions)
+  * - Quasi-Random Sampling with Low-Discrepancy Sequences
+    - Yes - including total effects*
+    - Continuous (distributions)
+
+There are a few different approaches to the design of experiments, closely related to the chosen sensitivity analysis approach, which is in turn shaped by the research motivations, scientific questions, and computational constraints at hand (additional discussion of this can be found at the end of :numref:`3_sensitivity_analysis_the_basics`). For example, in a sensitivity analysis using perturbation and derivatives methods, the model input parameters vary from their nominal values one at a time, something that the design of experiments needs to reflect. If, instead, one were to perform sensitivity analysis using a multiple-starts perturbation method, the design of experiments needs to consider that multiple points across the factor space are used. The design of experiments specifically defines two key characteristics of samples that are fed to the numerical model: the number of samples and the range of each factor.
+
+Generally, sampling can be performed randomly or by applying a stratifying approach. In random sampling, such as Monte Carlo :cite:p:`metropolis1949monte`, samples are randomly generated by a pseudo-random number generator with an a-priori assumption about the distribution of parameters and their possible ranges. Random seeds can also be used to ensure consistency and higher control over the random process. However, this method could leave some gaps in the parameter space and cause clustering in some spaces, especially for a large number of parameters :cite:p:`norton2015introduction`. Most sampling strategies use stratified sampling to mitigate these disadvantages. Stratified sampling techniques divide the domain of each factor into subintervals, often of equal lengths. From each subinterval, an equal number of samples is drawn randomly, or based on the specific locations within the subintervals :cite:p:`saltelli2008global`.
+
+.. include:: 3.3.1_one_at_a_time_oat.rst
+
+.. include:: 3.3.2_full_fractional_factorial_sampling.rst
+
+.. include:: 3.3.3_latin_hypercube_sampling.rst
+
+.. include:: 3.3.4_low_discrepancy_sequences.rst
+
+.. include:: 3.3.5_other_types_of_sampling.rst
+
+.. include:: 3.3.6_synthetic_generation_of_input_time_series.rst
