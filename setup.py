@@ -31,7 +31,7 @@ setup(
     python_requires='>=3.6.*, <4',
     include_package_data=True,
     install_requires=[
-        "numpy>=1.21.1",
+        "numpy>=1.21.1,<2",
         "scipy>=1.8.1",
         "SALib>=1.4.4",
         "statsmodels>=0.12.2",
