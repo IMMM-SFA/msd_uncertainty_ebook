@@ -5,7 +5,7 @@ import shutil
 
 import requests
 
-from pkg_resources import get_distribution
+from importlib.metadata import version
 from io import BytesIO as BytesIO
 
 import msdbook.package_data as pkg
@@ -30,7 +30,7 @@ class InstallSupplement:
         data_directory = pkg.get_data_directory()
 
         # get the current version of msdbook that is installed
-        current_version = get_distribution('msdbook').version
+        current_version = version("msdbook")
 
         try:
             data_link = InstallSupplement.DATA_VERSION_URLS[current_version]
