@@ -74,7 +74,10 @@ def plot_objective_performance(objective_performance, profit_solution, robust_so
     # build colorbar
     sm = plt.cm.ScalarMappable(cmap=cmap)
     sm.set_array([objective_performance[:, 0].min(), objective_performance[:, 0].max()])
-    cbar = fig.colorbar(sm)
+    cbar = plt.colorbar(
+        sm,
+        ax=plt.gca()
+    )
     cbar.ax.set_ylabel("\nNet present value (NPV)")
 
     # tick values
