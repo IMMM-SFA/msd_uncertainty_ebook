@@ -190,7 +190,10 @@ def plot_factor_performance(param_values, collapse_days, b, m, a):
 
     # set up colorbar
     sm.set_array([collapse_days.min(), collapse_days.max()])
-    cbar = fig.colorbar(sm)
+    cbar = plt.colorbar(
+        sm,
+        ax=plt.gca()
+    )
     cbar.set_label('Days with predator collapse')
 
     return ax1, ax2
