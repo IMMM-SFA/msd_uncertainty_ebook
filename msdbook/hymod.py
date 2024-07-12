@@ -22,7 +22,7 @@ def plot_observed_vs_simulated_streamflow(df, hymod_dict, figsize=[12, 6]):
     """
 
     # set plot style
-    plt.style.use('seaborn-white')
+    plt.style.use("seaborn-v0_8-white")
 
     # set up figure
     fig, ax = plt.subplots(figsize=figsize)
