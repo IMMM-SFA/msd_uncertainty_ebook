@@ -49,6 +49,7 @@ setup(
             'ipython>=8.0.1',
             'mathjax>=0.1.2',
             'nbsphinx>=0.8.6',
+            "pre-commit>=3.7.1",
             'setuptools>=57.0.0',
             'sphinx>=4.0.2',
             'sphinx-book-theme>=0.2.0',
