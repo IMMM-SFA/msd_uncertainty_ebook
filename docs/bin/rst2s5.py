@@ -11,14 +11,17 @@ the S5 template system.
 
 try:
     import locale
-    locale.setlocale(locale.LC_ALL, '')
+
+    locale.setlocale(locale.LC_ALL, "")
 except:
     pass
 
 from docutils.core import publish_cmdline, default_description
 
 
-description = ('Generates S5 (X)HTML slideshow documents from standalone '
-               'reStructuredText sources.  ' + default_description)
+description = (
+    "Generates S5 (X)HTML slideshow documents from standalone "
+    "reStructuredText sources.  " + default_description
+)
 
-publish_cmdline(writer_name='s5', description=description)
+publish_cmdline(writer_name="s5", description=description)

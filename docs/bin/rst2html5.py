@@ -20,15 +20,16 @@ The output is also valid XML.
 """
 
 try:
-    import locale # module missing in Jython
-    locale.setlocale(locale.LC_ALL, '')
+    import locale  # module missing in Jython
+
+    locale.setlocale(locale.LC_ALL, "")
 except locale.Error:
     pass
 
 from docutils.core import publish_cmdline, default_description
 
-description = (u'Generates HTML5 documents from standalone '
-               u'reStructuredText sources.\n'
-               + default_description)
+description = (
+    "Generates HTML5 documents from standalone " "reStructuredText sources.\n" + default_description
+)
 
-publish_cmdline(writer_name='html5', description=description)
+publish_cmdline(writer_name="html5", description=description)

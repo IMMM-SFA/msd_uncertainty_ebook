@@ -9,5 +9,3 @@ RUN cd msd_uncertainty_ebook && pip install .
 RUN mkdir -p /home/demo/data
 RUN rm -rf /opt/conda/lib/python3.9/site-packages/msdbook/data
 RUN ln -s /home/demo/data /opt/conda/lib/python3.9/site-packages/msdbook/data
-
-

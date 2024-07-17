@@ -1,4 +1,4 @@
-import importlib
+import importlib.resources
 
 import numpy as np
 import pandas as pd
@@ -15,7 +15,7 @@ def load_robustness_data():
 
     f = str(importlib.resources.files("msdbook").joinpath("data", "Robustness.txt"))
 
-    return np.loadtxt(f, delimiter=' ')
+    return np.loadtxt(f, delimiter=" ")
 
 
 def load_profit_maximization_data():
@@ -31,7 +31,7 @@ def load_saltelli_param_values():
 
     f = str(importlib.resources.files("msdbook").joinpath("data", "param_values.csv"))
 
-    return np.loadtxt(f, delimiter=',')
+    return np.loadtxt(f, delimiter=",")
 
 
 def load_collapse_data():
@@ -39,7 +39,7 @@ def load_collapse_data():
 
     f = str(importlib.resources.files("msdbook").joinpath("data", "collapse_days.csv"))
 
-    return np.loadtxt(f, delimiter=',')
+    return np.loadtxt(f, delimiter=",")
 
 
 def load_lhs_basin_sample():
@@ -87,7 +87,7 @@ def load_hymod_input_file():
 
     f = str(importlib.resources.files("msdbook").joinpath("data", "LeafCatch.csv"))
 
-    return pd.read_csv(f, sep=',')
+    return pd.read_csv(f, sep=",")
 
 
 def load_hymod_params():
@@ -101,7 +101,7 @@ def load_hymod_params():
 def load_hymod_metric_simulation():
     """Load HYMOD metric sensitivity S1 outputs.  For use in 'hymod.ipynb'"""
 
-    col_names = ['Kq', 'Ks', 'Alp', 'Huz', 'B']
+    col_names = ["Kq", "Ks", "Alp", "Huz", "B"]
 
     f = str(importlib.resources.files("msdbook").joinpath("data", "sa_metric_s1.npy"))
 
@@ -115,7 +115,9 @@ def load_hymod_metric_simulation():
 def load_hymod_simulation():
     """Load HYMOD simulated outputs.  For use in 'hymod.ipynb'"""
 
-    f = str(importlib.resources.files("msdbook").joinpath("data", "hymod_simulations_256samples.csv"))
+    f = str(
+        importlib.resources.files("msdbook").joinpath("data", "hymod_simulations_256samples.csv")
+    )
 
     return pd.read_csv(f)
 
@@ -145,4 +147,3 @@ def load_hymod_varying_simulations():
     f_s1 = str(importlib.resources.files("msdbook").joinpath("data", "sa_vary_s1.npy"))
 
     return np.load(f_delta), np.load(f_s1)
-
