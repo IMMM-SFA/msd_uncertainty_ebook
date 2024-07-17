@@ -1,3 +1,6 @@
+# msdbook
+msdbook/data/
+
 # system
 .DS_Store
 
@@ -109,7 +112,7 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+.venv*
 env/
 venv/
 ENV/

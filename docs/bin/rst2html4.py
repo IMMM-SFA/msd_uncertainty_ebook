@@ -13,14 +13,17 @@ and almost to HTML 4.01 transitional (except for closing empty tags).
 
 try:
     import locale
-    locale.setlocale(locale.LC_ALL, '')
+
+    locale.setlocale(locale.LC_ALL, "")
 except:
     pass
 
 from docutils.core import publish_cmdline, default_description
 
 
-description = ('Generates (X)HTML documents from standalone reStructuredText '
-               'sources.  ' + default_description)
+description = (
+    "Generates (X)HTML documents from standalone reStructuredText "
+    "sources.  " + default_description
+)
 
-publish_cmdline(writer_name='html4', description=description)
+publish_cmdline(writer_name="html4", description=description)

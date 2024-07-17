@@ -11,15 +11,14 @@ A minimal front end to the Docutils Publisher, producing HTML from PEP
 
 try:
     import locale
-    locale.setlocale(locale.LC_ALL, '')
+
+    locale.setlocale(locale.LC_ALL, "")
 except:
     pass
 
 from docutils.core import publish_cmdline, default_description
 
 
-description = ('Generates (X)HTML from reStructuredText-format PEP files.  '
-               + default_description)
+description = "Generates (X)HTML from reStructuredText-format PEP files.  " + default_description
 
-publish_cmdline(reader_name='pep', writer_name='pep_html',
-                description=description)
+publish_cmdline(reader_name="pep", writer_name="pep_html", description=description)

@@ -7,7 +7,7 @@ Derivative-based methods explore how model outputs are affected by perturbations
 
   S_i (\bar{x}) = \frac{\partial g}{\partial x} |_{\bar{x}{^c{_i}}}
 
-where *c*\ :sub:`i`\  is the scaling factor. In most applications however, the relationship :math:`g(X)` is not fully known in its analytical form, and therefore the above partial derivative is usually approximated: 
+where *c*\ :sub:`i`\  is the scaling factor. In most applications however, the relationship :math:`g(X)` is not fully known in its analytical form, and therefore the above partial derivative is usually approximated:
 
 .. math::
 

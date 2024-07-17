@@ -2,7 +2,7 @@ Fishery Dynamics Tutorial
 *************************
 
 .. note::
-    
+
     | Run the tutorial interactively:  `Fishery Dynamics Notebook <nb_fishery_dynamics_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
@@ -79,17 +79,17 @@ execute each gray (code) box by typing “Shift+Enter”.
 .. code:: ipython3
 
     #Import necessary libraries
-    
+
     import msdbook
     import numpy as np
     import matplotlib.pyplot as plt
     from SALib.sample import saltelli
     from SALib.analyze import sobol
     from matplotlib import patheffects as pe
-    
+
     # load example data
     msdbook.install_package_data()
-    
+
     %matplotlib inline
     %config InlineBackend.print_figure_kwargs = {'bbox_inches':None}
 
@@ -134,11 +134,11 @@ found within the msdbook package data.
 
     robustness = msdbook.load_robustness_data()
     results = msdbook.load_profit_maximization_data()
-    
+
     robust_solution = np.argmax(robustness[:,-1]) #pick robust solution
     profit_solution = np.argmin(results[:,6]) #pick profitable solution
-    objective_performance = -results[:,6:] #Retain objective values 
-    
+    objective_performance = -results[:,6:] #Retain objective values
+
     # Get decision variables for each of the policies
     highprofitpolicy = results[profit_solution,0:6]
     mostrobustpolicy = results[robust_solution,0:6]
@@ -232,7 +232,7 @@ evaluation can be implemented.
 
    # evaluate performance under every state
    for i in range(len(param_values)):
-       
+
        additional_inputs = np.append(['Previous_Prey'],
                                      [param_values[i,0],
                                       param_values[i,1],
@@ -243,7 +243,7 @@ evaluation can be implemented.
                                       param_values[i,6],
                                       param_values[i,7],
                                       param_values[i,8]])
-       
+
        collapse_days[i,0]=fish_game(highprofitpolicy, additional_inputs)[1][0]
        collapse_days[i,1]=fish_game(mostrobustpolicy, additional_inputs)[1][0]
 
@@ -265,19 +265,19 @@ population collapse.
 .. code:: ipython3
 
     #Perform the Sobol SA for the profit-maximizing solution
-    Si_profit = sobol.analyze(problem, collapse_days[:, 0], 
-                              calc_second_order=False, 
-                              conf_level=0.95, 
+    Si_profit = sobol.analyze(problem, collapse_days[:, 0],
+                              calc_second_order=False,
+                              conf_level=0.95,
                               print_to_console=True)
 
 
 .. code:: ipython3
 
     #Perform the Sobol SA for the robust solution
-    Si_robustness = sobol.analyze(problem, 
-                                  collapse_days[:, 1], 
-                                  calc_second_order=False, 
-                                  conf_level=0.95, 
+    Si_robustness = sobol.analyze(problem,
+                                  collapse_days[:, 1],
+                                  calc_second_order=False,
+                                  conf_level=0.95,
                                   print_to_console=True)
 
 
@@ -350,7 +350,7 @@ We first define the stability condition, as a function of :math:`b` and
 
     def inequality(b, m, h, K):
         return ((b**m)/(h*K)**(1-m))
-    
+
     # boundary interval that separates successful and failed states of the world
     b = np.linspace(start=0.005, stop=1, num=1000)
     m = np.linspace(start=0.1, stop=1.5, num=1000)
@@ -368,7 +368,7 @@ We first define the stability condition, as a function of :math:`b` and
     # generate plot
     ax1, ax2 = msdbook.plot_factor_performance(param_values, collapse_days, b, m, a)
 
-    
+
 .. image:: _static/fishery_output_22_0.png
 
 
