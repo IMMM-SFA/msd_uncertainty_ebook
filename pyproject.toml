@@ -46,16 +46,12 @@ dev = [
     "mathjax>=0.1.2",
     "nbsphinx>=0.8.6",
     "pre-commit>=3.7.1",
-    "ruff>=0.4.8",
     "setuptools>=57.0.0",
     "sphinx>=4.0.2",
     "sphinx-book-theme>=0.2.0",
     "sphinxcontrib-bibtex>=2.4.1",
     "twine>=3.4.1",
 ]
-
-[tool.ruff.lint]
-select = ["NPY201"]
 
 [project.urls]
 Homepage = "https://uc-ebook.org/"
