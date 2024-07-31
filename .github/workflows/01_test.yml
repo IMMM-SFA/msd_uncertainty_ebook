@@ -39,3 +39,8 @@ jobs:
       #   with:
       #     file: ./coverage.xml
       #     fail_ci_if_error: true
+      
+      - name: Notify on failure
+        if: failure()  # This step will only run if any previous step fails
+        run: |
+          echo "Build or tests failed. Please check the logs."
