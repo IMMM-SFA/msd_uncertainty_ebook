@@ -8,15 +8,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Simplified as matrix.os isn't used
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: '3.9'
 
     steps:
 
       - uses: actions/checkout@v2
-        name: Checkout code
-
-      - name: List directory contents
-        run: ls -la
 
       - name: Set up Python
         uses: actions/setup-python@master
