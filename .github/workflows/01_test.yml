@@ -13,12 +13,13 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
+        name: Checkout code
 
       - name: List directory contents
         run: ls -la
 
       - name: Set up Python
-        uses: actions/setup-python@master
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
