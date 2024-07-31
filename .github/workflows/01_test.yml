@@ -19,7 +19,7 @@ jobs:
         run: ls -la
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@master
         with:
           python-version: 3.9
 
