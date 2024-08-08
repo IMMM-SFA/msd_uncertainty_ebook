@@ -1,4 +1,5 @@
 [![build](https://github.com/IMMM-SFA/msd_uncertainty_ebook/actions/workflows/01_test.yml/badge.svg)](https://github.com/IMMM-SFA/msd_uncertainty_ebook/actions/workflows/01_test.yml) [![deploy](https://github.com/IMMM-SFA/msd_uncertainty_ebook/actions/workflows/02_deploy.yml/badge.svg)](https://github.com/IMMM-SFA/msd_uncertainty_ebook/actions/workflows/02_deploy.yml) [![codecov](https://codecov.io/gh/IMMM-SFA/msd_uncertainty_ebook/branch/dev/graph/badge.svg?token=sc7PduW907)](https://codecov.io/gh/IMMM-SFA/msd_uncertainty_ebook)
+[![PyPI version](https://badge.fury.io/py/msdbook.svg)](https://badge.fury.io/py/msdbook)
 
 ## Addressing Uncertainty in [MultiSector Dynamics](https://climatemodeling.science.energy.gov/program-area/multisector-dynamics) Research
 
