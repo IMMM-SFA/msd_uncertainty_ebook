@@ -10,3 +10,4 @@ Jupyter Notebook Tutorials
 .. include:: A2.4_hymod.rst
 .. include:: A2.5_discovery.rst
 .. include:: A2.6_hmm.rst
+.. include:: A2.7_mcmc.rst
