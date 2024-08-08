@@ -5,7 +5,7 @@ Sobol SA Tutorial
 
     | Run the tutorial interactively:  `Sobol SA Tutorial <nb_saltelli_sobol_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
-    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 Tutorial: Sensitivity Analysis (SA) using the Saltelli sampling scheme with Sobol SA
 ====================================================================================
