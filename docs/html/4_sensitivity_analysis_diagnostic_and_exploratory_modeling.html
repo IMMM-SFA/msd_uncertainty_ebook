@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4_sensitivity_analysis_diagnostic_and_exploratory_modeling';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Conclusion" href="5_conclusion.html" />
+    <link rel="prev" title="3. Sensitivity Analysis: The Basics" href="3_sensitivity_analysis_the_basics.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2F4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensitivity Analysis: Diagnostic & Exploratory Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-errors-what-is-controlling-model-performance">4.1. Understanding Errors: What Is Controlling Model Performance?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequential-dynamics-what-is-controlling-model-behaviors-of-interest">4.2. Consequential Dynamics: What is Controlling Model Behaviors of Interest?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequential-scenarios-what-is-controlling-consequential-outcomes">4.3. Consequential Scenarios: What is Controlling Consequential Outcomes?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="sensitivity-analysis-diagnostic-exploratory-modeling">
+<span id="sensitivity-analysis"></span><h1><span class="section-number">4. </span>Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling<a class="headerlink" href="#sensitivity-analysis-diagnostic-exploratory-modeling" title="Link to this heading">#</a></h1>
+<section id="understanding-errors-what-is-controlling-model-performance">
+<span id="understanding-errors"></span><h2><span class="section-number">4.1. </span>Understanding Errors: What Is Controlling Model Performance?<a class="headerlink" href="#understanding-errors-what-is-controlling-model-performance" title="Link to this heading">#</a></h2>
+<p>Sensitivity analysis is a diagnostic tool when reconciling model outputs with observed data. It is helpful for clarifying how and under what conditions modeling choices (structure, parameterization, data inputs, etc.) propagate through model components and manifest in their effects on model outputs. This exploration is performed through carefully designed sampling of multiple combinations of input parameters and subsequent evaluation of the model structures that are emerging as controlling factors. Model structure and parameterization are two of the most commonly explored aspects of models that have been a central focus when evaluating their performance relative to available observations <span id="id1">[<a class="reference internal" href="R.Bibliography.html#id49" title="Keith Beven. Prophecy, reality and uncertainty in distributed hydrological modelling. Advances in water resources, 16(1):41–51, 1993.">17</a>]</span>. Addressing these issues plays an important role in establishing credibility in model predictions, particularly in the positivist natural sciences literature. Traditional model evaluations compare the model with observed data, and then rely on expert judgements of its acceptability based on the closeness between simulation and observation with one or a small number of selected metrics. This approach can be myopic, as it is often impossible to use one metric to attribute a certain error and to link that with different parts of the model and its parameters <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id50" title="Hoshin V Gupta, Thorsten Wagener, and Yuqiong Liu. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. Hydrological Processes: An International Journal, 22(18):3802–3813, 2008.">127</a>]</span>. This means that, even when the error or fitting measure between the model estimates and observations is very small, it is not guaranteed that all the components in the model accurately represent the conceptual reality that the model is abstracting: propagated errors in different parts of the model might cancel each other out, or multiple parameterized implementations of the model can yield similar performance (i.e., equifinality <span id="id3">[<a class="reference internal" href="R.Bibliography.html#id49" title="Keith Beven. Prophecy, reality and uncertainty in distributed hydrological modelling. Advances in water resources, 16(1):41–51, 1993.">17</a>]</span>).</p>
+<p>The inherent complexity of a system hinders accepting or rejecting a model based on one performance measure and different types of measures can aid in evaluating the various components of a model as essentially a multiobjective problem <span id="id4">[<a class="reference internal" href="R.Bibliography.html#id52" title="Keith J Beven. On hypothesis testing in hydrology: why falsification of models is still a really good idea. Wiley Interdisciplinary Reviews: Water, 5(3):e1278, 2018.">25</a>, <a class="reference internal" href="R.Bibliography.html#id51" title="Hoshin V Gupta, Martyn P Clark, Jasper A Vrugt, Gab Abramowitz, and Ming Ye. Towards a comprehensive assessment of model structural adequacy. Water Resources Research, 2012.">26</a>]</span>. In addition, natural systems mimicked by the models contain various interacting components that might act differently across spatial and temporal domains <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>, <a class="reference internal" href="R.Bibliography.html#id53" title="JD Herman, PM Reed, and T Wagener. Time-varying sensitivity analysis clarifies the effects of watershed model formulation on model behavior. Water Resources Research, 49(3):1400–1414, 2013.">55</a>]</span>. This heterogeneity is lost when a single performance measure is used, as a highly dimensional and interactive system becomes aggregated through the averaging of spatial or temporal output errors <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id54" title="Keith Beven. Towards a coherent philosophy for modelling the environment. Proceedings of the royal society of London. Series A: mathematical, physical and engineering sciences, 458(2026):2465–2484, 2002.">15</a>]</span>. Therefore, diagnostic error analyses should consider multiple error signatures across different scales and states of concern when seeking to understand how model performance relates to observed data (<a class="reference internal" href="#figure-4-1"><span class="std std-numref">Fig. 4.1</span></a>). Diverse error signatures can be used to measure the consistency of underlying processes and behaviors of the model and to evaluate the dynamics of model controls under changing temporal and spatial conditions <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id56" title="Keith Beven and Jim Freer. Equifinality, data assimilation, and uncertainty estimation in mechanistic modelling of complex environmental systems using the glue methodology. Journal of hydrology, 249(1-4):11–29, 2001.">128</a>]</span>. Within this framework, even minimal information extracted from the data can be beneficial as it helps us unearth structural inadequacies in the model. In this context, proper selection of measures of model performance and the number of measures could play consequential roles in our understanding of the model and its predictions <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id55" title="Cameron McPhail, HR Maier, JH Kwakkel, M Giuliani, A Castelletti, and S Westra. Robustness metrics: how are they calculated, when should they be used and why do they give different results? Earth's Future, 6(2):169–191, 2018.">129</a>]</span>.</p>
+<p>As discussed earlier, instead of the traditional focus on using deterministic prediction that results in a single error measure, many plausible states and spaces could be searched for making different inferences and quantifying uncertainties. This process also requires estimates of prior probability distributions of all the important parameters and quantification of model behavior across input space. One strategy to reduce the search space is filtering of some model alternatives that are not consistent with observations and known system behaviors. Those implausible parts of the search space can be referred to as non-physical or non-behavioral alternatives <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id29" title="Neil R Edwards, David Cameron, and Jonathan Rougier. Precalibrating an intermediate complexity climate model. Climate dynamics, 37(7):1469–1482, 2011.">50</a>, <a class="reference internal" href="R.Bibliography.html#id158" title="Keith Beven and Andrew Binley. Glue: 20 years on. Hydrological processes, 28(24):5897–5918, 2014.">104</a>]</span>. This step is conducted before the Bayesian calibration exercise (see <a class="reference internal" href="A1_Uncertainty_Quantification.html#a1-uncertainty-quantification"><span class="std std-numref">Chapter A</span></a>).</p>
+<p>A comprehensive model diagnostic workflow typically entails the components demonstrated in <a class="reference internal" href="#figure-4-1"><span class="std std-numref">Fig. 4.1</span></a>. The workflow begins with the selection of model input parameters and their plausible ranges. After the parameter selection, we need to specify the design of experiment (<a class="reference internal" href="3_sensitivity_analysis_the_basics.html#design-of-experiments"><span class="std std-numref">Chapter 3.3</span></a>) and the sensitivity analysis method (<a class="reference internal" href="3_sensitivity_analysis_the_basics.html#sensitivity-analysis-methods"><span class="std std-numref">Chapter 3.4</span></a>) to be used. As previously discussed, these methods require different numbers of model simulations, and each method provides a different insights into the direct effects and interactions of the uncertain factors. In addition, the simulation time of the model and the available computational resources are two of the primary considerations that influence these decisions. After identifying the appropriate methods, we generate a matrix of input parameters, where each set of input parameters will be used to conduct a model simulation. The model can include one or more output variables that fluctuate in time and space. The next step is to analyze model performance by comparing model outputs with observations. As discussed earlier, the positivist model evaluation paradigm focuses on a single model performance metric (error), leading to a loss of information about model parameters and the suitability of the model’s structure. However, a thorough investigation of the temporal and spatial signatures of model outputs using various performance metrics or time- and space-varying sensitivity analyses can shed more light on the fitness of each parameter set and the model’s internal structure. This analysis provides diagnostic feedback on the importance and range of model parameters and can guide further improvement of the model algorithm.</p>
+<figure class="margin-caption align-center" id="id50">
+<span id="figure-4-1"></span><a class="reference internal image-reference" href="_images/figure4_1_diagnostic_workflow.png"><img alt="Figure 4.1" src="_images/figure4_1_diagnostic_workflow.png" style="width: 500px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Diagnostic evaluation of model fidelity using sensitivity analysis methods.</span><a class="headerlink" href="#id50" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following badge to try out an interactive tutorial on implementing a time-varying sensitivity analysis of HYMOD model parameters:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/hymod.ipynb">HYMOD Jupyter Notebook</a></p>
+</div>
+</section>
+<section id="consequential-dynamics-what-is-controlling-model-behaviors-of-interest">
+<h2><span class="section-number">4.2. </span>Consequential Dynamics: What is Controlling Model Behaviors of Interest?<a class="headerlink" href="#consequential-dynamics-what-is-controlling-model-behaviors-of-interest" title="Link to this heading">#</a></h2>
+<p>Consequential changes in dynamic systems can take many forms, but most dynamic behavior can be categorized in a few basic patterns. Feedback structures inherent in a system, be they positive or negative, generate these patterns which can be grouped into three groups for the simplest of systems: exponential growth, goal seeking, and oscillation (<a class="reference internal" href="#figure-4-2"><span class="std std-numref">Fig. 4.2</span></a>). A positive (or self-reinforcing) feedback gives rise to exponential growth, a negative (or self-correcting) feedback gives rise to a goal seeking mode, and negative feedbacks with time delays give rise to oscillatory behavior. Nonlinear interactions between the system’s feedback structures can give rise to more complex dynamic behavior modes, examples of which are also shown in <a class="reference internal" href="#figure-4-2"><span class="std std-numref">Fig. 4.2</span></a>, adapted from <span id="id10">Sterman [<a class="reference internal" href="R.Bibliography.html#id57" title="John D Sterman. System dynamics modeling: tools for learning in a complex world. California management review, 43(4):8–25, 2001.">130</a>]</span>.</p>
+<figure class="margin-caption align-center" id="id51">
+<span id="figure-4-2"></span><a class="reference internal image-reference" href="_images/figure4_2_behavior_modes.png"><img alt="Figure 4.2" src="_images/figure4_2_behavior_modes.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Common modes of behavior in dynamic systems, occurring based on the presence of positive and negative feedback relationships, and linear and non-linear interactions. Adapted from <span id="id11">Sterman [<a class="reference internal" href="R.Bibliography.html#id57" title="John D Sterman. System dynamics modeling: tools for learning in a complex world. California management review, 43(4):8–25, 2001.">130</a>]</span>.</span><a class="headerlink" href="#id51" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The nature of feedback processes in a dynamic system shapes its fundamental behavior: positive feedbacks generate their own growth, negative feedbacks self-limit, seeking balance and equilibrium. In this manner, feedback processes give rise to different regimes, multiples of which could be present in each mode of behavior. Consider a population of mammals growing exponentially until it reaches the carrying capacity of its environment (referred to as S-shaped growth). When the population is exponentially growing, the regime is dominated by positive feedback relationships that reinforce its growth. As the population approaches its carrying capacity limit, negative feedback structures begin to dominate, counteracting the growth and establishing a stable equilibrium. Shifts between regimes can be thought of as tipping points, mathematically defined as unstable equilibria, where the presence of positive feedbacks amplifies disturbances and moves the system to a new equilibrium point. In the case of stable equilibria, the presence of negative feedbacks dampens any small disturbance and maintains the system at a stable state. As different feedback relationships govern each regime, different factors (those making up each feedback mechanism) are activated and shape the states the system is found in, as well as define the points of equilibria.</p>
+<p>For simple stylized models with a small number of states, system dynamics analysis can analytically derive these equilibria, the conditions for their stability and the factors determining them. The ability for this to be performed is, however, significantly challenged when it comes to systems that attempt to more closely resemble real complex systems. We argue this is the case for several reasons. First, besides generally exhibiting complex nonlinear dynamics, real world systems are also made up from larger numbers of interacting elements, which often makes the analytic derivation of system characteristics intractable <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id59" title="John M Anderies, Jean-Denis Mathias, and Marco A Janssen. Knowledge infrastructure and safe operating spaces in social–ecological systems. Proceedings of the National Academy of Sciences, 116(12):5277–5284, 2019.">131</a>, <a class="reference internal" href="R.Bibliography.html#id58" title="Rachata Muneepeerakul and John M Anderies. The emergence and resilience of self-organized governance in coupled infrastructure systems. Proceedings of the National Academy of Sciences, 117(9):4617–4622, 2020.">132</a>]</span>. Second, human-natural systems temporally evolve and transform when human state-aware action is present. Consider, for instance, humans recreationally hunting the aforementioned population of mammals. Humans act based on the mammal population levels by enforcing hunting quotas or establishing protected territories or eliminating other predators. The mammal population reacts in a response, giving birth to ever changing state-action-consequence feedbacks, the path dependencies of which become difficult to diagnose and understand (e.g., <span id="id13">[<a class="reference internal" href="R.Bibliography.html#id60" title="Antonia Hadjimichael, Patrick M Reed, and Julianne D Quinn. Navigating deeply uncertain tradeoffs in harvested predator-prey systems. Complexity, 2020.">133</a>]</span>). Trying to simulate the combination of these two challenges (large numbers of state-aware agents interacting with a natural resource and with each other) produces intractable models that require advanced heuristics to analyze their properties and establish useful inferences.</p>
+<p>Sensitivity analysis paired with exploratory modeling methods offers a promising set of tools to address these challenges. We present a simple demonstrative application based on <span id="id14">Quinn <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id61" title="Julianne D Quinn, Patrick M Reed, and Klaus Keller. Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental modelling &amp; software, 92:125–141, 2017.">134</a>]</span>. This stylistic example was first developed by <span id="id15">Carpenter <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id163" title="S. R. Carpenter, D. Ludwig, and W. A. Brock. Management of Eutrophication for Lakes Subject to Potentially Irreversible Change. Ecological Applications, 9(3):751–771, August 1999. URL: http://onlinelibrary.wiley.com/doi/10.1890/1051-0761(1999)009[0751:MOEFLS]2.0.CO;2/abstract, doi:10.1890/1051-0761(1999)009[0751:MOEFLS]2.0.CO;2.">135</a>]</span> and represents a town that must balance its agricultural and industrial productivity with the pollution it creates in a downstream lake. Increased productivity allows for increased profits, which the town aims to maximize, but it also produces more pollution for the lake. Too much phosphorus pollution can cause irreversible eutrophication, a process known as “tipping” the lake. The model of phosphorus in the lake <span class="math notranslate nohighlight">\(X_t\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is governed by:</p>
+<div class="math notranslate nohighlight">
+\[X_{t+1}= X_{t}+a_{t}+\frac{X_{t}^q} {1+X_{t}^q}-bX_t+\varepsilon\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_t \in [0,0.1]\)</span> is the town’s pollution release at each timestep, <span class="math notranslate nohighlight">\(b\)</span> is the natural decay rate of phosphorus in the lake, <span class="math notranslate nohighlight">\(q\)</span> defines the lake’s recycling rate (primarily through sediments), and <span class="math notranslate nohighlight">\(\varepsilon\)</span> represents uncontrollable natural inflows of pollution modeled as a log-normal distribution with a given mean, <span class="math notranslate nohighlight">\(\mu\)</span>, and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>Panels (a-c) in <a class="reference internal" href="#figure-4-3"><span class="std std-numref">Fig. 4.3</span></a> plot the fluxes of phosphorus into the lake versus the mass accumulation of phosphorus in the lake. The red line corresponds to the phosphorus sinks in the lake (natural decay), given by <span class="math notranslate nohighlight">\(bX_t\)</span>. The grey shaded area represents the lake’s phosphorus recycling flux, given by <span class="math notranslate nohighlight">\(\frac{X_{t}^q} {1+X_{t}^q}\)</span>. The points of intersection indicate the system’s equilibria, two of which are stable, and one is unstable (also known as the tipping point). The stable equilibrium in the bottom left of the figure reflects an oligotrophic lake, whereas the stable equilibrium in the top right represents a eutrophic lake. With increasing phosphorus values, the tipping point can be crossed, and the lake will experience irreversible eutrophication, as the recycling rate would exceed the removal rate even if the town’s pollution became zero. In the absence of anthropogenic and natural inflows of pollution in the lake (<span class="math notranslate nohighlight">\(a_t\)</span> and <span class="math notranslate nohighlight">\(\varepsilon\)</span> respectively), the area between the bottom-left black point and the white point in the middle can be considered as the safe operating space, before emission levels cross the tipping point.</p>
+<figure class="margin-caption align-center" id="id52">
+<span id="figure-4-3"></span><a class="reference internal image-reference" href="_images/figure4_3_lake_problem_fluxes.png"><img alt="Figure 4.3" src="_images/figure4_3_lake_problem_fluxes.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Fluxes of phosphorus with regards to mass of phosphorus in the lake and sensitivity analysis results, assuming <span class="math notranslate nohighlight">\(b=0.42\)</span> and <span class="math notranslate nohighlight">\(q=2\)</span>. (a) Fluxes of phosphorus assuming no emmisions policy and no natural inflows. (b-c) Fluxes phosphorus when applying two different emissions policies. The “Best economic policy” and the “Most reliable policy” have been identified by <span id="id16">Quinn <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id61" title="Julianne D Quinn, Patrick M Reed, and Klaus Keller. Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental modelling &amp; software, 92:125–141, 2017.">134</a>]</span> and can be found at <span id="id17">Quinn [<a class="reference internal" href="R.Bibliography.html#id164" title="Julianne Quinn. Julianneq/Lake_problem_dps. December 2017. original-date: 2017-02-06T18:33:54Z. URL: https://github.com/julianneq/Lake_Problem_DPS (visited on 2021-06-14).">136</a>]</span>. (d) Results of a sensitivity analysis on the parameters of the model most consequential to the reliability of the “Most reliable policy”. The code to replicate the sensitivity analysis can be found at <span id="id18">Hadka [<a class="reference internal" href="R.Bibliography.html#id165" title="David Hadka. Project-Platypus/Rhodium. 2017. original-date: 2015-10-29T18:08:43Z. URL: https://github.com/Project-Platypus/Rhodium (visited on 2021-06-14).">137</a>]</span>. Panels (a-c) are used courtesy of Julianne Quinn, University of Virginia.</span><a class="headerlink" href="#id52" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The town has identified two potential policies that can be used to manage this lake, one that maximizes its economic profits (“best economic policy”) and one that maximizes the time below the tipping point (“most reliable policy”). Panels (b-c) in <a class="reference internal" href="#figure-4-3"><span class="std std-numref">Fig. 4.3</span></a> add the emissions from these policies to the recycling flux and show how the equilibria points shift as a result. In both cases the stable oligotrophic equilibrium increases and the tipping point decreases, narrowing the safe operating space <span id="id19">[<a class="reference internal" href="R.Bibliography.html#id59" title="John M Anderies, Jean-Denis Mathias, and Marco A Janssen. Knowledge infrastructure and safe operating spaces in social–ecological systems. Proceedings of the National Academy of Sciences, 116(12):5277–5284, 2019.">131</a>, <a class="reference internal" href="R.Bibliography.html#id166" title="Stephen R. Carpenter, William A. Brock, Carl Folke, Egbert H. van Nes, and Marten Scheffer. Allowing variance may enlarge the safe operating space for exploited ecosystems. Proceedings of the National Academy of Sciences, 112(46):14384–14389, November 2015. URL: http://www.pnas.org/content/112/46/14384 (visited on 2017-08-18), doi:10.1073/pnas.1511804112.">138</a>]</span>. The best economic policy results in a much narrower space of action, with the tipping point very close to the oligotrophic equilibrium. The performance of both policies depends significantly on the system parameters. For example, a higher value of <span class="math notranslate nohighlight">\(b\)</span>, the natural decay rate, would shift the red line upward, moving the equilibria points and widening the safe operating space. Inversely, a higher value of <span class="math notranslate nohighlight">\(q\)</span>, the lake’s recycling rate, would shift the recycling line upward, moving the tipping point lower and decreasing the safe operating space. The assumptions under which these policies were identified are therefore critical to their performance and any potential uncertainty in the parameter values could be detrimental to the system’s objectives being met.</p>
+<p>Sensitivity analysis can be used to clarify the role these parameters play on policy performance. <a class="reference internal" href="#figure-4-3"><span class="std std-numref">Fig. 4.3</span></a> (d) shows the results of a Sobol sensitivity analysis on the reliability of the “most reliable” policy in a radial convergence diagram. The significance of each parameter is indicated by the size of circles corresponding to it. The size of the interior dark circle indicates the parameter’s first-order effects and the size of the exterior circle indicates the parameter’s total-order effects. The thickness of the lines between two parameters indicated the extent of their interaction (second-order effects). In this case, parameters <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(q\)</span> appear to have the most significant importance on the system, followed by the mean, <span class="math notranslate nohighlight">\(\mu\)</span>, of the natural inflows. All these parameters function in a manner that shifts the location of the three equilibria and therefore policies that are identified ignoring this parametric uncertainty might fail to meet their intended goals.</p>
+<p>It is worth mentioning that current sensitivity analysis methods are somewhat challenged in addressing several system dynamics analysis questions. The fundamental reason is that sensitivity analysis methods and tools have been developed to gauge numerical sensitivity of model output to changes in factor values. This is natural, as most simulation studies (e.g., all aforementioned examples) have been traditionally concerned with this type of sensitivity. In system dynamics modeling, however, a more important and pertinent concern is changes between regimes or between behavior modes (also known as bifurcations) as a result of changes in model factors <span id="id20">[<a class="reference internal" href="R.Bibliography.html#id57" title="John D Sterman. System dynamics modeling: tools for learning in a complex world. California management review, 43(4):8–25, 2001.">130</a>, <a class="reference internal" href="R.Bibliography.html#id63" title="Mustafa Hekimoğlu and Yaman Barlas. Sensitivity analysis for models with multiple behavior modes: a method based on behavior pattern measures. System Dynamics Review, 32(3-4):332–362, 2016.">139</a>]</span>. This poses two new challenges. First, identifying a change in regime depends on several characteristics besides a change in output value, like the rate and direction of change. Second, behavior mode changes are qualitative and discontinuous, as equilibria change in stability but also move in and out of existence.</p>
+<p>Despite these challenges, recent advanced sensitivity analysis methods can help illuminate which factors in a system are most important in shaping boundary conditions (tipping points) between different regimes and determining changes in behavior modes. Reviewing such methods is outside the scope of this text, but the reader is directed to the examples of <span id="id21">Eker <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id64" title="Sibel Eker, Elena Rovenskaya, Michael Obersteiner, and Simon Langan. Practice and perspectives in the validation of resource management models. Nature communications, 9(1):1–10, 2018.">22</a>]</span> and <span id="id22">Hadjimichael <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id60" title="Antonia Hadjimichael, Patrick M Reed, and Julianne D Quinn. Navigating deeply uncertain tradeoffs in harvested predator-prey systems. Complexity, 2020.">133</a>]</span>, who apply parameterised perturbation on the functional relationships of a system to study the effects of model structural uncertainty on model outputs and bifurcations, and <span id="id23">Hekimoğlu and Barlas [<a class="reference internal" href="R.Bibliography.html#id63" title="Mustafa Hekimoğlu and Yaman Barlas. Sensitivity analysis for models with multiple behavior modes: a method based on behavior pattern measures. System Dynamics Review, 32(3-4):332–362, 2016.">139</a>]</span> and <span id="id24">Steinmann <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id65" title="Patrick Steinmann, Willem L Auping, and Jan H Kwakkel. Behavior-based scenario discovery using time series clustering. Technological Forecasting and Social Change, 156:120052, 2020.">140</a>]</span> who, following wide sampling of uncertain inputs, cluster the resulting time series in modes of behavior and identify most important factors for each.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following badge to try out an interactive tutorial on performing a sensitivity analysis to discover consequential dynamics:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/fishery_dynamics.ipynb">Factor Discovery Jupyter Notebook</a></p>
+</div>
+</section>
+<section id="consequential-scenarios-what-is-controlling-consequential-outcomes">
+<span id="consequential-scenarios"></span><h2><span class="section-number">4.3. </span>Consequential Scenarios: What is Controlling Consequential Outcomes?<a class="headerlink" href="#consequential-scenarios-what-is-controlling-consequential-outcomes" title="Link to this heading">#</a></h2>
+<p>As overviewed in <a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html#perspectives"><span class="std std-numref">Chapter 2.2</span></a>, most models are abstractions of systems in the real world. When sufficient confidence has been established in a model, it can then act as a surrogate for the actual system, in that the consequences of potential stressors, proposed actions or other changes can be evaluated by computer model simulations <span id="id25">[<a class="reference internal" href="R.Bibliography.html#id15" title="Steve Bankes. Exploratory Modeling for Policy Analysis. Operations Research, 41(3):435–449, June 1993. URL: https://pubsonline.informs.org/doi/abs/10.1287/opre.41.3.435 (visited on 2018-09-11), doi:10.1287/opre.41.3.435.">36</a>]</span>. A model simulation then represents a computational experiment, which can be used to assess how the modeled system would behave should the various changes come to be. Steven Bankes coined the term exploratory modeling to describe the use of large sets of such computational experiments to investigate their implications on the system. <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a> presents a typical workflow of an exploratory modeling application. Exploratory modeling approaches typically use sampling designs to generate large ensembles of states that represent combinations of changes happening together, spanning the entire range of potential values a factor might take (indicated in <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a> by numbers 2-5). This perspective on modeling is particularly relevant to studies making long term projections into the future.</p>
+<figure class="margin-caption align-center" id="id53">
+<span id="figure-4-4"></span><a class="reference internal image-reference" href="_images/figure4_4_exploratory_workflow.png"><img alt="Figure 4_4" src="_images/figure4_4_exploratory_workflow.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">A typical exploratory modeling workflow</span><a class="headerlink" href="#id53" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the long-term policy analysis literature, exploratory modeling has prominently placed itself as an alternative to traditional narrative scenario or assumptions-based planning approaches, in what can be summarized in the following two-pronged critique <span id="id26">[<a class="reference internal" href="R.Bibliography.html#id15" title="Steve Bankes. Exploratory Modeling for Policy Analysis. Operations Research, 41(3):435–449, June 1993. URL: https://pubsonline.informs.org/doi/abs/10.1287/opre.41.3.435 (visited on 2018-09-11), doi:10.1287/opre.41.3.435.">36</a>, <a class="reference internal" href="R.Bibliography.html#id67" title="Steven C Bankes, Robert J Lempert, and Steven W Popper. Computer-assisted reasoning. Computing in Science &amp; Engineering, 3(2):71–77, 2001.">141</a>, <a class="reference internal" href="R.Bibliography.html#id66" title="Robert J. Lempert, Steven W. Popper, and Steven C. Bankes. Shaping the Next One Hundred Years. RAND Corporation, 2003. URL: https://www.rand.org/pubs/monograph_reports/MR1626.html (visited on 2017-09-14).">142</a>]</span>. The most prevalent criticism sees that the future and how it might evolve is both highly complex and deeply uncertain. Despite its benefits for interpretation and intuitive appeal, a small number of scenarios invariably misses many other potential futures that did not get selected as sufficiently representative of the future. This is especially the case for aggregate, narrative scenarios that describe simultaneous changes in multiple sectors together (e.g., “increased energy demand, combined with high agricultural land use and large economic growth”), such as the emission scenarios produced by the Intergovernmental Panel on Climate Change <span id="id27">[<a class="reference internal" href="R.Bibliography.html#id68" title="Jonathan R Lamontagne, Patrick M Reed, Robert Link, Katherine V Calvin, Leon E Clarke, and James A Edmonds. Large ensemble analytic framework for consequence-driven discovery of climate change scenarios. Earth's Future, 6(3):488–504, 2018.">143</a>]</span>. The bias introduced by this reduced set of potential changes can skew inferences drawn from the model, particularly when the original narrative scenarios are focused on a single or narrow set of measures of system behavior.</p>
+<p>The second main criticism of traditional narrative scenario-based planning methods is that they provide no systematic way to distinguish which of the constituent factors lead to the undesirable consequences produced by a scenario. Narrative scenarios (e.g., the scenario matrix framework of RCPs-SSPs-SPAs; <span id="id28">[<a class="reference internal" href="R.Bibliography.html#id69" title="Brian C O’Neill, Elmar Kriegler, Keywan Riahi, Kristie L Ebi, Stephane Hallegatte, Timothy R Carter, Ritu Mathur, and Detlef P van Vuuren. A new scenario framework for climate change research: the concept of shared socioeconomic pathways. Climatic change, 122(3):387–400, 2014.">144</a>]</span>) encompass multiple changes happening together selected to span the range of potential changes but are not typically generated in a systematic factorial manner that considers the multiple ways the factors can be combined. This has two critical limitations. It obfuscates the role each component factor plays in the system, both in isolation and in combination with others (e.g., “is it the increased energy demand or the high agricultural land use that cause unbearable water stress?”). It also renders the delineation of how much change in a factor is critical near impossible. Consider, for example, narrative scenario A with a 5% increase in energy demand, and scenario B with a 30% increase in energy demand, which would have dire consequences. At which point between 5% and 30% do the dire consequences actually begin to occur? Such questions cannot be answered without a wide exploration of the space of potential changes. It should be noted that for some levels of model complexity and computational demands (e.g., global-scale models) there is little feasible recourse beyond the use of narrative scenarios.</p>
+<p>Exploratory modeling is typically paired with scenario discovery methods (indicated by number 9 in <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a>) that identify which of the scenarios (also known as states of the world) generated indeed have consequences of interest for stakeholders and policy makers, in an approach referred to as ensemble-based scenario-discovery <span id="id29">[<a class="reference internal" href="R.Bibliography.html#id16" title="Benjamin P Bryant and Robert J Lempert. Thinking inside the box: a participatory, computer-assisted approach to scenario discovery. Technological Forecasting and Social Change, 77(1):34–49, 2010.">45</a>, <a class="reference internal" href="R.Bibliography.html#id71" title="Robert J Lempert, David G Groves, Steven W Popper, and Steve C Bankes. A general, analytic method for generating robust strategies and narrative scenarios. Management science, 52(4):514–528, 2006.">102</a>, <a class="reference internal" href="R.Bibliography.html#id70" title="David G Groves and Robert J Lempert. A new analytic method for finding policy-relevant scenarios. Global Environmental Change, 17(1):73–85, 2007.">103</a>]</span>. This approach therefore flips the planning analysis from one that attempts to predict future system conditions to one that attempts to discover the (un)desirable future conditions. Ensemble-based scenario discovery can thus inform what modeling choices yield the most consequential behavioral changes or outcomes, especially when considering deeply uncertain, scenario-informed projections <span id="id30">[<a class="reference internal" href="R.Bibliography.html#id12" title="Enayat A Moallemi, Jan Kwakkel, Fjalar J de Haan, and Brett A Bryan. Exploratory modeling for analyzing coupled human-natural systems under uncertainty. Global Environmental Change, 65:102186, 2020.">9</a>, <a class="reference internal" href="R.Bibliography.html#id72" title="Warren E Walker, Marjolijn Haasnoot, and Jan H Kwakkel. Adapt or perish: a review of planning approaches for adaptation under deep uncertainty. Sustainability, 5(3):955–979, 2013.">145</a>]</span>. The relative likelihoods and relevance of the discovered scenarios can be subsequently evaluated by the practitioners a posteriori, within a richer context of knowing the wider set of potential consequences <span id="id31">[<a class="reference internal" href="R.Bibliography.html#id73" title="Suraje Dessai, Mike Hulme, Robert Lempert, and Roger Pielke Jr. Climate prediction: a limit to adaptation. Adapting to climate change: thresholds, values, governance, 64:78, 2009.">146</a>]</span>. This can include changing how an analysis is framed (number 10 in <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a>). For instance, one could initially focus on ensemble modeling of vulnerability using a single uncertain factor that is assumed to be well characterized by historical observations (e.g., streamflow; this step is represented by numbers 2-3 in <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a>). The analysis can then shift to include projections of more factors treated as deeply uncertain (e.g., urbanization, population demands, temperature, and snow-melt) to yield a far wider space of challenging projected futures. UC experiments contrasting these two framings can be highly valuable for tracing how vulnerability inferences change as the modeled space of futures expands from the historical baseline <span id="id32">[<a class="reference internal" href="R.Bibliography.html#id61" title="Julianne D Quinn, Patrick M Reed, and Klaus Keller. Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental modelling &amp; software, 92:125–141, 2017.">134</a>]</span>.</p>
+<p>An important nuance to be clarified here is that the focus or purpose of a modeling exercise plays a major role in whether a given factor of interest is considered well-characterized or deeply uncertain. Take the example context of characterizing temperature or streamflow extremes, where for each state variable of interest for a given location of focus there is a century of historical observations. Clearly, the observation technologies will have evolved over time uniquely for temperature and streamflow measurements and they likely lack replicate experiments (data uncertainty). A century of record will be insufficient to capture very high impact and rare extreme events (i.e., increasingly poor structural/parametric inference for the distributions of specific extreme single or compound events). The mechanistic processes as well as their evolving variability will be interdependent but uniquely different for each of these state variables. A large body of statistical literature exists focusing on the topics of synthetic weather <span id="id33">[<a class="reference internal" href="R.Bibliography.html#id74" title="Manuel Herrera, Sukumar Natarajan, David A Coley, Tristan Kershaw, Alfonso P Ramallo-González, Matthew Eames, Daniel Fosas, and Michael Wood. A review of current and future weather data for building simulation. Building Services Engineering Research and Technology, 38(5):602–627, 2017.">81</a>, <a class="reference internal" href="R.Bibliography.html#id75" title="Daniel S Wilks and Robert L Wilby. The weather generation game: a review of stochastic weather models. Progress in physical geography, 23(3):329–357, 1999.">82</a>]</span> or streamflow <span id="id34">[<a class="reference internal" href="R.Bibliography.html#id76" title="JR Lamontagne and JR Stedinger. Generating synthetic streamflow forecasts with specified precision. Journal of Water Resources Planning and Management, 144(4):04018007, 2018.">83</a>, <a class="reference internal" href="R.Bibliography.html#id77" title="Sanghamitra Medda and Kalyan Kumar Bhar. Comparison of single-site and multi-site stochastic models for streamflow generation. Applied Water Science, 9(3):67, 2019.">84</a>]</span> generation that provides a rich suite of approaches for developing history-informed, well-characterized stochastic process models to better estimate rare individual or compound extremes. These history-focused approaches can be viewed as providing well-characterized quantifications of streamflow or temperature distributions; however, they do not capture how coupled natural-human processes can fundamentally change their dynamics when transitioning to projections of longer-term futures (e.g., streamflow and temperature in 2055). Consequently, changing the focus of the modeling to making long term projections of future streamflow or temperature now makes these processes deeply uncertain.</p>
+<p>Scenario discovery methods (number 9 in <a class="reference internal" href="#figure-4-4"><span class="std std-numref">Fig. 4.4</span></a>) can be qualitative or quantitative and they generally attempt to distinguish futures in which a system or proposed policies to manage the system meet or miss their goals <span id="id35">[<a class="reference internal" href="R.Bibliography.html#id70" title="David G Groves and Robert J Lempert. A new analytic method for finding policy-relevant scenarios. Global Environmental Change, 17(1):73–85, 2007.">103</a>]</span>. The emphasis placed by exploratory modeling on model outputs that have decision relevant consequences represents a shift toward a broader class of metrics that are reflective of the stakeholders’ concerns, agency and preferences (also discussed in <a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html#perspectives"><span class="std std-numref">Chapter 2.2</span></a>). As a result, sensitivity analysis and scenario discovery methods in this context are therefore applied to performance metrics that go beyond model error but are rather focused on broader metrics such as the resilience of a sector, the reliability of a process, or the vulnerability of a population in the face of uncertainty. In exploratory modeling literature, this metric is most typically—but not always—a measure of robustness (number 8 in Fig. 13). Robustness is a property of a system or a design choice capturing its insensitivity to uncertainty and can be measured via a variety of means, most recently reviewed by <span id="id36">Herman <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id78" title="Jonathan D Herman, Patrick M Reed, Harrison B Zeff, and Gregory W Characklis. How should robustness be defined for water systems planning under change? Journal of Water Resources Planning and Management, 141(10):04015012, 2015.">147</a>]</span> and <span id="id37">McPhail <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id55" title="Cameron McPhail, HR Maier, JH Kwakkel, M Giuliani, A Castelletti, and S Westra. Robustness metrics: how are they calculated, when should they be used and why do they give different results? Earth's Future, 6(2):169–191, 2018.">129</a>]</span>.</p>
+<p>Scenario discovery is typically performed through the use of algorithms applied on large databases of model runs, generated through exploratory modeling, with each model run representing the performance of the system in one potential state of the world. The algorithms seek to identify the combinations of factor values (e.g., future conditions) that best distinguish the cases in which the system does or does not meet its objectives. The most widely known classification algorithms are the Patient Rule Induction Method (PRIM; <span id="id38">[<a class="reference internal" href="R.Bibliography.html#id79" title="Jerome H Friedman and Nicholas I Fisher. Bump hunting in high-dimensional data. Statistics and Computing, 9(2):123–143, 1999.">97</a>]</span>) and Classification and Regression Trees (CART; <span id="id39">[<a class="reference internal" href="R.Bibliography.html#id80" title="Leo Breiman, Jerome Friedman, Charles J Stone, and Richard A Olshen. Classification and regression trees. CRC press, 1984.">98</a>]</span>). These factor mapping algorithms create orthogonal boundaries (multi-dimensional hypercubes) between states of the world that are successful or unsuccessful in meeting the system’s goals <span id="id40">[<a class="reference internal" href="R.Bibliography.html#id81" title="Ishaan L Dalal, Deian Stefan, and Jared Harwayne-Gidansky. Low discrepancy sequences for monte carlo simulations on reconfigurable platforms. In 2008 International Conference on Application-Specific Systems, Architectures and Processors, 108–113. IEEE, 2008.">65</a>]</span>. The algorithms attempt to strike a balance between simplicity of classification (and as a result, interpretability) and accuracy <span id="id41">[<a class="reference internal" href="R.Bibliography.html#id16" title="Benjamin P Bryant and Robert J Lempert. Thinking inside the box: a participatory, computer-assisted approach to scenario discovery. Technological Forecasting and Social Change, 77(1):34–49, 2010.">45</a>, <a class="reference internal" href="R.Bibliography.html#id70" title="David G Groves and Robert J Lempert. A new analytic method for finding policy-relevant scenarios. Global Environmental Change, 17(1):73–85, 2007.">103</a>, <a class="reference internal" href="R.Bibliography.html#id82" title="Robert J Lempert. Robust decision making (rdm). In Decision making under deep uncertainty, pages 23–51. Springer, Cham, 2019.">148</a>]</span>.</p>
+<p>Even though these approaches have been shown to yield interpretable and relevant scenarios <span id="id42">[<a class="reference internal" href="R.Bibliography.html#id83" title="Jan H Kwakkel and Marjolijn Haasnoot. Supporting dmdu: a taxonomy of approaches and tools. In Decision Making under Deep Uncertainty, pages 355–374. Springer, Cham, 2019.">149</a>]</span>, several authors have pointed out the limitations of these methods with regards to their division of space in orthogonal behavioral and non-behavioral regions <span id="id43">[<a class="reference internal" href="R.Bibliography.html#id84" title="BC Trindade, PM Reed, and GW Characklis. Deeply uncertain pathways: integrated multi-city regional water supply infrastructure investment and portfolio management. Advances in Water Resources, 134:103442, 2019.">150</a>]</span>. Due to their reliance on boundaries orthogonal to the uncertainty axes, PRIM and CART cannot capture interactions between the various uncertain factors considered, which can often be significant <span id="id44">[<a class="reference internal" href="R.Bibliography.html#id85" title="Julianne D Quinn, Patrick M Reed, Matteo Giuliani, Andrea Castelletti, Jared W Oyler, and Robert E Nicholas. Exploring how changing monsoonal dynamics and human pressures challenge multireservoir management for flood protection, hydropower production, and agricultural water supply. Water Resources Research, 54(7):4638–4662, 2018.">151</a>]</span>. More advanced methods have been proposed to address this drawback, with logistic regression being perhaps the most prominent <span id="id45">[<a class="reference internal" href="R.Bibliography.html#id85" title="Julianne D Quinn, Patrick M Reed, Matteo Giuliani, Andrea Castelletti, Jared W Oyler, and Robert E Nicholas. Exploring how changing monsoonal dynamics and human pressures challenge multireservoir management for flood protection, hydropower production, and agricultural water supply. Water Resources Research, 54(7):4638–4662, 2018.">151</a>, <a class="reference internal" href="R.Bibliography.html#id86" title="DF Gold, PM Reed, BC Trindade, and GW Characklis. Identifying actionable compromises: navigating multi-city robustness conflicts to discover cooperative safe operating spaces for regional water supply portfolios. Water Resources Research, 55(11):9024–9050, 2019.">152</a>, <a class="reference internal" href="R.Bibliography.html#id87" title="JR Lamontagne, PM Reed, G Marangoni, K Keller, and GG Garner. Robust abatement pathways to tolerable climate futures require immediate global action. Nature Climate Change, 9(4):290–294, 2019.">153</a>]</span>. Logistic regression can produce boundaries that are not necessarily orthogonal to each uncertainty axis, nor necessarily linear, if interactive terms between two parameters are used to build the regression model. It also describes the probability that a state of the world belongs to the scenarios that lead to failure. This feature allows users to define regions of success based on a gradient of estimated probability of success in those worlds, unlike PRIM which only classifies states of the world in two regions <span id="id46">[<a class="reference internal" href="R.Bibliography.html#id85" title="Julianne D Quinn, Patrick M Reed, Matteo Giuliani, Andrea Castelletti, Jared W Oyler, and Robert E Nicholas. Exploring how changing monsoonal dynamics and human pressures challenge multireservoir management for flood protection, hydropower production, and agricultural water supply. Water Resources Research, 54(7):4638–4662, 2018.">151</a>, <a class="reference internal" href="R.Bibliography.html#id202" title="Antonia Hadjimichael, Julianne Quinn, Erin Wilson, Patrick Reed, Leon Basdekas, David Yates, and Michelle Garrison. Defining Robustness, Vulnerabilities, and Consequential Scenarios for Diverse Stakeholder Interests in Institutionally Complex River Basins. Earth's Future, 8(7):e2020EF001503, 2020. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020EF001503 (visited on 2020-07-13), doi:10.1029/2020EF001503.">154</a>]</span>.</p>
+<p>Another more advanced factor mapping method is boosted trees <span id="id47">[<a class="reference internal" href="R.Bibliography.html#id89" title="Yoav Freund, Robert Schapire, and Naoki Abe. A short introduction to boosting. Journal-Japanese Society For Artificial Intelligence, 14(771-780):1612, 1999.">99</a>, <a class="reference internal" href="R.Bibliography.html#id88" title="Harris Drucker and Corinna Cortes. Boosting decision trees. Advances in neural information processing systems, pages 479–485, 1996.">155</a>]</span>. Boosted trees can avoid two limitations inherent to the application of logistic regression: i) to build a nonlinear classification model the interactive term between two uncertainties needs to be pre-specified and cannot be discovered (e.g., we need to know a-priori whether factor <span class="math notranslate nohighlight">\(x_1\)</span> interacts with <span class="math notranslate nohighlight">\(x_2\)</span> in a relationship that looks like <span class="math notranslate nohighlight">\(x_1\)</span>·<span class="math notranslate nohighlight">\(x_2\)</span> or <span class="math notranslate nohighlight">\(x_1^{x_2}\)</span>); and ii) the subspaces defined are always convex. The application of such a factor mapping algorithm is limited in the presence of threshold-based rules with discrete actions in a modeled system (e.g., “if network capacity is low, build new infrastructure”), which results in failure regions that are nonlinear and non-convex <span id="id48">[<a class="reference internal" href="R.Bibliography.html#id84" title="BC Trindade, PM Reed, and GW Characklis. Deeply uncertain pathways: integrated multi-city regional water supply infrastructure investment and portfolio management. Advances in Water Resources, 134:103442, 2019.">150</a>]</span>. Boosting works by creating an ensemble of classifiers and forcing some of them to focus on the hard-to-learn parts of the problem, and others to focus on the easy-to-learn parts. Boosting applied to CART trees can avoid the aforementioned challenges faced by other scenario discovery methods, while resisting overfitting <span id="id49">[<a class="reference internal" href="R.Bibliography.html#id90" title="Kevin P Murphy. Machine learning: a probabilistic perspective. MIT press, 2012.">156</a>]</span>, assuring the identified success and failure regions are still easy to interpret.</p>
+<p>Below we provide an example application of two scenario discovery methods, PRIM and logistic regression, using the lake problem introduced in the previous section. From the sensitivity analysis results presented in <a class="reference internal" href="#figure-4-3"><span class="std std-numref">Fig. 4.3</span></a> (d), we can already infer that parameters <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(q\)</span> have important effects on model outputs (i.e., we have performed factor prioritization). Scenario discovery (i.e., factor mapping) complements this analysis by further identifying the specific values of b and q that can lead to consequential and undesirable outcomes. For the purposes of demonstration, we can assume the undesirable outcome in this case is defined as the management policy failing to achieve 90% reliability in a state of the world.</p>
+<figure class="margin-caption align-center" id="id54">
+<span id="figure-4-5"></span><a class="reference internal image-reference" href="_images/figure14lake_problem_SD.png"><img alt="Figure 14." src="_images/figure14lake_problem_SD.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Scenario discovery for the lake problem, using (a) PRIM and (b) logistic regression.</span><a class="headerlink" href="#id54" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#figure-4-5"><span class="std std-numref">Fig. 4.5</span></a> shows the results of scenario discovery, performed through (a) PRIM and (b) logistic regression. Each point in the two panels indicates a potential state of the world, generated through Latin Hypercube Sampling. Each point is colored by whether the policy meets the above performance criterion, with blue indicating success and red indicating failure. PRIM identifies several orthogonal areas of interest, one of which is shown in panel (a). As discussed above, this necessary orthogonality limits how PRIM identifies areas of success (the area within the box). As factors  <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(q\)</span> interact in this system, the transition boundary between the regions of success and failure is not orthogonal to any of the axes. As a result, a large number of points in the bottom right and the top left of the figure are left outside of the identified region. Logistic regression can overcome this limitation by identifying a diagonal boundary between the two regions, seen in panel (b). This method also produces a gradient of estimated probability of success across these regions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following link to try out an interactive tutorial on performing factor mapping using logistic regression:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/basin_users_logistic_regression.ipynb">Logistic Regression Jupyter Notebook</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following articles are suggested as fundamental reading for the information presented in this section:</p>
+<ul class="simple">
+<li><p>Gupta, H.V., Wagener, T., Liu, Y., 2008. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. <em>Hydrological Processes: An International Journal</em> 22, 3802–3813.</p></li>
+<li><p>Bankes, S., 1993. Exploratory Modeling for Policy Analysis. <em>Operations Research</em> 41, 435–449. <a class="reference external" href="https://doi.org/10.1287/opre.41.3.435">https://doi.org/10.1287/opre.41.3.435</a></p></li>
+<li><p>Groves, D.G., Lempert, R.J., 2007. A new analytic method for finding policy-relevant scenarios. <em>Global Environmental Change</em> 17, 73–85. <a class="reference external" href="https://doi.org/10.1016/j.gloenvcha.2006.11.006">https://doi.org/10.1016/j.gloenvcha.2006.11.006</a></p></li>
+</ul>
+<p>The following articles can be used as supplemental reading:</p>
+<ul class="simple">
+<li><p>Marchau, V.A.W.J., Walker, W.E., Bloemen, P.J.T.M., Popper, S.W. (Eds.), 2019. Decision Making under Deep Uncertainty: From Theory to Practice. Springer International Publishing. <a class="reference external" href="https://doi.org/10.1007/978-3-030-05252-2">https://doi.org/10.1007/978-3-030-05252-2</a></p></li>
+<li><p>Sterman, J.D., 1994. Learning in and about complex systems. System Dynamics Review 10, 291–330. <a class="reference external" href="https://doi.org/10.1002/sdr.4260100214">https://doi.org/10.1002/sdr.4260100214</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3_sensitivity_analysis_the_basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Sensitivity Analysis: The Basics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5_conclusion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Conclusion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-errors-what-is-controlling-model-performance">4.1. Understanding Errors: What Is Controlling Model Performance?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequential-dynamics-what-is-controlling-model-behaviors-of-interest">4.2. Consequential Dynamics: What is Controlling Model Behaviors of Interest?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequential-scenarios-what-is-controlling-consequential-outcomes">4.3. Consequential Scenarios: What is Controlling Consequential Outcomes?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

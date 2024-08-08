@@ -1,0 +1,1370 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios Tutorial &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A2.6_hmm';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA2.6_hmm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A2.6_hmm.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios Tutorial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios">A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s Get Started!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-record">Observed Record</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthetic-stationary-generator-to-better-quantify-natural-variability">Synthetic Stationary Generator to Better Quantify Natural Variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-stationary-synthetic-generator-to-impose-climate-changes">Non-Stationary Synthetic Generator to Impose Climate Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#placing-cmip5-projections-in-the-context-of-non-stationary-flows">Placing CMIP5 Projections in the Context of Non-Stationary Flows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-create-an-hmm-based-generator-for-your-system">Tips to Create an HMM-Based Generator for your System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios-tutorial">
+<h1>A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios Tutorial<a class="headerlink" href="#a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios-tutorial" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">Run the tutorial interactively:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/Hidden-Markov_Modeling_Approaches_to_Creating_Synthetic_Streamflow_Scenarios.ipynb">HMM Notebook</a>.</div>
+<div class="line">Please be aware that notebooks can take a couple minutes to launch.</div>
+<div class="line">To run the notebooks yourself, download the files <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks">here</a> and use these <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt">requirements</a>.</div>
+</div>
+</div>
+<section id="a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios">
+<h2>A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios<a class="headerlink" href="#a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios" title="Link to this heading">#</a></h2>
+<p>In this notebook, we will be covering the basics of fitting a Hidden
+Markov Model-based synthetic streamflow generator for a single site in
+the Upper Colorado River Basin. First, we will characterize the observed
+historical flow in the basin from 1909-2013. Then, we will fit a
+synthetic streamflow generator to the observed flows in the basin in
+order to create stationary synthetic flows. Finally, we will create a
+non-stationary version of the generator to create flows that could be
+representative of plausible future climate in the region. We ultimately
+show how to place the synthetically generated flows in the context of
+physically-informed CMIP5 projections to compare the two methods.</p>
+<section id="background">
+<h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
+<p>In the Western United States (US), and particularly the Colorado River
+Basin, a recent study used tree-ring reconstructions to suggest that the
+megadrought that has been occurring in the Southwest over the past 22
+years is the region’s worst drought since about 800 AD (Williams et al.,
+2022). The study’s lead author, UCLA climatologist Park Williams,
+suggested that had the sequence of wet-dry years occurred without
+anthropogenic forcing, the 2000s would have likely still been dry, but
+not on the same level as the worst of the last millennium’s
+megadroughts.</p>
+<p>The recent trend of warming and reduced soil moisture in the Southwest
+US is highly challenging from a water systems planning and management
+perspective for the Colorado River Basin. Given the wide recognition
+that the river is over-allocated, the most recent drought highlights the
+difficulty of sustaining the flow requirements as dictated by the
+Colorado Compact. Thus, there has been an increasing focus in
+exploratory modeling efforts to clarify how vulnerable water systems in
+this region are to plausible drought streamflow scenarios for the
+future. In this tutorial, we’ll discuss how to create these scenarios
+using a Hidden Markov Model (HMM)- based streamflow synthetic generator.
+As discussed in <a class="reference external" href="https://uc-ebook.org/docs/html/2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics">Section
+2.1</a>
+and
+<a class="reference external" href="https://uc-ebook.org/docs/html/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest">4.2</a>
+of the eBook, future climate conditions in the basin represent a deep
+uncertainty that can lead to highly consequential water scarcity
+outcomes. It is advantageous to create a model such as the HMM-based
+generator in order to facilitate the creation of many ensembles of
+streamflow that can ultimately be used to force regional water systems
+models to understand how variability and drought extremes affect
+regional water shortages, operations, and policies.</p>
+<figure>
+<center><img src="_static/1-lede_pix_-_usbr-powell-8517152024_aa66437c2e_o-cropped.jpg" style="width:50%"></center>
+<figcaption style="text-align:center"> Lake Powell shows persistent effects from drought (Source: U.S. Bureau of Reclamation) </figcaption>
+</figure></section>
+</section>
+<section id="lets-get-started">
+<h2>Let’s Get Started!<a class="headerlink" href="#lets-get-started" title="Link to this heading">#</a></h2>
+<section id="observed-record">
+<h3>Observed Record<a class="headerlink" href="#observed-record" title="Link to this heading">#</a></h3>
+<p>First, let’s take a look at the observed data from 1909-2013 for a
+specific site. In this example, we use the outlet gauge of the Upper
+Colorado River (USGS Gauge 09163500 at the Colorado-Utah state line).
+Below, we create a plot of the annual streamflow.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">latin</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">ss</span>
+<span class="kn">import</span> <span class="nn">statistics</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+
+<span class="c1"># Import helper functions from local package</span>
+<span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">fitmodel</span>
+<span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">plotstates</span>
+<span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">plotdist</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in annual historical data</span>
+<span class="n">AnnualQ</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/uc_historical.csv&#39;</span><span class="p">)</span>
+<span class="n">AnnualQ</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1909</span><span class="p">,</span> <span class="mi">2014</span><span class="p">))</span>
+
+<span class="c1"># Plot a line graph</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005F73&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Annual&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Upper Colorado Annual Flow&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Annual Flow (cubic feet per year)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_9_0.png" src="_images/hmm_9_0.png" />
+<p>Let’s calculate an 11-year rolling mean of the same data to get a sense
+of long-term trends.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot the original line graph</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005F73&#39;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Annual&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot an 11-year rolling mean</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+         <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#183A2E&#39;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;11-Year Rolling Mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Upper Colorado Annual Flow&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Annual Flow (cubic feet per year)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_11_0.png" src="_images/hmm_11_0.png" />
+<p>The Colorado Compact, which prescribes flows between the Upper and Lower
+Colorado Basins, was negotiated using data prior to 1922, a time period
+revealed by the above figure to be one of the consistently wetter
+periods on record. It’s clear today that since the 1980s, the Southwest
+US has been experiencing aridification (Overpeck et al., 2020) and that
+this observed record alone isn’t an accurate representation of what
+future climate might look like in this region.</p>
+<p>Let’s get a little more specific and formally quantify decadal droughts
+that have occurred in the observed period. We use a metric proposed in
+Ault et al. (2014). The authors define a decadal drought as when the
+11-year rolling mean falls below a threshold that is 1/2 a standard
+deviation below the overall mean of the record. We can then highlight
+the block of years that fall in a decadal drought using yellow
+rectangles below.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define drought threshold</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">std</span><span class="p">))</span>
+
+<span class="c1"># Find where the rolling mean dip below the threshold?</span>
+<span class="n">drought_instances</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span>
+<span class="n">drought_years</span> <span class="o">=</span> <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="n">drought_instances</span><span class="p">]</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005F73&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Annual&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#183A2E&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;11-Year Rolling Mean&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+           <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Drought Threshold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualize the drought periods as yellow rectangles</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">drought_years</span><span class="p">:</span>
+
+    <span class="c1"># Plot a box centered around those values and with 5 years on either side.</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">i</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">11</span><span class="p">,</span><span class="mf">2e7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Add the patch to the Axes</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Upper Colorado Annual Flow&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Annual Flow (cubic feet per year)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_14_0.png" src="_images/hmm_14_0.png" />
+<p>By this metric, the Upper Colorado Basin region has experienced two
+decadal droughts over the last century.</p>
+</section>
+<section id="synthetic-stationary-generator-to-better-quantify-natural-variability">
+<h3>Synthetic Stationary Generator to Better Quantify Natural Variability<a class="headerlink" href="#synthetic-stationary-generator-to-better-quantify-natural-variability" title="Link to this heading">#</a></h3>
+<p>It is important to remember that the streamflow that we have observed in
+the region over the last century is only one instance of the hydrology
+that could occur since the atmosphere is an inherently stochastic
+system. Thus, we require a tool that will allow us to see multiple
+plausible realizations of the streamflow record to understand the
+internal variability that characterizes the historical period. One
+observed realization of historical streamflow is limited in its ability
+to capture rare extremes; plausible (but not observed) alternative
+instances of streamflow records can help to fill this gap. The tool that
+we use to develop synthetic flows for the region is a Gaussian Hidden
+Markov Model (HMM). If a system follows a Markov process, it switches
+between a number of “hidden states” dictated by a transition matrix.
+Each state has its own Gaussian probability distribution (defined by a
+mean and standard deviation) and one can draw from this distribution to
+create synthetic flows that fit the properties of the historical
+distribution. HMMs are an attractive choice for this region because they
+can simulate persistence (i.e., long duration droughts), which is a
+characteristic of the region’s hydro-climatology. The figure below shows
+an example of a 2-state Gaussian HMM that we will be fitting for this
+example.</p>
+<figure>
+    <center><img src="_static/HMM_example.png" style="width:75%"></center>
+<figcaption style="text-align:center"> Two-state Gaussian HMM with mean and standard deviation parameters</figcaption>
+</figure><p>Below is the code that fits the HMM model to the last 2/3 of the
+historical record of log annual flows at the CO-UT stateline gauge and
+creates an alternative trace of 105 years. A subset of the dataset is
+chosen in order to minimize overfitting and to retain a set of data for
+validation of the model. When we fit our model, we utilize the
+Baum-Welch algorithm (a special version of the expectation-maximization
+algorithm) to find the optimal parameters that maximize the likelihood
+of seeing the observed flows. Ultimately, the algorithm will return a
+mean and standard deviation associated with each state (mus and sigmas
+defined below) and a 2x2 transition probability matrix that captures the
+likelihood of transitioning between states (P). We can also retrieve the
+annual hidden states across the observed series, also known as the
+Viterbi sequence of states, which classifies each year in a “wet” or
+“dry” state.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of years for alternative trace</span>
+<span class="n">n_years</span> <span class="o">=</span> <span class="mi">105</span>
+
+<span class="c1"># Import historical data that it used to fit HMM model</span>
+<span class="n">AnnualQ_h</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/uc_historical.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Fit the model and pull out relevant parameters and samples</span>
+<span class="n">logQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">AnnualQ_h</span><span class="p">)</span>
+<span class="n">hidden_states</span><span class="p">,</span> <span class="n">mus</span><span class="p">,</span> <span class="n">sigmas</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">logProb</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">fitmodel</span><span class="o">.</span><span class="n">fitHMM</span><span class="p">(</span><span class="n">logQ</span><span class="p">,</span> <span class="n">n_years</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We’ve fit our HMM, but what does the model look like? Let’s plot the
+annual time series of hidden states, or the Viterbi sequence. In the
+code, above, we have defined that the drier state is always represented
+by state 0. Thus, we know that hidden_states = 0 corresponds to the dry
+state and hidden_states = 1 to the wet state.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot Vitebi sequence</span>
+<span class="n">plotstates</span><span class="o">.</span><span class="n">plotTimeSeries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">AnnualQ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">hidden_states</span><span class="p">,</span> <span class="s1">&#39;Annual Flow (cube feet per year)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_21_0.png" src="_images/hmm_21_0.png" />
+<p>In the figure above, we see that the years with the higher log flows
+tend to be classified in a “wet” state and the opposite is true of the
+“dry” state. We can also print the transition matrix, which shows the
+likelihood of transitioning between states. Note that the system has a
+high likelihood of persisting in the same state.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transmat_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.65095026</span> <span class="mf">0.34904974</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.3205531</span>  <span class="mf">0.6794469</span> <span class="p">]]</span>
+</pre></div>
+</div>
+<p>Let’s also plot the distribution of log annual flows associated with the
+wet and dry states.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot wet and dry state distributions</span>
+<span class="n">plotdist</span><span class="o">.</span><span class="n">plotDistribution</span><span class="p">(</span><span class="n">logQ</span><span class="p">,</span> <span class="n">mus</span><span class="p">,</span> <span class="n">sigmas</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_25_0.png" src="_images/hmm_25_0.png" />
+<p>The wet state distribution is characterized by a greater mean flow, but
+note that there is significant overlap in the tails of the distributions
+below which demonstrates why years with similiar flows can be classified
+in different states.</p>
+<p>Now let’s see what the drought dynamics look like in the synthetic
+scenario that we created using the same definition that we had used for
+the historical period.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve samples and back-transform out of log space</span>
+<span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="p">)</span>
+<span class="n">AnnualQ_s</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1909</span><span class="p">,</span> <span class="mi">2014</span><span class="p">))</span>
+
+<span class="c1"># Define drought threshold</span>
+<span class="n">std</span><span class="o">=</span><span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">threshold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">std</span><span class="p">))</span>
+
+<span class="c1"># Where does the rolling mean dip below the threshold</span>
+<span class="n">drought_instances</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span>
+<span class="n">drought_years</span> <span class="o">=</span> <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="n">drought_instances</span><span class="p">]</span>
+
+<span class="c1">#Visualize the streamflow scenario</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1">#Plot the original line graph</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005F73&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Annual&#39;</span><span class="p">)</span>
+
+<span class="c1">#Plot a 11-year rolling mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#183A2E&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;11-Year Rolling Mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+           <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Drought Threshold&#39;</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">drought_years</span><span class="p">:</span>
+
+    <span class="c1">#Plot a box centered around those values and with 5 years on either side.</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span>
+                              <span class="mi">0</span><span class="p">),</span>
+                              <span class="mi">11</span><span class="p">,</span>
+                              <span class="mf">2e7</span><span class="p">,</span>
+                              <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">,</span>
+                              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Add the patch to the Axes</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Upper Colorado Annual Flow (Synthetic Stationary)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Annual Flow (cubic feet per year)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_28_0.png" src="_images/hmm_28_0.png" />
+<p>You can sample from the model and create more 105-year traces and note
+how the location and number of decadal droughts changes. This
+demonstrates how different the historical record can look just within
+the range of natural variability. It’s also important to remember that
+when droughts occur can also define the ultimate effect of the drought
+(i.e. is it a time when there is a large population growth or a time
+when humans can adapt by conserving or building more infrastructure?). A
+hydrologic drought need not manifest into an agricultural or operational
+drought of the same magnitude if stored surface water is available.</p>
+<p>We externally run the HMM many times to create a dataset of 100
+instances of the 105-year traces and 1000 instances of the 105-year
+traces that are available in the package
+(“synthetic_stationary_small_sample_100.csv”,“synthetic_stationary_large_sample_1000”).
+The shaded green lines correspond to the flow duration curves (FDCs) for
+the generated streamflow traces in comparison with the FDC of the
+historical record in beige.</p>
+<figure>
+    <center><img src="_static/stationary_synthetic_FDC.png" style="width:75%"></center>
+<figcaption style="text-align:center">Generated streamflow traces in comparison with the FDC of the historical record.</figcaption>
+</figure><p>As expected, the stationary synthetic FDCs envelope the historical FDC
+and particularly, the synthetic traces offer many more instances of low
+flow conditions that could lead to more extreme drought conditions than
+what has been observed historically. It is also useful to check for
+convergence of samples and to determine how many samples are needed to
+fully represent internal variability. Above we see that the extension to
+1000 instances of 105-year traces fills out regions of the FDC,
+including creating some more extreme drought conditions, but that
+additional samples will likely not fill out the FDC substantially more.</p>
+</section>
+<section id="non-stationary-synthetic-generator-to-impose-climate-changes">
+<h3>Non-Stationary Synthetic Generator to Impose Climate Changes<a class="headerlink" href="#non-stationary-synthetic-generator-to-impose-climate-changes" title="Link to this heading">#</a></h3>
+<p>Now, we create flows under non-stationary conditions to get a better
+understanding of what flows can look like under climate changes. In
+order to create flows under non-stationary conditions, we can toggle the
+parameters of the HMM model in order to create systematic changes to the
+model that can represent a changing climate. The HMM has 6 parameters
+that define it. When we fit the historical model, the parameters that
+are fit represent a baseline parameter value. In this non-stationary
+generator, we define a range to sample these parameters from.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Current Value</p></th>
+<th class="head"><p>Lower Bound</p></th>
+<th class="head"><p>Upper Bound</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Log-Space Wet State
+Mean Multiplier</p></td>
+<td><p>1.00</p></td>
+<td><p>0.98</p></td>
+<td><p>1.02</p></td>
+</tr>
+<tr class="row-odd"><td><p>Log-Space Dry State
+Mean Multiplier</p></td>
+<td><p>1.00</p></td>
+<td><p>0.98</p></td>
+<td><p>1.02</p></td>
+</tr>
+<tr class="row-even"><td><p>Log-Space Wet State
+Standard Deviation
+Multiplier</p></td>
+<td><p>1.00</p></td>
+<td><p>0.75</p></td>
+<td><p>1.25</p></td>
+</tr>
+<tr class="row-odd"><td><p>Log-Space Dry State
+Standard Deviation
+Multiplier</p></td>
+<td><p>1.00</p></td>
+<td><p>0.75</p></td>
+<td><p>1.25</p></td>
+</tr>
+<tr class="row-even"><td><p>Change in Dry-Dry
+Transition
+Probability</p></td>
+<td><p>0.00</p></td>
+<td><p>-0.30</p></td>
+<td><p>+0.30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Change in Wet-Wet
+Transition
+Probability</p></td>
+<td><p>0.00</p></td>
+<td><p>-0.30</p></td>
+<td><p>+0.30</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now let’s sample 1000 times from these bounds to create 1000 new
+parameterizations of the model. Here we use SALib and the Latin
+Hypercube sample function.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create problem structure with parameters that we want to sample</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;num_vars&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;wet_mu&#39;</span><span class="p">,</span> <span class="s1">&#39;dry_mu&#39;</span><span class="p">,</span> <span class="s1">&#39;wet_std&#39;</span><span class="p">,</span><span class="s1">&#39;dry_std&#39;</span><span class="p">,</span><span class="s1">&#39;dry_tp&#39;</span><span class="p">,</span><span class="s2">&quot;wet_tp&quot;</span><span class="p">],</span>
+    <span class="s1">&#39;bounds&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">1.25</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">1.25</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]]</span>
+<span class="p">}</span>
+
+<span class="c1"># generate 1000 parameterizations</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># set random seed for reproducibility</span>
+<span class="n">seed_value</span> <span class="o">=</span> <span class="mi">123</span>
+
+<span class="c1"># Generate our samples</span>
+<span class="n">LHsamples</span> <span class="o">=</span> <span class="n">latin</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">seed_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s look at what some of the traces look like in our
+non-stationary generator. Let’s choose a random instance from the
+1000-member space and adjust the parameters accordingly.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define static parameters</span>
+<span class="n">n_years</span> <span class="o">=</span> <span class="mi">105</span>
+
+<span class="c1"># Sample parameter; Adjust to any sample number from 0-999</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="mi">215</span>
+
+<span class="c1"># Create empty arrays to store the new Gaussian HMM parameters for each SOW</span>
+<span class="n">Pnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">piNew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">musNew_HMM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">sigmasNew_HMM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">logAnnualQ_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">n_years</span><span class="p">])</span>
+
+<span class="c1"># Calculate new transition matrix and stationary distribution of SOW at last node as well as new means and standard deviations</span>
+<span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">4</span><span class="p">]))</span>
+<span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">5</span><span class="p">]))</span>
+<span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">eigenvals</span><span class="p">,</span> <span class="n">eigenvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">))</span>
+<span class="n">one_eigval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eigenvals</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">piNew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">),</span> <span class="n">eigenvecs</span><span class="p">[:,</span> <span class="n">one_eigval</span><span class="p">]),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">),</span> <span class="n">eigenvecs</span><span class="p">[:,</span><span class="n">one_eigval</span><span class="p">])))</span>
+
+<span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mus</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Generate first state and log-space annual flow at last node</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">n_years</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">piNew</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Generate remaining state trajectory and log space flows at last node</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_years</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">Pnew</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])]:</span>
+        <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Convert log-space flows to real-space flows</span>
+<span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logAnnualQ_s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Now let’s see what this synthetic trace looks like.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve samples and back-transform out of log space</span>
+<span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="p">)</span>
+<span class="n">AnnualQ_s</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1909</span><span class="p">,</span> <span class="mi">2014</span><span class="p">))</span>
+
+<span class="c1"># Define drought threshold</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">std</span><span class="p">))</span>
+
+<span class="c1"># Where does the rolling mean dip below the threshold</span>
+<span class="n">drought_instances</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span>
+<span class="n">drought_years</span> <span class="o">=</span> <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="n">drought_instances</span><span class="p">]</span>
+
+<span class="c1"># Visualize the streamflow scenario</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot the original line graph</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005F73&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Annual&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot a 11-year rolling mean</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#183A2E&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;11-Year Rolling Mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+           <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Drought Threshold&#39;</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">drought_years</span><span class="p">:</span>
+
+    <span class="c1"># Plot a box centered around those values and with 5 years on either side.</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                             <span class="mi">11</span><span class="p">,</span>
+                             <span class="mf">2e7</span><span class="p">,</span>
+                             <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">,</span>
+                             <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#EFE2BE&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Add the patch to the Axes</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Annual Flow (Synthetic Non-Stationary)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Annual Flow (cubic feet per year)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_40_0.png" src="_images/hmm_40_0.png" />
+<p>Above is the example trace from the new non-stationary model. You may
+see fewer or more decadal drought instances. We can further summarize
+overall decadal drought characteristics across the samples. Let’s plot a
+histogram of the total number of times we go below the drought threshold
+across these realizations.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decadal_drought_occurence</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">1000</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+
+    <span class="c1"># Create empty arrays to store the new Gaussian HMM parameters for each SOW</span>
+    <span class="n">Pnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">piNew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">musNew_HMM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">sigmasNew_HMM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">logAnnualQ_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">n_years</span><span class="p">])</span>
+
+    <span class="c1"># Calculate new transition matrix and stationary distribution of SOW at last node</span>
+    <span class="c1"># as well as new means and standard deviations</span>
+
+    <span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">4</span><span class="p">]))</span>
+    <span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">5</span><span class="p">]))</span>
+    <span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Pnew</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Pnew</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">eigenvals</span><span class="p">,</span> <span class="n">eigenvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">))</span>
+    <span class="n">one_eigval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eigenvals</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">piNew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">),</span> <span class="n">eigenvecs</span><span class="p">[:,</span> <span class="n">one_eigval</span><span class="p">]),</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Pnew</span><span class="p">),</span> <span class="n">eigenvecs</span><span class="p">[:,</span> <span class="n">one_eigval</span><span class="p">])))</span>
+
+    <span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mus</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">LHsamples</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Generate first state and log-space annual flow at last node</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">n_years</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">piNew</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># generate remaining state trajectory and log space flows at last node</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_years</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">Pnew</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])]:</span>
+            <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">states</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logAnnualQ_s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">musNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigmasNew_HMM</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Convert log-space flows to real-space flows</span>
+    <span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logAnnualQ_s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">AnnualQ_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="p">)</span>
+    <span class="n">AnnualQ_s</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1909</span><span class="p">,</span> <span class="mi">2014</span><span class="p">))</span>
+
+    <span class="c1"># Define drought threshold</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">std</span><span class="p">))</span>
+
+    <span class="c1"># Where does the rolling mean dip below the threshold</span>
+    <span class="n">drought_instances</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">AnnualQ_s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span>
+    <span class="n">decadal_drought_occurence</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">drought_instances</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">decadal_drought_occurence</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Stationary generator&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;#005F73&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Instances of Decadal Drought&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_43_0.png" src="_images/hmm_43_0.png" />
+<p>Note how many more instances of the decadal droughts we are creating
+with the non-stationary generator than our observed 105-year trace which
+creates a rich space in which we can test our models. Just as we did
+with the stationary generator, we can externally run the non-stationary
+generator to create 10,000 instances of the 105-year traces that are
+available in the package
+(“synthetic_nonstationary_large_sample_10000.csv”). The shaded green and
+blue lines correspond to the FDCs for the stationary and non-stationary
+generated streamflow traces in comparison with the FDC of the historical
+record in beige. Note how the non-stationary generator produces even
+more drought extremes than the stationary non-synthetic traces.</p>
+<figure>
+    <center><img src="_static/nonstationary_synthetic_FDC.png" style="width:75%"></center>
+<figcaption style="text-align:center">Generated streamflow traces in comparison with the FDC of the historical record.</figcaption>
+</figure></section>
+<section id="placing-cmip5-projections-in-the-context-of-non-stationary-flows">
+<h3>Placing CMIP5 Projections in the Context of Non-Stationary Flows<a class="headerlink" href="#placing-cmip5-projections-in-the-context-of-non-stationary-flows" title="Link to this heading">#</a></h3>
+<p>We have broadened the drought conditions that we are creating which that
+can be very useful to understand how our water systems model performs
+under potentially extreme scenarios. However, it’s useful to compare our
+bottom-up synthetically generated flows in the context of global
+physically-driven CMIP5 projections to get a better understanding of how
+the two approaches compare. We first aquire 97 CMIP5 projections from
+the Colorado River Water Availability Study (CWCB, 2012). In each of
+these projections, monthly precipitation factor changes and temperature
+delta changes were computed between mean projected 2035–2065 climate
+statistics and mean historical climate statistics from 1950–2013. These
+97 different combinations of 12 monthly precipitation multipliers and 12
+monthly temperature delta shifts were applied to historical
+precipitation and temperature time series from 1950–2013. The resulting
+climate time series were run through a Variable Infiltration Capacity
+(VIC) model of the UCRB, resulting in 97 time series of projected future
+streamflows at the Colorado‐Utah state line.</p>
+<p>We fit an HMM to each trace of projected streamflow and get a set of
+corresponding HMM parameters. Then we take the ratio between these
+parameters and the baseline HMM parameters that we calculated earlier in
+the notebook in order to calculate the multipliers associated with each
+CMIP5 projection. This is all done externally, so we import the
+resulting multipliers in the next line.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in CMIP5 and paleo multipliers</span>
+<span class="n">CMIP5_multipliers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/CMIP5_SOWs.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s plot a response surface that will allow us to see how combinations
+of HMM parameters tend to influence decadal drought. In order to get a
+continuous surface, we’ll fit a non-linear regression to the parameter
+values and then predict the decadal drought over a set of grid points.
+We fit the response surface for two parameters that should have an
+affect on decadal drought: the dry distribution mean and the dry-dry
+transition probabilites.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose two parameters to fit the response surface for</span>
+<span class="n">mu_dry</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">LHsamples</span><span class="p">]</span>
+<span class="n">tp_dry</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">LHsamples</span><span class="p">]</span>
+
+<span class="c1"># Create an interpolation grid</span>
+<span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mu_dry</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mu_dry</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mu_dry</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mu_dry</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">ygrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">tp_dry</span><span class="p">),</span>
+                  <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">tp_dry</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">tp_dry</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">tp_dry</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit regression</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Dry_Tp&#39;</span><span class="p">:</span> <span class="n">tp_dry</span><span class="p">,</span>
+     <span class="s1">&#39;Dry_Mu&#39;</span><span class="p">:</span> <span class="n">mu_dry</span><span class="p">,</span>
+     <span class="s1">&#39;Drought_Occurrence&#39;</span><span class="p">:</span><span class="n">decadal_drought_occurence</span><span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">df</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Interaction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Dry_Tp&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Dry_Mu&#39;</span><span class="p">]</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Intercept&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Dry_Mu&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Dry_Tp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Interaction&#39;</span><span class="p">]</span>
+<span class="n">ols</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Drought_Occurrence&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Calculate drought occurence for each grid point</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">ygrid</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">])</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">z</span><span class="p">[</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># replace negative shortage predictions with 0</span>
+</pre></div>
+</div>
+<p>Let’s plot our results:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set color gradient for response surface</span>
+<span class="n">drought_map</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Reshape our predicted drought occurrence and define bounds of colors</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Drought_Occurrence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+
+<span class="c1"># Plot response surface and CMIP5 projections</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">drought_map</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">CMIP5_multipliers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">7</span><span class="p">],</span>
+           <span class="n">CMIP5_multipliers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">12</span><span class="p">],</span>
+           <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#ffffb3&#39;</span><span class="p">,</span>
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+           <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">drought_map</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Dry State Mu&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Dry-Dry Transition Probability&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Decadal Drought Occurrence&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/hmm_53_0.png" src="_images/hmm_53_0.png" />
+<p>We see the influence of the dry state mean and dry-dry transition
+parameters. We’re likely to see more decadal droughts when we (1)
+increase the dry-dry transition probability, which inherently will
+increase persistence of the dry state, and (2) when we make the dry
+state log mean drier. Note that the CMIP5 scenarios tend to span the
+extent of the dry mean sample space, but are less representative of the
+dry transition probability sample space, which suggests that the types
+of hydrological droughts represented in the projections tend to only be
+wetter to slightly drier than our baseline. Both methods of producing
+these scenarios are valid, though studies have suggested that
+globally-resolved GCMs may be inappropriate to represent regional
+extremes. Ultimately, if your goal is to produce a variety of ensembles
+that are characterized by many different drought characteristics, you
+will likely find that a generator approach will serve this purpose
+better.</p>
+</section>
+<section id="tips-to-create-an-hmm-based-generator-for-your-system">
+<h3>Tips to Create an HMM-Based Generator for your System<a class="headerlink" href="#tips-to-create-an-hmm-based-generator-for-your-system" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we demonstrated how to fit an HMM-based generator for
+a single gauge located in the Upper Colorado River Basin. In order to
+apply this methodology to your problem, you will need to first ask:</p>
+<ol class="arabic simple">
+<li><p>Is this model appropriate for my location of interest? We have
+applied this style of generator to locations where persistent wet
+and dry states are characteristic, which tends to be in the Western
+US. Ultimately the best way to judge if an HMM is useful for your
+application is to fit the model and explore the resulting
+distributions. Are there two (or more) distinct states that emerge?
+If not, then your location may not exhibit the type of persistence
+that an HMM-based generator is useful for. You can consider
+exploring other styles of generators such as the Kirsch-Nowak
+generator (Kirsch et al., 2013).</p></li>
+<li><p>Do I have the right datasets? We use annual data for our location of
+interest. In this notebook, the HMM is fit to log annual flows.
+Ultimately, it can be disaggregated to daily flows (using a
+reference historical daily dataset) to be useful in water resources
+operational applications. You could also disaggregate to a finer
+resolution than daily if the historical dataset exists.</p></li>
+</ol>
+<p>If you meet these requirements, feel free to proceed through fitting the
+model using the code available in the notebook. Be sure to consider the
+appropirate number of samples to generate (both in a stationary and
+non-stationary case). Make sure that you test multiple sample sizes and
+continue to increase your sample size until you converge to a consistent
+representation of extremes. What is the appropriate number of LHS
+samples of the parameters to use? In this experiment we used 1,000
+samples of parameters due to extensive stability tests described in
+Quinn et al. (2020).</p>
+<p>Finally, to learn more about this test case refer to Hadmichael et
+al. (2020a) and Hadmichael et al. (2020b). For another study on
+synthetic drought generation to support vulnerability assessments in the
+Research Triangle region of North Carolina, please refer to Herman et
+al. (2016)</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>Ault, T. R., Cole, J. E., Overpeck, J. T., Pederson, G. T., &amp; Meko, D.
+M. (2014). Assessing the risk of persistent drought using climate model
+simulations and paleoclimate data. Journal of Climate, 27(20),
+7529-7549.</p>
+<p>CWCB (2012).Colorado River Water Availability Study Phase I Report.
+Colorado Water Conservation Board</p>
+<p>Hadjimichael, A., Quinn, J., Wilson, E., Reed, P., Basdekas, L., Yates,
+D., &amp; Garrison, M. (2020a). Defining robustness, vulnerabilities, and
+consequential scenarios for diverse stakeholder interests in
+institutionally complex river basins. Earth’s Future, 8(7),
+e2020EF001503.</p>
+<p>Hadjimichael, A., Quinn, J., &amp; Reed, P. (2020). Advancing diagnostic
+model evaluation to better understand water shortage mechanisms in
+institutionally complex river basins. Water Resources Research, 56(10),
+e2020WR028079.</p>
+<p>Herman, J. D., Zeff, H. B., Lamontagne, J. R., Reed, P. M., &amp;
+Characklis, G. W. (2016). Synthetic drought scenario generation to
+support bottom-up water supply vulnerability assessments. Journal of
+Water Resources Planning and Management, (11), 04016050.</p>
+<p>Kirsch, B. R., Characklis, G. W., &amp; Zeff, H. B. (2013). Evaluating the
+impact of alternative hydro-climate scenarios on transfer agreements:
+Practical improvement for generating synthetic streamflows. Journal of
+Water Resources Planning and Management, 139(4), 396-406.</p>
+<p>Overpeck, J.T. &amp; Udall, B. (2020) “Climate change and the aridification
+of North America.” Proceedings of the national academy of sciences
+117.22 11856-11858.</p>
+<p>Quinn, J. D., Hadjimichael, A., Reed,P. M., &amp; Steinschneider, S. (2020).
+Canexploratory modeling of water scarcity vulnerabilities and robustness
+bescenario neutral?Earth’s Future,8,e2020EF001650.
+<a class="reference external" href="https://doi.org/10.1029/2020EF001650Received">https://doi.org/10.1029/2020EF001650Received</a></p>
+<p>Williams, A. P., Cook, B. I., &amp; Smerdon, J. E. (2022). Rapid
+intensification of the emerging southwestern North American megadrought
+in 2020–2021. Nature Climate Change, 12(3), 232-234.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hidden-markov-modeling-approach-to-creating-synthetic-streamflow-scenarios">A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s Get Started!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observed-record">Observed Record</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthetic-stationary-generator-to-better-quantify-natural-variability">Synthetic Stationary Generator to Better Quantify Natural Variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-stationary-synthetic-generator-to-impose-climate-changes">Non-Stationary Synthetic Generator to Impose Climate Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#placing-cmip5-projections-in-the-context-of-non-stationary-flows">Placing CMIP5 Projections in the Context of Non-Stationary Flows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-create-an-hmm-based-generator-for-your-system">Tips to Create an HMM-Based Generator for your System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

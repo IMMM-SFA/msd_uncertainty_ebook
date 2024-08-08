@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Logistic Regression Tutorial &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A2.3_logistic';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA2.3_logistic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A2.3_logistic.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Logistic Regression Tutorial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-logistic-regression-for-factor-mapping">Tutorial: Logistic Regression for Factor Mapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s get started!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-latin-hypercube-sample-and-set-up-problem">Step 1: Load Latin hypercube sample and set up problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-define-decision-relevant-metrics-for-illustration">Step 2: Define decision-relevant metrics for illustration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-run-the-logistic-regression">Step 3: Run the logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-factor-ranking">Step 4: Factor ranking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-draw-factor-maps">Step 5: Draw factor maps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-scenario-discovery-to-your-own-problem">Tips to Apply Scenario Discovery to Your Own Problem</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="logistic-regression-tutorial">
+<h1>Logistic Regression Tutorial<a class="headerlink" href="#logistic-regression-tutorial" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">Run the tutorial interactively:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/basin_users_logistic_regression.ipynb">Logistic Regression Tutorial</a>.</div>
+<div class="line">Please be aware that notebooks can take a couple minutes to launch.</div>
+<div class="line">To run the notebooks yourself, download the files <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks">here</a> and use these <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt">requirements</a>.</div>
+</div>
+</div>
+<section id="tutorial-logistic-regression-for-factor-mapping">
+<h2>Tutorial: Logistic Regression for Factor Mapping<a class="headerlink" href="#tutorial-logistic-regression-for-factor-mapping" title="Link to this heading">#</a></h2>
+<p>This tutorial replicates a scenario discovery analysis performed in
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020EF001503">Hadjimichael et
+al. (2020)</a>.</p>
+<section id="background">
+<h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
+<p>Planners in the the Upper Colorado River Basin (UCRB, shown in the
+figure below) are seeking to understand the vulnerability of water users
+to uncertainties stemming from climate change, population growth and
+water policy changes. The UCRB spans 25,682 km2 in western Colorado and
+is home to approximately 300,000 residents and 1,012 km2 of irrigated
+land. Several thousand irrigation ditches divert water from the main
+river and its tributaties for irrigation (shown as small black dots in
+the figure). Transmountain diversions of approximately 567,400,000 m3
+per year are exported for irrigation, industrial and municipal uses in
+northern and eastern Colorado, serving the major population centers of
+Denver and Colorado Springs. These diversions are carried through
+tunnels, shown as large black dots in the figure.</p>
+<img alt="_images/basin_map.png" src="_images/basin_map.png" />
+<p>An important planning consideration is the water rights of each user,
+defined by seniority across all water uses (irrigation diversions,
+transboundary diversions, power plants etc.) in the basin. To assess the
+vulnerability of users with varying degrees of water rights seniority,
+planners simulate the system across an ensemble of scenarios using the
+state of Colorado’s StateMod platform. The model simulates streamflow,
+diversions, instream demands, and reservoir operations.</p>
+<p>Hadjimichael et al. (2020) employ an exploratory analysis by simulating
+a large ensemble of plausible scenarios using StateMod and then
+identifying consequential decision-relevant combinations of uncertain
+factors, termed scenario discovery. Focusing on decision-relevant
+metrics (metrics that are important to the user, the scenario discovery
+is applied to the water shortages experienced by each individual user
+(i.e., not on a single basin-wide or sector-wide metric). For this
+training example, we’ll be performing scenario discovery for three
+different water users: two irrigation users and one municipal user.</p>
+</section>
+<section id="lets-get-started">
+<h3>Let’s get started!<a class="headerlink" href="#lets-get-started" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we will be loading in data that has been produced in
+Hadjimichael et al. (2020). Before we start our analysis, we’ll load the
+relevant Python libraries, example data, and information for the three
+users.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import libraries</span>
+<span class="kn">import</span> <span class="nn">msdbook</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># load example data from Hadjimichael et al. (2020)</span>
+<span class="n">msdbook</span><span class="o">.</span><span class="n">install_package_data</span><span class="p">()</span>
+
+<span class="c1"># Select the IDs for the three users that we will perform the analysis for</span>
+<span class="n">all_IDs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;7000550&#39;</span><span class="p">,</span><span class="s1">&#39;7200799&#39;</span><span class="p">,</span><span class="s1">&#39;3704614&#39;</span><span class="p">]</span>
+<span class="n">usernames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Medium seniority irrigation&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Low seniority irrigation&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Transbasin municipal diversion&#39;</span><span class="p">]</span>
+<span class="n">nStructures</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_IDs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Downloading</span> <span class="n">example</span> <span class="n">data</span> <span class="k">for</span> <span class="n">msdbook</span> <span class="n">version</span> <span class="mf">0.1.5</span><span class="o">...</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">uncertain_params_bounds</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_metric_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_vary_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_mth_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">solutions</span><span class="o">.</span><span class="n">resultfile</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">3704614</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">LHsamples_original_1000</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">3704614</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">param_values</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_yr_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_mth_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7000550</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">collapse_days</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hymod_params_256samples</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_vary_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7000550</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7200799</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_yr_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7200799</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">LeafCatch</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hymod_simulations_256samples</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">Robustness</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="step-1-load-latin-hypercube-sample-and-set-up-problem">
+<h3>Step 1: Load Latin hypercube sample and set up problem<a class="headerlink" href="#step-1-load-latin-hypercube-sample-and-set-up-problem" title="Link to this heading">#</a></h3>
+<p>To examine regional vulnerability, we generate an ensemble of plausible
+future states of the world (SOWs) using Latin Hypercube Sampling. For
+this tutorial, we’ll load a file containing 1,000 samples across 14
+parameters. The sampled parameters encompass plausible changes to the
+future state of the basin, including changes to hydrology, water demands
+(irrigation, municipal &amp; industry, transbasin), and institutional and
+environmental factors (environmental flows, reservoir storage, operation
+of the Shoshone Power Plant). These samples are taken from ranges
+identified in <code class="docutils literal notranslate"><span class="pre">param_bounds</span></code>. Below we load in the 1000 samples, the
+range of values that the samples can take for each parameter, and the
+parameter names. More information on what each parameter constitutes can
+be found in Table 1 of Hadjimichael et al., 2020.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Identify the bounds for each of the 14 parameters</span>
+<span class="n">param_bounds</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_basin_param_bounds</span><span class="p">()</span>
+
+<span class="c1">#Load in the parameter samples</span>
+<span class="n">LHsamples</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_lhs_basin_sample</span><span class="p">()</span>
+
+<span class="c1">#Create an array of the parameter names</span>
+<span class="n">param_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Irrigation demand multiplier&#39;</span><span class="p">,</span><span class="s1">&#39;Reservoir loss&#39;</span><span class="p">,</span><span class="s1">&#39;Transbasin demand multiplier&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Municipal &amp; industrial multiplier&#39;</span><span class="p">,</span> <span class="s1">&#39;Shoshone&#39;</span><span class="p">,</span><span class="s1">&#39;Environmental flows&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Evaporation change&#39;</span><span class="p">,</span><span class="s1">&#39;Mean dry flow&#39;</span><span class="p">,</span><span class="s1">&#39;Dry flow variance&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Mean wet flow&#39;</span><span class="p">,</span><span class="s1">&#39;Wet flow variance&#39;</span><span class="p">,</span><span class="s1">&#39;Dry-dry probability&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Wet-wet probability&#39;</span><span class="p">,</span> <span class="s1">&#39;Snowmelt shift&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-define-decision-relevant-metrics-for-illustration">
+<h3>Step 2: Define decision-relevant metrics for illustration<a class="headerlink" href="#step-2-define-decision-relevant-metrics-for-illustration" title="Link to this heading">#</a></h3>
+<p>Scenario discovery attempts to identify parametric regions that lead to
+‘success’ and ‘failure’. For this demonstration we’ll be defining
+‘success’ as states of the world where a shortage level doesn’t exceed
+its historical frequency.</p>
+</section>
+<section id="step-3-run-the-logistic-regression">
+<h3>Step 3: Run the logistic regression<a class="headerlink" href="#step-3-run-the-logistic-regression" title="Link to this heading">#</a></h3>
+<p>Logistic regression estimates the probability that a future SOW will be
+classified as a success or failure given a set of performance criteria.
+A logistic regression model is defined by:</p>
+<div class="math notranslate nohighlight">
+\[ln \bigg (\frac{p_i}{1-p_i} \bigg ) = X^T_i \beta\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_i\)</span> is the probability the performance in the
+<span class="math notranslate nohighlight">\(i^{th}\)</span> SOW will be classified as a success, <span class="math notranslate nohighlight">\(X_i\)</span> is the
+vector of covariates describing the <span class="math notranslate nohighlight">\(i^{th}\)</span> SOW, and
+<span class="math notranslate nohighlight">\(\beta\)</span> is the vector of coefficients describing the relationship
+between the covariates and the response, which here will be estimated
+using maximum likelihood estimation.</p>
+<p>A logistic regression model was fit to the ensemble of SOWs using the
+performance criteria defined in step 2. Logistic regression modeling was
+conducted using the <a class="reference external" href="https://www.statsmodels.org/stable/index.html">Statsmodel
+Python</a> package. The
+data required for the full analysis is too large to include in this
+tutorial, but results can be found in the data file loaded below.</p>
+<p>The results files contain the occurence of different shortage frequency
+and magnitude combinations under the experiment, in increments of 10,
+between 0 and 100. These combinations (100 for each user) are
+alternative decision-relevant metrics that can be used for scenario
+discovery.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set arrays for shortage frequencies and magnitudes</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">magnitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">realizations</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Load performance and pseudo r scores for each of the users</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">msdbook</span><span class="o">.</span><span class="n">load_user_heatmap_array</span><span class="p">(</span><span class="n">all_IDs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_IDs</span><span class="p">))]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-factor-ranking">
+<h3>Step 4: Factor ranking<a class="headerlink" href="#step-4-factor-ranking" title="Link to this heading">#</a></h3>
+<p>To rank the importance of each uncertain factor, we utilize McFadden’s
+psuedo-R2, a measure that quantifies the improvement of the model when
+utilizing each given predictor as compared to prediction using the mean
+of the data set:</p>
+<div class="math notranslate nohighlight">
+\[R^2_{McFadden}=1-\frac{ln \hat{L}(M_{full})}{ln \hat{L}(M_{intercept})}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(ln \hat{L}(M_{full})\)</span> is the log likelihood of the full
+model (including the predictor) and <span class="math notranslate nohighlight">\(ln \hat{L}(M_{intercept})\)</span> is
+the log likelihood of the intercept model (which predicts the mean
+probability of success across all SOWs).</p>
+<p>Higher values of McFadden’s psuedo-R2 indicate higher factor importance
+(when the likelihood of the full model approaches one, the ratio of the
+likelihood of the full model compared to the intercept model will get
+very small).</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Load the pseudo-R^2 scores</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">msdbook</span><span class="o">.</span><span class="n">load_user_pseudo_scores</span><span class="p">(</span><span class="n">all_IDs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_IDs</span><span class="p">))]</span>
+
+<span class="c1"># Select indices of frequency and magnitudes that will be used for the visualization</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mag</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-draw-factor-maps">
+<h3>Step 5: Draw factor maps<a class="headerlink" href="#step-5-draw-factor-maps" title="Link to this heading">#</a></h3>
+<p>The McFadden’s psuedo-R2 scores files contain preliminary logistic
+regression results on parameter importance for each of these
+combinations. Using these psuedo-R2 scores we will identify the two most
+important factors for each metric which we’ll use to generate the final
+scenario discovery maps (note: there may be more than two important
+metrics for each user, but here we will demonstrate by mapping two).</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">)):</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">allSOWsperformance</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">all_pseudo_r_scores</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># construct dataframe</span>
+    <span class="n">dta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">LHsamples</span><span class="p">,</span> <span class="n">realizations</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">param_names</span><span class="p">)</span>
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Success&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allSOWsperformance</span><span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">mag</span><span class="p">[</span><span class="n">i</span><span class="p">],:]</span>
+
+    <span class="n">pseudo_r_scores</span> <span class="o">=</span> <span class="n">all_pseudo_r_scores</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">frequencies</span><span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">+</span><span class="s1">&#39;yrs_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">magnitudes</span><span class="p">[</span><span class="n">mag</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">+</span><span class="s1">&#39;prc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">top_predictors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">pseudo_r_scores</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span> <span class="c1">#Sort scores and pick top 2 predictors</span>
+
+    <span class="c1"># define color map for dots representing SOWs in which the policy</span>
+    <span class="c1"># succeeds (light blue) and fails (dark red)</span>
+    <span class="n">dot_cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">227</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">28</span><span class="p">],[</span><span class="mi">166</span><span class="p">,</span><span class="mi">206</span><span class="p">,</span><span class="mi">227</span><span class="p">]])</span><span class="o">/</span><span class="mf">255.0</span><span class="p">)</span>
+
+    <span class="c1"># define color map for probability contours</span>
+    <span class="n">contour_cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+
+    <span class="c1"># define probability contours</span>
+    <span class="n">contour_levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># define base values of the predictors</span>
+    <span class="n">SOW_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># default parameter values for base SOW</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">SOW_values</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">]</span>
+    <span class="n">ranges</span> <span class="o">=</span> <span class="n">param_bounds</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">]</span>
+
+    <span class="c1"># define grid of x (1st predictor), and y (2nd predictor) dimensions</span>
+    <span class="c1"># to plot contour map over</span>
+    <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">param_bounds</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span>
+                      <span class="n">param_bounds</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">((</span><span class="n">ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">500</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">ygrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">param_bounds</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span>
+                      <span class="n">param_bounds</span><span class="p">[</span><span class="n">top_predictors</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">((</span><span class="n">ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ranges</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">500</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">all_predictors</span> <span class="o">=</span> <span class="p">[</span> <span class="n">dta</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">top_predictors</span><span class="p">]</span>
+    <span class="n">dta</span><span class="p">[</span><span class="s1">&#39;Interaction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dta</span><span class="p">[</span><span class="n">all_predictors</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="n">dta</span><span class="p">[</span><span class="n">all_predictors</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="c1"># logistic regression here</span>
+    <span class="n">predictor_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_predictors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">fit_logit</span><span class="p">(</span><span class="n">dta</span><span class="p">,</span> <span class="n">predictor_list</span><span class="p">)</span>
+
+    <span class="c1"># plot contour map</span>
+    <span class="n">contourset</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">plot_contour_map</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">dta</span><span class="p">,</span> <span class="n">contour_cmap</span><span class="p">,</span>
+                                          <span class="n">dot_cmap</span><span class="p">,</span> <span class="n">contour_levels</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span>
+                                          <span class="n">ygrid</span><span class="p">,</span> <span class="n">all_predictors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">all_predictors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">base</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">usernames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1"># set up colorbar</span>
+<span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">contourset</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
+<span class="n">cbar_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Success&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">cbar_ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">statsmodels</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">127</span><span class="p">:</span> <span class="n">ValueWarning</span><span class="p">:</span> <span class="n">unknown</span> <span class="n">kwargs</span> <span class="p">[</span><span class="s1">&#39;disp&#39;</span><span class="p">]</span>
+  <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ValueWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Optimization</span> <span class="n">terminated</span> <span class="n">successfully</span><span class="o">.</span>
+         <span class="n">Current</span> <span class="n">function</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.378619</span>
+         <span class="n">Iterations</span> <span class="mi">8</span>
+<span class="n">Optimization</span> <span class="n">terminated</span> <span class="n">successfully</span><span class="o">.</span>
+         <span class="n">Current</span> <span class="n">function</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.397285</span>
+         <span class="n">Iterations</span> <span class="mi">8</span>
+<span class="n">Optimization</span> <span class="n">terminated</span> <span class="n">successfully</span><span class="o">.</span>
+         <span class="n">Current</span> <span class="n">function</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.377323</span>
+         <span class="n">Iterations</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<img alt="_images/notebook_logistic_output_11_1.png" src="_images/notebook_logistic_output_11_1.png" />
+<p>The figure above demonstrates how different combinations of the
+uncertain factors lead to success or failure in different states of the
+world, which are denoted by the blue and red dots respectively. The
+probability of success and failure are further denoted by the contours
+in the figure. Several insights can be drawn from this figure.</p>
+<p>First, using metrics chosen to be decision-relevant (specific to each
+user) causes different factors to be identified as most important by
+this scenario-discovery exercise (the x- and y-axes for each of the
+subplots). In other words, depending on what the decision makers of this
+system want to prioritize they might choose to monitor different
+uncertain factors to track performance.</p>
+<p>Second, in the top panel, the two identified factors appear to also have
+an interactive effect on the metric used (shortages of a certain level
+and frequency in this example). In terms of scenario discovery, the
+Patient Rule Induction Method (PRIM) or Classification And Regression
+Trees (CART) would not be able to delineate this non-linear space and
+would therefore misclassify parameter combinations as ‘desirable’ when
+they were in fact undesirable, and vice versa.</p>
+<p>Lastly, logistic regression also produces contours of probability of
+success, i.e. different factor-value combinations are assigned different
+probabilities that a shortage level will be exceeded. This allows the
+decision makers to evaluate these insights while considering their risk
+aversion.</p>
+</section>
+<section id="tips-to-apply-scenario-discovery-to-your-own-problem">
+<h3>Tips to Apply Scenario Discovery to Your Own Problem<a class="headerlink" href="#tips-to-apply-scenario-discovery-to-your-own-problem" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we demonstrated how to perform a scenario discovery
+analysis for three different users in the UCRB. The analysis allowed us
+to determine which parameters the users would be most affected by and to
+visualize how different ranges of these parameters lead to success and
+failure for different users. This framework can be applicable to any
+other application where it is of interest to characterize success and
+failure based on uncertain parameter ranges. In order to apply the same
+framework to your own problem:</p>
+<ol class="arabic simple">
+<li><p>Choose sampling bounds for your parameters of interest, which will
+represent uncertainties that characterize your system.</p></li>
+<li><p>Generate samples for these parameters (this can be done using the
+<code class="docutils literal notranslate"><span class="pre">saltelli.sample</span></code> function or externally).</p></li>
+<li><p>Define what constitutes success and failure in your problem. In this
+tutorial, success was defined based on not surpassing the historical
+drought frequency. Choose a metric that is relevant to your problem
+and decision-makers that might be involved. If your model involves an
+optimization, you can also define metrics based on meeting certain
+values of these objectives.</p></li>
+<li><p>Run the parameter sets through your model and calculate success and
+failure based on your metrics and across different users if
+applicable. This step will allow you to create the scatter plot part
+of the final figure.</p></li>
+<li><p>If it is of interest, the contours on the figure can be created by
+fitting the logistic regression model in a similiar manner as denoted
+in Steps 3 and 5 of the tutorial.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-logistic-regression-for-factor-mapping">Tutorial: Logistic Regression for Factor Mapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s get started!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-latin-hypercube-sample-and-set-up-problem">Step 1: Load Latin hypercube sample and set up problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-define-decision-relevant-metrics-for-illustration">Step 2: Define decision-relevant metrics for illustration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-run-the-logistic-regression">Step 3: Run the logistic regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-factor-ranking">Step 4: Factor ranking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-draw-factor-maps">Step 5: Draw factor maps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-scenario-discovery-to-your-own-problem">Tips to Apply Scenario Discovery to Your Own Problem</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

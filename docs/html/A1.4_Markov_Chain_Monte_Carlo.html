@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Markov Chain Monte Carlo &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A1.4_Markov_Chain_Monte_Carlo';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA1.4_Markov_Chain_Monte_Carlo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A1.4_Markov_Chain_Monte_Carlo.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Markov Chain Monte Carlo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="markov-chain-monte-carlo">
+<h1>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Link to this heading">#</a></h1>
+<p>Markov chain Monte Carlo (MCMC) is a “gold standard” approach to full uncertainty quantification. MCMC refers to a category of algorithms which systematically sample from a target distribution (in this case, the posterior distribution) by constructing a Markov chain. A Markov chain is a probabilistic structure consisting of a state space, an initial probability distribution over the states, and a transition distribution between states. If a Markov chain satisfies certain properties <span id="id1">[<a class="reference internal" href="R.Bibliography.html#id170" title="Christian Robert and George Casella. Monte Carlo Statistical Methods. Springer Science &amp; Business Media, March 2013. ISBN 978-1-4757-3071-5.">168</a>, <a class="reference internal" href="R.Bibliography.html#id169" title="Christian P. Robert. The Metropolis–Hastings Algorithm. In Wiley StatsRef: Statistics Reference Online, pages 1–15. American Cancer Society, 2015. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118445112.stat07834 (visited on 2021-06-14), doi:10.1002/9781118445112.stat07834.">169</a>]</span>, the probability of being in each state will eventually converge to a stable, or stationary, distribution, regardless of the initial probabilities.</p>
+<p>MCMC algorithms construct a Markov chain of samples from a parameter space (the combination of model and statistical parameters). This Markov chain is constructed so that the stationary distribution is a target distribution, in this case the (Bayesian) posterior distribution. As a result, after the transient period, the resulting samples can be viewed as a set of dependent samples from the posterior (the dependence is due to the autocorrelation between samples resulting from the Markov chain transitions). Expected values can be computed from these samples (for example, using batch-means estimators <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id171" title="James M. Flegal, Murali Haran, and Galin L. Jones. Markov Chain Monte Carlo: Can We Trust the Third Significant Figure? Statistical Science, 23(2):250–260, May 2008. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-23/issue-2/Markov-Chain-Monte-Carlo--Can-We-Trust-the-Third/10.1214/08-STS257.full (visited on 2021-06-14), doi:10.1214/08-STS257.">170</a>]</span>), or the chain can be sub-sampled or thinned and the resulting samples used as independent Monte Carlo samples due to the reduced or eliminated autocorrelation.</p>
+<p>A general workflow for MCMC is shown in <a class="reference internal" href="A1_Uncertainty_Quantification.html#figure-a1-4"><span class="std std-numref">Fig. A.4</span></a>. The first decision is whether to use the full model or a surrogate model (or emulator). Typical surrogates include Gaussian process emulation <span id="id3">[<a class="reference internal" href="R.Bibliography.html#id172" title="Carla Currin, Toby Mitchell, Max Morris, and Don Ylvisaker. Bayesian Prediction of Deterministic Functions, with Applications to the Design and Analysis of Computer Experiments. Journal of the American Statistical Association, 86(416):953–963, December 1991. Publisher: Taylor &amp; Francis _eprint: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1991.10475138. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1991.10475138 (visited on 2021-06-14), doi:10.1080/01621459.1991.10475138.">171</a>, <a class="reference internal" href="R.Bibliography.html#id173" title="Jerome Sacks, William J. Welch, Toby J. Mitchell, and Henry P. Wynn. Design and Analysis of Computer Experiments. Statistical Science, 4(4):409–423, 1989. Publisher: Institute of Mathematical Statistics. URL: https://www.jstor.org/stable/2245858 (visited on 2021-06-14).">172</a>]</span>, polynomial chaos expansions <span id="id4">[<a class="reference internal" href="R.Bibliography.html#id174" title="Roger G. Ghanem and Pol D. Spanos. Spectral Stochastic Finite‐Element Formulation for Reliability Analysis. Journal of Engineering Mechanics, 117(10):2351–2372, October 1991. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%290733-9399%281991%29117%3A10%282351%29 (visited on 2021-06-14), doi:10.1061/(ASCE)0733-9399(1991)117:10(2351).">173</a>, <a class="reference internal" href="R.Bibliography.html#id175" title="Dongbin Xiu and George Em Karniadakis. The Wiener–Askey Polynomial Chaos for Stochastic Differential Equations. SIAM Journal on Scientific Computing, 24(2):619–644, January 2002. Publisher: Society for Industrial and Applied Mathematics. URL: https://epubs.siam.org/doi/abs/10.1137/S1064827501387826 (visited on 2021-06-14), doi:10.1137/S1064827501387826.">174</a>]</span>, support vector machines <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id176" title="Angelo Ciccazzo, Gianni Di Pillo, and Vittorio Latorre. A SVM Surrogate Model-Based Method for Parametric Yield Optimization. IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 35(7):1224–1228, July 2016. Conference Name: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems. doi:10.1109/TCAD.2015.2501307.">175</a>, <a class="reference internal" href="R.Bibliography.html#id177" title="W. Andrew Pruett and Robert L. Hester. The Creation of Surrogate Models for Fast Estimation of Complex Model Outcomes. PLOS ONE, 11(6):e0156574, June 2016. Publisher: Public Library of Science. URL: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0156574 (visited on 2021-06-14), doi:10.1371/journal.pone.0156574.">176</a>]</span>, and neural networks <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id178" title="John Eason and Selen Cremaschi. Adaptive sequential sampling for surrogate model generation with artificial neural networks. Computers &amp; Chemical Engineering, 68:220–232, September 2014. URL: https://www.sciencedirect.com/science/article/pii/S0098135414001719 (visited on 2021-06-14), doi:10.1016/j.compchemeng.2014.05.021.">177</a>, <a class="reference internal" href="R.Bibliography.html#id179" title="Dirk Gorissen, Luciano De Tommasi, Karel Crombecq, and Tom Dhaene. Sequential modeling of a low noise amplifier with neural networks and active learning. Neural Computing and Applications, 18(5):485–494, June 2009. URL: https://doi.org/10.1007/s00521-008-0223-1 (visited on 2021-06-14), doi:10.1007/s00521-008-0223-1.">178</a>]</span>. Surrogate modeling can be faster, but requires a sufficient number of model evaluations for the surrogate to accurately represent the model’s response surface, and this typically limits the number of parameters which can be included in the analysis.</p>
+<figure class="margin-caption align-center" id="id16">
+<span id="figure-a1-4"></span><a class="reference internal image-reference" href="_images/figureA1_4_mcmc_workflow.png"><img alt="Figure A1.4" src="_images/figureA1_4_mcmc_workflow.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Workflow for Markov chain Monte Carlo.</span><a class="headerlink" href="#id16" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>After selecting the variables which will be treated as uncertain, the next step is to specify the likelihood based on the selected surrogate model or the structure of the data-model residuals. For example, it may not always be appropriate to treat the residuals as independent and identically distributed (as is commonly done in linear regression). A mis-specification of the residual structure can result in biases and over- or under-confident inferences and projections <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id180" title="Jenný Brynjarsdóttir and Anthony O'Hagan. Learning about physical parameters: the importance of model discrepancy. Inverse Problems, 30(11):114007, October 2014. Publisher: IOP Publishing. URL: https://doi.org/10.1088/0266-5611/30/11/114007 (visited on 2021-06-14), doi:10.1088/0266-5611/30/11/114007.">179</a>]</span>.</p>
+<p>After specifying the prior distributions (see <a class="reference internal" href="A1_Uncertainty_Quantification.html#critical-first-step"><span class="std std-numref">Chapter A.6</span></a>), the selected MCMC algorithm should be used to draw samples from the posterior distribution. There are many MCMC algorithms, all of which have advantages and disadvantages for a particular problem. These include the Metropolis-Hastings algorithm <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id169" title="Christian P. Robert. The Metropolis–Hastings Algorithm. In Wiley StatsRef: Statistics Reference Online, pages 1–15. American Cancer Society, 2015. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118445112.stat07834 (visited on 2021-06-14), doi:10.1002/9781118445112.stat07834.">169</a>]</span> and Hamiltonian Monte Carlo <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id181" title="Michael Betancourt. A conceptual introduction to Hamiltonian Monte Carlo. arXiv preprint arXiv:1701.02434, 2017.">180</a>, <a class="reference internal" href="R.Bibliography.html#id182" title="Radford M. Neal. MCMC using Hamiltonian dynamics. Handbook of markov chain monte carlo, 2(11):2, 2011.">181</a>]</span>. Software packages typically implement one MCMC method, sometimes designed for a particular problem setting or likelihood specification. For example, R’s <em>adaptMCMC</em> implements an adaptive Metropolis-Hastings algorithm <span id="id10">[<a class="reference internal" href="R.Bibliography.html#id183" title="Matti Vihola. Robust adaptive Metropolis algorithm with coerced acceptance rate. Statistics and Computing, 22(5):997–1008, September 2012. URL: https://doi.org/10.1007/s11222-011-9269-5 (visited on 2021-06-14), doi:10.1007/s11222-011-9269-5.">182</a>]</span>, while <em>NIMBLE</em> <span id="id11">[<a class="reference internal" href="R.Bibliography.html#id184" title="Perry de Valpine, Daniel Turek, Christopher J. Paciorek, Clifford Anderson-Bergman, Duncan Temple Lang, and Rastislav Bodik. Programming With Models: Writing Statistical Algorithms for General Model Structures With NIMBLE. Journal of Computational and Graphical Statistics, 26(2):403–413, April 2017. Publisher: Taylor &amp; Francis _eprint: https://doi.org/10.1080/10618600.2016.1172487. URL: https://doi.org/10.1080/10618600.2016.1172487 (visited on 2021-06-14), doi:10.1080/10618600.2016.1172487.">183</a>, <a class="reference internal" href="R.Bibliography.html#id185" title="NIMBLE Development Team. NIMBLE: MCMC, Particle Filtering, and Programmable Hierarchical Modeling. May 2021. URL: https://zenodo.org/record/4829693 (visited on 2021-06-14), doi:10.5281/zenodo.4829693.">184</a>]</span> uses a user-customizable Metropolis-Hastings implementation, as well as functionality for Gibbs sampling (which is a special case of Metropolis-Hastings where the prior distribution has a convenient mathematical form). Some recent implementations, such as <em>Stan</em> <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id186" title="Stan Development Team. Stan Modeling Language Users Guide and Reference Manual. 2021. URL: https://mc-stan.org/docs/2_27/stan-users-guide/index.html (visited on 2021-06-14).">185</a>]</span>, <em>pyMC3</em> <span id="id13">[<a class="reference internal" href="R.Bibliography.html#id187" title="John Salvatier, Thomas V. Wiecki, and Christopher Fonnesbeck. Probabilistic programming in Python using PyMC3. PeerJ Computer Science, 2:e55, April 2016. Publisher: PeerJ Inc. URL: https://peerj.com/articles/cs-55 (visited on 2021-06-14), doi:10.7717/peerj-cs.55.">186</a>]</span>, and <em>Turing</em> <span id="id14">[<a class="reference internal" href="R.Bibliography.html#id188" title="Hong Ge, Kai Xu, and Zoubin Ghahramani. Turing: A Language for Flexible Probabilistic Inference. In International Conference on Artificial Intelligence and Statistics, 1682–1690. PMLR, March 2018. ISSN: 2640-3498. URL: http://proceedings.mlr.press/v84/ge18b.html (visited on 2021-06-14).">187</a>]</span> allow different algorithms to be used.</p>
+<p>A main consideration when using MCMC algorithms is testing for convergence to the target distribution. As convergence is guaranteed only for a sufficiently large number of transitions, it is impossible to conclude for certain that a chain has converged for a fixed number of iterations. However, several heuristics have been developed <span id="id15">[<a class="reference internal" href="R.Bibliography.html#id171" title="James M. Flegal, Murali Haran, and Galin L. Jones. Markov Chain Monte Carlo: Can We Trust the Third Significant Figure? Statistical Science, 23(2):250–260, May 2008. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-23/issue-2/Markov-Chain-Monte-Carlo--Can-We-Trust-the-Third/10.1214/08-STS257.full (visited on 2021-06-14), doi:10.1214/08-STS257.">170</a>, <a class="reference internal" href="R.Bibliography.html#id189" title="Andrew Gelman and Donald B. Rubin. Inference from Iterative Simulation Using Multiple Sequences. Statistical Science, 7(4):457–472, November 1992. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Inference-from-Iterative-Simulation-Using-Multiple-Sequences/10.1214/ss/1177011136.full (visited on 2021-06-14), doi:10.1214/ss/1177011136.">188</a>]</span> to increase evidence that convergence has occurred.</p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

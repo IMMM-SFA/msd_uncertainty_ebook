@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Time-evolving scenario discovery for infrastructure pathways &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A2.5_discovery';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA2.5_discovery.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A2.5_discovery.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Time-evolving scenario discovery for infrastructure pathways</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Time-evolving scenario discovery for infrastructure pathways</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-robustness-over-time">Evaluating Robustness over time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-performance-evolution">Exploring performance evolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-deep-uncertainties-generate-vulnerability">How do deep uncertainties generate vulnerability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-uncertainties-have-the-most-influence-on-time-evolving-performance">Which uncertainties have the most influence on time-evolving performance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-exploration">Open exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-this-methodology-to-your-own-problem">Tips to apply this methodology to your own problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="time-evolving-scenario-discovery-for-infrastructure-pathways">
+<h1>Time-evolving scenario discovery for infrastructure pathways<a class="headerlink" href="#time-evolving-scenario-discovery-for-infrastructure-pathways" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">Run the tutorial interactively:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/Bedford_Greene_SD_tutorial.ipynb">Scenario Discovery Notebook</a>.</div>
+<div class="line">Please be aware that notebooks can take a couple minutes to launch.</div>
+<div class="line">To run the notebooks yourself, download the files <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks">here</a> and use these <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt">requirements</a>.</div>
+</div>
+</div>
+<section id="id1">
+<h2>Time-evolving scenario discovery for infrastructure pathways<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>The purpose of this tutorial is to explore time-evolving vulnerability for systems that dynamically adapt to changing conditions. Using an example from water supply planning, we’ll first examine how performance of a dynamic infrastructure pathway policy changes over time, then use factor mapping (main text Chapter 4.3) to understand which combinations of uncertaities generate vulnerability for two water utilities. Next, we’ll perform factor prioritization (main text Chapter 4.3) to determine which uncertainties have the most influence on water supply performance. Finally, we’ll provide an open platform to explore vulnerability across multiple measures of performance and different combinations of uncertainties.</p>
+<section id="background">
+<h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
+<p>The Bedford-Greene metropolitan area (Figure 1) is a stylized water resources test case where two urban water utilities seek to develop an infrastructure and investment and management strategy to confront growing demands and changing climate. The utilities have agreed to jointly construct a new water treatment plant on Lake Classon, a large regional resource. Both utilities have also identified a set of individual infrastructure options to construct if necessary.</p>
+<figure class="align-default" id="id2">
+<img alt="Figure 1" src="_images/Map_small.png" />
+<figcaption>
+<p><span class="caption-text">Figure 1</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The utilities are formulating a cooperative and adaptive regional management strategy that uses a risk-of-failure (ROF) metric to trigger both short term drought mitigation actions (water use restrictions and treated transfers between utilities) and long-term infrastructure investment decisions (shown in Figure 2a). Both utilities have specified a set of risk triggers and developed a construction order for available infrastructure options.</p>
+<p>The utilities have run a Monte Carlo simulation to evaluate how these policies respond to a wide array of future States Of the World (SOWs). Each SOW represents a different combinations of thirteen uncertain system inputs including demand growth rates, changes to streamflows and financial variables. In this context, a fully specified SOW is composed of one sample of uncertain model inputs (e.g. one projection of demand growth rate coupled with one future streamflow scenario and one projection of future financial conditions). The water utilities used Latin Hypercube sampling (Chapter 3.3 of the main text) to develop an ensemble of 1,000 plausible future SOWs. The Monte Carlo simulation evaluates each candidate water supply infrastructure investment and management policy across all 1,000 SOWs, as shown in Figure 2b. For more details on the Monte Carlo sampling for this type  of analysis, see Trindade et al., (2019).</p>
+<p>The ROF-based policies respond to each SOW by generating a unique infrastructure pathway - a sequence of infrastructure investment decisions over time. Infrastructure pathways over a set of 1,000 future SOWs are shown in Figure 2c. Infrastructure options are arrayed along the vertical axis and the sequence of infrastructure investments triggered by the policy is plotted as pathways over time.  Since the adaptive rule system generates a unique infrastructure sequence for each scenario, Figure 2c summarizes the ensemble of pathways by clustering SOWs according to infrastructure intensity. Dark green lines represent SOWs where the utilities heavily invest in new infrastructure, light green lines represent SOWs with low infrastructure investment and medium shaded lines represent moderate investment. The shading behind each pathway represents the frequency that each infrastructure option was triggered over time across sampled scenarios</p>
+<figure class="align-default" id="id3">
+<img alt="Figure 2" src="_images/Policy_MonteCarlo_Pathways_small.png" />
+<figcaption>
+<p><span class="caption-text">Figure 2</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="evaluating-robustness-over-time">
+<h3>Evaluating Robustness over time<a class="headerlink" href="#evaluating-robustness-over-time" title="Link to this heading">#</a></h3>
+<p>The two water utilities are interested in mainting both supply
+reliability and financial stability across the broadest set of plausible
+future SOWs. To measure the performance of the infrastructure pathway
+policy, they’ve defined five critical performance criteria:</p>
+<ul class="simple">
+<li><p>Reliability &gt; 99%</p></li>
+<li><p>Restriction Frequency &lt; 20%</p></li>
+<li><p>Peak Financial Cost &lt; 80% of annual revenue (a measure of debt
+service spending)</p></li>
+<li><p>Worst-case drought management cost &lt; 10% of annual revenue (a measure
+of unexpected drought costs)</p></li>
+<li><p>Unit Cost of Expansion &lt; 5 dollars/kgal</p></li>
+</ul>
+<p>To assess the robustness of the infrastructure pathway policy, the two
+utilities apply a satisficing metric, which measures the percentage of
+sampled SOWs where the pathway policy meets the peformance criteria:</p>
+<p><span class="math notranslate nohighlight">\(R =\frac{1}{N}\sum_{j=1}^{N}\Lambda_{\theta,j}\)</span></p>
+<p>Where, <span class="math notranslate nohighlight">\(\Lambda\_{\theta,j}=\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+1, \quad \textrm{if}\ F(\theta)_{j}\leq \Phi_j \\
+0, \quad \textrm{otherwise}
+\end{cases}\end{split}\]</div>
+<p>And <span class="math notranslate nohighlight">\(\Phi\)</span> is a vector of performance criteria for utility
+<span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span> is the portfolio and <span class="math notranslate nohighlight">\(N\)</span> is the total
+number of sampled SOWs.</p>
+<p>Below, we’ll visualize how robustness for the two utilities evolves over the 45-year planning horizon. We’ll assess robustness across three time periods, near-term (first 10 years), mid-term (22 years) and long term (45 years).</p>
+<p>We start by loading robustness values for the both utilities. These values are calculated by applying the robustness metric above across 2,000 simulated SOWs. To make this exercise computationally tractable, we’ve precomputed these values, which can be found in the files “short_term_robustness.csv”, “mid_term_robustness.csv” and “long_term_robustness.csv”. These values are calculated using the function “check_rdm_meet_criteria” within the helper functions.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">functions.eBook_SD_helpers</span> <span class="kn">import</span> <span class="n">check_rdm_meet_criteria</span><span class="p">,</span> <span class="n">create_sd_input</span><span class="p">,</span> <span class="n">plot_selected_tree_maps</span><span class="p">,</span> <span class="n">get_factor_importances</span><span class="p">,</span> <span class="n">open_exploration</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># load Deeply uncertain factors</span>
+<span class="n">rdm_factors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/DU_Factors.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">short_term_robustness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/short_term_robustness.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">mid_term_robustness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/mid_term_robustness.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">long_term_robustness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/long_term_robustness.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot robustness over time</span>
+<span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">45</span><span class="p">],</span> <span class="p">[</span><span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#B19CD9&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span> <span class="p">[</span><span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span> <span class="s1">&#39;#43b284&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">45</span><span class="p">],</span> <span class="p">[</span><span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#B19CD9&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span> <span class="p">[</span><span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#43b284&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time Horizon (yrs)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Robustness (% SOWs)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Bedford&#39;</span><span class="p">,</span> <span class="s1">&#39;Greene&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Robustness Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">107</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">107.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/discovery_4_1.png" src="_images/discovery_4_1.png" />
+</section>
+<section id="exploring-performance-evolution">
+<h3>Exploring performance evolution<a class="headerlink" href="#exploring-performance-evolution" title="Link to this heading">#</a></h3>
+<p>The figure above reveals that the robustness of both water utilities degrades over time, with Bedford’s robustness declining further than Greene. This suggests that the proposed pathway policy is likely insufficient to meet the long-term needs of the two utilities. But how is the current policy insufficient? To answer that question we examine the performance measures that fail to meet performance criteria for each utility across the three planning horizons.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the type of vulnerability over time</span>
+
+<span class="c1">### Bedford ###</span>
+<span class="n">plot_robustness_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># Determine the percentage of failure SOWs that violate each criterion (note some SOWS fail multiple criteria, so this may some to &gt;1)</span>
+<span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Reliability&#39;</span><span class="p">,</span> <span class="s1">&#39;Restriction Frequency&#39;</span><span class="p">,</span> <span class="s1">&#39;Peak Financial Cost&#39;</span><span class="p">,</span> <span class="s1">&#39;Worst-case drought</span><span class="se">\n</span><span class="s1">Management Cost&#39;</span><span class="p">,</span> <span class="s1">&#39;Stranded Assets&#39;</span><span class="p">]</span>
+<span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Plot over time</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#B19CD9&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;10-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of failure SOWs&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#B19CD9&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;22-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_1</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#B19CD9&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;45-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Bedford&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1">### Greene ###</span>
+<span class="c1"># Determine the percentage of failure SOWs that violate each criterion (note some SOWS fail multiple criteria, so this may some to &gt;1)</span>
+<span class="n">plot_robustness_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">short_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+<span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mid_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+<span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">long_term_robustness</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#43b284&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;10-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of failure SOWs&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#43b284&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;22-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">plot_robustness_2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#43b284&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">criteria</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;45-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Greene&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/discovery_6_0.png" src="_images/discovery_6_0.png" />
+<img alt="_images/discovery_6_1.png" src="_images/discovery_6_1.png" />
+<p>In the figures above, we observe that the vulnerability of both utilities changes in different ways. Early in the simulation period, Bedford is vulnerable to failures in reliability (though the robustness figure created in step B5.2 reveals that these failures are very rare). As the simulation period progresses, Bedford’s vulnerability expands to include failures in restriction frequency and worst-case cost. These failures indicate that the utility has an overall inability to manage drought conditions and future conditions progress.</p>
+<p>Greene shows a very different evolution in vulnerability. Early in the simulation period, failures manifest in the restriction frequency objective, suggesting that the utility must rely on water use restrictions to maintain supply reliability. As the simulation progresses however, the vulnerability evolves. When evaluated across the 45-year planning horizon, a new failure modes emerges - financial failure manifesting in peak financial cost and stranded assets. This suggests that the proposed pathway policy may be over-investing in new infrastructure, straining the utility’s budget with large debt payments that are unnecessary to maintain supply reliability.</p>
+</section>
+<section id="how-do-deep-uncertainties-generate-vulnerability">
+<h3>How do deep uncertainties generate vulnerability<a class="headerlink" href="#how-do-deep-uncertainties-generate-vulnerability" title="Link to this heading">#</a></h3>
+<p>While the evolution of robustness provides insight into how the system
+evolves over time, it does not reveal <em>why</em> each utility is vulnerable.
+To examine how deep uncertainties generate vulnerability over time for
+the two utilities, we perform scenario discovery (factor mapping,
+Chapter 4.3). Here we’ll utilize gradient boosted trees to identify
+regions of the uncertainty space that cause the utilities to fail to
+meet performance criteria.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the performance data across 2000 SOWs for three time periods</span>
+<span class="n">short_term_performance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/short_term_performance.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">mid_term_performance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/mid_term_performance.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">long_term_performance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/long_term_performance.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">satisficing_criteria</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.98</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># transform into scenario discovery input</span>
+<span class="n">short_term_SD_input</span> <span class="o">=</span> <span class="n">create_sd_input</span><span class="p">(</span><span class="n">short_term_performance</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">)</span>
+<span class="n">mid_term_SD_input</span> <span class="o">=</span> <span class="n">create_sd_input</span><span class="p">(</span><span class="n">mid_term_performance</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">)</span>
+<span class="n">long_term_SD_input</span> <span class="o">=</span> <span class="n">create_sd_input</span><span class="p">(</span><span class="n">long_term_performance</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">)</span>
+
+<span class="c1"># factor mapping Bedford</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;short_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;10-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;mid_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;22-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;long_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;45-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Bedford Factor Maps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># factor mapping Greene</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;short_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;10-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;mid_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;22-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">plot_selected_tree_maps</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;long_term&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">satisficing_criteria</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;45-year Horizon&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Greene Factor Maps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Greene</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Greene</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Greene</span>
+</pre></div>
+</div>
+<img alt="_images/discovery_9_1.png" src="_images/discovery_9_1.png" />
+<img alt="_images/discovery_9_2.png" src="_images/discovery_9_2.png" />
+<p>In the figures above, we learn more about how the vulnerability of the two utilities evolves over time. Bedford begins with very few possible failures but appears vulnerable to high demand growth scenarios under future scenarios with high demands. When evaluated across a 22-year planning horizon, Bedford is vulnerable when the near-term demand growth is high and water use restrictions are less effective than predicted. Under the full 45-year planning horizon, Bedford is vulnerable to sustained high levels of demand growth, failing if either near-term or mid-term demand growth exceeds expected levels.</p>
+<p>Greene’s vulnerability evolves differently. It begins with vulnerability to high demand growth, but as the simulation progresses (and infrastructure is constructed), the utility becomes vulnerable to low-demand growth futures which cause the failures in financial criteria shown in section B.5.3. This indicates that the pathway policy over-builds in many SOWs, and becomes financially unstable if demand does not grow sufficiently to provide revenue to cover debt service payments.</p>
+</section>
+<section id="which-uncertainties-have-the-most-influence-on-time-evolving-performance">
+<h3>Which uncertainties have the most influence on time-evolving performance?<a class="headerlink" href="#which-uncertainties-have-the-most-influence-on-time-evolving-performance" title="Link to this heading">#</a></h3>
+<p>The factor maps generated in B.5.4 present the vulnerability generated by the two most important deep uncertainties as determined by Gradient Boosted Trees. Yet the factor prioritization shows that more than two uncertainties are influential to regional performance. Further, we can observe that individual uncertainties have different impacts on each performance obejctive, and these impacts may change over time. In the cells below, explore the impact of deep uncertainty by generating factor maps for different combinations of deep uncertain factors, objectives and time horizons.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">uncertainties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;D1&#39;</span><span class="p">,</span> <span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">,</span> <span class="s1">&#39;BT&#39;</span><span class="p">,</span> <span class="s1">&#39;BM&#39;</span><span class="p">,</span> <span class="s1">&#39;DR&#39;</span><span class="p">,</span> <span class="s1">&#39;RE&#39;</span><span class="p">,</span> <span class="s1">&#39;EV&#39;</span><span class="p">,</span> <span class="s1">&#39;PM&#39;</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">,</span> <span class="s1">&#39;IA&#39;</span><span class="p">,</span> <span class="s1">&#39;IF&#39;</span><span class="p">,</span> <span class="s1">&#39;IP&#39;</span><span class="p">]</span>
+<span class="n">uncertainties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Near-term demand&#39;</span><span class="p">,</span> <span class="s1">&#39;Mid-term demand&#39;</span><span class="p">,</span> <span class="s1">&#39;Long-term demand&#39;</span><span class="p">,</span> <span class="s1">&#39;Bond Term&#39;</span><span class="p">,</span> <span class="s1">&#39;Bond Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Discount Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Restriction Effectiveness&#39;</span><span class="p">,</span> <span class="s1">&#39;Evaporation Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Permitting time&#39;</span><span class="p">,</span> <span class="s1">&#39;Construction time&#39;</span><span class="p">,</span> <span class="s1">&#39;Inflow Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Inflow Frequency&#39;</span><span class="p">,</span> <span class="s1">&#39;Inflow Period&#39;</span><span class="p">]</span>
+
+<span class="n">u1_st_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">short_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">u1_mt_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">mid_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">u1_lt_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">long_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">u1_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">u1_st_FI</span><span class="p">,</span><span class="n">u1_mt_FI</span><span class="p">,</span> <span class="n">u1_lt_FI</span><span class="p">])</span>
+<span class="n">u1_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">u1_all</span><span class="p">)</span>
+
+<span class="c1"># factor ranking -- utility 2</span>
+<span class="n">u2_st_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">short_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">u2_mt_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">mid_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">u2_lt_FI</span> <span class="o">=</span> <span class="n">get_factor_importances</span><span class="p">(</span><span class="n">long_term_SD_input</span><span class="p">,</span> <span class="n">rdm_factors</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">u2_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">u2_st_FI</span><span class="p">,</span><span class="n">u2_mt_FI</span><span class="p">,</span> <span class="n">u2_lt_FI</span><span class="p">])</span>
+<span class="n">u2_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">u2_all</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">cax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+                  <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width_ratios&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u1_all</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">uncertainties</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time Horizon&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Bedford&#39;</span><span class="p">)</span>
+
+<span class="n">im1</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">u2_all</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time Horizon&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Greene&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Factor Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/discovery_12_0.png" src="_images/discovery_12_0.png" />
+<p>The Figure above shows the factor importance as determined by gradient boosted trees for both utilities across the three planning horizons. While near-term demand growth is important for both utilities under all three planning horizons, the importance of other factors evolves over time. For example, restriction effectiveness plays an important role for Greene under the 22-year planning horizon but disappears under the 45-year planning horizon. In contrast, the bond interest rate is important for predicting success over the 45-year planning horizon, but does not appear important over the 10- or 22-year planning horizons. These findings highlight how assumptions about the planning period can have a large impact on modeling outcomes.</p>
+</section>
+<section id="open-exploration">
+<h3>Open exploration<a class="headerlink" href="#open-exploration" title="Link to this heading">#</a></h3>
+<p>In the cell below, use the function to explore how factor maps change
+for the two utilities based upon the uncertainties plotted, the
+objectives of interest and the time horizon.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify the utility (&quot;Bedford&quot; or &quot;Greene&quot;)</span>
+<span class="n">utility</span> <span class="o">=</span> <span class="s2">&quot;Bedford&quot;</span>
+
+<span class="c1"># specify which performance objectives to investigate (note that not all performance objectives have failures, which may result in a blank factor map)</span>
+<span class="c1"># set this to one of the following: &quot;Reliability&quot;, &quot;Restriction Frequency&quot;, &quot;Peak Financial Cost&quot;, &quot;Worst Case Cost&quot; or &quot;Unit Cost&quot;</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="s2">&quot;Reliability&quot;</span>
+
+<span class="c1"># select uncertainties from the following list: &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;BT&#39;, &#39;BM&#39;, &#39;DR&#39;, &#39;RE&#39;, &#39;EV&#39;, &#39;PM&#39;, &#39;CT&#39;, &#39;IA&#39;, &#39;IF&#39;, &#39;IP&#39;</span>
+<span class="n">uncertainty_1</span> <span class="o">=</span> <span class="s1">&#39;D1&#39;</span>
+<span class="n">uncertainty_2</span> <span class="o">=</span> <span class="s1">&#39;D2&#39;</span>
+
+<span class="c1"># The code below will plot factor maps over the three planning horizons for the information above</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">open_exploration</span><span class="p">(</span><span class="n">utility</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="s1">&#39;short_term&#39;</span><span class="p">,</span> <span class="n">uncertainty_1</span><span class="p">,</span> <span class="n">uncertainty_2</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">open_exploration</span><span class="p">(</span><span class="n">utility</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="s1">&#39;mid_term&#39;</span><span class="p">,</span> <span class="n">uncertainty_1</span><span class="p">,</span> <span class="n">uncertainty_2</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">open_exploration</span><span class="p">(</span><span class="n">utility</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="s1">&#39;long_term&#39;</span><span class="p">,</span> <span class="n">uncertainty_1</span><span class="p">,</span> <span class="n">uncertainty_2</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span><span class="p">,</span> <span class="n">reliability</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span><span class="p">,</span> <span class="n">reliability</span>
+<span class="n">Factor</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">Bedford</span><span class="p">,</span> <span class="n">reliability</span>
+</pre></div>
+</div>
+<img alt="_images/discovery_16_1.png" src="_images/discovery_16_1.png" />
+</section>
+<section id="tips-to-apply-this-methodology-to-your-own-problem">
+<h3>Tips to apply this methodology to your own problem<a class="headerlink" href="#tips-to-apply-this-methodology-to-your-own-problem" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we demonstrated time-evolving scenario discovery for a
+cooperative water supply system. To apply this workflow to your own
+problem:</p>
+<ol class="arabic simple">
+<li><p>Choose sampling bounds for your parameters of interest, which will
+represent uncertainties that characterize your system.</p></li>
+<li><p>Generate samples for these parameters (this can be done using the
+saltelli.sample function as in B.2 or done with another package).</p></li>
+<li><p>Define performance criteria for your problem</p></li>
+<li><p>Evaluate parameter sets through your model, and save performance
+measures across multiple time horizons</p></li>
+<li><p>Draw from the supporting code for this tutorial to perform scneario
+discovery and visualize results</p></li>
+</ol>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>Trindade, B. C., Reed, P. M., &amp; Characklis, G. W. (2019). Deeply uncertain pathways: Integrated multi-city regional water supply infrastructure investment and portfolio management. Advances in Water Resources, 134, 103442.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Time-evolving scenario discovery for infrastructure pathways</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-robustness-over-time">Evaluating Robustness over time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-performance-evolution">Exploring performance evolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-deep-uncertainties-generate-vulnerability">How do deep uncertainties generate vulnerability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-uncertainties-have-the-most-influence-on-time-evolving-performance">Which uncertainties have the most influence on time-evolving performance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-exploration">Open exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-this-methodology-to-your-own-problem">Tips to apply this methodology to your own problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

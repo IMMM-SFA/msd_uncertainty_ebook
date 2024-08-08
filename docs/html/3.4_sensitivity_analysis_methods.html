@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sensitivity Analysis Methods &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3.4_sensitivity_analysis_methods';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2F3.4_sensitivity_analysis_methods.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3.4_sensitivity_analysis_methods.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensitivity Analysis Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-based-methods">Derivative-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementary-effect-methods">Elementary Effect Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-based-methods">Regression-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regional-sensitivity-analysis">Regional Sensitivity Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-based-methods">Variance-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-variance-anova">Analysis of Variance (ANOVA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-independent-density-based-methods">Moment-Independent (Density-Based) Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="sensitivity-analysis-methods">
+<span id="id1"></span><h1>Sensitivity Analysis Methods<a class="headerlink" href="#sensitivity-analysis-methods" title="Link to this heading">#</a></h1>
+<p>In this section, we describe some of the most widely applied sensitivity analysis methods along with their mathematical definitions. We also provide a detailed discussion on applying each method, as well as a comparison of and their features and limitations.</p>
+<section id="derivative-based-methods">
+<h2>Derivative-based Methods<a class="headerlink" href="#derivative-based-methods" title="Link to this heading">#</a></h2>
+<p>Derivative-based methods explore how model outputs are affected by perturbations in a single model input around a particular input value. These methods are local and are performed using OAT sampling. For simplicity of mathematical notations, let us assume that the model <span class="math notranslate nohighlight">\(g(X)\)</span> only returns one output. Following <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id117" title="Emanuele Borgonovo. Sensitivity analysis of model output with input constraints: a generalized rationale for local methods. Risk Analysis: An International Journal, 28(3):667–680, 2008.">90</a>]</span> and <span id="id3">[<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>]</span>, the sensitivity index, <span class="math notranslate nohighlight">\(S_i\)</span> , of the model’s <em>i</em>-th input factor, <span class="math notranslate nohighlight">\(x_i\)</span> , can be measured using the partial derivative evaluated at a nominal value, <span class="math notranslate nohighlight">\(\bar{x}\)</span>, of the vector of inputs:</p>
+<div class="math notranslate nohighlight">
+\[S_i (\bar{x}) = \frac{\partial g}{\partial x} |_{\bar{x}{^c{_i}}}\]</div>
+<p>where <em>c</em><sub>i</sub> is the scaling factor. In most applications however, the relationship <span class="math notranslate nohighlight">\(g(X)\)</span> is not fully known in its analytical form, and therefore the above partial derivative is usually approximated:</p>
+<div class="math notranslate nohighlight">
+\[S_i (\bar{x}) = \frac{g(\bar{x}_1,...\bar{x}_i+\Delta_i,...\bar{x}_N)-g(\bar{x}_1,...\bar{x}_i,...\bar{x}_N)}{\Delta_i}c_i\]</div>
+<p>Using this approximation, the <em>i</em>-th input factor is perturbed by a magnitude of <span class="math notranslate nohighlight">\(\Delta_i\)</span>, and its relative importance is calculated. Derivative-based methods are some of the oldest sensitivity analysis methods as they only require <span class="math notranslate nohighlight">\(N+1\)</span> model evaluations to estimate indices for <span class="math notranslate nohighlight">\(N\)</span> uncertain factors. As described above, being computationally very cheap comes at the cost of not being able to explore the entire input space, but only (local) perturbations to the nominal value. Additionally, as these methods examine the effects of each input factor one at a time, they cannot assess parametric interactions or capture the interacting nature of many real systems and the models that abstract them.</p>
+</section>
+<section id="elementary-effect-methods">
+<h2>Elementary Effect Methods<a class="headerlink" href="#elementary-effect-methods" title="Link to this heading">#</a></h2>
+<p>Elementary effect (EE) SA methods provide a solution to the local nature of the derivative-based methods by exploring the entire parametric range of each input parameter <span id="id4">[<a class="reference internal" href="R.Bibliography.html#id131" title="Bertrand Iooss and Paul Lemaître. A review on global sensitivity analysis methods. In Uncertainty management in simulation-optimization of complex systems, pages 101–122. Springer, 2015.">91</a>]</span>. However, EE methods still use OAT sampling and do not vary all input parameters simultaneously while exploring the parametric space. The OAT nature of EEs methods therefore prevents them from properly capturing the interactions between uncertain factors. EEs methods are computationally efficient compared to their All-At-a-Time (AAT) counterparts, making them more suitable when computational capacity is a limiting factor, while still allowing for some inferences regarding factor interactions.
+The most popular EE method is the Method of Morris <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id132" title="Max D Morris. Factorial sampling plans for preliminary computational experiments. Technometrics, 33(2):161–174, 1991.">74</a>]</span>. Following the notation by <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>]</span>, this method calculates global sensitivity using the mean of the EEs (finite differences) of each parameter at different locations:</p>
+<div class="math notranslate nohighlight">
+\[S_i = \mu_i^* = \frac{1}{r}\sum_{j=1}^r EE^j_i = \frac{1}{r}\sum_{j=1}^r \frac{g(\bar{x}_1,...\bar{x}_i+\Delta_i,...\bar{x}_N)-g(\bar{x}_1,...\bar{x}_i,...\bar{x}_N)}{\Delta_i}c_i\]</div>
+<p>with <span class="math notranslate nohighlight">\(r\)</span> representing the number of sample repetitions (also refered to as trajectories) in the input space, usually set between 4 and 10 <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id17" title="Andrea Saltelli, Stefano Tarantola, Francesca Campolongo, and Marco Ratto. Sensitivity analysis in practice: a guide to assessing scientific models. Volume 1. Wiley Online Library, 2004.">38</a>]</span>. Each <span class="math notranslate nohighlight">\(x_j\)</span> represents the points of each trajectory, with <span class="math notranslate nohighlight">\(j=1,…, r\)</span>, selected as described in the sampling strategy for this method, found above. This method also produces the standard deviation of the EEs:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_i = \sqrt{\frac{1}{r}\sum_{j=1}^r(EE_i^j-\frac{1}{r}\sum_{j=1}^r EE^j_i)^2}\]</div>
+<p>which is a measure of parametric interactions. Higher values of <span class="math notranslate nohighlight">\(\sigma_i\)</span> suggest model responses at different levels of factor <span class="math notranslate nohighlight">\(x_i\)</span> are significantly different, which indicates considerable interactions between that and other uncertain factors. The values of <span class="math notranslate nohighlight">\(\mu_i^*\)</span> and <span class="math notranslate nohighlight">\(\sigma_i\)</span> for each factor allow us to draw several different conclusions, illustrated in <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-4"><span class="std std-numref">Fig. 3.4</span></a>, following the example by <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id131" title="Bertrand Iooss and Paul Lemaître. A review on global sensitivity analysis methods. In Uncertainty management in simulation-optimization of complex systems, pages 101–122. Springer, 2015.">91</a>]</span>. In this example, factors <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, and <span class="math notranslate nohighlight">\(x_5\)</span> can be said to have an influence on the model outputs, with <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, and <span class="math notranslate nohighlight">\(x_5\)</span> having some interactive or non-linear effects. Depending on the orders of magnitude of <span class="math notranslate nohighlight">\(\mu_i^*\)</span> and <span class="math notranslate nohighlight">\(\sigma_i\)</span> one can indirectly deduce whether the factors have strong interactive effects, for example if a factor <span class="math notranslate nohighlight">\(\sigma_i &lt;&lt; \mu_i^*\)</span> then the relationship between that factor and the output can be assumed to be largely linear (note that this is still an OAT method and assumptions on factor interactions should be strongly caveated). Extensions of the Method of Morris have also been developed specifically for the purposes of factor fixing and explorations of parametric interactions (e.g., <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id27" title="Emanuele Borgonovo. Sensitivity analysis with finite changes: an application to modified eoq models. European Journal of Operational Research, 200(1):127–138, 2010.">48</a>, <a class="reference internal" href="R.Bibliography.html#id133" title="Francesca Campolongo and Roger Braddock. The use of graph theory in the sensitivity analysis of the model output: a second order screening method. Reliability Engineering &amp; System Safety, 64(1):1–12, 1999.">92</a>, <a class="reference internal" href="R.Bibliography.html#id134" title="Roger A Cropp and Roger D Braddock. The new morris method: an efficient second-order screening method. Reliability Engineering &amp; System Safety, 78(1):77–83, 2002.">93</a>]</span>).</p>
+<figure class="margin-caption align-center" id="id41">
+<span id="figure-3-4"></span><a class="reference internal image-reference" href="_images/figure3_4_morris_method.png"><img alt="Figure 3.4" src="_images/figure3_4_morris_method.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Illustrative results of the Morris Method. Factors <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, and <span class="math notranslate nohighlight">\(x_5\)</span> have an influence on the model outputs, with <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, and <span class="math notranslate nohighlight">\(x_5\)</span> having interactive or non-linear effects. Whether or not a factor should be considered influential to the output depends on the output selected and is specific to the research context and purpose of the analysis, as discussed in <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#why-sa"><span class="std std-numref">Chapter 3.2</span></a>.</span><a class="headerlink" href="#id41" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="regression-based-methods">
+<h2>Regression-based Methods<a class="headerlink" href="#regression-based-methods" title="Link to this heading">#</a></h2>
+<p>Regression analysis is one of the oldest ways of investigating parametric importance and sensitivity <span id="id10">[<a class="reference internal" href="R.Bibliography.html#id17" title="Andrea Saltelli, Stefano Tarantola, Francesca Campolongo, and Marco Ratto. Sensitivity analysis in practice: a guide to assessing scientific models. Volume 1. Wiley Online Library, 2004.">38</a>]</span>. Here, we describe some of the most popular regression-based sensitivity indices. One of the main sensitivity indices of this category is the standardized regression coefficient (SRC). To calculate SRC, a linear regression relationship needs to be fitted between the input vector, <span class="math notranslate nohighlight">\(x\)</span>, and the model output of interest by using a least-square minimizing method:</p>
+<div class="math notranslate nohighlight">
+\[y = b_0 + \sum_{i=1}^N b_ix_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(b_0\)</span> and <span class="math notranslate nohighlight">\(b_i\)</span> (corresponding to the <em>i</em>-th model input) are regression coefficients. The following relationship can then be used to calculate the SRCs for different input values:</p>
+<div class="math notranslate nohighlight">
+\[S_i=SRC_i=b_i\frac{\sigma_i}{\sigma_y}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_i\)</span> and <span class="math notranslate nohighlight">\(\sigma_y\)</span> are standard deviations of <em>i</em>-th model input and output, respectively.</p>
+<p>Several other regression-based indices explore the correlation between input and output parameters as a proxy to model parametric sensitivity <span id="id11">[<a class="reference internal" href="R.Bibliography.html#id131" title="Bertrand Iooss and Paul Lemaître. A review on global sensitivity analysis methods. In Uncertainty management in simulation-optimization of complex systems, pages 101–122. Springer, 2015.">91</a>, <a class="reference internal" href="R.Bibliography.html#id135" title="Jon C Helton. Uncertainty and sensitivity analysis techniques for use in performance assessment for radioactive waste disposal. Reliability Engineering &amp; System Safety, 42(2-3):327–367, 1993.">94</a>, <a class="reference internal" href="R.Bibliography.html#id136" title="Gemma Manache and Charles S Melching. Identification of reliable regression-and correlation-based sensitivity measures for importance ranking of water-quality model parameters. Environmental Modelling &amp; Software, 23(5):549–562, 2008.">95</a>]</span>. The Pearson correlation coefficient (PCC) can be used when a linear relationship exists between an uncertain factor, <span class="math notranslate nohighlight">\(x_i\)</span>, and the output <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[S_i=PCC=\frac{cov(x_i,y)}{\sigma_i\sigma_y}\]</div>
+<p>In cases when there are outliers in the data or the relationship between the uncertain factors and the output is not linear, rank-based correlation coefficients are preferred, for example, Spearman’s rank correlation coefficient (SRCC):</p>
+<div class="math notranslate nohighlight">
+\[S_i=SRCC=\frac{cov(rx_i,ryi)}{\sigma_{ri}\sigma_{ry}}\]</div>
+<p>where the raw values of <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and converted to ranks <span class="math notranslate nohighlight">\(rx_i\)</span> and <span class="math notranslate nohighlight">\(ry\)</span> respectively, which instead represent a measurement of the strength of the monotonic relationship, rather than linear relationship, between the input and output. Other regression-based metrics include the partial correlations coefficient, the partial rank correlations coefficient, and the Nash-Sutcliffe coefficient, more discussion on which can be found in <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id22" title="Emanuele Borgonovo and Elmar Plischke. Sensitivity analysis: a review of recent advances. European Journal of Operational Research, 248(3):869–887, 2016.">39</a>, <a class="reference internal" href="R.Bibliography.html#id131" title="Bertrand Iooss and Paul Lemaître. A review on global sensitivity analysis methods. In Uncertainty management in simulation-optimization of complex systems, pages 101–122. Springer, 2015.">91</a>]</span>.</p>
+<p>Tree-based regression techniques have also been used for sensitivity analysis in an effort to address the challenges faced with nonlinear models <span id="id13">[<a class="reference internal" href="R.Bibliography.html#id137" title="F Pappenberger and Keith J Beven. Ignorance is bliss: or seven reasons not to use uncertainty analysis. Water resources research, 2006.">96</a>]</span>. Examples of these methods include the Patient Rule Induction Method (PRIM; <span id="id14">[<a class="reference internal" href="R.Bibliography.html#id79" title="Jerome H Friedman and Nicholas I Fisher. Bump hunting in high-dimensional data. Statistics and Computing, 9(2):123–143, 1999.">97</a>]</span>) and Classification And Regression Trees (CART; <span id="id15">[<a class="reference internal" href="R.Bibliography.html#id80" title="Leo Breiman, Jerome Friedman, Charles J Stone, and Richard A Olshen. Classification and regression trees. CRC press, 1984.">98</a>]</span>). CART-based approaches also include boosting and bagging extensions <span id="id16">[<a class="reference internal" href="R.Bibliography.html#id89" title="Yoav Freund, Robert Schapire, and Naoki Abe. A short introduction to boosting. Journal-Japanese Society For Artificial Intelligence, 14(771-780):1612, 1999.">99</a>, <a class="reference internal" href="R.Bibliography.html#id138" title="Leo Breiman. Bagging predictors. Machine learning, 24(2):123–140, 1996.">100</a>]</span>. These methods are particularly useful when sensitivity analysis is used for factor mapping (i.e., when trying to identify which uncertain model factors produce a certain model behavior). <a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-scenarios"><span class="std std-numref">Chapter 4.3</span></a> elaborates on the use of these methods. Regression-based sensitivity analysis methods are global by nature and can explore the entire space of variables. However, the true level of comprehensiveness depends on the design of experiments and the number of simulations providing data to establish the regression relationships. Although they are usually computationally efficient, they do not produce significant information about parametric interactions <span id="id17">[<a class="reference internal" href="R.Bibliography.html#id17" title="Andrea Saltelli, Stefano Tarantola, Francesca Campolongo, and Marco Ratto. Sensitivity analysis in practice: a guide to assessing scientific models. Volume 1. Wiley Online Library, 2004.">38</a>, <a class="reference internal" href="R.Bibliography.html#id22" title="Emanuele Borgonovo and Elmar Plischke. Sensitivity analysis: a review of recent advances. European Journal of Operational Research, 248(3):869–887, 2016.">39</a>]</span>.</p>
+</section>
+<section id="regional-sensitivity-analysis">
+<h2>Regional Sensitivity Analysis<a class="headerlink" href="#regional-sensitivity-analysis" title="Link to this heading">#</a></h2>
+<p>Another method primarily applied for basic factor mapping applications is Regional Sensitivity Analysis (RSA; <span id="id18">[<a class="reference internal" href="R.Bibliography.html#id157" title="George M Hornberger and Robert C Spear. Approach to the preliminary analysis of environmental systems. J. Environ. Mgmt., 12(1):7–18, 1981.">101</a>]</span>). RSA is a global sensitivity analysis method that is typically implemented using standard sampling methods such as latin hypercube sampling. It is performed by specifying a condition on the output space (e.g., an upper threshold) and classifying outputs that meet the condition as behavioral and the ones that fail it as non-behavioral (illustrated in <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-2"><span class="std std-numref">Fig. 3.2</span></a> (b)). Note that the specified threshold depends on the nature of the problem, model, and the research question. It can reflect model-performance metrics (such as errors) or consequential decision-relevant metrics (such as unacceptable system outcomes). The behavioral and non-behavioral outputs are then traced back to their originating sampled factors, where differences between the distributions of samples can be used to determine their significance in producing each part of the output. The Kolmogorov-Smirnov divergence is commonly used to quantify the difference between the distribution of behavioral and non-behavioral parameters <span id="id19">[<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[S_i=|F_{x_i|y_b} (y \in Y_b)-F_{x_i|y_{nb}} (y \in Y_{nb})|\]</div>
+<p>where <span class="math notranslate nohighlight">\(Y_b\)</span> represents the set of behavioral outputs, and <span class="math notranslate nohighlight">\(F_{x_i|y_b}\)</span> is the empirical cumulative distribution function of the values of <span class="math notranslate nohighlight">\(x_i\)</span> associated with values of <span class="math notranslate nohighlight">\(y\)</span> that belong in the behavioral set. The <span class="math notranslate nohighlight">\(nb\)</span> notation indicates the equivalent elements related to the non-behavioral set. Large differences between the two distributions indicate stronger effects by the parameters on the respective part of the output space.</p>
+<p>Used in a factor mapping setting, RSA can be applied for scenario discovery <span id="id20">[<a class="reference internal" href="R.Bibliography.html#id71" title="Robert J Lempert, David G Groves, Steven W Popper, and Steve C Bankes. A general, analytic method for generating robust strategies and narrative scenarios. Management science, 52(4):514–528, 2006.">102</a>, <a class="reference internal" href="R.Bibliography.html#id70" title="David G Groves and Robert J Lempert. A new analytic method for finding policy-relevant scenarios. Global Environmental Change, 17(1):73–85, 2007.">103</a>]</span>, the Generalized Likelihood Uncertainty Estimation method (GLUE; <span id="id21">[<a class="reference internal" href="R.Bibliography.html#id38" title="Keith Beven and Andrew Binley. The future of distributed models: Model calibration and uncertainty prediction. Hydrological Processes, 6(3):279–298, 1992. doi:10.1002/hyp.3360060305.">18</a>, <a class="reference internal" href="R.Bibliography.html#id158" title="Keith Beven and Andrew Binley. Glue: 20 years on. Hydrological processes, 28(24):5897–5918, 2014.">104</a>, <a class="reference internal" href="R.Bibliography.html#id159" title="Roberta-Serena Blasone, Jasper A Vrugt, Henrik Madsen, Dan Rosbjerg, Bruce A Robinson, and George A Zyvoloski. Generalized likelihood uncertainty estimation (glue) using adaptive markov chain monte carlo sampling. Advances in Water Resources, 31(4):630–648, 2008.">105</a>]</span>) and other hybrid sensitivity analysis methods (e.g., <span id="id22">[<a class="reference internal" href="R.Bibliography.html#id160" title="SA Cryer and PL Havens. Regional sensitivity analysis using a fractional factorial method for the usda model gleams. Environmental modelling &amp; software, 14(6):613–624, 1999.">106</a>, <a class="reference internal" href="R.Bibliography.html#id161" title="Pengfei Wei, Zhenzhou Lu, and Xiukai Yuan. Monte carlo simulation for moment-independent sensitivity analysis. Reliability Engineering &amp; System Safety, 110:60–67, 2013.">107</a>]</span>). The fundamental shortcomings of RSA are that, in some cases, it could be hard to interpret the difference between behavioral and non-behavioral sample sets, and that insights about parametric correlations and interactions cannot always be uncovered <span id="id23">[<a class="reference internal" href="R.Bibliography.html#id17" title="Andrea Saltelli, Stefano Tarantola, Francesca Campolongo, and Marco Ratto. Sensitivity analysis in practice: a guide to assessing scientific models. Volume 1. Wiley Online Library, 2004.">38</a>]</span>. For more elaborate discussions and illustrations of the RSA method, readers are directed to <span id="id24">Tang <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id20" title="Yong Tang, Patrick Reed, Thibaut Wagener, and K van Werkhoven. Comparing sensitivity analysis methods to advance lumped watershed model identification and evaluation. Hydrology and Earth System Sciences, 11(2):793–817, 2007.">42</a>], Saltelli <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id28" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global sensitivity analysis: the primer. John Wiley &amp; Sons, 2008.">49</a>], Young [<a class="reference internal" href="R.Bibliography.html#id162" title="Peter Young. Data-based mechanistic modelling, generalised sensitivity and dominant mode analysis. Computer Physics Communications, 117(1-2):113–129, 1999.">108</a>]</span> and references therein.</p>
+</section>
+<section id="variance-based-methods">
+<span id="id25"></span><h2>Variance-based Methods<a class="headerlink" href="#variance-based-methods" title="Link to this heading">#</a></h2>
+<p>Variance-based sensitivity analysis methods hypothesize that various specified model factors contribute differently to the variation of model outputs; therefore, decomposition and analysis of output variance can determine a model’s sensitivity to input parameters <span id="id26">[<a class="reference internal" href="R.Bibliography.html#id17" title="Andrea Saltelli, Stefano Tarantola, Francesca Campolongo, and Marco Ratto. Sensitivity analysis in practice: a guide to assessing scientific models. Volume 1. Wiley Online Library, 2004.">38</a>, <a class="reference internal" href="R.Bibliography.html#id102" title="Ilya M Sobol. Global sensitivity indices for nonlinear mathematical models and their monte carlo estimates. Mathematics and computers in simulation, 55(1-3):271–280, 2001.">77</a>]</span>. The most popular variance-based method is the Sobol method, which is a global sensitivity analysis method that takes into account complex and nonlinear factor interaction when calculating sensitivity indices, and employs more sophisticated sampling methods (e.g., the Sobol sampling method). The Sobol method is able to calculate three types of sensitivity indices that provide different types of information about model sensitivities. These indices include first-order, higher-order (e.g., second-, third-, etc. orders), and total-order sensitivities.</p>
+<p>The first-order sensitivity index indicates the percent of model output variance contributed by a factor individually (i.e., the effect of varying <span class="math notranslate nohighlight">\(x_i\)</span> alone) and is obtained using the following <span id="id27">[<a class="reference internal" href="R.Bibliography.html#id102" title="Ilya M Sobol. Global sensitivity indices for nonlinear mathematical models and their monte carlo estimates. Mathematics and computers in simulation, 55(1-3):271–280, 2001.">77</a>, <a class="reference internal" href="R.Bibliography.html#id148" title="Andrea Saltelli. Making best use of model evaluations to compute sensitivity indices. Computer physics communications, 145(2):280–297, 2002.">109</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[S_i^1=\frac{V_{x_i}[E_{x_{\sim i}}(x_i)]}{V(y)}\]</div>
+<p>with <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(V\)</span> denoting the expected value and the variance, respectively. <span class="math notranslate nohighlight">\(x_{\sim i}\)</span> denotes all factors expect for <span class="math notranslate nohighlight">\(x_i\)</span>. The first-order sensitivity index (<span class="math notranslate nohighlight">\(S_i^1\)</span>) can therefore also be thought of as the portion of total output variance (<span class="math notranslate nohighlight">\(V_y\)</span>) that can be reduced if the uncertainty in factor <span class="math notranslate nohighlight">\(x_i\)</span> is eliminated <span id="id28">[<a class="reference internal" href="R.Bibliography.html#id149" title="Andrea Saltelli. Sensitivity analysis for importance assessment. Risk analysis, 22(3):579–590, 2002.">110</a>]</span>. First-order sensitivity indices are usually used to understand the independent effect of a factor and to distinguish its individual versus interactive influence. It would be expected for linearly independent factors that they would only have first order indices (no interactions) that should correspond well with sensitivities obtained from simpler methods using OAT sampling.</p>
+<p>Higher-order sensitivity indices explore the interaction between two or more parameters that contribute to model output variations. For example, a second-order index indicates how interactions between a pair of factors can lead to change in model output variance and is calculated using the following relationship:</p>
+<div class="math notranslate nohighlight">
+\[S_{ij}^2=\frac{V_{x_{i,j}}[E_{x_{\sim i,j}}(x_i,x_j)]}{V(y)}\]</div>
+<p>with <span class="math notranslate nohighlight">\(i \ne j\)</span>. Higher order indices can be calculated by similar extensions (i.e., fixing additional operators together), but it is usually computationally expensive in practice.</p>
+<p>The total sensitivity analysis index represents the entire influence of an input factor on model outputs including all of its interactions with other factors <span id="id29">[<a class="reference internal" href="R.Bibliography.html#id150" title="Toshimitsu Homma and Andrea Saltelli. Importance measures in global sensitivity analysis of nonlinear models. Reliability Engineering &amp; System Safety, 52(1):1–17, 1996.">111</a>]</span>. In other words, total-order indices include first-order and all higher-order interactions associated with each factor and can be estimated calculated using the following:</p>
+<div class="math notranslate nohighlight">
+\[S_i^T= \frac{E_{x_{\sim i}}[V_{x_i}(x_{\sim i})]}{V(y)} = 1 - \frac{V_{x_{\sim i}}[E_{x_{i}}(x_{\sim i})]}{V(y)}\]</div>
+<p>This index reveals the expected portion of variance that remains if uncertainty is eliminated in all factors but <span class="math notranslate nohighlight">\(x_i\)</span> <span id="id30">[<a class="reference internal" href="R.Bibliography.html#id149" title="Andrea Saltelli. Sensitivity analysis for importance assessment. Risk analysis, 22(3):579–590, 2002.">110</a>]</span>. The total sensitivity index is the overall best measure of sensitivity as it captures the full individual and interactive effects of model factors.</p>
+<p>Besides the Sobol method, there are some other variance-based sensitivity analysis methods, such as the Fourier amplitude sensitivity test (FAST; <span id="id31">[<a class="reference internal" href="R.Bibliography.html#id100" title="RI Cukier, CM Fortuin, Kurt E Shuler, AG Petschek, and JH Schaibly. Study of the sensitivity of coupled reaction systems to uncertainties in rate coefficients. i theory. The Journal of chemical physics, 59(8):3873–3878, 1973.">75</a>, <a class="reference internal" href="R.Bibliography.html#id151" title="Gregory J McRae, William R Goodin, and John H Seinfeld. Development of a second-generation mathematical model for urban air pollution—i. model formulation. Atmospheric Environment (1967), 16(4):679–696, 1982.">112</a>]</span>) and extended-FAST <span id="id32">[<a class="reference internal" href="R.Bibliography.html#id152" title="Andrea Saltelli and Ricardo Bolado. An alternative way to compute fourier amplitude sensitivity test (fast). Computational Statistics &amp; Data Analysis, 26(4):445–460, 1998.">113</a>, <a class="reference internal" href="R.Bibliography.html#id153" title="MA Vazquez-Cruz, R Guzman-Cruz, IL Lopez-Cruz, O Cornejo-Perez, I Torres-Pacheco, and RG Guevara-Gonzalez. Global sensitivity analysis by means of efast and sobol’methods and calibration of reduced state-variable tomgro model using genetic algorithms. Computers and Electronics in Agriculture, 100:1–12, 2014.">114</a>]</span>, that have been used by the scientific community. However, Sobol remains by far the most common method of this class. Variance-based techniques have been widely used and have proved to be powerful in a variety of applications. Despite their popularity, some authors have expressed concerns about the methods’ appropriateness in some settings. Specifically, the presence of heavy-tailed distributions or outliers, or when model outputs are multimodal can bias the sensitivity indices produced by these methods <span id="id33">[<a class="reference internal" href="R.Bibliography.html#id154" title="Benjamin Auder and Bertrand Iooss. Global sensitivity analysis based on entropy. In Safety, reliability and risk analysis-Proceedings of the ESREL 2008 Conference, 2107–2115. 2008.">115</a>, <a class="reference internal" href="R.Bibliography.html#id155" title="Farkhondeh Khorashadi Zadeh, Jiri Nossent, Fanny Sarrazin, Francesca Pianosi, Ann van Griensven, Thorsten Wagener, and Willy Bauwens. Comparison of variance-based and moment-independent global sensitivity analysis approaches by application to the swat model. Environmental Modelling &amp; Software, 91:210–222, 2017.">116</a>, <a class="reference internal" href="R.Bibliography.html#id156" title="Francesca Pianosi and Thorsten Wagener. A simple and efficient method for global sensitivity analysis based on cumulative distribution functions. Environmental Modelling &amp; Software, 67:1–11, 2015.">117</a>]</span>. Moment-independent measures, discussed below, attempt to overcome these challenges.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following link to try out an interactive tutorial which demonstrates the application of a Sobol sensitivity analysis:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/sa_saltelli_sobol_ishigami.ipynb">Sobol SA using SALib Jupyter Notebook</a></p>
+</div>
+</section>
+<section id="analysis-of-variance-anova">
+<h2>Analysis of Variance (ANOVA)<a class="headerlink" href="#analysis-of-variance-anova" title="Link to this heading">#</a></h2>
+<p>Analysis of Variance (ANOVA) was first introduced by <span id="id34">Fisher and others [<a class="reference internal" href="R.Bibliography.html#id144" title="Ronald Aylmer Fisher and others. Statistical methods for research workers. Statistical methods for research workers., 1934.">118</a>]</span> and has since become a popular factor analysis method in physical experiments. ANOVA can be used as a sensitivity analysis method in computational experiments with a factorial design of experiment (referred to as factorial ANOVA). Note that Sobol can also be categorized as an ANOVA sensitivity analysis method, and that is why Sobol is sometimes referred to as a functional ANOVA <span id="id35">[<a class="reference internal" href="R.Bibliography.html#id145" title="Loıc Brevault, Mathieu Balesdent, Nicolas Bérend, and Rodolphe Le Riche. Comparison of different global sensitivity analysis methods for aerospace vehicle optimal design. In 10th World Congress on Structural and Multidisciplinary Optimization, WCSMO-10. 2013.">119</a>]</span>. Factorial ANOVA methods are particularly suited for models and problems that have discrete input spaces, significantly reducing the computational time. More information about these methods can be found in <span id="id36">[<a class="reference internal" href="R.Bibliography.html#id145" title="Loıc Brevault, Mathieu Balesdent, Nicolas Bérend, and Rodolphe Le Riche. Comparison of different global sensitivity analysis methods for aerospace vehicle optimal design. In 10th World Congress on Structural and Multidisciplinary Optimization, WCSMO-10. 2013.">119</a>, <a class="reference internal" href="R.Bibliography.html#id146" title="GEB Archer, Andrea Saltelli, and IM Sobol. Sensitivity measures, anova-like techniques and the use of bootstrap. Journal of Statistical Computation and Simulation, 58(2):99–120, 1997.">120</a>, <a class="reference internal" href="R.Bibliography.html#id147" title="Art B Owen. Variance components and generalized sobol'indices. SIAM/ASA Journal on Uncertainty Quantification, 1(1):19–41, 2013.">121</a>]</span>.</p>
+</section>
+<section id="moment-independent-density-based-methods">
+<h2>Moment-Independent (Density-Based) Methods<a class="headerlink" href="#moment-independent-density-based-methods" title="Link to this heading">#</a></h2>
+<p>These methods typically compare the entire distribution (i.e., not just the variance) of input and output parameters in order to determine the sensitivity of the output to a particular input variable. Several moment-independent sensitivity analysis methods have been proposed in recent years. The delta (<span class="math notranslate nohighlight">\(\delta\)</span>) moment-independent method calculates the difference between unconditional and conditional cumulative distribution functions of the output. The method was first introduced by <span id="id37">[<a class="reference internal" href="R.Bibliography.html#id142" title="Emanuele Borgonovo. Measuring uncertainty importance: investigation and comparison of alternative approaches. Risk analysis, 26(5):1349–1361, 2006.">122</a>, <a class="reference internal" href="R.Bibliography.html#id141" title="Emanuele Borgonovo. A new uncertainty importance measure. Reliability Engineering &amp; System Safety, 92(6):771–784, 2007.">123</a>]</span> and has become widely used in various disciplines. The <span class="math notranslate nohighlight">\(\delta\)</span> sensitivity index is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[S_i=\delta_i=\frac{1}{2}E_{x_i}|f_y(y)-f_{y|x_i}(y)|dy\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_y(y)\)</span> is the probability density function of the entire model output <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(f_{y|x_i}(y)\)</span> is the conditional density of <span class="math notranslate nohighlight">\(y\)</span>, given that factor <span class="math notranslate nohighlight">\(x_i\)</span> assumes a fixed value. The <span class="math notranslate nohighlight">\(\delta_i\)</span> sensitivity indicator therefore represents the normalized expected shift in the distribution of <span class="math notranslate nohighlight">\(y\)</span> provoked by <span class="math notranslate nohighlight">\(x_i\)</span>. Moment-independent methods are advantageous in cases where we are concerned about the entire distribution of events, such as when uncertain factors lead to more extreme events in a system <span id="id38">[<a class="reference internal" href="R.Bibliography.html#id47" title="Antonia Hadjimichael, Julianne Quinn, and Patrick Reed. Advancing Diagnostic Model Evaluation to Better Understand Water Shortage Mechanisms in Institutionally Complex River Basins. Water Resources Research, 56(10):e2020WR028079, 2020. URL: http://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020WR028079 (visited on 2020-10-16), doi:10.1029/2020WR028079.">13</a>]</span>. Further, they can be used with a pre-existing sample of data, without requiring a specific sampling scheme, unlike the previously reviewed methods <span id="id39">[<a class="reference internal" href="R.Bibliography.html#id143" title="Elmar Plischke, Emanuele Borgonovo, and Curtis L Smith. Global sensitivity measures from given data. European Journal of Operational Research, 226(3):536–550, 2013.">124</a>]</span>. The <span class="math notranslate nohighlight">\(\delta\)</span> sensitivity index does not include interactions between factors and it is therefore akin to the first order index produced by the Sobol method. Interactions between factors can still be estimated using this method, by conditioning the calculation on more than one uncertain factor being fixed <span id="id40">[<a class="reference internal" href="R.Bibliography.html#id141" title="Emanuele Borgonovo. A new uncertainty importance measure. Reliability Engineering &amp; System Safety, 92(6):771–784, 2007.">123</a>]</span>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-based-methods">Derivative-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementary-effect-methods">Elementary Effect Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-based-methods">Regression-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regional-sensitivity-analysis">Regional Sensitivity Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-based-methods">Variance-based Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-variance-anova">Analysis of Variance (ANOVA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-independent-density-based-methods">Moment-Independent (Density-Based) Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

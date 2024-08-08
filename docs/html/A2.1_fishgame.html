@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fishery Dynamics Tutorial &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A2.1_fishgame';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA2.1_fishgame.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A2.1_fishgame.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fishery Dynamics Tutorial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-sensitivity-analysis-sa-to-discover-factors-shaping-consequential-dynamics">Tutorial: Sensitivity Analysis (SA) to discover factors shaping consequential dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s get started!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-identified-solutions-and-explore-performance">Step 1: Load identified solutions and explore performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-use-salib-to-generate-a-sample-for-a-sobol-sensitivity-analysis">Step 2: Use SALib to generate a sample for a Sobol sensitivity analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-evaluate-the-system-over-all-generated-states-of-the-world">Step 3: Evaluate the system over all generated states of the world</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-sensitivity-indices">Step 4: Calculate sensitivity indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-explore-relationship-between-uncertain-factors-and-performance">Step 5: Explore relationship between uncertain factors and performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-sobol-sa-and-scenario-discovery-to-your-problem">Tips to Apply Sobol SA and Scenario Discovery to your Problem</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fishery-dynamics-tutorial">
+<h1>Fishery Dynamics Tutorial<a class="headerlink" href="#fishery-dynamics-tutorial" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">Run the tutorial interactively:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/fishery_dynamics.ipynb">Fishery Dynamics Notebook</a>.</div>
+<div class="line">Please be aware that notebooks can take a couple minutes to launch.</div>
+<div class="line">To run the notebooks yourself, download the files <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks">here</a> and use these <a class="reference external" href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt">requirements</a>.</div>
+</div>
+</div>
+<section id="tutorial-sensitivity-analysis-sa-to-discover-factors-shaping-consequential-dynamics">
+<h2>Tutorial: Sensitivity Analysis (SA) to discover factors shaping consequential dynamics<a class="headerlink" href="#tutorial-sensitivity-analysis-sa-to-discover-factors-shaping-consequential-dynamics" title="Link to this heading">#</a></h2>
+<p>This notebook demonstrates the application of sensitivity analysis to
+discover factors that shape the behavior modes of a socio-ecological
+system with dynamic human action.</p>
+<p>The system of differential equations below represent a system of prey
+(defined in the equation below as x) and predator (defined as y) fish,
+with a human actor harvesting the prey fish. You can read more about
+this system at <a class="reference external" href="https://doi.org/10.1155/2020/4170453">Hadjimichael et
+al. (2020)</a>.</p>
+<img alt="_images/eqn2.png" src="_images/eqn2.png" />
+<p>The table below defines the parameters in the system and also denotes
+the baseline and ranges associated with each uncertain parameter.</p>
+<img alt="_images/table1.png" src="_images/table1.png" />
+<p>The system is simple but very rich in the dynamic behaviors it exhibits.
+This complexity is accompanied by the presence of several equilibria
+that come in and out of existence with different parameter values. The
+equilibria also change in their stability according to different
+parameter values, giving rise to different behavior modes as shown by
+the diverse predator and prey abundace trajectories in the figure below.</p>
+<img alt="_images/Figure_1.png" src="_images/Figure_1.png" />
+<p>In the unharvested system (without the human actor) the stability of
+several of these equilibria can be derived analytically. The task
+becomes significantly more difficult when the adaptive human actor is
+introduced, deciding to harvest the system at different rates according
+to their objectives and preferences.</p>
+<p>Sensitivity analysis methods can help us identify the factors that most
+control these dynamics by exploring the space of parameter values and
+seeing how system outputs change as a result.</p>
+<p>Through previously conducted optimization, there already exists a set of
+potential harvesting strategies that were identified in pursuit of five
+objectives:</p>
+<ul class="simple">
+<li><p>Maximize Harvesting Discounted Profits (Net Present Value)</p></li>
+<li><p>Minimize Prey Population Deficit</p></li>
+<li><p>Minimize Longest Duration of Consecutive Low Harvest</p></li>
+<li><p>Maximize Worst Harvest Instance</p></li>
+<li><p>Minimize Harvest Variance</p></li>
+</ul>
+<p>The identified harvesting strategies also meet the necessary constraint
+of not causing inadvertent predator collapse.</p>
+<p>We will be examining the effects of parametric uncertainty on these
+identified strategies, particularly focusing on two strategies: one
+selected to maximize harvesting profits and one identified through
+previous analysis to perform ‘well enough’ for all objectives across a
+wide range of states of the world (referred to as the ‘robust’
+harvesting policy).</p>
+<section id="lets-get-started">
+<h3>Let’s get started!<a class="headerlink" href="#lets-get-started" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we will be loading in data that has been produced in
+Hadjimichael et al. (2020). Before we start our analysis, we’ll load the
+relevant Python libraries. <strong>NOTE</strong>: To step through the notebook,
+execute each gray (code) box by typing “Shift+Enter”.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import necessary libraries</span>
+
+<span class="kn">import</span> <span class="nn">msdbook</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">SALib.sample</span> <span class="kn">import</span> <span class="n">saltelli</span>
+<span class="kn">from</span> <span class="nn">SALib.analyze</span> <span class="kn">import</span> <span class="n">sobol</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patheffects</span> <span class="k">as</span> <span class="n">pe</span>
+
+<span class="c1"># load example data</span>
+<span class="n">msdbook</span><span class="o">.</span><span class="n">install_package_data</span><span class="p">()</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.print_figure_kwargs = {&#39;bbox_inches&#39;:None}
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Downloading</span> <span class="n">example</span> <span class="n">data</span> <span class="k">for</span> <span class="n">msdbook</span> <span class="n">version</span> <span class="mf">0.1.5</span><span class="o">...</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">uncertain_params_bounds</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_metric_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_vary_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_mth_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">solutions</span><span class="o">.</span><span class="n">resultfile</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">3704614</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">LHsamples_original_1000</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">3704614</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">param_values</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_yr_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_mth_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7000550</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">collapse_days</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hymod_params_256samples</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_vary_s1</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7000550</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7200799</span><span class="n">_heatmap</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">sa_by_yr_delta</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">7200799</span><span class="n">_pseudo_r_scores</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">LeafCatch</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hymod_simulations_256samples</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">Unzipped</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">notebook</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">msdbook</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">Robustness</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="step-1-load-identified-solutions-and-explore-performance">
+<h3>Step 1: Load identified solutions and explore performance<a class="headerlink" href="#step-1-load-identified-solutions-and-explore-performance" title="Link to this heading">#</a></h3>
+<p>Here we load in the solution set obtained in Hadjimichael et al. (2020).
+The solution set contains the decision variables and objectives
+associated with a variety of harvesting policies. For this tutorial, we
+focus on comparing two policies: harvesting profits and one that
+performs robustly across all objectives. Below, we are reading in the
+decision variables and objectives from an external file that can be
+found within the msdbook package data.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">robustness</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_robustness_data</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_profit_maximization_data</span><span class="p">()</span>
+
+<span class="n">robust_solution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">robustness</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#pick robust solution</span>
+<span class="n">profit_solution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">6</span><span class="p">])</span> <span class="c1">#pick profitable solution</span>
+<span class="n">objective_performance</span> <span class="o">=</span> <span class="o">-</span><span class="n">results</span><span class="p">[:,</span><span class="mi">6</span><span class="p">:]</span> <span class="c1">#Retain objective values</span>
+
+<span class="c1"># Get decision variables for each of the policies</span>
+<span class="n">highprofitpolicy</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">profit_solution</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">mostrobustpolicy</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">robust_solution</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Next we plot the identified solutions with regards to their objective
+performance in a parallel axis plot</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>View the source code used to create this plot here: <a class="reference external" href="https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-objective-performance">plot_objective_performance</a></p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">plot_objective_performance</span><span class="p">(</span><span class="n">objective_performance</span><span class="p">,</span> <span class="n">profit_solution</span><span class="p">,</span> <span class="n">robust_solution</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/fishery_output_6_0.png" src="_images/fishery_output_6_0.png" />
+<p>The solution set from the optimization in Hadjimichael et al. (2020) are
+presented in a parallel axis plot where each of the five objectives (and
+one constraint) are represented as an axis. Each solution on the Pareto
+front is represented as a line where the color of the line indicates the
+value of the NPV objective. The preference for objective values is in
+the upward direction. Therefore, the ideal solution would be a line
+straight across the top of the plot that satisfies every objective.
+However, no such line exists because there are tradeoffs when sets of
+objectives are prioritized over the others. When lines cross in between
+axes, this indicates a tradeoff between objectives (as seen in the first
+two axes).The solution that is most robust in the NPV objective has the
+highest value on the first axis and is outlined in dark gold. The
+solution that is most robust across all objectives is outlined in a
+brighter yellow. A parallel axis is an effective visual to characterize
+high-dimensional tradeoffs in the system and visualize differences in
+performance across policies.</p>
+</section>
+<section id="step-2-use-salib-to-generate-a-sample-for-a-sobol-sensitivity-analysis">
+<h3>Step 2: Use SALib to generate a sample for a Sobol sensitivity analysis<a class="headerlink" href="#step-2-use-salib-to-generate-a-sample-for-a-sobol-sensitivity-analysis" title="Link to this heading">#</a></h3>
+<p>In Step 1, we showed how the optimized harvesting policies performed in
+the objective space, which utilized the baseline parameters outlined in
+the table above. Now, we are interested in understanding how sensitive
+our two policies are to alternative states of the world that may be
+characterized by different parameter values. To do so, we first need to
+define the problem dictionary that allows us to generate these
+alternative states of the world.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up SALib problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;num_vars&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmaX&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmaY&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;bounds&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mf">0.002</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5000</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then we use the following command to generate a Saltelli sample from
+these defined ranges:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">param_values</span> <span class="o">=</span> <span class="n">saltelli</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">calc_second_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Generally, it is a good idea to save the result of the sample since it
+is often reused and regenerating it produces a different sample set. For
+this reason, we will load one from file that was previously generated.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load previously generated Saltelli sample from our msdbook package data</span>
+<span class="n">param_values</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_saltelli_param_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-evaluate-the-system-over-all-generated-states-of-the-world">
+<h3>Step 3: Evaluate the system over all generated states of the world<a class="headerlink" href="#step-3-evaluate-the-system-over-all-generated-states-of-the-world" title="Link to this heading">#</a></h3>
+<p>Now we re-evaluate how well the policies do in the new states of the
+world. In order to characterize failure of a policy, we identify the
+states where the predator population collapses, as an inadvertent
+consequence of applying the harvesting strategy under a state of the
+world different from the one originally assumed. Due to how long this
+step takes to execute within the tutorial, we will read in the solutions
+from an external file. However, the block of code below shows how
+evaluation can be implemented.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create array to store collapse values under both policies</span>
+<span class="n">collapse_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">param_values</span><span class="p">),</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># evaluate performance under every state</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_values</span><span class="p">)):</span>
+
+    <span class="n">additional_inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;Previous_Prey&#39;</span><span class="p">],</span>
+                                  <span class="p">[</span><span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+                                   <span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
+
+    <span class="n">collapse_days</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">fish_game</span><span class="p">(</span><span class="n">highprofitpolicy</span><span class="p">,</span> <span class="n">additional_inputs</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">collapse_days</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">fish_game</span><span class="p">(</span><span class="n">mostrobustpolicy</span><span class="p">,</span> <span class="n">additional_inputs</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the simulation data from our msdbook package data</span>
+<span class="n">collapse_days</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">load_collapse_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-calculate-sensitivity-indices">
+<h3>Step 4: Calculate sensitivity indices<a class="headerlink" href="#step-4-calculate-sensitivity-indices" title="Link to this heading">#</a></h3>
+<p>Now we use a Sobol sensitivity analysis to calculate first-order,
+second-order, and total-order sensitivity indices for each parameter and
+for each of the two policies. These indicies help determine which
+factors explain the most variability in the number of days of predator
+population collapse.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Perform the Sobol SA for the profit-maximizing solution</span>
+<span class="n">Si_profit</span> <span class="o">=</span> <span class="n">sobol</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">collapse_days</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+                          <span class="n">calc_second_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">conf_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                          <span class="n">print_to_console</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Perform the Sobol SA for the robust solution</span>
+<span class="n">Si_robustness</span> <span class="o">=</span> <span class="n">sobol</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span>
+                              <span class="n">collapse_days</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                              <span class="n">calc_second_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">conf_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                              <span class="n">print_to_console</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="n">ST</span>   <span class="n">ST_conf</span>
+<span class="n">a</span>       <span class="mf">0.226402</span>  <span class="mf">0.036146</span>
+<span class="n">b</span>       <span class="mf">0.066819</span>  <span class="mf">0.013347</span>
+<span class="n">c</span>       <span class="mf">0.004395</span>  <span class="mf">0.004023</span>
+<span class="n">d</span>       <span class="mf">0.024509</span>  <span class="mf">0.006993</span>
+<span class="n">h</span>       <span class="mf">0.009765</span>  <span class="mf">0.005488</span>
+<span class="n">K</span>       <span class="mf">0.020625</span>  <span class="mf">0.009494</span>
+<span class="n">m</span>       <span class="mf">0.897971</span>  <span class="mf">0.066470</span>
+<span class="n">sigmaX</span>  <span class="mf">0.000136</span>  <span class="mf">0.000149</span>
+<span class="n">sigmaY</span>  <span class="mf">0.000739</span>  <span class="mf">0.001040</span>
+              <span class="n">S1</span>   <span class="n">S1_conf</span>
+<span class="n">a</span>       <span class="mf">0.087936</span>  <span class="mf">0.044236</span>
+<span class="n">b</span>       <span class="mf">0.000554</span>  <span class="mf">0.021474</span>
+<span class="n">c</span>      <span class="o">-</span><span class="mf">0.002970</span>  <span class="mf">0.004590</span>
+<span class="n">d</span>       <span class="mf">0.001206</span>  <span class="mf">0.015881</span>
+<span class="n">h</span>       <span class="mf">0.004554</span>  <span class="mf">0.007998</span>
+<span class="n">K</span>       <span class="mf">0.003843</span>  <span class="mf">0.012661</span>
+<span class="n">m</span>       <span class="mf">0.751301</span>  <span class="mf">0.071862</span>
+<span class="n">sigmaX</span> <span class="o">-</span><span class="mf">0.000325</span>  <span class="mf">0.001245</span>
+<span class="n">sigmaY</span> <span class="o">-</span><span class="mf">0.001887</span>  <span class="mf">0.002768</span>
+</pre></div>
+</div>
+<p>Looking at the total-order indices, (ST) factors <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(a\)</span>,
+<span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(K\)</span> explain a non-negligible amount of
+variance therefore have an effect on the stability of this system.
+Looking at the first-order indices (S1), we also see that besides
+factors <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(a\)</span>, all other factors are important in this
+system through their interactions, which make up the difference between
+their S1 and ST indices. This shows the danger of limiting sensitivity
+analyses to first order effects, as factor importance might be
+significantly misjudged.</p>
+<p>These findings are supported by the analytical condition of equilibrium
+stability in this system:</p>
+<img alt="_images/eqn4.png" src="_images/eqn4.png" />
+<p>In an unharvested system, this condition is both necessary and
+sufficient for the equilibrium of the two species coexisting to be
+stable.</p>
+<p>When adaptive human action is introduced however, this condition is
+still necessary, but no longer sufficient, as harvesting reduces the
+numbers of prey fish and as a result reduces the resources for the
+predator fish. Since this harvesting value is not constant, but can
+dynamically adapt according to the harvester’s objectives, it cannot be
+introduced into this simple equation.</p>
+</section>
+<section id="step-5-explore-relationship-between-uncertain-factors-and-performance">
+<h3>Step 5: Explore relationship between uncertain factors and performance<a class="headerlink" href="#step-5-explore-relationship-between-uncertain-factors-and-performance" title="Link to this heading">#</a></h3>
+<p>In the following steps, we will use the results of our sensitivity
+analysis to investigate the relationships between parametric
+uncertainty, equilibrium stability and the performance of the two
+policies.</p>
+<p>We can use the top three factors identified (<span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and
+<span class="math notranslate nohighlight">\(b\)</span>) to visualize the performance of our policies in this
+three-dimensional parametric space.</p>
+<p>We first define the stability condition, as a function of <span class="math notranslate nohighlight">\(b\)</span> and
+<span class="math notranslate nohighlight">\(m\)</span>, and calculate the corresponding values of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inequality</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">b</span><span class="o">**</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">K</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">m</span><span class="p">))</span>
+
+<span class="c1"># boundary interval that separates successful and failed states of the world</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">inequality</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>View the source code used to create this plot here: <a class="reference external" href="https://uc-ebook.org/docs/html/A3_plotting_code.html#plot-factor-performance">plot_factor_performance</a></p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate plot</span>
+<span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">msdbook</span><span class="o">.</span><span class="n">plot_factor_performance</span><span class="p">(</span><span class="n">param_values</span><span class="p">,</span> <span class="n">collapse_days</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/fishery_output_22_0.png" src="_images/fishery_output_22_0.png" />
+<p>These figures show the combinations of factors that lead to success or
+failure in different states of the world for the profit-maximizing and
+robust policies. Each point is a state of the world, characterized by
+specific values of the parameters, and ideally, we would like the color
+of the point to be blue, to represent that there are a low number of
+days with a predator collapse in that world. The gray curve denotes the
+highly non-linear nature of the boundary, defined by the stability
+condition, that separates successful and failed states of the world. The
+figures demonstrate the following key points:</p>
+<p>First, as asserted above, the policies interact with the system in
+different and complex ways. In the presence of human action, the
+stability condition is not sufficient in determining whether the policy
+will succeed, even though it clearly shapes the system in a fundamental
+manner.</p>
+<p>Secondly, the robust policy manages to avoid collapse in many more of the sampled states of the world, indicated by the number of blue points. The robust policy avoids collapse in 31% of worlds versus 14% in the profit-maximizing policy.This presents a clear tradeoff between profit-maximizing performance androbustness against uncertainty.</p>
+</section>
+<section id="tips-to-apply-sobol-sa-and-scenario-discovery-to-your-problem">
+<h3>Tips to Apply Sobol SA and Scenario Discovery to your Problem<a class="headerlink" href="#tips-to-apply-sobol-sa-and-scenario-discovery-to-your-problem" title="Link to this heading">#</a></h3>
+<p>In this tutorial, we demonstrated a Sobol SA to identify the most
+important factors driving the behavior of a system (i.e. the number of
+the collapse days). In order to apply this methodology to your problem,
+you will need to have a set of optimized policies for your system that
+you are interested in analyzing. The general workflow is as follows:</p>
+<ol class="arabic simple">
+<li><p>Choose sampling bounds for your parameters and set up the problem
+dictionary as in Step 2 above.</p></li>
+<li><p>Generate samples, or alternative states of the world using the
+<code class="docutils literal notranslate"><span class="pre">saltelli.sample</span></code> function.</p></li>
+<li><p>Evaluate your policies on the alternative states of the world. For
+your application, you will also need to develop a rule for
+determining success or failure of your policy in a new SOW. In this
+tutorial, success was denoted by a small number of collapse days.
+Ultimately, the rule will be specific to your application and can
+include various satisficing criteria.</p></li>
+<li><p>Calculate the Sobol indices and discover the most important
+parameters driving success and failure.</p></li>
+<li><p>Finally, use a similar plotting procedure as in step 5 to identify
+the combination of parameter values that lead to success and failure
+in the system.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-sensitivity-analysis-sa-to-discover-factors-shaping-consequential-dynamics">Tutorial: Sensitivity Analysis (SA) to discover factors shaping consequential dynamics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-started">Let’s get started!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-identified-solutions-and-explore-performance">Step 1: Load identified solutions and explore performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-use-salib-to-generate-a-sample-for-a-sobol-sensitivity-analysis">Step 2: Use SALib to generate a sample for a Sobol sensitivity analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-evaluate-the-system-over-all-generated-states-of-the-world">Step 3: Evaluate the system over all generated states of the world</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-sensitivity-indices">Step 4: Calculate sensitivity indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-explore-relationship-between-uncertain-factors-and-performance">Step 5: Explore relationship between uncertain factors and performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-to-apply-sobol-sa-and-scenario-discovery-to-your-problem">Tips to Apply Sobol SA and Scenario Discovery to your Problem</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Uncertainty Quantification &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=69e32ba2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'A1_Uncertainty_Quantification';</script>
+    <script src="_static/custom.js?v=5930ce4b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Jupyter Notebook Tutorials" href="A2_Jupyter_Notebooks.html" />
+    <link rel="prev" title="5. Conclusion" href="5_conclusion.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2FA1_Uncertainty_Quantification.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/A1_Uncertainty_Quantification.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Uncertainty Quantification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">A.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-bootstrap">A.2. Parametric Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-calibration">A.3. Pre-Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo">A.4. Markov Chain Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-methods">A.5. Other Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-first-step-how-to-choose-a-prior-distribution">A.6. The Critical First Step: How to Choose a Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-final-step-predictive-checks">A.7. The Critical Final Step: Predictive Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-home-points">A.8. Key Take-Home Points</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="uncertainty-quantification">
+<span id="a1-uncertainty-quantification"></span><h1><span class="section-number">A. </span>Uncertainty Quantification<a class="headerlink" href="#uncertainty-quantification" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2><span class="section-number">A.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>As defined in <a class="reference internal" href="1_introduction.html#introduction"><span class="std std-numref">Chapter 1</span></a>, uncertainty quantification (UQ) refers to the formal focus on the full specification of likelihoods as well as distributional forms necessary to infer the joint  probabilistic response across all modeled factors of interest <span id="id1">[<a class="reference internal" href="R.Bibliography.html#id11" title="Roger Cooke and others. Experts in uncertainty: opinion and subjective probability in science. Oxford University Press on Demand, 1991.">8</a>]</span>. This is in contrast to UC (the primary focus of the main document of this book), which is instead aimed at identifying which modeling choices yield the most consequential changes or outcomes and exploring alternative hypotheses related to the form and function of modeled systems <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id12" title="Enayat A Moallemi, Jan Kwakkel, Fjalar J de Haan, and Brett A Bryan. Exploratory modeling for analyzing coupled human-natural systems under uncertainty. Global Environmental Change, 65:102186, 2020.">9</a>, <a class="reference internal" href="R.Bibliography.html#id13" title="Warren E Walker, Poul Harremoës, Jan Rotmans, Jeroen P Van Der Sluijs, Marjolein BA Van Asselt, Peter Janssen, and Martin P Krayer von Krauss. Defining uncertainty: a conceptual basis for uncertainty management in model-based decision support. Integrated assessment, 4(1):5–17, 2003.">10</a>]</span>.</p>
+<p>UQ is important for quantifying the relative merits of hypotheses for at least three main reasons. First, identifying model parameters that are consistent with observations is an important part of model development. Due to several effects, including correlations between parameters, simplified or incomplete model structures (relative to the full real-world dynamics), and uncertainty in the observations, many different combinations of parameter values can be consistent with the model structure and the observations to varying extents. Accounting for this uncertainty is conceptually preferable to selecting a single “best fit” parameter vector, particularly as consistency with historical or present observations does not necessarily  guarantee skillful future projections.</p>
+<p>The act of quantification requires specific assumptions about distributional forms and likelihoods, which may be more or less justified depending on prior information about the system or model behavior. As a result, UQ is well-suited for studies accounting for or addressing hypotheses related to systems with a relatively large amount of available data and models which are computationally inexpensive, particularly when the emphasis is on prediction. As shown in <a class="reference internal" href="#figure-a1-1"><span class="std std-numref">Fig. A.1</span></a>, there is a fundamental tradeoff between the available number of model evaluations (for a fixed computational budget) and the number of parameters treated as uncertain. Sensitivity analyses are therefore part of a typical UQ workflow to identify which factors can be fixed and which ought to be prioritized in the UQ.</p>
+<figure class="margin-caption align-center" id="id37">
+<span id="figure-a1-1"></span><a class="reference internal image-reference" href="_images/figureA1_1_UQ_approaches.png"><img alt="Figure A1.1" src="_images/figureA1_1_UQ_approaches.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. A.1 </span><span class="caption-text">Overview of selected existing approaches for uncertainty quantification and their appropriateness given the number of uncertain model parameters and the number of available model simulations. Green shading denotes regions suitable for uncertainty quantification and red shading indicates regions more appropriate for uncertainty characterization.</span><a class="headerlink" href="#id37" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The choice of a particular UQ method depends on both the desired level of quantification and the ability to navigate the tradeoff between computational expense and the number of uncertain parameters (<a class="reference internal" href="#figure-a1-1"><span class="std std-numref">Fig. A.1</span></a>). For example, Markov chain Monte Carlo with a full system model can provide an improved representation of uncertainty compared to the coarser pre-calibration approach <span id="id3">[<a class="reference internal" href="R.Bibliography.html#id37" title="Kelsey L. Ruckert, Gary Shaffer, David Pollard, Yawen Guan, Tony E. Wong, Chris E. Forest, and Klaus Keller. Assessing the Impact of Retreat Mechanisms in a Simple Antarctic Ice Sheet Model Using Bayesian Calibration. PLOS ONE, 12(1):e0170052, January 2017. doi:10.1371/journal.pone.0170052.">157</a>]</span>, but requires many more model evaluations. The use of a surrogate model to approximate the full system model can reduce the number of needed model evaluations by several orders of magnitude, but the uncertainty quantification can only accommodate a limited number of parameters.</p>
+<p>The remainder of this appendix will focus on introducing workflows for particular UQ methods, including a brief discussion of advantages and limitations.</p>
+</section>
+<section id="parametric-bootstrap">
+<h2><span class="section-number">A.2. </span>Parametric Bootstrap<a class="headerlink" href="#parametric-bootstrap" title="Link to this heading">#</a></h2>
+<p>The parametric bootstrap <span id="id4">[<a class="reference internal" href="R.Bibliography.html#id14" title="B. Efron and R. Tibshirani. Bootstrap Methods for Standard Errors, Confidence Intervals, and Other Measures of Statistical Accuracy. Statistical Science, 1(1):54–75, February 1986. doi:10.1214/ss/1177013815.">158</a>]</span> refers to a process of model recalibration to alternate realizations of the data. The bootstrap was originally developed to estimate standard errors and confidence intervals without ascertaining key assumptions that might not hold given the available data. In a setting where observations can be viewed as independent realizations of an underlying stochastic process, a sufficiently rich dataset can be treated as a population representing the data distribution. New datasets are then generated by resampling from the data with replacement, and the model can be refit to each new dataset using maximum-likelihood estimation. The resulting distribution of estimates can then be viewed as a representation of parametric uncertainty.</p>
+<p>A typical workflow for the parametric bootstrap is shown in <a class="reference internal" href="#figure-a1-2"><span class="std std-numref">Fig. A.2</span></a>. After identifying outputs of interest and preparing the data, the parametric model is fit by some procedure such as minimizing root-mean-square-error or maximizing the likelihood. Alternate datasets are constructed by resampling from the population or by generating new samples from the fitted data-generating process. It is important at this step that the resampled quantities are independent of one another. For example, in the context of temporally- or spatially-correlated data, such as time series, the raw observations cannot be treated as independent realizations. However, the residuals resulting from fitting the model to the data could be (depending on their structure). For example, if the residuals are treated as independent, they can then be resampled with replacement, and these residuals added to the original model fit to create new realizations. If the residuals are assumed to be the result of an autoregressive process, this process could be fit to the original residual series and new residuals be created using this model <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id35" title="Ryan L. Sriver, Robert J. Lempert, Per Wikman-Svahn, and Klaus Keller. Characterizing uncertain sea-level rise projections to support investment decisions. PLOS ONE, 13(2):e0190641, February 2018. URL: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190641 (visited on 2021-06-09), doi:10.1371/journal.pone.0190641.">159</a>]</span>. The model is then refit to each new realization.</p>
+<figure class="margin-caption align-center" id="id38">
+<span id="figure-a1-2"></span><a class="reference internal image-reference" href="_images/figureA1_2_bootstrap_workflow.png"><img alt="Figure A1.2" src="_images/figureA1_2_bootstrap_workflow.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. A.2 </span><span class="caption-text">Workflow for the parametric bootstrap.</span><a class="headerlink" href="#id38" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The bootstrap is computationally convenient, particularly as the process of fitting the model to each realization can be easily parallelized. This approach also requires minimal prior assumptions. However, due to the assumption that the available data are representative of the underlying data distribution, the bootstrap can neglect key uncertainties which might influence the results. For example, when using an autoregressive process to generate new residuals, uncertainty in the autocorrelation parameter and innovation variance is neglected, which may bias estimates of, for example, low-probability but high-impact events <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id36" title="Kelsey L. Ruckert, Yawen Guan, Alexander M. R. Bakker, Chris E. Forest, and Klaus Keller. The effects of time-varying observation errors on semi-empirical sea-level projections. Climatic Change, 140(3):349–360, February 2017. URL: https://doi.org/10.1007/s10584-016-1858-z (visited on 2021-06-09), doi:10.1007/s10584-016-1858-z.">160</a>]</span>.</p>
+</section>
+<section id="pre-calibration">
+<h2><span class="section-number">A.3. </span>Pre-Calibration<a class="headerlink" href="#pre-calibration" title="Link to this heading">#</a></h2>
+<p>Pre-calibration <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id38" title="Keith Beven and Andrew Binley. The future of distributed models: Model calibration and uncertainty prediction. Hydrological Processes, 6(3):279–298, 1992. doi:10.1002/hyp.3360060305.">18</a>, <a class="reference internal" href="R.Bibliography.html#id39" title="Neil R Edwards, David Cameron, and Jonathan Rougier. Precalibrating an intermediate complexity climate model. Clim. Dyn., 37(7-8):1469–1482, 2011. URL: http://dx.doi.org/10.1007/s00382-010-0921-0, doi:10.1007/s00382-010-0921-0.">161</a>, <a class="reference internal" href="R.Bibliography.html#id40" title="Alexis Boukouvalas, Pete Sykes, Dan Cornford, and Hugo Maruri-Aguilar. Bayesian Precalibration of a Large Stochastic Microsimulation Model. IEEE Transactions on Intelligent Transportation Systems, 15(3):1337–1347, June 2014. doi:10.1109/TITS.2014.2304394.">162</a>]</span> involves the identification of a plausible set of parameters using some prespecified screening criterion, such as the distance from the model results to the observations (based on an appropriate metric for the desired matching features, such as root-mean-squared error). A typical workflow is shown in <a class="reference internal" href="#figure-a1-3"><span class="std std-numref">Fig. A.3</span></a>. Parameter values are obtained by systematically sampling the input space (see <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#design-of-experiments"><span class="std std-numref">Chapter 3.3</span></a>). After the model is evaluated at the samples, only those passing the distance criterion are retained. This selects a subset of the parameter space as “plausible” based on the screening criterion, though there is no assignment of probabilities within this plausible region.</p>
+<figure class="margin-caption align-center" id="id39">
+<span id="figure-a1-3"></span><a class="reference internal image-reference" href="_images/figureA1_3_precal_workflow.png"><img alt="Figure A1.3" src="_images/figureA1_3_precal_workflow.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. A.3 </span><span class="caption-text">Workflow for pre-calibration.</span><a class="headerlink" href="#id39" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pre-calibration can be useful for models which are inexpensive enough that a reasonable
+number of samples can be used to represent the parameter space, but which are too expensive to facilitate full uncertainty quantification. High-dimensional parameter spaces, which can be problematic for the uncertainty quantification methods below, may also be explored using pre-calibration. One key prerequisite to using this method is the ability to place a meaningful distance metric on the output space.</p>
+<p>However, pre-calibration results in a very coarse characterization of uncertainty, especially when considering a large number of parameters, as more samples are needed to fully characterize the parameter space. Due to the inability to evaluate the relative probability of regions of the parameter space beyond the binary plausible-and-implausible characterization, pre-calibration can also result in degraded hindcast and projection skills and parameter estimates <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id37" title="Kelsey L. Ruckert, Gary Shaffer, David Pollard, Yawen Guan, Tony E. Wong, Chris E. Forest, and Klaus Keller. Assessing the Impact of Retreat Mechanisms in a Simple Antarctic Ice Sheet Model Using Bayesian Calibration. PLOS ONE, 12(1):e0170052, January 2017. doi:10.1371/journal.pone.0170052.">157</a>, <a class="reference internal" href="R.Bibliography.html#id41" title="David Makowski, Daniel Wallach, and Marie Tremblay. Using a Bayesian approach to parameter estimation; comparison of the GLUE and MCMC methods. Agronomie, 22(2):191–203, 2002. Publisher: EDP Sciences.">163</a>, <a class="reference internal" href="R.Bibliography.html#id42" title="Mahyar Shafii, Bryan Tolson, and Loren Shawn Matott. Uncertainty-based multi-criteria calibration of rainfall-runoff models: a comparative study. Stochastic Environmental Research and Risk Assessment, 28(6):1493–1510, August 2014. doi:10.1007/s00477-014-0855-x.">164</a>]</span>.</p>
+<p>A related method, widely used in hydrological studies, is generalized likelihood uncertainty estimation, or GLUE <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id38" title="Keith Beven and Andrew Binley. The future of distributed models: Model calibration and uncertainty prediction. Hydrological Processes, 6(3):279–298, 1992. doi:10.1002/hyp.3360060305.">18</a>]</span>. Unlike pre-calibration, the underlying argument for GLUE relies on the concept of equifinality <span id="id10">[<a class="reference internal" href="R.Bibliography.html#id43" title="Keith Beven and Jim Freer. Equifinality, data assimilation, and uncertainty estimation in mechanistic modelling of complex environmental systems using the GLUE methodology. Journal of hydrology, 249(1-4):11–29, 2001. Publisher: Elsevier.">165</a>]</span>, which posits that it is impossible to find a uniquely well-performing parameter vector for models of abstract environmental systems <span id="id11">[<a class="reference internal" href="R.Bibliography.html#id43" title="Keith Beven and Jim Freer. Equifinality, data assimilation, and uncertainty estimation in mechanistic modelling of complex environmental systems using the GLUE methodology. Journal of hydrology, 249(1-4):11–29, 2001. Publisher: Elsevier.">165</a>, <a class="reference internal" href="R.Bibliography.html#id44" title="Jasper A. Vrugt and Keith J. Beven. Embracing equifinality with efficiency: Limits of Acceptability sampling using the DREAM(LOA) algorithm. Journal of Hydrology, 559:954–971, April 2018. doi:10.1016/j.jhydrol.2018.02.026.">166</a>]</span>. In other words, there exist multiple parameter vectors which perform equally or similarly well. As with pre-calibration, GLUE uses a goodness-of-fit measure (though this is called a “likelihood” in the GLUE literature, as opposed to a statistical likelihood function <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id45" title="Jery R. Stedinger, Richard M. Vogel, Seung Uk Lee, and Rebecca Batchelder. Appraisal of the generalized likelihood uncertainty estimation (GLUE) method. Water Resources Research, 2008. doi:10.1029/2008WR006822.">167</a>]</span>) to evaluate samples. After setting a threshold of acceptable performance with respect to that measure, samples are evaluated and classified into “behavioral” or “non-behavioral” according to the threshold.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following badge to try out an interactive tutorial on utilizing Pre-Calibration and GLUE for HYMOD model calibration:  <a class="reference external" href="https://uc-ebook.msdlive.org/user-redirect/lab/tree/notebooks/hymod.ipynb">Pre-Calibration Jupyter Notebook</a></p>
+</div>
+</section>
+<section id="markov-chain-monte-carlo">
+<h2><span class="section-number">A.4. </span>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Link to this heading">#</a></h2>
+<p>Markov chain Monte Carlo (MCMC) is a “gold standard” approach to full uncertainty quantification. MCMC refers to a category of algorithms which systematically sample from a target distribution (in this case, the posterior distribution) by constructing a Markov chain. A Markov chain is a probabilistic structure consisting of a state space, an initial probability distribution over the states, and a transition distribution between states. If a Markov chain satisfies certain properties <span id="id13">[<a class="reference internal" href="R.Bibliography.html#id170" title="Christian Robert and George Casella. Monte Carlo Statistical Methods. Springer Science &amp; Business Media, March 2013. ISBN 978-1-4757-3071-5.">168</a>, <a class="reference internal" href="R.Bibliography.html#id169" title="Christian P. Robert. The Metropolis–Hastings Algorithm. In Wiley StatsRef: Statistics Reference Online, pages 1–15. American Cancer Society, 2015. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118445112.stat07834 (visited on 2021-06-14), doi:10.1002/9781118445112.stat07834.">169</a>]</span>, the probability of being in each state will eventually converge to a stable, or stationary, distribution, regardless of the initial probabilities.</p>
+<p>MCMC algorithms construct a Markov chain of samples from a parameter space (the combination of model and statistical parameters). This Markov chain is constructed so that the stationary distribution is a target distribution, in this case the (Bayesian) posterior distribution. As a result, after the transient period, the resulting samples can be viewed as a set of dependent samples from the posterior (the dependence is due to the autocorrelation between samples resulting from the Markov chain transitions). Expected values can be computed from these samples (for example, using batch-means estimators <span id="id14">[<a class="reference internal" href="R.Bibliography.html#id171" title="James M. Flegal, Murali Haran, and Galin L. Jones. Markov Chain Monte Carlo: Can We Trust the Third Significant Figure? Statistical Science, 23(2):250–260, May 2008. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-23/issue-2/Markov-Chain-Monte-Carlo--Can-We-Trust-the-Third/10.1214/08-STS257.full (visited on 2021-06-14), doi:10.1214/08-STS257.">170</a>]</span>), or the chain can be sub-sampled or thinned and the resulting samples used as independent Monte Carlo samples due to the reduced or eliminated autocorrelation.</p>
+<p>A general workflow for MCMC is shown in <a class="reference internal" href="#figure-a1-4"><span class="std std-numref">Fig. A.4</span></a>. The first decision is whether to use the full model or a surrogate model (or emulator). Typical surrogates include Gaussian process emulation <span id="id15">[<a class="reference internal" href="R.Bibliography.html#id172" title="Carla Currin, Toby Mitchell, Max Morris, and Don Ylvisaker. Bayesian Prediction of Deterministic Functions, with Applications to the Design and Analysis of Computer Experiments. Journal of the American Statistical Association, 86(416):953–963, December 1991. Publisher: Taylor &amp; Francis _eprint: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1991.10475138. URL: https://www.tandfonline.com/doi/abs/10.1080/01621459.1991.10475138 (visited on 2021-06-14), doi:10.1080/01621459.1991.10475138.">171</a>, <a class="reference internal" href="R.Bibliography.html#id173" title="Jerome Sacks, William J. Welch, Toby J. Mitchell, and Henry P. Wynn. Design and Analysis of Computer Experiments. Statistical Science, 4(4):409–423, 1989. Publisher: Institute of Mathematical Statistics. URL: https://www.jstor.org/stable/2245858 (visited on 2021-06-14).">172</a>]</span>, polynomial chaos expansions <span id="id16">[<a class="reference internal" href="R.Bibliography.html#id174" title="Roger G. Ghanem and Pol D. Spanos. Spectral Stochastic Finite‐Element Formulation for Reliability Analysis. Journal of Engineering Mechanics, 117(10):2351–2372, October 1991. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%290733-9399%281991%29117%3A10%282351%29 (visited on 2021-06-14), doi:10.1061/(ASCE)0733-9399(1991)117:10(2351).">173</a>, <a class="reference internal" href="R.Bibliography.html#id175" title="Dongbin Xiu and George Em Karniadakis. The Wiener–Askey Polynomial Chaos for Stochastic Differential Equations. SIAM Journal on Scientific Computing, 24(2):619–644, January 2002. Publisher: Society for Industrial and Applied Mathematics. URL: https://epubs.siam.org/doi/abs/10.1137/S1064827501387826 (visited on 2021-06-14), doi:10.1137/S1064827501387826.">174</a>]</span>, support vector machines <span id="id17">[<a class="reference internal" href="R.Bibliography.html#id176" title="Angelo Ciccazzo, Gianni Di Pillo, and Vittorio Latorre. A SVM Surrogate Model-Based Method for Parametric Yield Optimization. IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems, 35(7):1224–1228, July 2016. Conference Name: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems. doi:10.1109/TCAD.2015.2501307.">175</a>, <a class="reference internal" href="R.Bibliography.html#id177" title="W. Andrew Pruett and Robert L. Hester. The Creation of Surrogate Models for Fast Estimation of Complex Model Outcomes. PLOS ONE, 11(6):e0156574, June 2016. Publisher: Public Library of Science. URL: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0156574 (visited on 2021-06-14), doi:10.1371/journal.pone.0156574.">176</a>]</span>, and neural networks <span id="id18">[<a class="reference internal" href="R.Bibliography.html#id178" title="John Eason and Selen Cremaschi. Adaptive sequential sampling for surrogate model generation with artificial neural networks. Computers &amp; Chemical Engineering, 68:220–232, September 2014. URL: https://www.sciencedirect.com/science/article/pii/S0098135414001719 (visited on 2021-06-14), doi:10.1016/j.compchemeng.2014.05.021.">177</a>, <a class="reference internal" href="R.Bibliography.html#id179" title="Dirk Gorissen, Luciano De Tommasi, Karel Crombecq, and Tom Dhaene. Sequential modeling of a low noise amplifier with neural networks and active learning. Neural Computing and Applications, 18(5):485–494, June 2009. URL: https://doi.org/10.1007/s00521-008-0223-1 (visited on 2021-06-14), doi:10.1007/s00521-008-0223-1.">178</a>]</span>. Surrogate modeling can be faster, but requires a sufficient number of model evaluations for the surrogate to accurately represent the model’s response surface, and this typically limits the number of parameters which can be included in the analysis.</p>
+<figure class="margin-caption align-center" id="id40">
+<span id="figure-a1-4"></span><a class="reference internal image-reference" href="_images/figureA1_4_mcmc_workflow.png"><img alt="Figure A1.4" src="_images/figureA1_4_mcmc_workflow.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. A.4 </span><span class="caption-text">Workflow for Markov chain Monte Carlo.</span><a class="headerlink" href="#id40" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>After selecting the variables which will be treated as uncertain, the next step is to specify the likelihood based on the selected surrogate model or the structure of the data-model residuals. For example, it may not always be appropriate to treat the residuals as independent and identically distributed (as is commonly done in linear regression). A mis-specification of the residual structure can result in biases and over- or under-confident inferences and projections <span id="id19">[<a class="reference internal" href="R.Bibliography.html#id180" title="Jenný Brynjarsdóttir and Anthony O'Hagan. Learning about physical parameters: the importance of model discrepancy. Inverse Problems, 30(11):114007, October 2014. Publisher: IOP Publishing. URL: https://doi.org/10.1088/0266-5611/30/11/114007 (visited on 2021-06-14), doi:10.1088/0266-5611/30/11/114007.">179</a>]</span>.</p>
+<p>After specifying the prior distributions (see <a class="reference internal" href="#critical-first-step"><span class="std std-numref">Chapter A.6</span></a>), the selected MCMC algorithm should be used to draw samples from the posterior distribution. There are many MCMC algorithms, all of which have advantages and disadvantages for a particular problem. These include the Metropolis-Hastings algorithm <span id="id20">[<a class="reference internal" href="R.Bibliography.html#id169" title="Christian P. Robert. The Metropolis–Hastings Algorithm. In Wiley StatsRef: Statistics Reference Online, pages 1–15. American Cancer Society, 2015. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118445112.stat07834 (visited on 2021-06-14), doi:10.1002/9781118445112.stat07834.">169</a>]</span> and Hamiltonian Monte Carlo <span id="id21">[<a class="reference internal" href="R.Bibliography.html#id181" title="Michael Betancourt. A conceptual introduction to Hamiltonian Monte Carlo. arXiv preprint arXiv:1701.02434, 2017.">180</a>, <a class="reference internal" href="R.Bibliography.html#id182" title="Radford M. Neal. MCMC using Hamiltonian dynamics. Handbook of markov chain monte carlo, 2(11):2, 2011.">181</a>]</span>. Software packages typically implement one MCMC method, sometimes designed for a particular problem setting or likelihood specification. For example, R’s <em>adaptMCMC</em> implements an adaptive Metropolis-Hastings algorithm <span id="id22">[<a class="reference internal" href="R.Bibliography.html#id183" title="Matti Vihola. Robust adaptive Metropolis algorithm with coerced acceptance rate. Statistics and Computing, 22(5):997–1008, September 2012. URL: https://doi.org/10.1007/s11222-011-9269-5 (visited on 2021-06-14), doi:10.1007/s11222-011-9269-5.">182</a>]</span>, while <em>NIMBLE</em> <span id="id23">[<a class="reference internal" href="R.Bibliography.html#id184" title="Perry de Valpine, Daniel Turek, Christopher J. Paciorek, Clifford Anderson-Bergman, Duncan Temple Lang, and Rastislav Bodik. Programming With Models: Writing Statistical Algorithms for General Model Structures With NIMBLE. Journal of Computational and Graphical Statistics, 26(2):403–413, April 2017. Publisher: Taylor &amp; Francis _eprint: https://doi.org/10.1080/10618600.2016.1172487. URL: https://doi.org/10.1080/10618600.2016.1172487 (visited on 2021-06-14), doi:10.1080/10618600.2016.1172487.">183</a>, <a class="reference internal" href="R.Bibliography.html#id185" title="NIMBLE Development Team. NIMBLE: MCMC, Particle Filtering, and Programmable Hierarchical Modeling. May 2021. URL: https://zenodo.org/record/4829693 (visited on 2021-06-14), doi:10.5281/zenodo.4829693.">184</a>]</span> uses a user-customizable Metropolis-Hastings implementation, as well as functionality for Gibbs sampling (which is a special case of Metropolis-Hastings where the prior distribution has a convenient mathematical form). Some recent implementations, such as <em>Stan</em> <span id="id24">[<a class="reference internal" href="R.Bibliography.html#id186" title="Stan Development Team. Stan Modeling Language Users Guide and Reference Manual. 2021. URL: https://mc-stan.org/docs/2_27/stan-users-guide/index.html (visited on 2021-06-14).">185</a>]</span>, <em>pyMC3</em> <span id="id25">[<a class="reference internal" href="R.Bibliography.html#id187" title="John Salvatier, Thomas V. Wiecki, and Christopher Fonnesbeck. Probabilistic programming in Python using PyMC3. PeerJ Computer Science, 2:e55, April 2016. Publisher: PeerJ Inc. URL: https://peerj.com/articles/cs-55 (visited on 2021-06-14), doi:10.7717/peerj-cs.55.">186</a>]</span>, and <em>Turing</em> <span id="id26">[<a class="reference internal" href="R.Bibliography.html#id188" title="Hong Ge, Kai Xu, and Zoubin Ghahramani. Turing: A Language for Flexible Probabilistic Inference. In International Conference on Artificial Intelligence and Statistics, 1682–1690. PMLR, March 2018. ISSN: 2640-3498. URL: http://proceedings.mlr.press/v84/ge18b.html (visited on 2021-06-14).">187</a>]</span> allow different algorithms to be used.</p>
+<p>A main consideration when using MCMC algorithms is testing for convergence to the target distribution. As convergence is guaranteed only for a sufficiently large number of transitions, it is impossible to conclude for certain that a chain has converged for a fixed number of iterations. However, several heuristics have been developed <span id="id27">[<a class="reference internal" href="R.Bibliography.html#id171" title="James M. Flegal, Murali Haran, and Galin L. Jones. Markov Chain Monte Carlo: Can We Trust the Third Significant Figure? Statistical Science, 23(2):250–260, May 2008. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-23/issue-2/Markov-Chain-Monte-Carlo--Can-We-Trust-the-Third/10.1214/08-STS257.full (visited on 2021-06-14), doi:10.1214/08-STS257.">170</a>, <a class="reference internal" href="R.Bibliography.html#id189" title="Andrew Gelman and Donald B. Rubin. Inference from Iterative Simulation Using Multiple Sequences. Statistical Science, 7(4):457–472, November 1992. Publisher: Institute of Mathematical Statistics. URL: https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Inference-from-Iterative-Simulation-Using-Multiple-Sequences/10.1214/ss/1177011136.full (visited on 2021-06-14), doi:10.1214/ss/1177011136.">188</a>]</span> to increase evidence that convergence has occurred.</p>
+</section>
+<section id="other-methods">
+<h2><span class="section-number">A.5. </span>Other Methods<a class="headerlink" href="#other-methods" title="Link to this heading">#</a></h2>
+<p>Other common methods for UQ exist. These include sequential Monte Carlo, otherwise known as particle filtering <span id="id28">[<a class="reference internal" href="R.Bibliography.html#id190" title="Pierre Del Moral, Arnaud Doucet, and Ajay Jasra. Sequential Monte Carlo samplers. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 68(3):411–436, 2006. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2006.00553.x. URL: http://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9868.2006.00553.x (visited on 2021-06-14), doi:10.1111/j.1467-9868.2006.00553.x.">189</a>, <a class="reference internal" href="R.Bibliography.html#id191" title="Arnaud Doucet, Simon Godsill, and Christophe Andrieu. On sequential Monte Carlo sampling methods for Bayesian filtering. Statistics and Computing, 10(3):197–208, July 2000. URL: https://doi.org/10.1023/A:1008935410038 (visited on 2021-06-14), doi:10.1023/A:1008935410038.">190</a>, <a class="reference internal" href="R.Bibliography.html#id192" title="Jane Liu and Mike West. Combined Parameter and State Estimation in Simulation-Based Filtering. In Arnaud Doucet, Nando de Freitas, and Neil Gordon, editors, Sequential Monte Carlo Methods in Practice, Statistics for Engineering and Information Science, pages 197–223. Springer, New York, NY, 2001. URL: https://doi.org/10.1007/978-1-4757-3437-9_10 (visited on 2021-06-14), doi:10.1007/978-1-4757-3437-9_10.">191</a>]</span>, where a number of particles are used to evaluate samples. An advantage of sequential Monte Carlo is that the vast majority of the computation can be parallelized, unlike with standard MCMC. A major weakness is the potential for degeneracy <span id="id29">[<a class="reference internal" href="R.Bibliography.html#id191" title="Arnaud Doucet, Simon Godsill, and Christophe Andrieu. On sequential Monte Carlo sampling methods for Bayesian filtering. Statistics and Computing, 10(3):197–208, July 2000. URL: https://doi.org/10.1023/A:1008935410038 (visited on 2021-06-14), doi:10.1023/A:1008935410038.">190</a>]</span>, where many particles have extremely small weights, resulting in the effective use of only a few samples.</p>
+<p>Another method is approximate Bayesian computation (ABC) <span id="id30">[<a class="reference internal" href="R.Bibliography.html#id193" title="Stefano Cabras, Maria Eugenia Castellanos Nueda, and Erlis Ruli. Approximate Bayesian Computation by Modelling Summary Statistics in a Quasi-likelihood Framework. Bayesian Analysis, 10(2):411–439, June 2015. Publisher: International Society for Bayesian Analysis. URL: https://projecteuclid.org/journals/bayesian-analysis/volume-10/issue-2/Approximate-Bayesian-Computation-by-Modelling-Summary-Statistics-in-a-Quasi/10.1214/14-BA921.full (visited on 2021-06-14), doi:10.1214/14-BA921.">192</a>, <a class="reference internal" href="R.Bibliography.html#id194" title="Jarno Lintusaari, Michael U. Gutmann, Ritabrata Dutta, Samuel Kaski, and Jukka Corander. Fundamentals and Recent Developments in Approximate Bayesian Computation. Systematic Biology, 66(1):e66–e82, January 2017. URL: https://doi.org/10.1093/sysbio/syw077 (visited on 2021-06-14), doi:10.1093/sysbio/syw077.">193</a>, <a class="reference internal" href="R.Bibliography.html#id195" title="Mikael Sunnåker, Alberto Giovanni Busetto, Elina Numminen, Jukka Corander, Matthieu Foll, and Christophe Dessimoz. Approximate Bayesian Computation. PLOS Computational Biology, 9(1):e1002803, January 2013. Publisher: Public Library of Science. URL: https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002803 (visited on 2021-06-14), doi:10.1371/journal.pcbi.1002803.">194</a>]</span>. ABC is a likelihood-free approach that compares model output to a set of summary statistics. ABC is therefore well-suited for models and residual structures which do not lend themselves to a computationally-tractable likelihood, but the resulting inferences are known to be biased if the set of summary statistics is not sufficient, which can be difficult to know a-priori.</p>
+</section>
+<section id="the-critical-first-step-how-to-choose-a-prior-distribution">
+<span id="critical-first-step"></span><h2><span class="section-number">A.6. </span>The Critical First Step: How to Choose a Prior Distribution<a class="headerlink" href="#the-critical-first-step-how-to-choose-a-prior-distribution" title="Link to this heading">#</a></h2>
+<p>Prior distributions play an important role in Bayesian uncertainty quantification, particularly when data is limited relative to the dimension of the model. Bayesian updating can be thought of as an information filter, where each additional datum is added to the information contained in the prior; eventually, the prior makes relatively little impact. In real world problems, it can be extremely difficult to assess how much data is required for the choice of prior to become less relevant. The choice of prior can also be influential when conducting SA prior to or without UQ. This is because a prior distribution for a sensitivity analysis for a given parameter which is much wider than the region where the model response surface is sensitive to the parameter value might cause the sensitivity calculation to underestimate the response in that potentially critical region. Similarly, a prior which is too narrow may miss regions where the model responds to the parameter altogether.</p>
+<p>Ideally, prior distributions are constructed independently of any analysis of the new data considered. This is because using data to inform the prior as well as to compute the likelihood reuses information in a potentially inappropriate way, which can lead to overconfident inferences. Following <span id="id31">Jaynes [<a class="reference internal" href="R.Bibliography.html#id196" title="Edwin T. Jaynes. Probability theory: the logic of science. Washington University St. Louis, MO, 1996.">195</a>], Gelman <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id197" title="Andrew Gelman, Daniel Simpson, and Michael Betancourt. The Prior Can Often Only Be Understood in the Context of the Likelihood. Entropy, 19(10):555, October 2017. Number: 10 Publisher: Multidisciplinary Digital Publishing Institute. URL: https://www.mdpi.com/1099-4300/19/10/555 (visited on 2021-06-14), doi:10.3390/e19100555.">196</a>]</span> refers to the ideal prior as one which encodes all available information about the model. For practical reasons (difficulty of construction or computational inconvenience), most priors fail to achieve this ideal. These compromises mean that priors should be transparently articulated and justified, so that the impact of the choice of prior can be fully understood. When there is ambiguity about an appropriate prior, such as how fat the tails should be, an analyst should examine how sensitive the UQ results are to the choice of prior.</p>
+<p>Priors can also be classified in terms of the information encoded by them, demonstrated in <a class="reference internal" href="#figure-a1-5"><span class="std std-numref">Fig. A.5</span></a>. Non-informative priors (illustrated in <a class="reference internal" href="#figure-a1-5"><span class="std std-numref">Fig. A.5</span></a> (a)) allegedly correspond to (and are frequently justified by) a position of ignorance. A classic example is the use of a uniform distribution. A uniform prior can, however, be problematic, as it can lead to improper inferences by giving extremely large values the same prior probability as values which may seem more likely <span id="id32">[<a class="reference internal" href="R.Bibliography.html#id197" title="Andrew Gelman, Daniel Simpson, and Michael Betancourt. The Prior Can Often Only Be Understood in the Context of the Likelihood. Entropy, 19(10):555, October 2017. Number: 10 Publisher: Multidisciplinary Digital Publishing Institute. URL: https://www.mdpi.com/1099-4300/19/10/555 (visited on 2021-06-14), doi:10.3390/e19100555.">196</a>, <a class="reference internal" href="R.Bibliography.html#id198" title="Christian Robert. The Bayesian choice: from decision-theoretic foundations to computational implementation. Springer Science &amp; Business Media, 2007.">197</a>]</span>, and therefore does not really reflect a state of complete ignorance. In the extreme case of a uniform prior over the entire real line, every particular region has effectively a prior weight of zero, even though not all regions are a priori unlikely <span id="id33">[<a class="reference internal" href="R.Bibliography.html#id198" title="Christian Robert. The Bayesian choice: from decision-theoretic foundations to computational implementation. Springer Science &amp; Business Media, 2007.">197</a>]</span>. Moreover, a uniform prior which excludes possible parameter values is not actually noninformative, as it assigns zero probability to those values while jumping to a nonzero probability as soon as the boundary is crossed. While a uniform prior can be problematic for the task of uncertainty quantification, it may be useful for an initial sensitivity analysis to identify the boundary of any regions where the model is sensitive to the parameter.</p>
+<figure class="margin-caption align-center" id="id41">
+<span id="figure-a1-5"></span><a class="reference internal image-reference" href="_images/figureA1_5_priors_posteriors.png"><img alt="Figure A1.5" src="_images/figureA1_5_priors_posteriors.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. A.5 </span><span class="caption-text">Impact of priors on posterior inferences. These plots show the results of inference for a linear regression model with 15 data points. The true value of the parameter is equal to -3. All priors have mean 0. In panel (a), a non-informative prior allows the tails of the posterior to extend freely, which may result in unreasonably large parameter values. In panel (b), a weakly informative prior constrains the tails more, but allows them to extend without too much restriction. In panel (c), an informative prior strongly constrains the tails of the posterior and biases the inference closer towards the prior mean (the posterior mean is -0.89 in this case, and closer to -3 in the other two cases).</span><a class="headerlink" href="#id41" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Informative priors strongly bound the range of probable values (illustrated in <a class="reference internal" href="#figure-a1-5"><span class="std std-numref">Fig. A.5</span></a> (c)). One example is a Gaussian distribution with a relatively small standard deviation, so that large values are assigned a close to null prior probability. Another example is the jump from zero to non-zero probability occurring at the truncation point of a truncated Gaussian, which could be justified based on information that the parameter cannot take on values beyond this point. Without this type of justification, however, priors may be too informative, failing to allow the information contained in the available data to update them.</p>
+<p>Finally, weakly informative priors (illustrated in <a class="reference internal" href="#figure-a1-5"><span class="std std-numref">Fig. A.5</span></a> (b)) fall in between <span id="id34">[<a class="reference internal" href="R.Bibliography.html#id197" title="Andrew Gelman, Daniel Simpson, and Michael Betancourt. The Prior Can Often Only Be Understood in the Context of the Likelihood. Entropy, 19(10):555, October 2017. Number: 10 Publisher: Multidisciplinary Digital Publishing Institute. URL: https://www.mdpi.com/1099-4300/19/10/555 (visited on 2021-06-14), doi:10.3390/e19100555.">196</a>]</span>. They regularize better than non-informative priors, but allow for more inference flexibility than fully informative priors. An example might be a Gaussian distribution with a moderate standard deviation, which still assigns negligible probability for values far away from the mean, but is less constrained than a narrow Gaussian for a reasonably large area. A key note is that it is not necessarily better to be more informative if this cannot be justified by the available information.</p>
+</section>
+<section id="the-critical-final-step-predictive-checks">
+<h2><span class="section-number">A.7. </span>The Critical Final Step: Predictive Checks<a class="headerlink" href="#the-critical-final-step-predictive-checks" title="Link to this heading">#</a></h2>
+<p>Every UQ workflow requires a number of choices, potentially including selecting prior distributions, the likelihood specification, and any used numerical models. Checking the appropriateness of these choices is an essential step for sound inferences, as misspecification can produce biased results <span id="id35">[<a class="reference internal" href="R.Bibliography.html#id180" title="Jenný Brynjarsdóttir and Anthony O'Hagan. Learning about physical parameters: the importance of model discrepancy. Inverse Problems, 30(11):114007, October 2014. Publisher: IOP Publishing. URL: https://doi.org/10.1088/0266-5611/30/11/114007 (visited on 2021-06-14), doi:10.1088/0266-5611/30/11/114007.">179</a>]</span>. Model checking in this fashion is part of an iterative UQ process, as the results can reveal adjustments to the statistical model or the need to select a different numerical model <span id="id36">[<a class="reference internal" href="R.Bibliography.html#id200" title="Andrew Gelman, Xiao-Li Meng, and Hal Stern. Posterior Predictive Assessment of Model Fitness via Realized Discrepancies. Statistica Sinica, 6(4):733–760, 1996. Publisher: Institute of Statistical Science, Academia Sinica. URL: https://www.jstor.org/stable/24306036 (visited on 2021-06-14).">198</a>, <a class="reference internal" href="R.Bibliography.html#id199" title="Andrew Gelman, Aki Vehtari, Daniel Simpson, Charles C. Margossian, Bob Carpenter, Yuling Yao, Lauren Kennedy, Jonah Gabry, Paul-Christian Bürkner, and Martin Modrák. Bayesian Workflow. arXiv:2011.01808 [stat], November 2020. arXiv: 2011.01808. URL: http://arxiv.org/abs/2011.01808 (visited on 2021-06-14).">199</a>, <a class="reference internal" href="R.Bibliography.html#id201" title="Andrew Gelman and Cosma Rohilla Shalizi. Philosophy and the practice of Bayesian statistics. British Journal of Mathematical and Statistical Psychology, 66(1):8–38, 2013. _eprint: https://bpspsychub.onlinelibrary.wiley.com/doi/pdf/10.1111/j.2044-8317.2011.02037.x. URL: https://bpspsychub.onlinelibrary.wiley.com/doi/abs/10.1111/j.2044-8317.2011.02037.x (visited on 2021-06-14), doi:10.1111/j.2044-8317.2011.02037.x.">200</a>]</span>.</p>
+<p>A classic example is the need to check the structure of residuals for correlations. Many standard statistical models, such as linear regression, assume that the residuals are independent and identically distributed from the error distribution. The presence of correlations, including temporal autocorrelations and spatial correlations, indicates a structural mismatch between the likelihood and the data. In these cases, the likelihood should be adjusted to account for these correlations.</p>
+<p>Checking residuals in this fashion is one example of a predictive check (or a posterior predictive check in the Bayesian setting). One way to view UQ is as a means to recover data-generating processes (associated with each parameter vector) consistent with the observations. Predictive checks compare the inferred data-generating process to the observations to determine whether the model is capable of appropriately capturing uncertainty. After conducting the UQ analysis, alternatively realized datasets are simulated from sampled parameters. These alternative datasets, or their summary statistics, can be tested against the observations to determine adequacy of the fit. Predictive checks are therefore a way of probing various model components to identify shortcomings that might result in biased inferences or poor projections, depending on the goal of the analysis.</p>
+<p>One example of a graphical predictive check for time series models is hindcasting, where predictive intervals are constructed from the alternative datasets and plotted along with the data. Hindcasts demonstrate how well the model is capable of capturing the broader dynamics of the data, as well as whether the parameter distributions produce appropriate levels of output uncertainty. A related quantitative check is the surprise index, which calculates the percentage of data points located within a fixed predictive interval. For example, the 90% predictive interval should contain approximately 90% of the data. More uncertainty than this reflects underconfidence, while less uncertainty reflects overconfidence. This could be the result of priors that are not appropriately informative, or a likelihood that does not account for correlations between data points appropriately. It could also be the result of a numerical model that isn’t sufficiently sensitive to the parameters that are treated as uncertain.</p>
+</section>
+<section id="key-take-home-points">
+<h2><span class="section-number">A.8. </span>Key Take-Home Points<a class="headerlink" href="#key-take-home-points" title="Link to this heading">#</a></h2>
+<p>When appropriate, UQ is an important component of the exploratory modeling workflow. While a number of parameter sets could be consistent with observations, they may result in divergent model outputs when exposed to different future conditions. This can result in identifying risks which are not visible when selecting a “best fit” parameterization. Quantifying uncertainties also allows us to quantify the support for hypotheses, which is an essential part of the scientific process.</p>
+<p>Due to the scale and complexity of the experiments taking place in IM3, UQ has not been extensively used. The tradeoff between the available number of function evaluations and the number of uncertain parameters illustrated in <a class="reference internal" href="#figure-a1-1"><span class="std std-numref">Fig. A.1</span></a> is particularly challenging due to the increasing complexity of state-of-the-art models and the movement towards coupled, multisector models. This tradeoff can be addressed somewhat through the use of emulators and parallelizable methods. In particular, when attempting to navigate this tradeoff by limiting the number of uncertain parameters, it is important to carefully iterate with sensitivity analyses to ensure that critical parameters are identified.</p>
+<p>Specifying prior distributions and likelihoods is an ongoing challenge. Prior distributions, in particular, should be treated as deeply uncertain when appropriate. One key advantage of the methods described in this chapter is that they have the potential for increased transparency. When it is not possible to conduct a sensitivity analysis on a number of critical priors due to limited computational budgets, fully specifying and providing a justification for the utilized distributions allows other researchers to identify key assumptions and build on existing work. The same is true for the specification of likelihoods—while likelihood-free methods avoid the need to specify a likelihood function, they require other assumptions or choices, which should be described and justified as transparently as possible.</p>
+<p>We conclude this appendix with some key recommendations:
+1. UQ analysis does not require full confidence in priors and likelihoods. Rather, UQ should be treated as part of an exploratory modeling workflow, where hypotheses related to model structures, prior distributions, and likelihoods can be tested.
+2. For complex multisectoral models, UQ will typically require the use of a reduced set of parameters, either through emulation or by fixing the others to their best-fit values. These parameters should be selected through a careful sensitivity analysis.
+3. Avoid the use of supposedly “non-informative” priors, such as uniform priors, whenever possible. In the absence of strong information about parameter values, the use of weakly informative priors, such as diffuse normals, is preferable.
+4. Be cognizant of the limitations of conclusions that can be drawn by using each method. The bootstrap, for example, may result in overconfidence if the dataset is limited and is not truly representative of the underlying stochastic process.
+5. When using MCMC, Markov chains can not be shown to have converged to the target distribution, but rather evidence can be collected to demonstrate that it is likely that they have.
+6. Conduct predictive checks based on the assumptions underlying the choices made in the analysis, and iteratively update those choices if the assumptions prove to be ill-suited for the problem at hand.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5_conclusion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Conclusion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="A2_Jupyter_Notebooks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Jupyter Notebook Tutorials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">A.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-bootstrap">A.2. Parametric Bootstrap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-calibration">A.3. Pre-Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo">A.4. Markov Chain Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-methods">A.5. Other Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-first-step-how-to-choose-a-prior-distribution">A.6. The Critical First Step: How to Choose a Prior Distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-final-step-predictive-checks">A.7. The Critical Final Step: Predictive Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-home-points">A.8. Key Take-Home Points</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
