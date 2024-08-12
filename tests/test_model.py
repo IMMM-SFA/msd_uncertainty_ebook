@@ -1,18 +1,10 @@
-import unittest
-
+import pytest
 from msdbook.model import sum_ints
 
+def test_sum_ints():
+    """Test to make sure `sum_ints` returns the expected value."""
 
-class TestModel(unittest.TestCase):
+    int_result = sum_ints(1, 2)
 
-    def test_sum_ints(self):
-        """Test to make sure `sum_ints` returns the expected value."""
-
-        int_result = sum_ints(1, 2)
-
-        # test equality for the output
-        self.assertEqual(int_result, 3)
-
-
-if __name__ == '__main__':
-    unittest.main()
+    # test equality for the output
+    assert int_result == 3
