@@ -36,6 +36,7 @@ def plot_observed_vs_simulated_streamflow(df, hymod_dict, figsize=[12, 6]):
     # set axis labels
     ax.set_ylabel("Streamflow($m^3/s$)")
     ax.set_xlabel("Days")
+    ax.legend()
 
     # set plot title
     plt.title("Observed vs. Simulated Streamflow")
