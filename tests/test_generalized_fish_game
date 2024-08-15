@@ -1,0 +1,76 @@
+import pytest
+import numpy as np
+from generalized_fish_game import (
+    inequality,
+    plot_uncertainty_relationship,
+    plot_solutions,
+    fish_game,
+    hrvSTR
+)
+
+def test_inequality():
+    # Test the inequality function with known values
+    b = 0.5
+    m = 0.7
+    h = 0.1
+    K = 1000
+    result = inequality(b, m, h, K)
+    expected = (b ** m) / (h * K) ** (1 - m)
+    assert np.isclose(result, expected), f"Expected {expected}, but got {result}"
+
+def test_hrvSTR():
+    # Define dummy inputs for hrvSTR
+    inputs = [0.5]
+    vars = [0.1, 0.2, 0.3, 0.4]
+    input_ranges = [[0, 1]]
+    output_ranges = [[0, 1]]
+    result = hrvSTR(inputs, vars, input_ranges, output_ranges)
+    expected = [0.5]  # You need to define what the expected output should be
+    assert np.allclose(result, expected), f"Expected {expected}, but got {result}"
+
+def test_fish_game():
+    # Define dummy variables and inputs for fish_game
+    vars = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    additional_inputs = ["Previous_Prey", 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    N = 10
+    tSteps = 100
+    nObjs = 5
+    nCnstr = 1
+    objs, cnstr = fish_game(vars, additional_inputs, N, tSteps, nObjs, nCnstr)
+    
+    # Check that the outputs are of expected shapes and types
+    assert isinstance(objs, list) and len(objs) == nObjs
+    assert isinstance(cnstr, list) and len(cnstr) == nCnstr
+
+def test_plot_uncertainty_relationship():
+    # You might need to use mocking here to test plotting functions
+    import matplotlib.pyplot as plt
+    from unittest.mock import patch
+    
+    param_values = np.random.rand(100, 7)
+    collapse_days = np.random.rand(100, 2)
+    
+    # Patch plt.show to prevent actual plotting
+    with patch('matplotlib.pyplot.show'):
+        plot_uncertainty_relationship(param_values, collapse_days)
+    
+    # You can add assertions to check if the plot elements are correctly created
+    # However, direct testing of plotting functions is complex and might need to check attributes or use visual inspection
+
+def test_plot_solutions():
+    # You might need to use mocking here as well
+    import matplotlib.pyplot as plt
+    from unittest.mock import patch
+    
+    objective_performance = np.random.rand(100, 5)
+    profit_solution = 0
+    robust_solution = 1
+    
+    with patch('matplotlib.pyplot.show'):
+        ax1 = plot_solutions(objective_performance, profit_solution, robust_solution)
+    
+    # Check if the axis returned is of the expected type
+    assert ax1 is not None
+    assert hasattr(ax1, 'set_ylabel')  # Just an example of attribute check
+
+# You may need to add more tests based on your specific requirements and edge cases
