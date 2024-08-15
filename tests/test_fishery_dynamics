@@ -1,0 +1,46 @@
+import pytest
+import numpy as np
+import matplotlib.pyplot as plt
+from fishery_dynamics import plot_objective_performance, plot_factor_performance
+
+def test_plot_objective_performance():
+    # Create sample data
+    objective_performance = np.random.rand(10, 6)
+    profit_solution = 0
+    robust_solution = 1
+
+    # Call the plotting function
+    ax, ax1 = plot_objective_performance(
+        objective_performance,
+        profit_solution,
+        robust_solution
+    )
+
+    # Assertions to check if plots were created
+    assert isinstance(ax, plt.Axes)
+    assert isinstance(ax1, plt.Axes)
+    assert len(ax.lines) > 0  # Ensure that lines were plotted
+    assert len(ax1.get_xticklabels()) > 0  # Ensure that top axis labels are present
+
+def test_plot_factor_performance():
+    # Create sample data
+    param_values = np.random.rand(100, 7)
+    collapse_days = np.random.rand(100, 2)
+    b = np.random.rand(10, 10)
+    m = np.random.rand(10, 10)
+    a = np.random.rand(10, 10)
+
+    # Call the plotting function
+    ax1, ax2 = plot_factor_performance(
+        param_values,
+        collapse_days,
+        b,
+        m,
+        a
+    )
+
+    # Assertions to check if plots were created
+    assert isinstance(ax1, plt.Axes3D)
+    assert isinstance(ax2, plt.Axes3D)
+    assert len(ax1.collections) > 0  # Ensure that scatter plots are present
+    assert len(ax2.collections) > 0  # Ensure that scatter plots are present
