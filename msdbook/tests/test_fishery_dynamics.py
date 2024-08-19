@@ -46,7 +46,7 @@ def test_plot_objective_performance(sample_data, mocker):
     assert len(fig.axes) > 0
     
     # Check for colorbar in the figure
-    assert len(fig.colorbars) > 0
+    assert len(fig.colorbar) > 0
 
 def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
@@ -69,4 +69,4 @@ def test_plot_factor_performance(sample_data, mocker):
         assert isinstance(ax, plt.Axes3D)  # Ensure 3D plots
 
     # Check for colorbar in the figure
-    assert len(fig.colorbars) > 0
+    assert len(fig.colorbar) > 0
