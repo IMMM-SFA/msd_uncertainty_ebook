@@ -5,7 +5,7 @@ import shutil
 from unittest.mock import patch, MagicMock
 import pytest
 import requests
-from install_supplement import InstallSupplement, install_package_data
+from msdbook.install_supplement import InstallSupplement, install_package_data
 
 # Helper function to create a mock zip file
 def create_mock_zip_file(zip_name, file_contents):
