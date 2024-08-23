@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
-from utils import fit_logit, plot_contour_map
+from msdbook.utils import fit_logit, plot_contour_map
 
 @pytest.fixture
 def sample_data():
