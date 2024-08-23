@@ -45,8 +45,9 @@ def test_plot_objective_performance(sample_data, mocker):
     assert plt.gcf() == fig
     assert len(fig.axes) > 0
     
-    # Check for colorbar in the figure
-    assert len(fig.colorbar) > 0
+    # Check for colorbars in the figure
+    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, plt.Colorbar)]
+    assert len(colorbars) > 0
 
 def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
@@ -68,5 +69,6 @@ def test_plot_factor_performance(sample_data, mocker):
     for ax in axs:
         assert isinstance(ax, plt.Axes3D)  # Ensure 3D plots
 
-    # Check for colorbar in the figure
-    assert len(fig.colorbar) > 0
+    # Check for colorbars in the figure
+    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, plt.Colorbar)]
+    assert len(colorbars) > 0
