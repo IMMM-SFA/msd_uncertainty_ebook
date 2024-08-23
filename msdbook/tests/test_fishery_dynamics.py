@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.testing.decorators import check_figures_equal
-from fishery_dynamics import plot_objective_performance, plot_factor_performance
+from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
 @pytest.fixture
 def sample_data():
