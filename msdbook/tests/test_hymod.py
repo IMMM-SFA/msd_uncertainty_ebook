@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from hymod import (
+from msdbook.hymod import (
     plot_observed_vs_simulated_streamflow,
     plot_observed_vs_sensitivity_streamflow,
     plot_monthly_heatmap,
