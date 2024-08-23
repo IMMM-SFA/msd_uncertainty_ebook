@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from generalized_fish_game import (
+from msdbook.generalized_fish_game import (
     inequality,
     plot_uncertainty_relationship,
     plot_solutions,
