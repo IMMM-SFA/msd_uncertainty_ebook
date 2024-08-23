@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import pandas as pd
 import importlib.resources
-from package_data import (
+from msdbook.package_data import (
     get_data_directory,
     load_robustness_data,
     load_profit_maximization_data,
