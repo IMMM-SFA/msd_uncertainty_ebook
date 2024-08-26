@@ -55,6 +55,10 @@ dev = [
     "twine>=3.4.1",
 ]
 
+test = [
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10",
+]
 [project.urls]
 Homepage = "https://uc-ebook.org/"
 Repository = "https://github.com/IMMM-SFA/msd_uncertainty_ebook"
