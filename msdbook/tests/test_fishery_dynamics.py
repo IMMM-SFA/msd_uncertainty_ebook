@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colorbar import Colorbar  
+from matplotlib.colorbar import colorbar  
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
