@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colorbar import Colorbar  
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
@@ -46,7 +47,7 @@ def test_plot_objective_performance(sample_data, mocker):
     assert len(fig.axes) > 0
     
     # Check for colorbars in the figure
-    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, plt.Colorbar)]
+    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, Colorbar)]
     assert len(colorbars) > 0
 
 def test_plot_factor_performance(sample_data, mocker):
@@ -70,5 +71,5 @@ def test_plot_factor_performance(sample_data, mocker):
         assert isinstance(ax, plt.Axes3D)  # Ensure 3D plots
 
     # Check for colorbars in the figure
-    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, plt.Colorbar)]
+    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, Colorbar)]
     assert len(colorbars) > 0
