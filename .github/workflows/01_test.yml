@@ -2,30 +2,35 @@ name: Test
 
 on:
   push:
-    branches: [ main, dev ]
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
   schedule:
     - cron: '0 8 * * 1'  # Runs every monday at 12am Pacific time
-
+  
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        os: [ ubuntu-latest ]
+      fail-fast: false
 
-    env:
-      OS: ${{ matrix.os }}
-      PYTHON: '3.9'
-
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    
     steps:
-
       - uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@master
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
@@ -37,8 +42,9 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pytest --cov=./ --cov-report=xml
+          
+        - uses: codecov/codecov-action@v4
 
-      - uses: codecov/codecov-action@v4
         with:
           files: ./coverage.xml # optional
           name: codecov-umbrella # optional
