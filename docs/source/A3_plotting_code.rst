@@ -37,23 +37,24 @@ ___________________________________________
         """
 
         # set plot style
-        plt.style.use('seaborn-white')
+        plt.style.use("seaborn-v0_8-white")
 
         # set up figure
         fig, ax = plt.subplots(figsize=figsize)
 
         # plot observed streamflow
-        ax.plot(range(0, len(df['Strmflw'])), df['Strmflw'], color='pink')
+        ax.plot(range(0, len(df["Strmflw"])), df["Strmflw"], color="pink", label="Observed Streamflow")
 
         # plot simulated streamflow
-        ax.plot(range(0, len(df['Strmflw'])), hymod_dict['Q'], color='black')
+        ax.plot(range(0, len(df["Strmflw"])), hymod_dict["Q"], color="black", label="Simulated Streamflow")
 
         # set axis labels
-        ax.set_ylabel('Streamflow($m^3/s$)')
-        ax.set_xlabel('Days')
+        ax.set_ylabel("Streamflow($m^3/s$)")
+        ax.set_xlabel("Days")
+        ax.legend()
 
         # set plot title
-        plt.title('Observed vs. Simulated Streamflow')
+        plt.title("Observed vs. Simulated Streamflow")
 
         return ax
 
@@ -82,17 +83,19 @@ _____________________________________________
         fig, ax = plt.subplots(figsize=figsize)
 
         # set labels
-        ax.set_xlabel('Days')
-        ax.set_ylabel('Flow Discharge (m^3/s)')
+        ax.set_xlabel("Days")
+        ax.set_ylabel("Flow Discharge (m^3/s)")
 
         # plots all simulated streamflow cases under different sample sets
         for i in df_sim.columns:
             plt.plot(month_list, df_sim[i], color="pink", alpha=0.2)
+        ax.plot([], [], label="Sensitivity Analysis Streamflow", color="pink")
 
         # plot observed streamflow
-        plt.plot(month_list, df_obs['Strmflw'], color="black")
+        plt.plot(month_list, df_obs["Strmflw"], color="black", label="Observed Streamflow")
 
-        plt.title('Observed vs. Sensitivity Analysis Outputs')
+        plt.title("Observed vs. Sensitivity Analysis Outputs")
+        ax.legend(loc="upper right")
 
         return ax
 
