@@ -44,7 +44,7 @@ Glossary
 
 **Uncertainty**
 
-*Deep uncertainty*: Refers to situations where expert opinions consulted on a decision do not know or cannot agree on system boundaries, or the outcomes of interest and their relative importance, or the prior probability Distribution for the various uncertain factors present
+*Deep uncertainty*: Refers to situations where expert opinions consulted on a decision do not know or cannot agree on system boundaries, the outcomes of interest and their relative importance, or the prior probability distribution for the various uncertain factors present
 
 *Epistemic uncertainty*: Systematic uncertainty that comes about due to the lack of knowledge or data to choose the best model
 
