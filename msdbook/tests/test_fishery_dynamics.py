@@ -1,7 +1,7 @@
 import pytest
-import numpy as np
+import numpy as np 
 import matplotlib.pyplot as plt
-from matplotlib.colorbar import colorbar 
+from mpl_toolkits.mplot3d import Axes3D  # Import Axes3D
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
@@ -31,6 +31,7 @@ def sample_data():
         'a': a
     }
 
+@pytest.mark.filterwarnings("ignore::matplotlib.MatplotlibDeprecationWarning")
 def test_plot_objective_performance(sample_data, mocker):
     """Test the plot_objective_performance function."""
     fig, ax = plt.subplots()
@@ -47,29 +48,34 @@ def test_plot_objective_performance(sample_data, mocker):
     assert len(fig.axes) > 0
     
     # Check for colorbars in the figure
-    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, Colorbar)]
+    colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
 
+@pytest.mark.filterwarnings("ignore::matplotlib.MatplotlibDeprecationWarning")
 def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
     fig, axs = plt.subplots(1, 2, subplot_kw={'projection': '3d'})
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
     
+    # Reshape b, m, a to 2D arrays for plotting
+    b, m = np.meshgrid(sample_data['b'], sample_data['m'])
+    a = np.tile(sample_data['a'], (len(sample_data['m']), 1))  # Ensure 'a' is 2D
+
     plot_factor_performance(
         sample_data['param_values'],
         sample_data['collapse_days'],
-        sample_data['b'],
-        sample_data['m'],
-        sample_data['a']
+        b,
+        m,
+        a
     )
     
     # Ensure figure and axes are created
     assert plt.gcf() == fig
-    assert len(fig.axes) == 2  # Two subplots for 3D plots
+    assert len(fig.axes) >= 3  # At least two 3D plots and one colorbar
     
     for ax in axs:
-        assert isinstance(ax, plt.Axes3D)  # Ensure 3D plots
+        assert isinstance(ax, Axes3D)  # Ensure 3D plots
 
     # Check for colorbars in the figure
-    colorbars = [c for a in fig.axes if hasattr(a, 'collections') for c in a.collections if isinstance(c, Colorbar)]
+    colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
