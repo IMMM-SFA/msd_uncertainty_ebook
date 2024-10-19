@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Design of Experiments &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=0a66277c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3.3_design_of_experiments';</script>
+    <script src="_static/custom.js?v=d380ae45"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_diagnostic_modeling_overview_and_perspectives.html">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2F3.3_design_of_experiments.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3.3_design_of_experiments.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Design of Experiments</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-at-a-time-oat">One-At-a-Time (OAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-and-fractional-factorial-sampling">Full and Fractional Factorial Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercube-sampling-lhs">Latin Hypercube Sampling (LHS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-discrepancy-sequences">Low-Discrepancy Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-sampling">Other types of sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#synthetic-generation-of-input-time-series">Synthetic generation of input time series</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="design-of-experiments">
+<span id="id1"></span><h1>Design of Experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
+<p>Before conducting a sensitivity analysis, the first element that needs to be clarified is the uncertainty space of the model <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>, <a class="reference internal" href="R.Bibliography.html#id111" title="Jon C Helton, Jay Dean Johnson, Cedric J Sallaberry, and Curt B Storlie. Survey of sampling-based methods for uncertainty and sensitivity analysis. Reliability Engineering &amp; System Safety, 91(10-11):1175–1209, 2006.">53</a>]</span>. In other words, how many and which factors making up the mathematical model are considered uncertain and can potentially affect the model output and the inferences drawn from it. Uncertain factors can be model parameters, model structures, inputs, or alternative model resolution levels (scales), all of which can be assessed through the tools presented in this text. Depending on the kind of factor, its variability can be elicited through various means: expert opinion, values reported in the literature, historical observations, its physical meaning (e.g., population values in a city can never be negative), or through the use of more formal UQ methods (<a class="reference internal" href="A1_Uncertainty_Quantification.html#a1-uncertainty-quantification"><span class="std std-numref">Chapter A</span></a>). The model uncertainty space represents the entire space of variability present in each of the uncertain factors of a model. The complexity of most real-world models means that the response function, <span class="math notranslate nohighlight">\(y=g(x)\)</span>, mapping inputs to outputs, is hardly ever available in an analytical form and therefore analytically computing the sensitivity of the output to each uncertain factor becomes impossible. In these cases, sensitivity analysis is only feasible through numerical procedures that employ different strategies to sample the uncertainty space and calculate sensitivity indices.</p>
+<p>A sampling strategy is often referred to as a <em>design of experiments</em> and represents a methodological choice made before conducting any sensitivity analysis. Experimental design was first introduced by <span id="id3">Fisher [<a class="reference internal" href="R.Bibliography.html#id112" title="Ronald Aylmer Fisher. Design of experiments. Br Med J, 1(3923):554–554, 1936.">54</a>]</span> in the context of laboratory or field-based experiments. Its application in sensitivity analysis is similar to setting up a physical experiment in that it is used to discover the behavior of a system under specific conditions. An ideal design of experiments should provide a framework for the extraction of all plausible information about the impact of each factor on the output of the model. The design of experiments is used to set up a simulation platform with the minimum computational cost to answer specific questions that cannot be readily drawn from the data through analytical or common data mining techniques. Models representing coupled human-natural systems usually have a large number of inputs, state variables and parameters, but not all of them exert fundamental control over the numerical process, despite their uncertainty, nor have substantial impacts on the model output, either independently or through their interactions. Each factor influences the model output in different ways that need to be discovered. For example, the influence of a parameter on model output can be linear or non-linear and can be continuous or only be active during specific times or at particular states of the system <span id="id4">[<a class="reference internal" href="R.Bibliography.html#id53" title="JD Herman, PM Reed, and T Wagener. Time-varying sensitivity analysis clarifies the effects of watershed model formulation on model behavior. Water Resources Research, 49(3):1400–1414, 2013.">55</a>, <a class="reference internal" href="R.Bibliography.html#id113" title="Carolina Massmann, Thorsten Wagener, and Hubert Holzmann. A new approach to visualizing time-varying sensitivity indices for environmental model diagnostics across evaluation time-scales. Environmental modelling &amp; software, 51:190–194, 2014.">56</a>]</span>. An effective and efficient design of experiments allows the analyst to explore these complex relationships and evaluate different behaviors of the model for various scientific questions <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id114" title="An Van Schepdael, Aurélie Carlier, and Liesbet Geris. Sensitivity analysis by design of experiments. In Uncertainty in Biology, pages 327–366. Springer, 2016.">57</a>]</span>. The rest of this section overviews some of the most commonly used designs of experiments. Table 1 summarizes the designs discussed.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id32">
+<caption><span class="caption-text">Summary of designs of experiments overviewed in this section. * Depends on the sample size.</span><a class="headerlink" href="#id32" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><em>Design of experiments</em></p></th>
+<th class="head"><p><em>Factor interactions considered</em></p></th>
+<th class="head"><p><em>Treatment of factor domains</em></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>One-At-a-Time (OAT)</p></td>
+<td><p>No - main effects only</p></td>
+<td><p>Continuous (distributions)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Full Factorial Sampling</p></td>
+<td><p>Yes - including total effects</p></td>
+<td><p>Discrete (levels)</p></td>
+</tr>
+<tr class="row-even"><td><p>Fractional Factorial Sampling</p></td>
+<td><p>Yes - only lower-order effects*</p></td>
+<td><p>Discrete (levels)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Latin Hypercube (LH) Sampling</p></td>
+<td><p>Yes - including total effects*</p></td>
+<td><p>Continuous (distributions)</p></td>
+</tr>
+<tr class="row-even"><td><p>Quasi-Random Sampling with Low-Discrepancy Sequences</p></td>
+<td><p>Yes - including total effects*</p></td>
+<td><p>Continuous (distributions)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are a few different approaches to the design of experiments, closely related to the chosen sensitivity analysis approach, which is in turn shaped by the research motivations, scientific questions, and computational constraints at hand (additional discussion of this can be found at the end of <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#sensitivity-analysis-the-basics"><span class="std std-numref">Chapter 3</span></a>). For example, in a sensitivity analysis using perturbation and derivatives methods, the model input parameters vary from their nominal values one at a time, something that the design of experiments needs to reflect. If, instead, one were to perform sensitivity analysis using a multiple-starts perturbation method, the design of experiments needs to consider that multiple points across the factor space are used. The design of experiments specifically defines two key characteristics of samples that are fed to the numerical model: the number of samples and the range of each factor.</p>
+<p>Generally, sampling can be performed randomly or by applying a stratifying approach. In random sampling, such as Monte Carlo <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id115" title="Nicholas Metropolis and Stanislaw Ulam. The monte carlo method. Journal of the American statistical association, 44(247):335–341, 1949.">58</a>]</span>, samples are randomly generated by a pseudo-random number generator with an a-priori assumption about the distribution of parameters and their possible ranges. Random seeds can also be used to ensure consistency and higher control over the random process. However, this method could leave some gaps in the parameter space and cause clustering in some spaces, especially for a large number of parameters <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id116" title="John Norton. An introduction to sensitivity assessment of simulation models. Environmental Modelling &amp; Software, 69:166–174, 2015.">59</a>]</span>. Most sampling strategies use stratified sampling to mitigate these disadvantages. Stratified sampling techniques divide the domain of each factor into subintervals, often of equal lengths. From each subinterval, an equal number of samples is drawn randomly, or based on the specific locations within the subintervals <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id28" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global sensitivity analysis: the primer. John Wiley &amp; Sons, 2008.">49</a>]</span>.</p>
+<section id="one-at-a-time-oat">
+<h2>One-At-a-Time (OAT)<a class="headerlink" href="#one-at-a-time-oat" title="Link to this heading">#</a></h2>
+<p>In this approach, only one model factor is changed at a time while all others are kept fixed across each iteration in a sampling sequence. The OAT method assumes that model factors of focus are linearly independent (i.e., there are no interactions) and can analyze how factors individually influence model outputs or metrics of interest. While popular given its ease of implementation, OAT  is ultimately limited in its exploration of a model’s sensitivities <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id28" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global sensitivity analysis: the primer. John Wiley &amp; Sons, 2008.">49</a>]</span>. It is primarily used with local sensitivity techniques with similar criticisms: applying this sampling scheme on a system with nonlinear and interactive processes will miss important information on the effect uncertain factors have on the model. OAT samplings can be repeated multiple times in a more sophisticated manner and across different locations of the parameter space to overcome some of these challenges, which would increase computational costs and negate the main reasons for its selection. Given these limitations OAT methods could be used as preliminary, low-cost analyses of the factors’ individual effects, but should ultimately be complemented with more sophisticated methods.</p>
+</section>
+<section id="full-and-fractional-factorial-sampling">
+<h2>Full and Fractional Factorial Sampling<a class="headerlink" href="#full-and-fractional-factorial-sampling" title="Link to this heading">#</a></h2>
+<p>In full factorial sampling each factor is treated as being discrete by considering two or more levels (or intervals) of its values. The sampling process then generates samples within each possible combination of levels, corresponding to each parameter. This scheme produces a more comprehensive sampling of the factors’ variability space, as it accounts for all candidate combinations of factor levels (<a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (a)). If the number of levels is the same across all factors, the number of generated samples is estimated using <span class="math notranslate nohighlight">\(n^k\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of levels and <span class="math notranslate nohighlight">\(k\)</span> is the number of factors. For example, <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (a) presents a full factorial sampling of three uncertain factors <span class="math notranslate nohighlight">\((x_1,\)</span> <span class="math notranslate nohighlight">\(x_2,\)</span> and <span class="math notranslate nohighlight">\(x_3)\)</span>, each considered as having four discrete levels. The total number of samples necessary for such an experiment is <span class="math notranslate nohighlight">\(4^3=64\)</span>. As the number of factors increases, the number of simulations necessary will also grow exponentially, making full factorial sampling computationally burdensome (<a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (b)). As a result, it is common in the literature to apply full factorial sampling at only two levels per factor, typically the two extremes <span id="id10">[<a class="reference internal" href="R.Bibliography.html#id32" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">60</a>]</span>. This significantly reduces computational burden but is only considered appropriate in cases where factors can indeed only assume two discrete values (e.g., when testing the effects of epistemic uncertainty and comparing between model structure A and model structure B). In the case of physical parameters on continuous distributions (e.g., when considering the effects of measurement uncertainty in a temperature sensor), discretizing the range of a factor to only extreme levels can bias its estimated importance.</p>
+<p>Fractional factorial sampling is a widely used alternative to full factorial sampling that allows the analyst to significantly reduce the number of simulations by focusing on the main effects of a factor and seeking to avoid model runs that yield redundant response information <span id="id11">[<a class="reference internal" href="R.Bibliography.html#id28" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global sensitivity analysis: the primer. John Wiley &amp; Sons, 2008.">49</a>]</span>. In other words, if one can reasonably assume that higher-order interactions are negligible, information about the most significant effects and lower-order interactions (e.g., effects from pairs of factors) can be obtained using a fraction of the full factorial design. Traditionally, fractional factorial design has also been limited to two levels <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id32" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">60</a>]</span>, referred to as Fractional Factorial designs 2k-p <span id="id13">[<a class="reference internal" href="R.Bibliography.html#id34" title="George EP Box and J Stuart Hunter. The 2 k—p fractional factorial designs. Technometrics, 3(3):311–351, 1961.">61</a>]</span>. Recently, Generalized Fractional Factorial designs have also been proposed that allow for the structured generation of samples at more than two levels per factor <span id="id14">[<a class="reference internal" href="R.Bibliography.html#id33" title="Izabella Surowiec, Ludvig Vikstrom, Gustaf Hector, Erik Johansson, Conny Vikstrom, and Johan Trygg. Generalized subset designs in analytical chemistry. Analytical chemistry, 89(12):6491–6497, 2017.">62</a>]</span>. Consider a case where the modeling team dealing with the problem in <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (a) cannot afford to perform 64 simulations of their model. They can afford 32 runs for their experiment and instead decide to fractionally sample the variability space of their factors. A potential design of such a sampling strategy is presented in <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (c).</p>
+<figure class="margin-caption align-center" id="id33">
+<span id="figure-3-3"></span><a class="reference internal image-reference" href="_images/figure3_3_alternative_designs.png"><img alt="Figure 3.3" src="_images/figure3_3_alternative_designs.png" style="width: 500px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Alternative designs of experiments and their computational costs for three uncertain factors <span class="math notranslate nohighlight">\((x_1,\)</span> <span class="math notranslate nohighlight">\(x_2,\)</span> and <span class="math notranslate nohighlight">\(x_3)\)</span>. (a) Full factorial design sampling of three factors at four levels, at a total of 64 samples; (b) exponential growth of necessary number of samples when applying full factorial design at four levels; (c) fractional factorial design of three factors at four levels, at a total of 32 samples; and (d) Latin Hypercube sample of three factors with uniform distributions, at a total of 32 samples.</span><a class="headerlink" href="#id33" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="latin-hypercube-sampling-lhs">
+<h2>Latin Hypercube Sampling (LHS)<a class="headerlink" href="#latin-hypercube-sampling-lhs" title="Link to this heading">#</a></h2>
+<p>Latin hypercube sampling (LHS) <span id="id15">[<a class="reference internal" href="R.Bibliography.html#id91" title="Michael D McKay, Richard J Beckman, and William J Conover. A comparison of three methods for selecting values of input variables in the analysis of output from a computer code. Technometrics, 21(1):239-2451, 1979.">63</a>]</span> is one of the most common methods in space-filling experimental designs. With this sampling technique, for <span class="math notranslate nohighlight">\(N\)</span> uncertain factors, an <span class="math notranslate nohighlight">\(N\)</span>-dimensional hypercube is generated, with each factor divided into an equal number of levels depending on the total number of samples to be generated. Equal numbers of samples are then randomly generated at each level, across all factors. In this manner, latin hypercube design guarantees sampling from every level of the variability space and without any overlaps. When the number of samples generated is much larger than the number of uncertain factors, LHS can be very effective in examining the effects of each factor <span id="id16">[<a class="reference internal" href="R.Bibliography.html#id28" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global sensitivity analysis: the primer. John Wiley &amp; Sons, 2008.">49</a>]</span>. LHS is an attractive technique, because it guarantees a diverse coverage of the space, through the use of subintervals, without being constrained to discrete levels for each factor - compare <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (c) with <a class="reference internal" href="3_sensitivity_analysis_the_basics.html#figure-3-3"><span class="std std-numref">Fig. 3.3</span></a> (d) for the same number of samples.</p>
+<p>LHS is less effective when the number of samples is not much larger than the number of uncertain factors, and the effects of each factor cannot be appropriately distinguished. The samples between factors can also be highly correlated, biasing any subsequent sensitivity analysis results. To address this, the sampling scheme can be modified to control for the correlation in parameters while maximizing the information derived. An example of such modification is through the use of orthogonal arrays <span id="id17">[<a class="reference internal" href="R.Bibliography.html#id21" title="Boxin Tang. Orthogonal array-based latin hypercubes. Journal of the American statistical association, 88(424):1392–1397, 1993.">64</a>]</span>.</p>
+</section>
+<section id="low-discrepancy-sequences">
+<h2>Low-Discrepancy Sequences<a class="headerlink" href="#low-discrepancy-sequences" title="Link to this heading">#</a></h2>
+<p>Low-discrepancy sequences is another sampling technique that employs a pseudo-random generator for Monte Carlo sampling <span id="id18">[<a class="reference internal" href="R.Bibliography.html#id81" title="Ishaan L Dalal, Deian Stefan, and Jared Harwayne-Gidansky. Low discrepancy sequences for monte carlo simulations on reconfigurable platforms. In 2008 International Conference on Application-Specific Systems, Architectures and Processors, 108–113. IEEE, 2008.">65</a>, <a class="reference internal" href="R.Bibliography.html#id92" title="SK Zaremba. The mathematical basis of monte carlo and quasi-monte carlo methods. SIAM review, 10(3):303–314, 1968.">66</a>]</span>. These quasi-Monte Carlo methods eliminate ‘lumpiness’ across samples (i.e, the presence of gaps and clusters) by minimizing discrepancy across the hypercube samples. Discrepancy can be quantitatively measured using the deviations of sampled points from a uniform distribution <span id="id19">[<a class="reference internal" href="R.Bibliography.html#id81" title="Ishaan L Dalal, Deian Stefan, and Jared Harwayne-Gidansky. Low discrepancy sequences for monte carlo simulations on reconfigurable platforms. In 2008 International Conference on Application-Specific Systems, Architectures and Processors, 108–113. IEEE, 2008.">65</a>, <a class="reference internal" href="R.Bibliography.html#id95" title="Sergei Kucherenko, Daniel Albrecht, and Andrea Saltelli. Exploring multi-dimensional spaces: a comparison of latin hypercube and quasi monte carlo sampling techniques. arXiv preprint arXiv:1505.02350, 2015.">67</a>]</span>. Low-discrepancy sequences ensure that the number of samples in any subspace of the variability hypercube is approximately the same. This is not something guaranteed by Latin Hypercube sampling, and even though its design can be improved through optimization with various criteria, such adjustments are limited to small sample sizes and low dimensions <span id="id20">[<a class="reference internal" href="R.Bibliography.html#id95" title="Sergei Kucherenko, Daniel Albrecht, and Andrea Saltelli. Exploring multi-dimensional spaces: a comparison of latin hypercube and quasi monte carlo sampling techniques. arXiv preprint arXiv:1505.02350, 2015.">67</a>, <a class="reference internal" href="R.Bibliography.html#id93" title="Bertrand Iooss, Loïc Boussouf, Vincent Feuillard, and Amandine Marrel. Numerical studies of the metamodel fitting and validation processes. arXiv preprint arXiv:1001.1049, 2010.">68</a>, <a class="reference internal" href="R.Bibliography.html#id94" title="Ruichen Jin, Wei Chen, and Agus Sudjianto. An efficient algorithm for constructing optimal design of computer experiments. In International Design Engineering Technical Conferences and Computers and Information in Engineering Conference, volume 37009, 545–554. 2003.">69</a>, <a class="reference internal" href="R.Bibliography.html#id96" title="Max D Morris and Toby J Mitchell. Exploratory designs for computational experiments. Journal of statistical planning and inference, 43(3):381–402, 1995.">70</a>, <a class="reference internal" href="R.Bibliography.html#id97" title="Jeong-Soo Park. Optimal latin-hypercube designs for computer experiments. Journal of statistical planning and inference, 39(1):95–111, 1994.">71</a>]</span>. In contrast, the Sobol sequence <span id="id21">[<a class="reference internal" href="R.Bibliography.html#id98" title="Ilya M Sobol. Uniformly distributed sequences with an additional uniform property. USSR Computational Mathematics and Mathematical Physics, 16(5):236–242, 1976.">72</a>, <a class="reference internal" href="R.Bibliography.html#id99" title="Il'ya Meerovich Sobol'. On the distribution of points in a cube and the approximate evaluation of integrals. Zhurnal Vychislitel'noi Matematiki i Matematicheskoi Fiziki, 7(4):784–802, 1967.">73</a>]</span>, one of the most widely used sampling techniques, utilizes the low-discrepancy approach to uniformly fill the sampled factor space. A core advantage of this style of sampling is that it takes far fewer samples (i.e., simulations) to attain a much lower level of error in estimating model output statistics (e.g., the mean and variance of outputs).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put this into practice! Click the following link to try out an interactive tutorial which uses Sobol sequence sampling for the purposes of a Sobol sensitivity analysis:  <a class="reference external" href="https://uc-ebook.dev.msdlive.org/user-redirect/lab/tree/notebooks/sa_saltelli_sobol_ishigami.ipynb">Sobol SA using SALib Jupyter Notebook</a></p>
+</div>
+</section>
+<section id="other-types-of-sampling">
+<h2>Other types of sampling<a class="headerlink" href="#other-types-of-sampling" title="Link to this heading">#</a></h2>
+<p>The sampling techniques mentioned so far are general sampling methods useful for a variety of applications beyond sensitivity analysis. There are however techniques that have been developed for specific sensitivity analysis methods. Examples of these methods include the Morris One-At-a-Time <span id="id22">[<a class="reference internal" href="R.Bibliography.html#id132" title="Max D Morris. Factorial sampling plans for preliminary computational experiments. Technometrics, 33(2):161–174, 1991.">74</a>]</span>, Fourier Amplitude Sensitivity Test (FAST; <span id="id23">[<a class="reference internal" href="R.Bibliography.html#id100" title="RI Cukier, CM Fortuin, Kurt E Shuler, AG Petschek, and JH Schaibly. Study of the sensitivity of coupled reaction systems to uncertainties in rate coefficients. i theory. The Journal of chemical physics, 59(8):3873–3878, 1973.">75</a>]</span>), Extended FAST <span id="id24">[<a class="reference internal" href="R.Bibliography.html#id101" title="Andrea Saltelli, Stefano Tarantola, and KP-S Chan. A quantitative model-independent method for global sensitivity analysis of model output. Technometrics, 41(1):39–56, 1999.">76</a>]</span>, and Extended Sobol methods <span id="id25">[<a class="reference internal" href="R.Bibliography.html#id102" title="Ilya M Sobol. Global sensitivity indices for nonlinear mathematical models and their monte carlo estimates. Mathematics and computers in simulation, 55(1-3):271–280, 2001.">77</a>]</span>. For example, the Morris sampling strategy builds a number of trajectories (usually referred to as repetitions and denoted by <span class="math notranslate nohighlight">\(r\)</span>) in the input space each composed of <span class="math notranslate nohighlight">\(N+1\)</span> factor points, where <span class="math notranslate nohighlight">\(N\)</span> is the number of uncertain factors. The first point of the trajectory is selected randomly and the subsequent <span class="math notranslate nohighlight">\(N\)</span> points are generated by moving one factor at a time by a fixed amount. Each factor is perturbed once along the trajectory, while the starting points of all of the trajectories are randomly and uniformly distributed. Several variations of this strategy also exist in the literature; for more details on each approach and their differences the reader is directed to <span id="id26">Pianosi <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id30" title="Francesca Pianosi, Keith Beven, Jim Freer, Jim W Hall, Jonathan Rougier, David B Stephenson, and Thorsten Wagener. Sensitivity analysis of environmental models: a systematic review with practical workflow. Environmental Modelling &amp; Software, 79:214–232, 2016.">51</a>]</span>.</p>
+</section>
+<section id="synthetic-generation-of-input-time-series">
+<h2>Synthetic generation of input time series<a class="headerlink" href="#synthetic-generation-of-input-time-series" title="Link to this heading">#</a></h2>
+<p>Models often have input time series or processes with strong temporal and/or spatial correlations (e.g., streamflow, energy demand, pricing of commodities, etc.) that, while they might not immediately come to mind as factors to be examined in sensitivity analysis, can be treated as such. Synthetic input time series are used for a variety of reasons, for example, when observations are not available or are limited, or when past observations are not considered sufficiently representative to capture rare or extreme events of interest <span id="id27">[<a class="reference internal" href="R.Bibliography.html#id103" title="Jonathan D Herman, Harrison B Zeff, Jonathan R Lamontagne, Patrick M Reed, and Gregory W Characklis. Synthetic drought scenario generation to support bottom-up water supply vulnerability assessments. Journal of Water Resources Planning and Management, 142(11):04016050, 2016.">78</a>, <a class="reference internal" href="R.Bibliography.html#id104" title="PCD Milly, Julio Betancourt, Malin Falkenmark, Robert M Hirsch, Zbigniew W Kundzewicz, Dennis P Lettenmaier, and Ronald J Stouffer. Stationarity is dead: whither water management? Earth, 4:20, 2008.">79</a>]</span>. Synthetic generation of input time series provides a valuable tool to consider non-stationarity and incorporate potential stressors, such as climate change impacts into input time series <span id="id28">[<a class="reference internal" href="R.Bibliography.html#id105" title="Edoardo Borgomeo, Christopher L Farmer, and Jim W Hall. Numerical rivers: a synthetic streamflow generator for water resources vulnerability assessments. Water Resources Research, 51(7):5382–5405, 2015.">80</a>]</span>. For example, a century of record will be insufficient to capture very high impact rare extreme events (e.g., persistent multi-year droughts). A large body of statistical literature exists focusing on the topics of synthetic weather <span id="id29">[<a class="reference internal" href="R.Bibliography.html#id74" title="Manuel Herrera, Sukumar Natarajan, David A Coley, Tristan Kershaw, Alfonso P Ramallo-González, Matthew Eames, Daniel Fosas, and Michael Wood. A review of current and future weather data for building simulation. Building Services Engineering Research and Technology, 38(5):602–627, 2017.">81</a>, <a class="reference internal" href="R.Bibliography.html#id75" title="Daniel S Wilks and Robert L Wilby. The weather generation game: a review of stochastic weather models. Progress in physical geography, 23(3):329–357, 1999.">82</a>]</span> and streamflow <span id="id30">[<a class="reference internal" href="R.Bibliography.html#id76" title="JR Lamontagne and JR Stedinger. Generating synthetic streamflow forecasts with specified precision. Journal of Water Resources Planning and Management, 144(4):04018007, 2018.">83</a>, <a class="reference internal" href="R.Bibliography.html#id77" title="Sanghamitra Medda and Kalyan Kumar Bhar. Comparison of single-site and multi-site stochastic models for streamflow generation. Applied Water Science, 9(3):67, 2019.">84</a>]</span> generation that provides a rich suite of approaches for developing history-informed, well-characterized stochastic process models to better estimate rare individual or compound (hot, severe drought) extremes. It is beyond the scope of this text to review these methods, but readers are encouraged to explore the studies cited above as well as the following publications for discussions and comparisons of these methods: <span id="id31">[<a class="reference internal" href="R.Bibliography.html#id103" title="Jonathan D Herman, Harrison B Zeff, Jonathan R Lamontagne, Patrick M Reed, and Gregory W Characklis. Synthetic drought scenario generation to support bottom-up water supply vulnerability assessments. Journal of Water Resources Planning and Management, 142(11):04016050, 2016.">78</a>, <a class="reference internal" href="R.Bibliography.html#id105" title="Edoardo Borgomeo, Christopher L Farmer, and Jim W Hall. Numerical rivers: a synthetic streamflow generator for water resources vulnerability assessments. Water Resources Research, 51(7):5382–5405, 2015.">80</a>, <a class="reference internal" href="R.Bibliography.html#id106" title="Brian R Kirsch, Gregory W Characklis, and Harrison B Zeff. Evaluating the impact of alternative hydro-climate scenarios on transfer agreements: practical improvement for generating synthetic streamflows. Journal of Water Resources Planning and Management, 139(4):396–406, 2013.">85</a>, <a class="reference internal" href="R.Bibliography.html#id107" title="Daniel P Loucks and Eelco Van Beek. Water resource systems planning and management: An introduction to methods, models, and applications. Springer, 2017.">86</a>, <a class="reference internal" href="R.Bibliography.html#id108" title="Scott Steinschneider, Sungwook Wi, and Casey Brown. The integrated effects of climate and hydrologic uncertainty on future flood risk assessments. Hydrological Processes, 29(12):2823–2839, 2015.">87</a>, <a class="reference internal" href="R.Bibliography.html#id109" title="Richard M Vogel. Stochastic watershed models for hydrologic risk management. Water Security, 1:28–35, 2017.">88</a>, <a class="reference internal" href="R.Bibliography.html#id110" title="Richard M Vogel and Jery R Stedinger. The value of stochastic streamflow models in overyear reservoir design applications. Water Resources Research, 24(9):1483–1490, 1988.">89</a>]</span>. The use of these methods for the purposes of exploratory modeling, especially in the context of well-characterized versus deep uncertainty, is further discussed in <a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-scenarios"><span class="std std-numref">Chapter 4.3</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-at-a-time-oat">One-At-a-Time (OAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-and-fractional-factorial-sampling">Full and Fractional Factorial Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercube-sampling-lhs">Latin Hypercube Sampling (LHS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-discrepancy-sequences">Low-Discrepancy Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-sampling">Other types of sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#synthetic-generation-of-input-time-series">Synthetic generation of input time series</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

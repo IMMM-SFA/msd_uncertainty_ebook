@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Diagnostic Modeling Overview and Perspectives &#8212; Addressing Uncertainty in MultiSector Dynamics Research  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=0a66277c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2_diagnostic_modeling_overview_and_perspectives';</script>
+    <script src="_static/custom.js?v=d380ae45"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Sensitivity Analysis: The Basics" href="3_sensitivity_analysis_the_basics.html" />
+    <link rel="prev" title="1. Introduction" href="1_introduction.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9WMRS23CZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z9WMRS23CZ');
+</script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Addressing Uncertainty in MultiSector Dynamics Research  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Suggested Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Diagnostic Modeling Overview and Perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_sensitivity_analysis_the_basics.html">3. Sensitivity Analysis: The Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html">4. Sensitivity Analysis: Diagnostic &amp; Exploratory Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_conclusion.html">5. Conclusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1_Uncertainty_Quantification.html">A. Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2_Jupyter_Notebooks.html">B. Jupyter Notebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A3_plotting_code.html">C. Plotting Code Samples</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glossary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="6_glossary.html">Glossary</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="R.Bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?title=Issue%20on%20page%20%2F2_diagnostic_modeling_overview_and_perspectives.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2_diagnostic_modeling_overview_and_perspectives.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diagnostic Modeling Overview and Perspectives</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-model-diagnostics">2.1. Overview of model diagnostics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perspectives-on-diagnostic-model-evaluation">2.2. Perspectives on diagnostic model evaluation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="diagnostic-modeling-overview-and-perspectives">
+<span id="diagnostic-modeling"></span><h1><span class="section-number">2. </span>Diagnostic Modeling Overview and Perspectives<a class="headerlink" href="#diagnostic-modeling-overview-and-perspectives" title="Link to this heading">#</a></h1>
+<p>This text prescribes a formal model diagnostic approach that is a deliberative and iterative combination of state-of-the-art UC and global sensitivity analysis techniques that progresses from observed history-based fidelity evaluations to forward looking resilience and vulnerability inferences <span id="id1">[<a class="reference internal" href="R.Bibliography.html#id46" title="Hoshin V. Gupta, Thorsten Wagener, and Yuqiong Liu. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. Hydrological Processes: An International Journal, 22(18):3802–3813, 2008. Publisher: Wiley Online Library.">12</a>, <a class="reference internal" href="R.Bibliography.html#id47" title="Antonia Hadjimichael, Julianne Quinn, and Patrick Reed. Advancing Diagnostic Model Evaluation to Better Understand Water Shortage Mechanisms in Institutionally Complex River Basins. Water Resources Research, 56(10):e2020WR028079, 2020. URL: http://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020WR028079 (visited on 2020-10-16), doi:10.1029/2020WR028079.">13</a>]</span>.</p>
+<section id="overview-of-model-diagnostics">
+<h2><span class="section-number">2.1. </span>Overview of model diagnostics<a class="headerlink" href="#overview-of-model-diagnostics" title="Link to this heading">#</a></h2>
+<p>Model diagnostics provide a rich basis for hypothesis testing, model innovation, and improved inferences when classifying what is controlling highly consequential results (e.g., vulnerability or resilience in coupled human-natural systems). <a class="reference internal" href="#figure-2-1"><span class="std std-numref">Fig. 2.1</span></a>, adapted from <span id="id2">[<a class="reference internal" href="R.Bibliography.html#id6" title="Andrea Saltelli, Ksenia Aleksankina, William Becker, Pamela Fennell, Federico Ferretti, Niels Holst, Sushan Li, and Qiongli Wu. Why so many published sensitivity analyses are false: a systematic review of sensitivity analysis practices. Environmental modelling &amp; software, 114:29–39, 2019.">6</a>]</span>, presents idealized illustrations of the relationship between UC and global sensitivity analysis for two coupled simulation models. The figure illustrates how UC can be used to address how uncertainties in various modeling decisions (e.g., data inputs, parameters, model structures, coupling relationships) can be sampled and simulated to yield the empirical model output distribution(s) of interest. Monte Carlo frameworks allow us to sample and propagate (or integrate) the ensemble response of the model(s) of focus. The first step of any UC analysis is the specification of the initial input distributions as illustrated in <a class="reference internal" href="#figure-2-1"><span class="std std-numref">Fig. 2.1</span></a>. The second step is to perform the Monte Carlo simulations. The question can then be raised, which of the modeling assumptions in our Monte Carlo experiment are the most responsible for the resulting output uncertainty. We can answer this question using global sensitivity analysis as illustrated in <a class="reference internal" href="#figure-2-1"><span class="std std-numref">Fig. 2.1</span></a>. Global sensitivity analysis can be defined as a formal Monte Carlo sampling and analysis of modeling choices (structures, parameters, inputs) to quantify their influence on direct model outputs (or output-informed metrics). UC experiments by themselves do not explain why a particular uncertain outcome is produced, but produce distributions of model outcomes, as portrayed by the yellow curve. The pie chart shown in <a class="reference internal" href="#figure-2-1"><span class="std std-numref">Fig. 2.1</span></a> is a conceptual representation of the results of using a global sensitivity analysis to identify those factors that are most dominantly influencing results, either individually or interactively <span id="id3">[<a class="reference internal" href="R.Bibliography.html#id48" title="Andrea Saltelli, Marco Ratto, Terry Andres, Francesca Campolongo, Jessica Cariboni, Debora Gatelli, Michaela Saisana, and Stefano Tarantola. Global Sensitivity Analysis: The Primer. Wiley-Interscience, Chichester, England ; Hoboken, NJ, 1 edition edition, February 2008. ISBN 978-0-470-05997-5.">14</a>]</span>.</p>
+<figure class="margin-caption align-center" id="id23">
+<span id="figure-2-1"></span><a class="reference internal image-reference" href="_images/figure2_1_idealized_uc.png"><img alt="Figure 2.1" src="_images/figure2_1_idealized_uc.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Idealized uncertainty characterization and global sensitivity analysis for two coupled simulation models. Uncertainty coming from various sources (e.g., inputs, model structures, coupling relationships) is propagated through the coupled model(s) to generate empirical distributions of outputs of interest (uncertainty characterization). This model output uncertainty can be decomposed to its origins, by means of sensitivity analysis. Figure adapted from <span id="id4">Saltelli <em>et al.</em> [<a class="reference internal" href="R.Bibliography.html#id6" title="Andrea Saltelli, Ksenia Aleksankina, William Becker, Pamela Fennell, Federico Ferretti, Niels Holst, Sushan Li, and Qiongli Wu. Why so many published sensitivity analyses are false: a systematic review of sensitivity analysis practices. Environmental modelling &amp; software, 114:29–39, 2019.">6</a>]</span>.</span><a class="headerlink" href="#id23" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>UC and global sensitivity analysis are not independent modeling analyses. As illustrated here, any global sensitivity analysis requires an initial UC hypothesis in the form of statistical assumptions and representations for the modeling choices of focus (structural, parametric, and data inputs). Information from these two model diagnostic tools can then be used to inform data needs for future model runs, experiments to reduce the uncertainty present, or the simplification or enhancement of the model where necessary. Together UC and global sensitivity analysis provide a foundation for diagnostic exploratory modeling that has a consistent focus on the assumptions, structural model forms, alternative parameterizations, and input data sets that are used to characterize the behavioral space of one or more models.</p>
+</section>
+<section id="perspectives-on-diagnostic-model-evaluation">
+<span id="perspectives"></span><h2><span class="section-number">2.2. </span>Perspectives on diagnostic model evaluation<a class="headerlink" href="#perspectives-on-diagnostic-model-evaluation" title="Link to this heading">#</a></h2>
+<p>When we judge or diagnose models, the terms “verification” and “validation” are commonly used. However, their appropriateness in the context of numerical models representing complex coupled human-natural systems is questionable <span id="id5">[<a class="reference internal" href="R.Bibliography.html#id54" title="Keith Beven. Towards a coherent philosophy for modelling the environment. Proceedings of the royal society of London. Series A: mathematical, physical and engineering sciences, 458(2026):2465–2484, 2002.">15</a>, <a class="reference internal" href="R.Bibliography.html#id118" title="Naomi Oreskes, Kristin Shrader-Frechette, and Kenneth Belitz. Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences. Science, 263(5147):641–646, February 1994. URL: https://science.sciencemag.org/content/263/5147/641 (visited on 2020-04-15), doi:10.1126/science.263.5147.641.">16</a>]</span>. The core issue relates to the fact that these systems are often not fully known or perfectly implemented when modeled. Rather, they are defined within specific system framings and boundary conditions in an evolving learning process with the goal of making continual progress towards attaining higher levels of fidelity in capturing behaviors or properties of interest. Evaluating the fidelity of a model’s performance can be highly challenging. For example, the observations used to evaluate the fidelity of parameterized processes are often measured at a finer resolution than what is represented in the model, creating the challenge of how to manage their relative scales when performing evaluation. In other cases, numerical models may neglect or simplify system processes because sufficient data is not available or the physical mechanisms are not fully known. If sufficient agreement between prediction and observation is not achieved, it is challenging to know whether these types of modeling choices are the cause, or if other issues, such as deficiencies in the input parameters and/or other modeling assumptions are the true cause of errors. Even if there is high agreement between prediction and observation, the model cannot necessarily be considered validated, as it is always possible that the right values were produced for the wrong reasons. For example, low error can stem from a situation where different errors in underlying assumptions or parameters cancel each other out (“compensatory errors”). Furthermore, coupled human-natural system models are often subject to “equifinality”, a situation where multiple parameterized formulations can produce similar outputs or equally acceptable representations of the observed data. There is therefore no uniquely “true” or validated model, and the common practice of selecting “the best” deterministic calibration set is more of an assumption than a finding <span id="id6">[<a class="reference internal" href="R.Bibliography.html#id49" title="Keith Beven. Prophecy, reality and uncertainty in distributed hydrological modelling. Advances in water resources, 16(1):41–51, 1993.">17</a>, <a class="reference internal" href="R.Bibliography.html#id38" title="Keith Beven and Andrew Binley. The future of distributed models: Model calibration and uncertainty prediction. Hydrological Processes, 6(3):279–298, 1992. doi:10.1002/hyp.3360060305.">18</a>]</span>. The situation becomes even more tenuous when observational data is limited in its scope and/or quality to be insufficient to distinguish model representations or their performance differences.</p>
+<p>These limitations on model verification undermine any purely positivist treatment of model validity: that a model should correctly and precisely represent reality to be valid. Under this perspective, closely related to empiricism, statistical tests should be used to compare the model’s output with observations and only through empirical verification can a model or theory be deemed credible. A criticism to this viewpoint (besides the aforementioned challenges for model verification) is that it reduces the justification of a model to the single criterion of predictive ability and accuracy <span id="id7">[<a class="reference internal" href="R.Bibliography.html#id119" title="Yaman Barlas and Stanley Carpenter. Philosophical roots of model validation: Two paradigms. System Dynamics Review, 6(2):148–166, 1990. doi:10.1002/sdr.4260060203.">19</a>]</span>. Authors have argued that this ignores the explanatory power held in models and other procedures, which can also advance scientific knowledge <span id="id8">[<a class="reference internal" href="R.Bibliography.html#id120" title="Stephen Toulmin. From form to function: philosophy and history of science in the 1950s and now. Daedalus, pages 143–162, 1977. Publisher: JSTOR.">20</a>]</span>. These views gave rise to relativist perspectives of science, which instead place more value on model utility in terms of fitness for a specific purpose or inquiry, rather than representational accuracy and predictive ability <span id="id9">[<a class="reference internal" href="R.Bibliography.html#id121" title="George B. Kleindorfer, Liam O'Neill, and Ram Ganeshan. Validation in simulation: Various positions in the philosophy of science. Management Science, 44(8):1087–1099, 1998. Publisher: INFORMS.">21</a>]</span>. This viewpoint appears to be most prevalent among practitioners seeking decision-relevant insights (i.e., inspire new views vs. predict future conditions). The relativist perspective argues for the use of models as heuristics that can enhance our understanding and conceptions of system behaviors or possibilities <span id="id10">[<a class="reference internal" href="R.Bibliography.html#id64" title="Sibel Eker, Elena Rovenskaya, Michael Obersteiner, and Simon Langan. Practice and perspectives in the validation of resource management models. Nature communications, 9(1):1–10, 2018.">22</a>]</span>. In contrast, natural sciences favor a positivist perspective, emphasizing similarity between simulation and observation even in application contexts where it is clear that projections are being made for conditions that have never been observed and the system of focus will have evolved structurally beyond the model representation being employed (e.g., decadal to centennial evolution of human-natural systems).</p>
+<p>These differences in prevalent perspectives are mirrored in how model validation is defined by the two camps: From the relativist perspective, validation is seen as a process of incremental “confidence building” in a model as a mechanism for insight <span id="id11">[<a class="reference internal" href="R.Bibliography.html#id122" title="Yaman Barlas. Formal aspects of model validity and validation in system dynamics. System Dynamics Review: The Journal of the System Dynamics Society, 12(3):183–210, 1996. Publisher: Wiley Online Library.">23</a>]</span>, whereas in natural sciences validation is framed as a way to classify a model as having an acceptable representation of physical reality <span id="id12">[<a class="reference internal" href="R.Bibliography.html#id118" title="Naomi Oreskes, Kristin Shrader-Frechette, and Kenneth Belitz. Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences. Science, 263(5147):641–646, February 1994. URL: https://science.sciencemag.org/content/263/5147/641 (visited on 2020-04-15), doi:10.1126/science.263.5147.641.">16</a>]</span>. Even though the relativist viewpoint does not dismiss the importance of representational accuracy, it does place it within a larger process of establishing confidence through a variety of tools. These tools, not necessarily quantitative, include communicating information between practitioners and modelers, interpreting a multitude of model outputs, and contrasting preferences and viewpoints.</p>
+<p>On the technical side of the argument, differing views on the methodology of model validation appear as early as in the 1960’s. <span id="id13">Naylor and Finger [<a class="reference internal" href="R.Bibliography.html#id123" title="Thomas H. Naylor and Joseph Michael Finger. Verification of computer simulation models. Management science, 14(2):B–92, 1967. Publisher: INFORMS.">24</a>]</span> argue that model validation should not be limited to a single metric or test of performance (e.g., a single error metric), but should rather be extended to multiple tests that reflect different aspects of a model’s structure and behavior. This and similar arguments are made in literature to this day <span id="id14">[<a class="reference internal" href="R.Bibliography.html#id46" title="Hoshin V. Gupta, Thorsten Wagener, and Yuqiong Liu. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. Hydrological Processes: An International Journal, 22(18):3802–3813, 2008. Publisher: Wiley Online Library.">12</a>, <a class="reference internal" href="R.Bibliography.html#id52" title="Keith J Beven. On hypothesis testing in hydrology: why falsification of models is still a really good idea. Wiley Interdisciplinary Reviews: Water, 5(3):e1278, 2018.">25</a>, <a class="reference internal" href="R.Bibliography.html#id51" title="Hoshin V Gupta, Martyn P Clark, Jasper A Vrugt, Gab Abramowitz, and Ming Ye. Towards a comprehensive assessment of model structural adequacy. Water Resources Research, 2012.">26</a>, <a class="reference internal" href="R.Bibliography.html#id124" title="Praveen Kumar. Typology of hydrologic predictability. Water Resources Research, 2011. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2010WR009769 (visited on 2020-04-15), doi:10.1029/2010WR009769.">27</a>, <a class="reference internal" href="R.Bibliography.html#id125" title="Grey S. Nearing, Benjamin L. Ruddell, Andrew R. Bennett, Cristina Prieto, and Hoshin V. Gupta. Does Information Theory Provide a New Paradigm for Earth Science? Hypothesis Testing. Water Resources Research, 56(2):e2019WR024918, 2020. doi:10.1029/2019WR024918.">28</a>]</span> and are primarily founded on two premises. First, that even though modelers widely recognize that their models are abstractions of the truth, they still make truth claims based on traditional performance metrics that measure the divergence of their model from observation <span id="id15">[<a class="reference internal" href="R.Bibliography.html#id125" title="Grey S. Nearing, Benjamin L. Ruddell, Andrew R. Bennett, Cristina Prieto, and Hoshin V. Gupta. Does Information Theory Provide a New Paradigm for Earth Science? Hypothesis Testing. Water Resources Research, 56(2):e2019WR024918, 2020. doi:10.1029/2019WR024918.">28</a>]</span>. Second, that the natural systems mimicked by the models contain many processes that exhibit significant heterogeneity at various temporal and spatial scales. This heterogeneity is lost when a single performance measure is used, as a result of the inherent loss of process information occurring when transitioning from a highly dimensional and interactive system to the dimension of a single metric <span id="id16">[<a class="reference internal" href="R.Bibliography.html#id54" title="Keith Beven. Towards a coherent philosophy for modelling the environment. Proceedings of the royal society of London. Series A: mathematical, physical and engineering sciences, 458(2026):2465–2484, 2002.">15</a>]</span>. These arguments are further elaborated in <a class="reference internal" href="4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#sensitivity-analysis"><span class="std std-numref">Chapter 4</span></a>.</p>
+<p>Multiple authors have proposed that the traditional reliance on single measures of model performance should be replaced by the evaluation of several model signatures (characteristics) to identify model structural errors and achieve a sufficient assessment of model performance <span id="id17">[<a class="reference internal" href="R.Bibliography.html#id46" title="Hoshin V. Gupta, Thorsten Wagener, and Yuqiong Liu. Reconciling theory with observations: elements of a diagnostic approach to model evaluation. Hydrological Processes: An International Journal, 22(18):3802–3813, 2008. Publisher: Wiley Online Library.">12</a>, <a class="reference internal" href="R.Bibliography.html#id126" title="Hoshin Vijai Gupta, Soroosh Sorooshian, and Patrice Ogou Yapo. Toward improved calibration of hydrologic models: Multiple and noncommensurable measures of information. Water Resources Research, 34(4):751–763, 1998. URL: http://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97WR03495 (visited on 2020-04-07), doi:10.1029/97WR03495.">29</a>, <a class="reference internal" href="R.Bibliography.html#id168" title="Francesca Pianosi and Thorsten Wagener. Understanding the time-varying importance of different uncertainty sources in hydrological modelling using global sensitivity analysis. Hydrological Processes, pages 3991–4003, November 2017. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/hyp.10968%4010.1111/%28ISSN%291099-1085.Kieth-Beven, doi:10.1002/hyp.10968&#64;10.1111/(ISSN)1099-1085.Kieth-Beven.">30</a>, <a class="reference internal" href="R.Bibliography.html#id167" title="Charles Rougé, Patrick M. Reed, Danielle S. Grogan, Shan Zuidema, Alexander Prusevich, Stanley Glidden, Jonathan R. Lamontagne, and Richard B. Lammers. Coordination and Control: Limits in Standard Representations of Multi-Reservoir Operations in Hydrological Modeling. Hydrology and Earth System Sciences Discussions, pages 1–37, November 2019. URL: https://www.hydrol-earth-syst-sci-discuss.net/hess-2019-589/, doi:https://doi.org/10.5194/hess-2019-589.">31</a>]</span>. There is however a point of departure here, especially when models are used to produce inferences that can inform decisions. When agencies and practitioners use models of their systems for public decisions, those models have already met sufficient conditions for credibility (e.g., acceptable representational fidelity), but may face broader tests on their salience and legitimacy in informing negotiated decisions <span id="id18">[<a class="reference internal" href="R.Bibliography.html#id64" title="Sibel Eker, Elena Rovenskaya, Michael Obersteiner, and Simon Langan. Practice and perspectives in the validation of resource management models. Nature communications, 9(1):1–10, 2018.">22</a>, <a class="reference internal" href="R.Bibliography.html#id127" title="David W. Cash, William C. Clark, Frank Alcock, Nancy M. Dickson, Noelle Eckley, David H. Guston, Jill Jäger, and Ronald B. Mitchell. Knowledge systems for sustainable development. Proceedings of the national academy of sciences, 100(14):8086–8091, 2003. Publisher: National Acad Sciences.">32</a>, <a class="reference internal" href="R.Bibliography.html#id128" title="Dave D. White, Amber Wutich, Kelli L. Larson, Patricia Gober, Timothy Lant, and Clea Senneville. Credibility, salience, and legitimacy of boundary objects: water managers' assessment of a simulation model in an immersive decision theater. Science and Public Policy, 37(3):219–232, April 2010. Publisher: Oxford Academic. URL: https://academic.oup.com/spp/article/37/3/219/1626552 (visited on 2020-05-12), doi:10.3152/030234210X497726.">33</a>]</span>. This presents a new challenge to model validation, that of selecting decision-relevant performance metrics, reflective of the system’s stakeholders’ viewpoints, so that the most consequential uncertainties are identified and addressed <span id="id19">[<a class="reference internal" href="R.Bibliography.html#id129" title="Andrea Saltelli and Silvio Funtowicz. When all models are wrong. Issues in Science and Technology, 30(2):79–85, 2014. Publisher: JSTOR.">34</a>]</span>. For complex multisector models at the intersection of climatic, hydrologic, agricultural, energy, or other processes, the output space is made up of a multitude of states and variables, with very different levels of salience to the system’s stakeholders and to their goals being achieved <span id="id20">[<a class="reference internal" href="R.Bibliography.html#id203" title="Thorsten Wagener and Francesca Pianosi. What has Global Sensitivity Analysis ever done for us? A systematic review to support scientific advancement and to inform policy-making in earth system modelling. Earth-Science Reviews, 194:1–18, July 2019. URL: https://www.sciencedirect.com/science/article/pii/S0012825218300990 (visited on 2021-08-30), doi:10.1016/j.earscirev.2019.04.006.">35</a>]</span>. This is further complicated when such systems are also institutionally and dynamically complex. As a result, a broader set of qualitative and quantitative performance metrics is necessary to evaluate models of such complex systems, one that embraces the plurality of value systems, agencies and perspectives present. For IM3, even though the goal is to develop better projections of future vulnerability and resilience in co-evolving human-natural systems and not to provide decision support per se, it is critical for our multisector, multiscale model evaluation processes to represent stakeholders’ adaptive decision processes credibly.</p>
+<p>As a final point, when a model is used in a projection mode, its results are also subject to additional uncertainty, as there is no guarantee that the model’s functionality and predictive ability will stay the same as the baseline, where the verification and validation tests were conducted. This challenge requires an additional expansion of the scope of model evaluation: a broader set of uncertain conditions needs to be explored, spanning beyond historical observation and exploring a wide range of unprecedented conditions. This perspective on modeling, termed exploratory <span id="id21">[<a class="reference internal" href="R.Bibliography.html#id15" title="Steve Bankes. Exploratory Modeling for Policy Analysis. Operations Research, 41(3):435–449, June 1993. URL: https://pubsonline.informs.org/doi/abs/10.1287/opre.41.3.435 (visited on 2018-09-11), doi:10.1287/opre.41.3.435.">36</a>]</span>, views models as computational experiments that can be used to explore vast ensembles of potential scenarios to identify those with consequential effects. Exploratory modeling literature explicitly orients experiments toward stakeholder consequences and decision-relevant inferences and shifts the focus from predicting future conditions to <em>discovering</em> which conditions lead to undesirable or desirable consequences.</p>
+<p>This evolution in modeling perspectives can be mirrored by the IM3 family of models in a progression from evaluating models relative to observed history to advanced formalized analyses to make inferences on multisector, multiscale vulnerabilities and resilience. Exploratory modeling approaches can help fashion experiments with large numbers of alternative hypotheses on the co-evolutionary dynamics of influences, stressors, as well as path-dependent changes in the form and function of human-natural systems <span id="id22">[<a class="reference internal" href="R.Bibliography.html#id130" title="Christopher P. Weaver, Robert J. Lempert, Casey Brown, John A. Hall, David Revell, and Daniel Sarewitz. Improving the contribution of climate model information to decision making: the value and demands of robust decision frameworks. Wiley Interdisciplinary Reviews: Climate Change, 4(1):39–60, 2013. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/wcc.202 (visited on 2019-10-01), doi:10.1002/wcc.202.">37</a>]</span>. The aim of this text is to therefore guide the reader through the use of sensitivity analysis (SA) methods across these perspectives on diagnostic and exploratory modeling.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following articles are suggested as fundamental reading for the information presented in this section:</p>
+<ul class="simple">
+<li><p>Naomi Oreskes, Kristin Shrader–Frechette, and Kenneth Belitz. Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences. <em>Science</em>, 263 (5147): 641-646, February 1994. URL: <a class="reference external" href="https://science.sciencemag.org/content/263/5147/641">https://science.sciencemag.org/content/263/5147/641</a>. DOI: <a class="reference external" href="https://doi.org/10.1126/science.263.5147.641">https://doi.org/10.1126/science.263.5147.641</a>.</p></li>
+<li><p>Keith Beven. Towards a coherent philosophy for modelling the environment. <em>Proceedings of the Royal Society of London</em>. Series A: mathematical, physical and engineering sciences, 458 (2026): 2465-2484, 2002.</p></li>
+<li><p>Eker, S., Rovenskaya, E., Obersteiner, M., Langan, S., 2018. Practice and perspectives in the validation of resource management models. <em>Nature Communications</em> 9, 1–10. <a class="reference external" href="https://doi.org/10.1038/s41467-018-07811-9">https://doi.org/10.1038/s41467-018-07811-9</a></p></li>
+</ul>
+<p>The following articles can be used as supplemental reading:</p>
+<ul class="simple">
+<li><p>Canham, C.D., Cole, J.J., Lauenroth, W.K. (Eds.), 2003. Models in Ecosystem Science. Princeton University Press. <a class="reference external" href="https://doi.org/10.2307/j.ctv1dwq0tq">https://doi.org/10.2307/j.ctv1dwq0tq</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3_sensitivity_analysis_the_basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Sensitivity Analysis: The Basics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-model-diagnostics">2.1. Overview of model diagnostics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perspectives-on-diagnostic-model-evaluation">2.2. Perspectives on diagnostic model evaluation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-current, Battelle Memorial Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
