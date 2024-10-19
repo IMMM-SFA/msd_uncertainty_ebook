@@ -655,7 +655,7 @@ across these realizations.
 
 .. code:: ipython3
 
-    decadal_drought_occurence=np.empty([1000])
+    decadal_drought_occurrence = np.empty([1000])
 
     for y in range(1000):
 
@@ -676,12 +676,12 @@ across these realizations.
         eigenvals, eigenvecs = np.linalg.eig(np.transpose(Pnew))
         one_eigval = np.argmin(np.abs(eigenvals - 1))
         piNew = np.divide(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval]),
-                          np.sum(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval])))
+                        np.sum(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval])))
 
-        musNew_HMM[0] = mus[0] * LHsamples[y][1]
-        musNew_HMM[1] = mus[1] * LHsamples[y][0]
-        sigmasNew_HMM[0] = sigmas[0] * LHsamples[y][3]
-        sigmasNew_HMM[1] = sigmas[1] * LHsamples[y][2]
+        musNew_HMM[0] = mus[0][0] * LHsamples[y][1]
+        musNew_HMM[1] = mus[1][0] * LHsamples[y][0]
+        sigmasNew_HMM[0] = sigmas[0][0] * LHsamples[y][3]
+        sigmasNew_HMM[1] = sigmas[1][0] * LHsamples[y][2]
 
         # Generate first state and log-space annual flow at last node
         states = np.empty([n_years])
@@ -715,13 +715,13 @@ across these realizations.
 
         # Where does the rolling mean dip below the threshold
         drought_instances = [i for i, v in enumerate(AnnualQ_s.iloc[:, 0].rolling(11).mean()) if v < threshold]
-        decadal_drought_occurence[y] = len(drought_instances)
+        decadal_drought_occurrence[y] = len(drought_instances)
 
 
 .. code:: ipython3
 
     fig, ax = plt.subplots(figsize=(12, 8))
-    ax.hist(decadal_drought_occurence,label='Non-Stationary generator',color="#005F73")
+    ax.hist(decadal_drought_occurrence,label='Non-Stationary generator',color="#005F73")
     ax.set_xlabel('Number of Instances of Decadal Drought',fontsize=16)
     ax.set_ylabel('Frequency',fontsize=16)
     ax.axvline(x=2, color='r', linestyle='-',label='Observed')
@@ -815,7 +815,7 @@ transition probabilites.
     # Fit regression
     d = {'Dry_Tp': tp_dry,
          'Dry_Mu': mu_dry,
-         'Drought_Occurrence':decadal_drought_occurence}
+         'Drought_Occurrence':decadal_drought_occurrence}
 
     df = pd.DataFrame(d)
     df['Intercept'] = np.ones(np.shape(df)[0])
@@ -824,7 +824,7 @@ transition probabilites.
     ols = sm.OLS(df['Drought_Occurrence'], df[cols])
     result = ols.fit()
 
-    # Calculate drought occurence for each grid point
+    # Calculate drought occurrence for each grid point
     X, Y = np.meshgrid(xgrid, ygrid)
     x = X.flatten()
     y = Y.flatten()

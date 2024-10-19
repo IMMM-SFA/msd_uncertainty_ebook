@@ -3,8 +3,16 @@ import numpy as np
 
 
 def fitHMM(Q, nSamples):
+    # Initialize model
+    model = GaussianHMM(n_components=2, n_iter=1000, init_params="cm")
+
+    # Set randomizing parameters
+    model.startprob_ = np.array([0.5, 0.5])
+    model.transmat_ = np.array([[0.5, 0.5], [0.5, 0.5]])
+
     # fit Gaussian HMM to Q
-    model = GaussianHMM(n_components=2, n_iter=1000).fit(np.reshape(Q[35::], [len(Q[35::]), 1]))
+    model = model.fit(np.reshape(Q[35::], [len(Q[35::]), 1]))
+
     # classify each observation as state 0 or 1
     hidden_states = model.predict(np.reshape(Q, [len(Q), 1]))
 
