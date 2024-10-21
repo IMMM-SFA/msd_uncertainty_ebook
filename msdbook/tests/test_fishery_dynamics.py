@@ -1,7 +1,7 @@
 import pytest
 import numpy as np 
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D  # Import Axes3D
+from mpl_toolkits.mplot3d import Axes3D 
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
@@ -15,8 +15,8 @@ def sample_data():
     ])
     profit_solution = 1
     robust_solution = 2
-    param_values = np.random.rand(100, 7)  # Example data
-    collapse_days = np.random.rand(100, 2) * 10  # Example data
+    param_values = np.random.rand(100, 7)  
+    collapse_days = np.random.rand(100, 2) * 10  
     b = np.linspace(0, 1, 10)
     m = np.linspace(0, 1, 10)
     a = np.linspace(0, 2, 10)
@@ -31,17 +31,17 @@ def sample_data():
         'a': a
     }
 
-@pytest.mark.filterwarnings("ignore::matplotlib.MatplotlibDeprecationWarning")
 def test_plot_objective_performance(sample_data, mocker):
     """Test the plot_objective_performance function."""
     fig, ax = plt.subplots()
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
     
-    plot_objective_performance(
-        sample_data['objective_performance'],
-        sample_data['profit_solution'],
-        sample_data['robust_solution']
-    )
+    with pytest.warns(DeprecationWarning):
+        plot_objective_performance(
+            sample_data['objective_performance'],
+            sample_data['profit_solution'],
+            sample_data['robust_solution']
+        )
     
     # Ensure figure and axes are created
     assert plt.gcf() == fig
@@ -51,7 +51,6 @@ def test_plot_objective_performance(sample_data, mocker):
     colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
 
-@pytest.mark.filterwarnings("ignore::matplotlib.MatplotlibDeprecationWarning")
 def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
     fig, axs = plt.subplots(1, 2, subplot_kw={'projection': '3d'})
@@ -59,15 +58,16 @@ def test_plot_factor_performance(sample_data, mocker):
     
     # Reshape b, m, a to 2D arrays for plotting
     b, m = np.meshgrid(sample_data['b'], sample_data['m'])
-    a = np.tile(sample_data['a'], (len(sample_data['m']), 1))  # Ensure 'a' is 2D
+    a = np.tile(sample_data['a'], (len(sample_data['m']), 1))  
 
-    plot_factor_performance(
-        sample_data['param_values'],
-        sample_data['collapse_days'],
-        b,
-        m,
-        a
-    )
+    with pytest.warns(DeprecationWarning):
+        plot_factor_performance(
+            sample_data['param_values'],
+            sample_data['collapse_days'],
+            b,
+            m,
+            a
+        )
     
     # Ensure figure and axes are created
     assert plt.gcf() == fig
@@ -79,3 +79,4 @@ def test_plot_factor_performance(sample_data, mocker):
     # Check for colorbars in the figure
     colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
+
