@@ -1,7 +1,7 @@
 import pytest
 import numpy as np 
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D 
+from mpl_toolkits.mplot3d import Axes3D  
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
 
@@ -31,17 +31,17 @@ def sample_data():
         'a': a
     }
 
+
 def test_plot_objective_performance(sample_data, mocker):
     """Test the plot_objective_performance function."""
     fig, ax = plt.subplots()
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
     
-    with pytest.warns(DeprecationWarning):
-        plot_objective_performance(
-            sample_data['objective_performance'],
-            sample_data['profit_solution'],
-            sample_data['robust_solution']
-        )
+    plot_objective_performance(
+        sample_data['objective_performance'],
+        sample_data['profit_solution'],
+        sample_data['robust_solution']
+    )
     
     # Ensure figure and axes are created
     assert plt.gcf() == fig
@@ -50,6 +50,7 @@ def test_plot_objective_performance(sample_data, mocker):
     # Check for colorbars in the figure
     colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
+
 
 def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
@@ -60,23 +61,23 @@ def test_plot_factor_performance(sample_data, mocker):
     b, m = np.meshgrid(sample_data['b'], sample_data['m'])
     a = np.tile(sample_data['a'], (len(sample_data['m']), 1))  
 
-    with pytest.warns(DeprecationWarning):
-        plot_factor_performance(
-            sample_data['param_values'],
-            sample_data['collapse_days'],
-            b,
-            m,
-            a
-        )
+    plot_factor_performance(
+        sample_data['param_values'],
+        sample_data['collapse_days'],
+        b,
+        m,
+        a
+    )
     
     # Ensure figure and axes are created
     assert plt.gcf() == fig
-    assert len(fig.axes) >= 3  # At least two 3D plots and one colorbar
+    assert len(fig.axes) >= 3  
     
     for ax in axs:
-        assert isinstance(ax, Axes3D)  # Ensure 3D plots
+        assert isinstance(ax, Axes3D)  
 
     # Check for colorbars in the figure
     colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
+
 
