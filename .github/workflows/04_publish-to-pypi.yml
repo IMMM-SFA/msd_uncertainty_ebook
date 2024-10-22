@@ -1,6 +1,13 @@
+# This GitHub Action will only push to PyPI if the branch is tagged and then merged to main.
+# Tag the branch with:
+# $ git push REMOTE-NAME TAG-NAME
+
 name: Publish Python to PyPI
 
-on: push
+on:
+  push:
+    branches:
+        - main
 
 jobs:
   build:
