@@ -13,6 +13,79 @@ Please consider the following requirements for contribution:
 - All contributions and communication thereof must abide by our `code of conduct <https://uc-ebook.org/docs/html/code_of_conduct.html>`_.
 
 
-If you feel your work meets the criteria above, please submit a proposal issue `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?assignees=thurber%2C+crvernon&labels=triage&projects=&template=contribution_proposal.yml&title=Contribution+Proposal>`_. If your proposal is approved, please create a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out. We will then review your pull request and provide feedback. Once your contribution has been deemed ready to deploy, we will generate a DOI for your work, launch it to our MSD-LIVE set of interactive notebooks, and feature the contribution in the index of our eBook.
+If you feel your work meets the criteria above, please submit a proposal issue `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?assignees=thurber%2C+crvernon%2C+erexer&labels=triage&projects=&template=contribution_proposal.yml&title=Contribution+Proposal>`_. If your proposal is approved, please create a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out. We will then review your pull request and provide feedback. Once your contribution has been deemed ready to deploy, we will generate a DOI for your work, launch it to our MSD-LIVE set of interactive notebooks, and feature the contribution in the index of our eBook.
 
 Please feel free to reach out with any further questions.
+
+
+Development workflow
+____________________
+
+The following is the recommended workflow for contributing:
+
+1. `Fork the msd_uncertainty_ebook repository <https://github.com/IMMM-SFA/msd_uncertainty_ebook/fork>`_ and then clone it locally:
+
+  .. code-block:: bash
+
+    git clone https://github.com/<your-user-name>/msd_uncertainty_ebook
+
+
+2. Set up the repository for development:
+
+  Make sure that you are using an **msd_uncertainty_ebook** `compatible python version <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/dev/pyproject.toml#L10>`_. It is important to install the package in development mode. This will give you the flexibility to make changes in the code without having to rebuild the package:
+
+  .. code-block:: bash
+
+      cd msd_uncertainty_ebook
+
+      pip install -e ".[dev]"
+
+
+  `Install \`pre-commit\` <https://pre-commit.com/>`_, a code format checker, in the repo:
+
+  .. code-block:: bash
+
+      pre-commit install
+
+
+1. Add your changes and commit them:
+
+  .. code-block:: bash
+
+    git add <my-file-name>
+
+    git commit -m "<my short message>"
+
+
+1. Ensure all tests pass:
+
+    Ensure your tests pass locally before pushing to your remote branch where GitHub actions will launch CI services to build the package, run the test suite, and evaluate code coverage. To do this, ensure that ``pytest`` has been installed then navigate to the root of your cloned directory (e.g., <my-path>/msd_uncertainty_ebook) and run ``pytest`` in the terminal.
+
+  .. code-block:: bash
+
+      pip install -e ".[test]"
+
+      pytest
+
+
+  Changes to the documentation can be made in the ``msd_uncertainty_ebook/docs/source`` directory containing the RST files. To view your changes, ensure you have the development dependencies of **msd_uncertainty_ebook** installed and run the following from the ``msd_uncertainty_ebook/docs/source`` directory:
+
+  .. code-block:: bash
+
+      pip install -e ".[docs]"
+
+      make html
+
+
+  This will generate your new documentation in a directory named ``msd_uncertainty_ebook/docs/build/html``. You can open the ``index.html`` in your browser to view the documentation site locally. If your changes are merged into the main branch of **msd_uncertainty_ebook**, changes in your documentation will go live as well.
+
+1. Push your changes to the remote
+
+  .. code-block:: bash
+
+    git push origin <my-branch-name>
+
+
+4. Submit a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out.
+
+5. If approved, your pull request will be merged into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service.automatically.
