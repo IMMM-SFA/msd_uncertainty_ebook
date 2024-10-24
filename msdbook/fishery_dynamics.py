@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 from matplotlib import patheffects as pe
 
 
@@ -8,7 +9,15 @@ def plot_objective_performance(
 ):
     """Plot the identified solutions with regards to their objective performance
     in a parallel axis plot
+
+    :param objective_performance:               Objective performance array
+    :param profit_solution:                     Profitable solutions array
+    :param robust_solution:                     Robust solutions array
+    :param figsize:                             Figure size
+    :type figsize:                              tuple
+
     """
+
     # create the figure object
     fig = plt.figure(figsize=figsize)
 
@@ -39,7 +48,7 @@ def plot_objective_performance(
             norm_reference[:, i] = 1
 
     # colormap from matplotlib
-    cmap = plt.colormaps["Blues"]
+    cmap = plt.cm.get_cmap("Blues")
 
     # plot all solutions
     for i in range(len(norm_reference[:, 0])):
@@ -112,9 +121,17 @@ def plot_objective_performance(
 def plot_factor_performance(param_values, collapse_days, b, m, a):
     """Visualize the performance of our policies in three-dimensional
     parametric space.
+
+    :param param_values:                Saltelli sample array
+    :param collapse_days:               Simulation array
+    :param b:                           b parameter boundary interval
+    :param m:                           m parameter boundary interval
+    :param a:                           a parameter boundary interval
+
     """
+
     # set colormap
-    cmap = plt.colormaps["RdBu_r"]
+    cmap = plt.cm.get_cmap("RdBu_r")
 
     # build figure object
     fig = plt.figure(figsize=plt.figaspect(0.5), dpi=600, constrained_layout=True)
