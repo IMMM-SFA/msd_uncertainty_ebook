@@ -1,7 +1,7 @@
 import pytest
 import numpy as np 
 import matplotlib.pyplot as plt
-from pytest_mock import mocker
+from pytest_mock import MockerFixture
 from mpl_toolkits.mplot3d import Axes3D  
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
@@ -80,5 +80,4 @@ def test_plot_factor_performance(sample_data, mocker):
     # Check for colorbars in the figure
     colorbars = [c for a in fig.axes for c in a.collections if isinstance(c, plt.cm.ScalarMappable)]
     assert len(colorbars) > 0
-
 
