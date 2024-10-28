@@ -77,7 +77,7 @@ The following is the recommended workflow for contributing:
       make html
 
 
-  This will generate your new documentation in a directory named ``msd_uncertainty_ebook/docs/build/html``. You can open the ``index.html`` in your browser to view the documentation site locally. If your changes are merged into the main branch of **msd_uncertainty_ebook**, changes in your documentation will go live as well.
+  This will generate your new documentation in a directory named ``msd_uncertainty_ebook/docs/build/html``. You can open the ``index.html`` in your browser to view the documentation site locally. If your changes are merged into the main branch of **msd_uncertainty_ebook**, changes in your documentation will go live on the `uc-ebook.org documentation <https://uc-ebook.org/docs/html/index.html>`_. If your changes are merged into the dev branch of **msd_uncertainty_ebook**, changes in your documentation will go live on the `dev site <https://uc-ebook.org/dev/docs/html/index.html>`_.
 
 1. Push your changes to the remote
 
@@ -88,4 +88,4 @@ The following is the recommended workflow for contributing:
 
 4. Submit a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out.
 
-5. If approved, your pull request will be merged into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service.automatically.
+5. If approved, your pull request will be merged first into the dev, and then into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service automatically.
