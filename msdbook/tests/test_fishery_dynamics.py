@@ -1,6 +1,7 @@
 import pytest
 import numpy as np 
 import matplotlib.pyplot as plt
+from pytest_mock import mocker
 from mpl_toolkits.mplot3d import Axes3D  
 from matplotlib.testing.decorators import check_figures_equal
 from msdbook.fishery_dynamics import plot_objective_performance, plot_factor_performance
@@ -32,7 +33,7 @@ def sample_data():
     }
 
 
-def test_plot_objective_performance(sample_data):
+def test_plot_objective_performance(sample_data, mocker):
     """Test the plot_objective_performance function."""
     fig, ax = plt.subplots()
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
@@ -52,7 +53,7 @@ def test_plot_objective_performance(sample_data):
     assert len(colorbars) > 0
 
 
-def test_plot_factor_performance(sample_data):
+def test_plot_factor_performance(sample_data, mocker):
     """Test the plot_factor_performance function."""
     fig, axs = plt.subplots(1, 2, subplot_kw={'projection': '3d'})
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
