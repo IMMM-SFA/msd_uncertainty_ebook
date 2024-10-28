@@ -32,7 +32,7 @@ def sample_data():
     }
 
 
-def test_plot_objective_performance(sample_data, mocker):
+def test_plot_objective_performance(sample_data):
     """Test the plot_objective_performance function."""
     fig, ax = plt.subplots()
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
@@ -52,7 +52,7 @@ def test_plot_objective_performance(sample_data, mocker):
     assert len(colorbars) > 0
 
 
-def test_plot_factor_performance(sample_data, mocker):
+def test_plot_factor_performance(sample_data):
     """Test the plot_factor_performance function."""
     fig, axs = plt.subplots(1, 2, subplot_kw={'projection': '3d'})
     mocker.patch('matplotlib.pyplot.figure', return_value=fig)
