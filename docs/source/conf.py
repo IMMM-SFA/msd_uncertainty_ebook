@@ -19,7 +19,7 @@ sys.path.append(os.path.abspath("../../extensions"))
 
 # if this is a dev build, the paths need to be adjusted
 dev_web = "/dev" if ("NODE_ENV" in os.environ and os.environ["NODE_ENV"] == "development") else ""
-dev_nb = ".dev" if ("NODE_ENV" in os.environ and os.environ["NODE_ENV"] == "development") else ""
+dev_nb = "-dev" if ("NODE_ENV" in os.environ and os.environ["NODE_ENV"] == "development") else ""
 
 # current datetime to use as the version
 today = f"Last updated: {datetime.utcnow().strftime('%b %d, %Y')}"
@@ -34,8 +34,8 @@ rst_prolog = f"""
 .. _nb_fishery_dynamics: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/fishery_dynamics.ipynb
 .. _nb_discovery: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/Bedford_Greene_SD_tutorial.ipynb
 .. _nb_hmm: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/Hidden-Markov_Modeling_Approaches_to_Creating_Synthetic_Streamflow_Scenarios.ipynb
+.. _nb_mcmc: https://uc-ebook{dev_nb}.msdlive.org/user-redirect/lab/tree/notebooks/mcmc.ipynb
 """
-
 
 # -- Project information -----------------------------------------------------
 
