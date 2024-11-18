@@ -38,6 +38,8 @@ dependencies = [
     "scipy>=1.13.1",
     "seaborn>=0.13.2",
     "statsmodels>=0.14.2",
+    "mpl-image-compare",
+    # other dependencies
 ]
 
 [project.optional-dependencies]
@@ -53,6 +55,11 @@ dev = [
     "sphinx-book-theme>=0.2.0",
     "sphinxcontrib-bibtex>=2.4.1",
     "twine>=3.4.1",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "mpl_image_compare: Compare matplotlib figures"
 ]
 
 [project.urls]
