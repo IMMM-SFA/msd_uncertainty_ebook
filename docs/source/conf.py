@@ -19,7 +19,7 @@ sys.path.append(os.path.abspath("../../extensions"))
 
 # if this is a dev build, the paths need to be adjusted
 dev_web = '/dev' if ('NODE_ENV' in os.environ and os.environ['NODE_ENV'] == 'development') else ''
-dev_nb = '.dev' if ('NODE_ENV' in os.environ and os.environ['NODE_ENV'] == 'development') else ''
+dev_nb = '-dev' if ('NODE_ENV' in os.environ and os.environ['NODE_ENV'] == 'development') else ''
 
 # current datetime to use as the version
 today = f"Last updated: {datetime.utcnow().strftime('%b %d, %Y')}"
