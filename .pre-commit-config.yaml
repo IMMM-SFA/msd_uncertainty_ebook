@@ -1,0 +1,25 @@
+# pre-commit hooks require a user to have installed `pre-commit`:
+#   $ brew install pre-commit
+# Then install the hooks within the repo:
+#   $ cd /PATH/TO/REPO
+#   $ pre-commit install
+
+repos:
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.5.5
+    hooks:
+        - id: ruff
+          args: [ --fix, --exit-non-zero-on-fix]
+          exclude: .rst
+-   repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+    - id: black
+      args: [--line-length=100]
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: check-ast
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace

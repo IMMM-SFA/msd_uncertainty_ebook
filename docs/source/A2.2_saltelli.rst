@@ -2,10 +2,10 @@ Sobol SA Tutorial
 *************************
 
 .. note::
-    
+
     | Run the tutorial interactively:  `Sobol SA Tutorial <nb_saltelli_sobol_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
-    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 Tutorial: Sensitivity Analysis (SA) using the Saltelli sampling scheme with Sobol SA
 ====================================================================================
@@ -45,9 +45,9 @@ by typing “Shift+Enter”.
 
     #Import relevant libraries
     import numpy as np
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
     from mpl_toolkits import mplot3d
-    
+
     from SALib.sample import saltelli
     from SALib.analyze import sobol
     from SALib.test_functions import Ishigami
@@ -90,7 +90,7 @@ resulting Saltelli sample.
 
     #Generate parmeter values using the saltelli.sample function
     param_values = saltelli.sample(problem, 256)
-    
+
     print(f"`param_values` shape:  {param_values.shape}")
 
 
@@ -102,8 +102,8 @@ resulting Saltelli sample.
 
 .. code:: ipython3
 
-    #Plot the 2048 samples of the parameters 
-    
+    #Plot the 2048 samples of the parameters
+
     fig = plt.figure(figsize = (7, 5))
     ax = plt.axes(projection ="3d")
     ax.scatter3D(param_values[:,0], param_values[:,1], param_values[:,2])
@@ -111,7 +111,7 @@ resulting Saltelli sample.
     ax.set_ylabel('X2 Parameter')
     ax.set_zlabel('X3 Parameter')
     plt.title("Saltelli Sample of Parameter Values")
-    
+
     plt.show()
 
 
@@ -158,7 +158,7 @@ input individually.
 .. code:: ipython3
 
     first_order = Si['S1']
-    
+
     print('First-order:')
     print(f"x1: {first_order[0]}, x2: {first_order[1]}, x3: {first_order[2]}")
 
@@ -191,7 +191,7 @@ higher-order interactions across the input parameters.
 .. code:: ipython3
 
     total_order = Si['ST']
-    
+
     print('Total-order:')
     print(f"x1: {total_order[0]}, x2: {total_order[1]}, x3: {total_order[2]}")
 
@@ -221,7 +221,7 @@ errors shrink as the number of samples increases.
 .. code:: ipython3
 
     second_order = Si['S2']
-    
+
     print("Second-order:")
     print(f"x1-x2:  {second_order[0,1]}")
     print(f"x1-x3:  {second_order[0,2]}")
@@ -286,7 +286,7 @@ above. You will need to:
 
 
 .. only:: html
-    
+
     **References**
 
 .. [1] Saltelli, A. (2002). "Making best use of model evaluations to compute sensitivity indices." Computer Physics Communications, 145(2):280-297, doi:`10.1016/S0010-4655(02)00280-1 <https://doi.org/10.1016/S0010-4655(02)00280-1>`_.

@@ -1,9 +1,3 @@
-from .generalized_fish_game import *
-from .utils import *
-from .hymod import *
-from .package_data import *
-from .install_supplement import install_package_data
-from .fishery_dynamics import *
+import importlib.metadata
 
-
-__version__ = "0.1.5"
+__version__ = importlib.metadata.version(__package__ or __name__)

@@ -20,6 +20,3 @@ This text prescribes a formal model diagnostic approach that is a deliberative a
     The following articles can be used as supplemental reading:
 
     * Canham, C.D., Cole, J.J., Lauenroth, W.K. (Eds.), 2003. Models in Ecosystem Science. Princeton University Press. https://doi.org/10.2307/j.ctv1dwq0tq
-
-
-

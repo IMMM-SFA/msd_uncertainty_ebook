@@ -2,10 +2,10 @@ HYMOD Dynamics Tutorial
 *************************
 
 .. note::
-    
+
     | Run the tutorial interactively:  `HYMOD Notebook <nb_hymod_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
-    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 Tutorial: Sensitivity Analysis of the HYMOD Model
 =================================================
@@ -20,18 +20,15 @@ We’ll explore these tools and concepts using the HYdrological MODel
 (HYMOD), a rainfall-runoff model developed and used for river flow
 forecasting. HYMOD was chosen for demonstration because its purpose is
 to abstract highly complex and non-linear systems. The methods
-demonstrated in thistutorial can be applied to numerical models that
+demonstrated in this tutorial can be applied to numerical models that
 simulate other complex non-linear systems.
 
 This tutorial will first introduce HYMOD and use it to simulate
 streamflows in a river basin. Next, we’ll employ sensitivity analysis
-concepets described in Section 3 of the main text to examine how values
-of HYMOD’s parameters impact streamflow predictions. We’ll then explore
-how the effects of these parameters may change over time using
-time-varying sensitivtiy analysis. Finally, we’ll demonstrate concepts
-presented in Chapter 7 through two ensemble-based methods of uncertainty
-quantification - Generalized Likelihood Uncertainty Estimation (GLUE)
-and Pre-Calibration.
+concepts described in Section 3 of the main text to examine how values
+of HYMOD’s parameters impact streamflow predictions. Finally, we'll
+explore how the effects of these parameters may change over time using
+time-varying sensitivity analysis.
 
 The tutorial includes the following steps:
 
@@ -928,9 +925,9 @@ interaction between Alp and Ks.
 .. _time:
 
 In section 2.5 we saw how performing sensitivity analysis on different
-measurements of model output can yeild in different results on the
+measurements of model output can yield in different results on the
 importance of each uncertain input. In this section we’ll examine how
-performing this analysis over time can yeild additional insight into the
+performing this analysis over time can yield additional insight into the
 performance of HYMOD. We’ll first examine how model sensitivities vary
 by month, then examine how they change across each year of the
 simulation.
@@ -1209,7 +1206,7 @@ Tips to Apply this methodology to your own problem
 In this tutorial, we demonstrated how to use global sensitivtiy analysis
 to explore a complex, non-linear model. We showed how measuring
 sensitivity across multiple measures of model performance and temporal
-aggregations yeilding differing results about model
+aggregations yielding differing results about model
 sensitivity/behavoir. While these results may seem contraditory, they
 provide useful insight into the behavoir of HYMOD. Would we expect the
 same parameters to control high flow and low flow regimes within the

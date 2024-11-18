@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.setuptools.packages.find]
+where = ["msdbook"]
+
+[tool.setuptools.package-data]
+msdbook = ["*.txt", "*.csv", "*.npy", "*.resultfile"]
+
+[project]
+name = "msdbook"
+version = "0.1.5"
+description = "Jupyter notebook support for the MSD uncertainty ebook."
+readme = "README.md"
+requires-python = ">=3.9, <3.13"
+keywords = ["uncertainty characterization", "MSD", "MultiSector Dynamics"]
+authors = [
+  { name="Chris R. Vernon", email="chris.vernon@pnnl.gov" },
+  { name="Em Rexer", email="emily.rexer@pnnl.gov" },
+]
+
+classifiers = [
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "hmmlearn>=0.3.2",
+    "importlib>=1.0.4",
+    "importlib-metadata==4.11.3",
+    "importlib-resources==5.7.1",
+    "matplotlib>=3.9.1",
+    "numpy<2",
+    "pandas>=2.2.2",
+    "requests>=2.32.3",
+    "SALib>=1.4.7",
+    "scikit-learn>=1.5.1",
+    "scipy>=1.13.1",
+    "seaborn>=0.13.2",
+    "statsmodels>=0.14.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.7.1",
+]
+
+docs = [
+    "autodoc>=0.5.0",
+    "build>=0.5.1",
+    "ipython>=8.0.1",
+    "mathjax>=0.1.2",
+    "nbsphinx>=0.8.6",
+    "setuptools>=57.0.0",
+    "sphinx>=4.0.2",
+    "sphinx-book-theme>=0.2.0",
+    "sphinxcontrib-bibtex>=2.4.1",
+    "twine>=3.4.1",
+]
+
+test = [
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10",
+]
+
+[project.urls]
+Homepage = "https://uc-ebook.org/"
+Repository = "https://github.com/IMMM-SFA/msd_uncertainty_ebook"
+Issues = "https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues"
