@@ -46,9 +46,9 @@ this region are to plausible drought streamflow scenarios for the
 future. In this tutorial, we’ll discuss how to create these scenarios
 using a Hidden Markov Model (HMM)- based streamflow synthetic generator.
 As discussed in `Section
-2.1 <https://uc-ebook.org/docs/html/2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics>`__
+2.1 <https://uc-ebook.org/docs/html/2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics>`_
 and
-`4.2 <https://uc-ebook.org/docs/html/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest>`__
+`4.2 <https://uc-ebook.org/docs/html/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest>`_
 of the eBook, future climate conditions in the basin represent a deep
 uncertainty that can lead to highly consequential water scarcity
 outcomes. It is advantageous to create a model such as the HMM-based
@@ -89,7 +89,6 @@ Below, we create a plot of the annual streamflow.
     import statistics
     import statsmodels.api as sm
 
-
     # Import helper functions from local package
     from functions import fitmodel
     from functions import plotstates
@@ -121,13 +120,10 @@ Below, we create a plot of the annual streamflow.
     plt.close()
 
 
-
-
 .. image:: _static/hmm_9_0.png
 
 
-Let’s calculate an 11-year rolling mean of the same data to get a sense
-of long-term trends.
+Let’s calculate an 11-year rolling mean of the same data to get a sense of long-term trends.
 
 .. code:: ipython3
 
@@ -155,8 +151,6 @@ of long-term trends.
     legend = plt.legend()
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_11_0.png
@@ -224,8 +218,6 @@ rectangles below.
     legend = plt.legend()
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_14_0.png
@@ -305,8 +297,6 @@ state and hidden_states = 1 to the wet state.
     plotstates.plotTimeSeries(np.log(AnnualQ.iloc[:,0]), hidden_states, 'Annual Flow (cube feet per year)')
 
 
-
-
 .. image:: _static/hmm_21_0.png
 
 
@@ -336,8 +326,6 @@ wet and dry states.
     plotdist.plotDistribution(logQ, mus, sigmas, P)
 
 
-
-
 .. image:: _static/hmm_25_0.png
 
 
@@ -365,16 +353,16 @@ the historical period.
     drought_instances = [i for i,v in enumerate(AnnualQ_s.iloc[:, 0].rolling(11).mean()) if v < threshold]
     drought_years = AnnualQ_s.iloc[:, 1].rolling(11).mean()[drought_instances]
 
-    #Visualize the streamflow scenario
+    # Visualize the streamflow scenario
     fig, ax = plt.subplots(figsize=(12, 8))
 
-    #Plot the original line graph
+    # Plot the original line graph
     ax.plot(AnnualQ_s.iloc[:,1],
             AnnualQ_s.iloc[:,0],
             color='#005F73',
             label='Annual')
 
-    #Plot a 11-year rolling mean
+    # Plot a 11-year rolling mean
     ax.plot(AnnualQ_s.iloc[:,1],
             AnnualQ_s.iloc[:,0].rolling(11, center=True).mean(),
             color='#183A2E',
@@ -389,7 +377,7 @@ the historical period.
 
     for i in drought_years:
 
-        #Plot a box centered around those values and with 5 years on either side.
+        # Plot a box centered around those values and with 5 years on either side.
         rect = patches.Rectangle((i - 5,
                                   0),
                                   11,
@@ -413,8 +401,6 @@ the historical period.
     plt.close()
 
 
-
-
 .. image:: _static/hmm_28_0.png
 
 
@@ -431,7 +417,7 @@ drought of the same magnitude if stored surface water is available.
 We externally run the HMM many times to create a dataset of 100
 instances of the 105-year traces and 1000 instances of the 105-year
 traces that are available in the package
-(“synthetic_stationary_small_sample_100.csv”,“synthetic_stationary_large_sample_1000”).
+(“synthetic_stationary_small_sample_100.csv”, “synthetic_stationary_large_sample_1000”).
 The shaded green lines correspond to the flow duration curves (FDCs) for
 the generated streamflow traces in comparison with the FDC of the
 historical record in beige.
@@ -641,9 +627,6 @@ Now let’s see what this synthetic trace looks like.
     plt.close()
 
 
-
-
-
 .. image:: _static/hmm_40_0.png
 
 
@@ -730,8 +713,6 @@ across these realizations.
     plt.yticks(fontsize = 12)
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_43_0.png
@@ -838,7 +819,7 @@ Let’s plot our results:
 .. code:: ipython3
 
     # Set color gradient for response surface
-    drought_map = mpl.cm.get_cmap('RdBu_r')
+    drought_map = mpl.colormaps.get_cmap('RdBu_r')
 
     # Reshape our predicted drought occurrence and define bounds of colors
     Z = np.reshape(z, np.shape(X))
@@ -864,9 +845,6 @@ Let’s plot our results:
     cbar.ax.tick_params(axis='y',labelsize=14)
     plt.show()
     plt.close()
-
-
-
 
 
 .. image:: _static/hmm_53_0.png

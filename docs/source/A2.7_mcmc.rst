@@ -32,13 +32,13 @@ The purpose of this tutorial is to demonstrate how to use Markov chain Monte Car
 
 .. note::
 
-    If you are running this notebook locally, uncomment the following code to install the required package data:
+    The following code will install the required package data:
 
 
 .. code:: ipython3
 
-    # from msdbook.install_supplement import install_package_data
-    # install_package_data()
+    from msdbook.install_supplement import install_package_data
+    install_package_data()
 
 
 1. MCMC for Model Calibration and Uncertainty Quantification
@@ -95,14 +95,16 @@ In code form, the Metropolis-Hastings algorithm looks like this.
     #   - parameters: matrix of sampled parameters, num_iter x num_parameters
     #   - lp: vector of log-posterior values for the sampled parameters
     #   - accept_rate: Float of the percentage of proposals which were accepted.
+
     def metropolis(num_iter, proposal_sd, p0, logposterior):
-        # initialize our lists for sampled parameters and log-posterior values
-        parameters = np.zeros((num_iter+1, np.size(p0))) # create empty array
+        # Initialize our lists for sampled parameters and log-posterior values
+        # Create empty array
+        parameters = np.zeros((num_iter+1, np.size(p0)))
         lp = np.zeros(num_iter+1)
-        # set initial values
+        # Set initial values
         parameters[0, :] = p0
         lp[0] = logposterior(p0)
-        # set up proposal covariance matrix
+        # Set up proposal covariance matrix
         cov = stats.Covariance.from_diagonal(np.square(proposal_sd))
         acceptances = 0
         for i in range(1, num_iter + 1):
@@ -126,8 +128,9 @@ In code form, the Metropolis-Hastings algorithm looks like this.
                 parameters[i, :] = parameters[i-1, :]
                 # Add the corresponding posterior score to the end of that list too
                 lp[i] = lp[i-1]
-        accept_rate = acceptances / num_iter # calculate the acceptance rate; this is a useful diagnostic
-        # leave off the initial value but return the rest
+        # calculate the acceptance rate; this is a useful diagnostic
+        accept_rate = acceptances / num_iter
+        # Leave off the initial value but return the rest
         return parameters[1:], lp[1:], accept_rate
 
 
@@ -138,15 +141,15 @@ Let's look at how well HYMOD with some default parameters explain the streamflow
 
 .. code:: ipython3
 
-    # load the Leaf River HYMOD input file
+    # Load the Leaf River HYMOD input file
     leaf_data = load_hymod_input_file()
 
-    # extract the first eleven years of data
+    # Extract the first eleven years of data
     leaf_data = leaf_data.iloc[0:4015].copy()
 
     print('Leaf River Data structure:')
 
-    # There are only three columns in the file including precipitation, potential evapotranspiration and  streamflow
+    # There are only three columns in the file including precipitation, potential evapotranspiration, and streamflow
     leaf_data.head()
 
 

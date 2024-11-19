@@ -60,23 +60,25 @@ users.
 
 .. code:: ipython3
 
-    #import libraries
-    import msdbook
+    # Import libraries
     import numpy as np
     import pandas as pd
     import matplotlib as mpl
     import matplotlib.pyplot as plt
 
-    # load example data from Hadjimichael et al. (2020)
-    msdbook.install_package_data()
+    from msdbook.package_data import load_basin_param_bounds, load_lhs_basin_sample, load_user_heatmap_array, load_user_pseudo_scores
+    from msdbook.utils import fit_logit, plot_contour_map
 
     # Select the IDs for the three users that we will perform the analysis for
     all_IDs = ['7000550','7200799','3704614']
     usernames = ['Medium seniority irrigation',
-                 'Low seniority irrigation',
-                 'Transbasin municipal diversion']
+                'Low seniority irrigation',
+                'Transbasin municipal diversion']
     nStructures = len(all_IDs)
 
+    # Install package data
+    from msdbook.install_supplement import install_package_data
+    install_package_data()
 
 
 .. parsed-literal::
@@ -124,7 +126,7 @@ be found in Table 1 of Hadjimichael et al., 2020.
 
 .. code:: ipython3
 
-    #Identify the bounds for each of the 14 parameters
+    # Identify the bounds for each of the 14 parameters
     param_bounds = msdbook.load_basin_param_bounds()
 
     #Load in the parameter samples
@@ -169,7 +171,7 @@ Python <https://www.statsmodels.org/stable/index.html>`__ package. The
 data required for the full analysis is too large to include in this
 tutorial, but results can be found in the data file loaded below.
 
-The results files contain the occurence of different shortage frequency
+The results files contain the occurrence of different shortage frequency
 and magnitude combinations under the experiment, in increments of 10,
 between 0 and 100. These combinations (100 for each user) are
 alternative decision-relevant metrics that can be used for scenario
@@ -201,14 +203,14 @@ model (including the predictor) and :math:`ln \hat{L}(M_{intercept})` is
 the log likelihood of the intercept model (which predicts the mean
 probability of success across all SOWs).
 
-Higher values of McFadden’s psuedo-R2 indicate higher factor importance
+Higher values of McFadden’s pseudo-R2 indicate higher factor importance
 (when the likelihood of the full model approaches one, the ratio of the
 likelihood of the full model compared to the intercept model will get
 very small).
 
 .. code:: ipython3
 
-    #Load the pseudo-R^2 scores
+    # Load the pseudo-R^2 scores
     scores = [msdbook.load_user_pseudo_scores(all_IDs[i]) for i in range(len(all_IDs))]
 
     # Select indices of frequency and magnitudes that will be used for the visualization
@@ -219,9 +221,9 @@ very small).
 Step 5: Draw factor maps
 ------------------------
 
-The McFadden’s psuedo-R2 scores files contain preliminary logistic
+The McFadden’s pseudo-R2 scores files contain preliminary logistic
 regression results on parameter importance for each of these
-combinations. Using these psuedo-R2 scores we will identify the two most
+combinations. Using these pseudo-R2 scores we will identify the two most
 important factors for each metric which we’ll use to generate the final
 scenario discovery maps (note: there may be more than two important
 metrics for each user, but here we will demonstrate by mapping two).
@@ -251,7 +253,7 @@ metrics for each user, but here we will demonstrate by mapping two).
         dot_cmap = mpl.colors.ListedColormap(np.array([[227,26,28],[166,206,227]])/255.0)
 
         # define color map for probability contours
-        contour_cmap = mpl.cm.get_cmap('RdBu')
+        contour_cmap = mpl.colormaps.get_cmap('RdBu')
 
         # define probability contours
         contour_levels = np.arange(0.0, 1.05,0.1)
@@ -366,5 +368,5 @@ framework to your own problem:
    applicable. This step will allow you to create the scatter plot part
    of the final figure.
 5. If it is of interest, the contours on the figure can be created by
-   fitting the logistic regression model in a similiar manner as denoted
+   fitting the logistic regression model in a similar manner as denoted
    in Steps 3 and 5 of the tutorial.

@@ -38,15 +38,12 @@ Let’s get started!
 
 **NOTE**: Content from this tutorial is taken directly from the SALib
 `“Basics” <https://salib.readthedocs.io/en/latest/basics.html>`__
-walkthrough. To step through the notebook, execute each gray (code) box
-by typing “Shift+Enter”.
+walkthrough.
 
 .. code:: ipython3
 
-    #Import relevant libraries
-    import numpy as np
+    # Import relevant libraries
     import matplotlib.pyplot as plt
-    from mpl_toolkits import mplot3d
 
     from SALib.sample import saltelli
     from SALib.analyze import sobol
@@ -94,7 +91,6 @@ resulting Saltelli sample.
     print(f"`param_values` shape:  {param_values.shape}")
 
 
-
 .. parsed-literal::
 
     `param_values` shape:  (2048, 3)
@@ -115,7 +111,6 @@ resulting Saltelli sample.
     plt.show()
 
 
-
 .. image:: _static/output_7_0.png
 
 
@@ -130,6 +125,7 @@ the function directly.
 
     Y = Ishigami.evaluate(param_values)
 
+
 Step 4: Compute first-, second-, and total-order sensitivity indices using the Sobol method
 -------------------------------------------------------------------------------------------
 
@@ -140,6 +136,7 @@ total-order indicies.
 .. code:: ipython3
 
     Si = sobol.analyze(problem, Y)
+
 
 ``Si`` is a Python dict with the keys “S1”, “S2”, “ST”, “S1_conf”,
 “S2_conf”, and “ST_conf”. The ``_conf`` keys store the corresponding
@@ -226,7 +223,6 @@ errors shrink as the number of samples increases.
     print(f"x1-x2:  {second_order[0,1]}")
     print(f"x1-x3:  {second_order[0,2]}")
     print(f"x2-x3:  {second_order[1,2]}")
-
 
 
 .. parsed-literal::
