@@ -73,12 +73,11 @@ Let’s get started!
 
 In this tutorial, we will be loading in data that has been produced in
 Hadjimichael et al. (2020). Before we start our analysis, we’ll load the
-relevant Python libraries. **NOTE**: To step through the notebook,
-execute each gray (code) box by typing “Shift+Enter”.
+relevant Python libraries.
 
 .. code:: ipython3
 
-    #Import necessary libraries
+    # Import necessary libraries
 
     import msdbook
     import numpy as np
@@ -88,7 +87,8 @@ execute each gray (code) box by typing “Shift+Enter”.
     from matplotlib import patheffects as pe
 
     # load example data
-    msdbook.install_package_data()
+    from msdbook.install_supplement import install_package_data
+    install_package_data()
 
     %matplotlib inline
     %config InlineBackend.print_figure_kwargs = {'bbox_inches':None}
