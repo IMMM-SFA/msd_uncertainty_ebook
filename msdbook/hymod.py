@@ -1,5 +1,4 @@
 import math
-
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -21,21 +20,23 @@ def plot_observed_vs_simulated_streamflow(df, hymod_dict, figsize=[12, 6]):
 
     """
 
-    # set plot style
+# set plot style
     plt.style.use("seaborn-v0_8-white")
 
     # set up figure
     fig, ax = plt.subplots(figsize=figsize)
 
     # plot observed streamflow
-    ax.plot(range(0, len(df["Strmflw"])), df["Strmflw"], color="pink")
+    ax.plot(range(0, len(df["Strmflw"])), df["Strmflw"], color="pink", label="Observed Streamflow")
 
     # plot simulated streamflow
-    ax.plot(range(0, len(df["Strmflw"])), hymod_dict["Q"], color="black")
+    ax.plot(range(0, len(df["Strmflw"])), hymod_dict["Q"], color="black", label="Simulated Streamflow")
 
     # set axis labels
     ax.set_ylabel("Streamflow($m^3/s$)")
     ax.set_xlabel("Days")
+
+    # add legend
     ax.legend()
 
     # set plot title
@@ -325,21 +326,27 @@ def Pdm01(Hpar, Bpar, Hbeg, PP, PET):
 
 def Nash(K, N, Xbeg, Inp):
     """Fill in description."""
-
     OO = np.zeros(N)
     Xend = np.zeros(N)
 
-    for Res in range(0, N):
-        OO[Res] = K * Xbeg[Res]
-        Xend[Res] = Xbeg[Res] - OO[Res]
+    # Check if Xbeg is a scalar or array and adjust accordingly
+    if np.ndim(Xbeg) == 0:  # Xbeg is scalar
+        OO[0] = K * Xbeg
+        Xend[0] = Xbeg - OO[0]
 
-        if Res == 0:
-            Xend[Res] = Xend[Res] + Inp
-        else:
-            Xend[Res] = Xend[Res] + OO[Res - 1]
+        if N > 1:
+            Xend[1:] = Xbeg  # If N > 1, assume the same value for other elements
+    else:  # Xbeg is an array
+        for Res in range(0, N):
+            OO[Res] = K * Xbeg[Res]
+            Xend[Res] = Xbeg[Res] - OO[Res]
+            
+            if Res == 0:
+                Xend[Res] += Inp  # Add input only to the first time step
+            else:
+                Xend[Res] += OO[Res - 1]  # Add previous output to the current state
 
     out = OO[N - 1]
-
     return out, Xend
 
 
@@ -365,23 +372,27 @@ def Hymod01(Data, Pars, InState):
 
     for i in range(0, len(Data)):
 
-        # run soil moisture accounting including evapotranspiration
-        OV[i], ET[i], XHuz[i], XCuz[i] = Pdm01(
+    # run soil moisture accounting including evapotranspiration
+     OV[i], ET[i], XHuz[i], XCuz[i] = Pdm01(
             Pars["Huz"], Pars["B"], XHuz[i], Data["Precip"].iloc[i], Data["Pot_ET"].iloc[i]
         )
 
-        # run Nash Cascade routing of quickflow component
-        Qq[i], Xq[i, :] = Nash(Pars["Kq"], Pars["Nq"], Xq[i, :], Pars["Alp"] * OV[i])
+    # run Nash Cascade routing of quickflow component
+    Qq[i], Xq[i, :] = Nash(Pars["Kq"], Pars["Nq"], Xq[i, :], Pars["Alp"] * OV[i])
 
-        # run slow flow component, one infinite linear tank
-        Qs[i], Xs[i] = Nash(Pars["Ks"], 1, [Xs[i]], (1 - Pars["Alp"]) * OV[i])
+    # run slow flow component, one infinite linear tank
+    Xs_scalar = Xs[i].item() if np.ndim(Xs[i]) == 0 else Xs[i]  # Ensure scalar extraction
+    OV_scalar = (1 - Pars["Alp"]) * OV[i]
 
-        if i < len(Data) - 1:
+    Qs[i], Xs[i] = Nash(Pars["Ks"], 1, Xs_scalar, OV_scalar)
+
+
+    if i < len(Data) - 1:
             XHuz[i + 1] = XHuz[i]
-            Xq[i + 1] = Xq[i]
+            Xq[i + 1, :] = Xq[i, :]  # Fixed
             Xs[i + 1] = Xs[i]
 
-        Q[i] = Qs[i] + Qq[i]
+    Q[i] = Qs[i] + Qq[i]
 
     # write to a dict
     Model = {
