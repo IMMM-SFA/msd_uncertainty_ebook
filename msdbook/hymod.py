@@ -372,27 +372,31 @@ def Hymod01(Data, Pars, InState):
 
     for i in range(0, len(Data)):
 
-    # run soil moisture accounting including evapotranspiration
-     OV[i], ET[i], XHuz[i], XCuz[i] = Pdm01(
-            Pars["Huz"], Pars["B"], XHuz[i], Data["Precip"].iloc[i], Data["Pot_ET"].iloc[i]
-        )
+        # run soil moisture accounting including evapotranspiration
+        OV[i], ET[i], XHuz[i], XCuz[i] = Pdm01(
+                Pars["Huz"], Pars["B"], XHuz[i], Data["Precip"].iloc[i], Data["Pot_ET"].iloc[i]
+            )
 
-    # run Nash Cascade routing of quickflow component
-    Qq[i], Xq[i, :] = Nash(Pars["Kq"], Pars["Nq"], Xq[i, :], Pars["Alp"] * OV[i])
+        # run Nash Cascade routing of quickflow component
+        Qq[i], Xq[i, :] = Nash(Pars["Kq"], Pars["Nq"], Xq[i, :], Pars["Alp"] * OV[i])
 
-    # run slow flow component, one infinite linear tank
-    Xs_scalar = Xs[i].item() if np.ndim(Xs[i]) == 0 else Xs[i]  # Ensure scalar extraction
-    OV_scalar = (1 - Pars["Alp"]) * OV[i]
+        # run slow flow component, one infinite linear tank
+        Xs_scalar = Xs[i].item() if np.ndim(Xs[i]) == 0 else Xs[i]  # Ensure scalar extraction
+        OV_scalar = (1 - Pars["Alp"]) * OV[i]
 
-    Qs[i], Xs[i] = Nash(Pars["Ks"], 1, Xs_scalar, OV_scalar)
+        nash_output = Nash(Pars["Ks"], 1, Xs_scalar, OV_scalar)
+
+        Qs[i] = nash_output[0]
+        Xs[i] = nash_output[1][0]
+        
 
 
-    if i < len(Data) - 1:
-            XHuz[i + 1] = XHuz[i]
-            Xq[i + 1, :] = Xq[i, :]  # Fixed
-            Xs[i + 1] = Xs[i]
+        if i < len(Data) - 1:
+                XHuz[i + 1] = XHuz[i]
+                Xq[i + 1, :] = Xq[i, :]  # Fixed
+                Xs[i + 1] = Xs[i]
 
-    Q[i] = Qs[i] + Qq[i]
+        Q[i] = Qs[i] + Qq[i]
 
     # write to a dict
     Model = {
