@@ -30,7 +30,9 @@ def plot_observed_vs_simulated_streamflow(df, hymod_dict, figsize=[12, 6]):
     ax.plot(range(0, len(df["Strmflw"])), df["Strmflw"], color="pink", label="Observed Streamflow")
 
     # plot simulated streamflow
-    ax.plot(range(0, len(df["Strmflw"])), hymod_dict["Q"], color="black", label="Simulated Streamflow")
+    ax.plot(
+        range(0, len(df["Strmflw"])), hymod_dict["Q"], color="black", label="Simulated Streamflow"
+    )
 
     # set axis labels
     ax.set_ylabel("Streamflow($m^3/s$)")
