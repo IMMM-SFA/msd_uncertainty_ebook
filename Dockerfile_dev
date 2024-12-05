@@ -9,4 +9,3 @@ RUN cd msd_uncertainty_ebook && pip install .
 RUN mkdir -p /bucket/data
 RUN rm -rf /opt/conda/lib/python3.11/site-packages/msdbook/data
 RUN ln -s /bucket/data /opt/conda/lib/python3.11/site-packages/msdbook/data
-RUN python -c 'from msdbook.install_supplement import install_package_data; install_package_data()'
