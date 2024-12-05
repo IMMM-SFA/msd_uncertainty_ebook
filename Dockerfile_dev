@@ -3,7 +3,7 @@ FROM ghcr.io/msd-live/jupyter/python-notebook:latest
 USER root
 
 RUN git clone --depth=1 --branch=dev https://github.com/IMMM-SFA/msd_uncertainty_ebook.git msd_uncertainty_ebook
-RUN cd msd_uncertainty_ebook && pip install .
+RUN cd msd_uncertainty_ebook && pip install setuptools && pip install .
 
 # Now create a symlinked data folder inside the msdbook package that links to /bucket/data folder
 RUN mkdir -p /bucket/data
