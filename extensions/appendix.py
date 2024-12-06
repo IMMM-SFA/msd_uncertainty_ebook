@@ -2,6 +2,7 @@
 
 Rename section number with alphabetic letters for ``.. appendix``
 """
+
 import string
 from docutils import nodes
 from sphinx.environment.collectors.toctree import TocTreeCollector
@@ -30,7 +31,7 @@ def to_letter(secnum):
 class AppendixDirective(TocTree):
     def run(self):
         ret = super().run()
-        ret[0][0]['appendix'] = True
+        ret[0][0]["appendix"] = True
         return ret
 
 
@@ -42,23 +43,24 @@ class Collector(TocTreeCollector):
                     _walk_toc(subnode, titlenode, appendix)
                 elif isinstance(subnode, addnodes.compact_paragraph) and appendix:
                     reference = cast(nodes.reference, subnode[0])
-                    reference['secnumber'] = to_letter(reference['secnumber'])
+                    reference["secnumber"] = to_letter(reference["secnumber"])
                 elif isinstance(subnode, addnodes.toctree):
                     _walk_toctree(subnode)
 
         def _walk_toctree(toctreenode: addnodes.toctree, appendix=False) -> None:
-            for (_, ref) in toctreenode['entries']:
+            for _, ref in toctreenode["entries"]:
                 if ref in env.tocs:
                     _walk_toc(env.tocs[ref], env.titles.get(ref), appendix)
 
                     if appendix:
-                        env.toc_secnumbers[ref] = {k: to_letter(v)
-                            for k, v in env.toc_secnumbers[ref].items()}
+                        env.toc_secnumbers[ref] = {
+                            k: to_letter(v) for k, v in env.toc_secnumbers[ref].items()
+                        }
 
         for docname in env.numbered_toctrees:
             doctree = env.get_doctree(docname)
             for toctreenode in doctree.traverse(addnodes.toctree):
-                appendix = toctreenode.get('appendix', False)
+                appendix = toctreenode.get("appendix", False)
                 _walk_toctree(toctreenode, appendix)
 
     def assign_section_numbers(self, env):
@@ -66,12 +68,13 @@ class Collector(TocTreeCollector):
         self.parse_tree(env)
         return rewrite_needed
 
+
 def setup(app):
-    app.add_directive('appendix', AppendixDirective)
+    app.add_directive("appendix", AppendixDirective)
     app.add_env_collector(Collector)
 
     return {
-        'version': '0.1',
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
+        "version": "0.1",
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
     }

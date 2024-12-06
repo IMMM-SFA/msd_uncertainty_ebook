@@ -1,43 +1,55 @@
-name: Build
+name: Test
 
 on:
   push:
-    branches: [ main, dev ]
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+  schedule:
+    - cron: '0 8 * * 1'  # Runs every monday at 12am Pacific time
 
 jobs:
   build:
-      runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        os: [ ubuntu-latest ]
+      fail-fast: false
 
-      strategy:
-        matrix:
-          os: [ubuntu-latest]
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
-      env:
-        OS: ${{ matrix.os }}
-        PYTHON: '3.9'
+    steps:
+      - uses: actions/checkout@v2
 
-      steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@master
+        with:
+          python-version: ${{ matrix.python-version }}
 
-        - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
 
-        - name: Set up Python
-          uses: actions/setup-python@master
-          with:
-            python-version: 3.9
-
-        - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-
-        - name: Test and generate coverage report
-          run: |
+      - name: Test and generate coverage report
+        run: |
             pip install pytest
             pip install pytest-cov
             pytest --cov=./ --cov-report=xml
 
-        # - name: Upload coverage to Codecov
-        #   uses: codecov/codecov-action@v1
-        #   with:
-        #     file: ./coverage.xml
-        #     fail_ci_if_error: true
+      - uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml # optional
+          name: codecov-umbrella # optional
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+
+      - name: Notify on failure
+        if: failure()  # This step will only run if any previous step fails
+        run: |
+          echo "Build or tests failed. Please check the logs."

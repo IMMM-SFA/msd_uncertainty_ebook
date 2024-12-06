@@ -5,7 +5,7 @@ A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios Tut
 
     | Run the tutorial interactively:  `HMM Notebook <nb_hmm_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
-    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 
 A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios
@@ -46,9 +46,9 @@ this region are to plausible drought streamflow scenarios for the
 future. In this tutorial, we’ll discuss how to create these scenarios
 using a Hidden Markov Model (HMM)- based streamflow synthetic generator.
 As discussed in `Section
-2.1 <https://uc-ebook.org/docs/html/2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics>`__
+2.1 <https://uc-ebook.org/docs/html/2_diagnostic_modeling_overview_and_perspectives.html#overview-of-model-diagnostics>`_
 and
-`4.2 <https://uc-ebook.org/docs/html/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest>`__
+`4.2 <https://uc-ebook.org/docs/html/4_sensitivity_analysis_diagnostic_and_exploratory_modeling.html#consequential-dynamics-what-is-controlling-model-behaviors-of-interest>`_
 of the eBook, future climate conditions in the basin represent a deep
 uncertainty that can lead to highly consequential water scarcity
 outcomes. It is advantageous to create a model such as the HMM-based
@@ -86,11 +86,10 @@ Below, we create a plot of the annual streamflow.
     from random import random
     from SALib.sample import latin
     from scipy import stats as ss
-    import statistics 
+    import statistics
     import statsmodels.api as sm
-    
-    
-    # Import helper functions from local package 
+
+    # Import helper functions from local package
     from functions import fitmodel
     from functions import plotstates
     from functions import plotdist
@@ -101,14 +100,14 @@ Below, we create a plot of the annual streamflow.
     # Read in annual historical data
     AnnualQ = pd.read_csv('data/uc_historical.csv')
     AnnualQ['Year'] = list(range(1909, 2014))
-    
+
     # Plot a line graph
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.plot(AnnualQ.iloc[:, 1],
             AnnualQ.iloc[:, 0],
             color='#005F73',
             label='Annual')
-    
+
     # Add labels and title
     ax.set_title("Upper Colorado Annual Flow")
     ax.set_xlabel("Year", fontsize=16)
@@ -116,35 +115,32 @@ Below, we create a plot of the annual streamflow.
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     mpl.rc('legend', fontsize=16)
-    legend = plt.legend(loc="upper right") 
+    legend = plt.legend(loc="upper right")
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_9_0.png
 
 
-Let’s calculate an 11-year rolling mean of the same data to get a sense
-of long-term trends.
+Let’s calculate an 11-year rolling mean of the same data to get a sense of long-term trends.
 
 .. code:: ipython3
 
     fig, ax = plt.subplots(figsize=(12, 8))
-    
+
     # Plot the original line graph
     plt.plot(AnnualQ.iloc[:,1],
              AnnualQ.iloc[:,0],
              color='#005F73',
              label='Annual')
-    
-    # Plot an 11-year rolling mean 
+
+    # Plot an 11-year rolling mean
     plt.plot(AnnualQ.iloc[:, 1].rolling(11).mean(),
              AnnualQ.iloc[:, 0].rolling(11).mean(),
              color='#183A2E',
              label='11-Year Rolling Mean')
-    
+
     # Add labels and title
     plt.title("Upper Colorado Annual Flow")
     ax.set_xlabel("Year",fontsize=16)
@@ -152,11 +148,9 @@ of long-term trends.
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     mpl.rc('legend', fontsize=16)
-    legend = plt.legend() 
+    legend = plt.legend()
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_11_0.png
@@ -180,52 +174,50 @@ rectangles below.
 
 .. code:: ipython3
 
-    # Define drought threshold 
+    # Define drought threshold
     std = statistics.stdev(AnnualQ.iloc[:, 0])
     threshold = np.mean(AnnualQ.iloc[:, 0] - (0.5 * std))
-    
+
     # Find where the rolling mean dip below the threshold?
     drought_instances = [i for i, v in enumerate(AnnualQ.iloc[:,0].rolling(11).mean()) if v < threshold]
     drought_years = AnnualQ.iloc[:, 1].rolling(11).mean()[drought_instances]
-    
+
     # Add labels and title
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.plot(AnnualQ.iloc[:,1],
             AnnualQ.iloc[:,0],
             color='#005F73',
-            label='Annual') 
-    
+            label='Annual')
+
     ax.plot(AnnualQ.iloc[:,1].rolling(11,center=True).mean(),
             AnnualQ.iloc[:,0].rolling(11,center=True).mean(),
             color='#183A2E',
             label='11-Year Rolling Mean')
-    
-    ax.axhline(y=threshold, 
-               color='black', 
+
+    ax.axhline(y=threshold,
+               color='black',
                linestyle='--',
                label='Drought Threshold')
-    
+
     # Visualize the drought periods as yellow rectangles
     for i in drought_years:
-        
+
         # Plot a box centered around those values and with 5 years on either side.
         rect = patches.Rectangle((i-5,0), 11,2e7, linewidth=1, edgecolor='#EFE2BE', facecolor='#EFE2BE')
-        
+
         # Add the patch to the Axes
         ax.add_patch(rect)
-        
-        
+
+
     plt.title("Upper Colorado Annual Flow")
     ax.set_xlabel("Year", fontsize=16)
     ax.set_ylabel("Annual Flow (cubic feet per year)", fontsize=16)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     mpl.rc('legend', fontsize=16)
-    legend = plt.legend() 
+    legend = plt.legend()
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_14_0.png
@@ -284,11 +276,11 @@ Viterbi sequence of states, which classifies each year in a “wet” or
 
     # Number of years for alternative trace
     n_years = 105
-    
-    # Import historical data that it used to fit HMM model 
+
+    # Import historical data that it used to fit HMM model
     AnnualQ_h = pd.read_csv('data/uc_historical.csv')
-    
-    # Fit the model and pull out relevant parameters and samples 
+
+    # Fit the model and pull out relevant parameters and samples
     logQ = np.log(AnnualQ_h)
     hidden_states, mus, sigmas, P, logProb, samples, model = fitmodel.fitHMM(logQ, n_years)
 
@@ -301,10 +293,8 @@ state and hidden_states = 1 to the wet state.
 
 .. code:: ipython3
 
-    # Plot Vitebi sequence 
+    # Plot Vitebi sequence
     plotstates.plotTimeSeries(np.log(AnnualQ.iloc[:,0]), hidden_states, 'Annual Flow (cube feet per year)')
-
-
 
 
 .. image:: _static/hmm_21_0.png
@@ -336,8 +326,6 @@ wet and dry states.
     plotdist.plotDistribution(logQ, mus, sigmas, P)
 
 
-
-
 .. image:: _static/hmm_25_0.png
 
 
@@ -356,63 +344,61 @@ the historical period.
     AnnualQ_s = np.exp(samples[0])
     AnnualQ_s = pd.DataFrame(AnnualQ_s)
     AnnualQ_s['Year'] = list(range(1909, 2014))
-    
-    # Define drought threshold 
+
+    # Define drought threshold
     std=statistics.stdev(AnnualQ_s.iloc[:, 0])
     threshold=np.mean(AnnualQ_s.iloc[:, 0] - (0.5 * std))
-    
+
     # Where does the rolling mean dip below the threshold
     drought_instances = [i for i,v in enumerate(AnnualQ_s.iloc[:, 0].rolling(11).mean()) if v < threshold]
     drought_years = AnnualQ_s.iloc[:, 1].rolling(11).mean()[drought_instances]
-    
-    #Visualize the streamflow scenario
+
+    # Visualize the streamflow scenario
     fig, ax = plt.subplots(figsize=(12, 8))
-    
-    #Plot the original line graph
+
+    # Plot the original line graph
     ax.plot(AnnualQ_s.iloc[:,1],
             AnnualQ_s.iloc[:,0],
             color='#005F73',
             label='Annual')
-    
-    #Plot a 11-year rolling mean 
+
+    # Plot a 11-year rolling mean
     ax.plot(AnnualQ_s.iloc[:,1],
             AnnualQ_s.iloc[:,0].rolling(11, center=True).mean(),
             color='#183A2E',
             label='11-Year Rolling Mean')
-    
+
     # Add labels and title
-    ax.axhline(y=threshold, 
-               color='black', 
+    ax.axhline(y=threshold,
+               color='black',
                linestyle='--',
                label='Drought Threshold')
-    
-    
+
+
     for i in drought_years:
-        
-        #Plot a box centered around those values and with 5 years on either side.
+
+        # Plot a box centered around those values and with 5 years on either side.
         rect = patches.Rectangle((i - 5,
-                                  0), 
+                                  0),
                                   11,
-                                  2e7, 
-                                  linewidth=1, 
-                                  edgecolor='#EFE2BE', 
+                                  2e7,
+                                  linewidth=1,
+                                  edgecolor='#EFE2BE',
                                   facecolor='#EFE2BE')
-        
+
         # Add the patch to the Axes
         ax.add_patch(rect)
-        
-        
+
+
     plt.title("Upper Colorado Annual Flow (Synthetic Stationary)",fontsize=16)
     plt.xlabel("Year", fontsize=16)
     plt.ylabel("Annual Flow (cubic feet per year)", fontsize=16)
     mpl.rc('legend', fontsize=16)
-    plt.legend() 
+    plt.legend()
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_28_0.png
@@ -431,7 +417,7 @@ drought of the same magnitude if stored surface water is available.
 We externally run the HMM many times to create a dataset of 100
 instances of the 105-year traces and 1000 instances of the 105-year
 traces that are available in the package
-(“synthetic_stationary_small_sample_100.csv”,“synthetic_stationary_large_sample_1000”).
+(“synthetic_stationary_small_sample_100.csv”, “synthetic_stationary_large_sample_1000”).
 The shaded green lines correspond to the flow duration curves (FDCs) for
 the generated streamflow traces in comparison with the FDC of the
 historical record in beige.
@@ -497,7 +483,7 @@ Hypercube sample function.
 
 .. code:: ipython3
 
-    # Create problem structure with parameters that we want to sample 
+    # Create problem structure with parameters that we want to sample
     problem = {
         'num_vars': 6,
         'names': ['wet_mu', 'dry_mu', 'wet_std','dry_std','dry_tp',"wet_tp"],
@@ -508,14 +494,14 @@ Hypercube sample function.
                    [-0.3,0.3],
                    [-0.3,0.3]]
     }
-    
+
     # generate 1000 parameterizations
     n_samples = 1000
-    
+
     # set random seed for reproducibility
     seed_value = 123
-    
-    # Generate our samples 
+
+    # Generate our samples
     LHsamples = latin.sample(problem, n_samples, seed_value)
 
 
@@ -525,19 +511,19 @@ non-stationary generator. Let’s choose a random instance from the
 
 .. code:: ipython3
 
-    # Define static parameters 
+    # Define static parameters
     n_years = 105
-    
-    # Sample parameter; Adjust to any sample number from 0-999 
-    sample = 215 
-    
+
+    # Sample parameter; Adjust to any sample number from 0-999
+    sample = 215
+
     # Create empty arrays to store the new Gaussian HMM parameters for each SOW
     Pnew = np.empty([2,2])
     piNew = np.empty([2])
     musNew_HMM = np.empty([2])
     sigmasNew_HMM = np.empty([2])
-    logAnnualQ_s = np.empty([n_years]) 
-    
+    logAnnualQ_s = np.empty([n_years])
+
     # Calculate new transition matrix and stationary distribution of SOW at last node as well as new means and standard deviations
     Pnew[0, 0] = max(0.0, min(1.0, P[0, 0] + LHsamples[sample][4]))
     Pnew[1, 1] = max(0.0, min(1.0, P[1, 1] + LHsamples[sample][5]))
@@ -545,14 +531,14 @@ non-stationary generator. Let’s choose a random instance from the
     Pnew[1, 0] = 1 - Pnew[1, 1]
     eigenvals, eigenvecs = np.linalg.eig(np.transpose(Pnew))
     one_eigval = np.argmin(np.abs(eigenvals - 1))
-    piNew = np.divide(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval]), 
+    piNew = np.divide(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval]),
                       np.sum(np.dot(np.transpose(Pnew), eigenvecs[:,one_eigval])))
-    
+
     musNew_HMM[0] = mus[0] * LHsamples[sample][1]
     musNew_HMM[1] = mus[1] * LHsamples[sample][0]
     sigmasNew_HMM[0] = sigmas[0] * LHsamples[sample][3]
     sigmasNew_HMM[1] = sigmas[1] * LHsamples[sample][2]
-    
+
     # Generate first state and log-space annual flow at last node
     states = np.empty([n_years])
     if random() <= piNew[0]:
@@ -561,19 +547,19 @@ non-stationary generator. Let’s choose a random instance from the
     else:
         states[0] = 1
         logAnnualQ_s[0] = ss.norm.rvs(musNew_HMM[1], sigmasNew_HMM[1])
-    
+
     # Generate remaining state trajectory and log space flows at last node
     for j in range(1, n_years):
         if random() <= Pnew[int(states[j-1]), int(states[j-1])]:
             states[j] = states[j-1]
         else:
             states[j] = 1 - states[j-1]
-    
+
         if states[j] == 0:
             logAnnualQ_s[j] = ss.norm.rvs(musNew_HMM[0], sigmasNew_HMM[0])
         else:
             logAnnualQ_s[j] = ss.norm.rvs(musNew_HMM[1], sigmasNew_HMM[1])
-    
+
     # Convert log-space flows to real-space flows
     AnnualQ_s = np.exp(logAnnualQ_s)-1
 
@@ -585,63 +571,60 @@ Now let’s see what this synthetic trace looks like.
     # Retrieve samples and back-transform out of log space
     AnnualQ_s = pd.DataFrame(AnnualQ_s)
     AnnualQ_s['Year'] = list(range(1909, 2014))
-    
-    # Define drought threshold 
+
+    # Define drought threshold
     std = statistics.stdev(AnnualQ_s.iloc[:, 0])
     threshold = np.mean(AnnualQ_s.iloc[:, 0] - (0.5 * std))
-    
+
     # Where does the rolling mean dip below the threshold
     drought_instances = [i for i, v in enumerate(AnnualQ_s.iloc[:, 0].rolling(11).mean()) if v < threshold]
     drought_years = AnnualQ_s.iloc[:, 1].rolling(11).mean()[drought_instances]
-    
+
     # Visualize the streamflow scenario
     fig, ax = plt.subplots(figsize=(12, 8))
-    
+
     # Plot the original line graph
     ax.plot(AnnualQ_s.iloc[:,1],
             AnnualQ_s.iloc[:,0],
             color='#005F73',
             label='Annual')
-    
-    # Plot a 11-year rolling mean 
+
+    # Plot a 11-year rolling mean
     ax.plot(AnnualQ_s.iloc[:, 1],
             AnnualQ_s.iloc[:, 0].rolling(11, center=True).mean(),
             color='#183A2E',
             label='11-Year Rolling Mean')
-    
+
     # Add labels and title
-    ax.axhline(y=threshold, 
-               color='black', 
+    ax.axhline(y=threshold,
+               color='black',
                linestyle='--',
                label='Drought Threshold')
-    
-    
+
+
     for i in drought_years:
-        
+
         # Plot a box centered around those values and with 5 years on either side.
-        rect = patches.Rectangle((i - 5,0), 
+        rect = patches.Rectangle((i - 5,0),
                                  11,
-                                 2e7, 
-                                 linewidth=1, 
-                                 edgecolor='#EFE2BE', 
+                                 2e7,
+                                 linewidth=1,
+                                 edgecolor='#EFE2BE',
                                  facecolor='#EFE2BE')
-        
+
         # Add the patch to the Axes
         ax.add_patch(rect)
-        
-        
+
+
     plt.title("Annual Flow (Synthetic Non-Stationary)", fontsize=16)
     plt.xlabel("Year", fontsize=16)
     plt.ylabel("Annual Flow (cubic feet per year)", fontsize=16)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     mpl.rc('legend', fontsize=16)
-    legend = plt.legend(loc="upper right") 
+    legend = plt.legend(loc="upper right")
     plt.show()
     plt.close()
-    
-
-
 
 
 .. image:: _static/hmm_40_0.png
@@ -655,20 +638,20 @@ across these realizations.
 
 .. code:: ipython3
 
-    decadal_drought_occurence=np.empty([1000]) 
-    
+    decadal_drought_occurrence = np.empty([1000])
+
     for y in range(1000):
-        
+
         # Create empty arrays to store the new Gaussian HMM parameters for each SOW
         Pnew = np.empty([2, 2])
         piNew = np.empty([2])
         musNew_HMM = np.empty([2])
         sigmasNew_HMM = np.empty([2])
-        logAnnualQ_s = np.empty([n_years]) 
-        
+        logAnnualQ_s = np.empty([n_years])
+
         # Calculate new transition matrix and stationary distribution of SOW at last node
         # as well as new means and standard deviations
-    
+
         Pnew[0, 0] = max(0.0,min(1.0, P[0, 0] + LHsamples[y][4]))
         Pnew[1, 1] = max(0.0,min(1.0, P[1, 1] + LHsamples[y][5]))
         Pnew[0, 1] = 1 - Pnew[0, 0]
@@ -676,13 +659,13 @@ across these realizations.
         eigenvals, eigenvecs = np.linalg.eig(np.transpose(Pnew))
         one_eigval = np.argmin(np.abs(eigenvals - 1))
         piNew = np.divide(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval]),
-                          np.sum(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval])))
-    
-        musNew_HMM[0] = mus[0] * LHsamples[y][1]
-        musNew_HMM[1] = mus[1] * LHsamples[y][0]
-        sigmasNew_HMM[0] = sigmas[0] * LHsamples[y][3]
-        sigmasNew_HMM[1] = sigmas[1] * LHsamples[y][2]
-    
+                        np.sum(np.dot(np.transpose(Pnew), eigenvecs[:, one_eigval])))
+
+        musNew_HMM[0] = mus[0][0] * LHsamples[y][1]
+        musNew_HMM[1] = mus[1][0] * LHsamples[y][0]
+        sigmasNew_HMM[0] = sigmas[0][0] * LHsamples[y][3]
+        sigmasNew_HMM[1] = sigmas[1][0] * LHsamples[y][2]
+
         # Generate first state and log-space annual flow at last node
         states = np.empty([n_years])
         if random() <= piNew[0]:
@@ -691,37 +674,37 @@ across these realizations.
         else:
             states[0] = 1
             logAnnualQ_s[0] = ss.norm.rvs(musNew_HMM[1], sigmasNew_HMM[1])
-    
+
         # generate remaining state trajectory and log space flows at last node
         for j in range(1, n_years):
             if random() <= Pnew[int(states[j-1]), int(states[j-1])]:
                 states[j] = states[j-1]
             else:
                 states[j] = 1 - states[j-1]
-    
+
             if states[j] == 0:
                 logAnnualQ_s[j] = ss.norm.rvs(musNew_HMM[0], sigmasNew_HMM[0])
             else:
                 logAnnualQ_s[j] = ss.norm.rvs(musNew_HMM[1], sigmasNew_HMM[1])
-    
+
         # Convert log-space flows to real-space flows
         AnnualQ_s = np.exp(logAnnualQ_s) - 1
         AnnualQ_s = pd.DataFrame(AnnualQ_s)
         AnnualQ_s['Year'] = list(range(1909, 2014))
-    
-        # Define drought threshold 
+
+        # Define drought threshold
         std = statistics.stdev(AnnualQ_s.iloc[:, 0])
         threshold = np.mean(AnnualQ_s.iloc[:, 0] - (0.5 * std))
-    
+
         # Where does the rolling mean dip below the threshold
         drought_instances = [i for i, v in enumerate(AnnualQ_s.iloc[:, 0].rolling(11).mean()) if v < threshold]
-        decadal_drought_occurence[y] = len(drought_instances)
-        
+        decadal_drought_occurrence[y] = len(drought_instances)
+
 
 .. code:: ipython3
 
     fig, ax = plt.subplots(figsize=(12, 8))
-    ax.hist(decadal_drought_occurence,label='Non-Stationary generator',color="#005F73")
+    ax.hist(decadal_drought_occurrence,label='Non-Stationary generator',color="#005F73")
     ax.set_xlabel('Number of Instances of Decadal Drought',fontsize=16)
     ax.set_ylabel('Frequency',fontsize=16)
     ax.axvline(x=2, color='r', linestyle='-',label='Observed')
@@ -730,8 +713,6 @@ across these realizations.
     plt.yticks(fontsize = 12)
     plt.show()
     plt.close()
-
-
 
 
 .. image:: _static/hmm_43_0.png
@@ -802,29 +783,29 @@ transition probabilites.
     # Choose two parameters to fit the response surface for
     mu_dry=[i[1] for i in LHsamples]
     tp_dry=[i[4] for i in LHsamples]
-    
+
     # Create an interpolation grid
     xgrid = np.arange(np.min(mu_dry),
-                      np.max(mu_dry), 
+                      np.max(mu_dry),
                       (np.max(mu_dry) - np.min(mu_dry)) / 100)
-    
+
     ygrid = np.arange(np.min(tp_dry),
-                      np.max(tp_dry), 
+                      np.max(tp_dry),
                       (np.max(tp_dry) - np.min(tp_dry)) / 100)
-    
-    # Fit regression 
-    d = {'Dry_Tp': tp_dry, 
+
+    # Fit regression
+    d = {'Dry_Tp': tp_dry,
          'Dry_Mu': mu_dry,
-         'Drought_Occurrence':decadal_drought_occurence}
-    
+         'Drought_Occurrence':decadal_drought_occurrence}
+
     df = pd.DataFrame(d)
     df['Intercept'] = np.ones(np.shape(df)[0])
     df['Interaction'] = df['Dry_Tp'] * df['Dry_Mu']
     cols = ['Intercept'] + ['Dry_Mu'] + ['Dry_Tp'] + ['Interaction']
     ols = sm.OLS(df['Drought_Occurrence'], df[cols])
     result = ols.fit()
-    
-    # Calculate drought occurence for each grid point
+
+    # Calculate drought occurrence for each grid point
     X, Y = np.meshgrid(xgrid, ygrid)
     x = X.flatten()
     y = Y.flatten()
@@ -837,22 +818,22 @@ Let’s plot our results:
 
 .. code:: ipython3
 
-    # Set color gradient for response surface 
-    drought_map = mpl.cm.get_cmap('RdBu_r')
-    
-    # Reshape our predicted drought occurrence and define bounds of colors 
+    # Set color gradient for response surface
+    drought_map = mpl.colormaps.get_cmap('RdBu_r')
+
+    # Reshape our predicted drought occurrence and define bounds of colors
     Z = np.reshape(z, np.shape(X))
     vmin = np.min([np.min(z), np.min(df['Drought_Occurrence'].values)])
     vmax = 15
     norm = mpl.colors.Normalize(vmin, vmax)
-    
+
     # Plot response surface and CMIP5 projections
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.contourf(X, Y, Z, cmap=drought_map, norm=norm)
     ax.scatter(CMIP5_multipliers.iloc[:,7],
-               CMIP5_multipliers.iloc[:,12], 
-               c='#ffffb3', 
-               edgecolor='none', 
+               CMIP5_multipliers.iloc[:,12],
+               c='#ffffb3',
+               edgecolor='none',
                s=30)
     cbar = ax.figure.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=drought_map), ax=ax)
     ax.set_xlim(np.nanmin(X), np.nanmax(X))
@@ -864,9 +845,6 @@ Let’s plot our results:
     cbar.ax.tick_params(axis='y',labelsize=14)
     plt.show()
     plt.close()
-    
-
-
 
 
 .. image:: _static/hmm_53_0.png

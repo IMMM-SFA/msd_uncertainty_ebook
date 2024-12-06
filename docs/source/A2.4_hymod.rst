@@ -2,10 +2,10 @@ HYMOD Dynamics Tutorial
 *************************
 
 .. note::
-    
+
     | Run the tutorial interactively:  `HYMOD Notebook <nb_hymod_>`_.
     | Please be aware that notebooks can take a couple minutes to launch.
-    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/requirements.txt>`_.
+    | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 Tutorial: Sensitivity Analysis of the HYMOD Model
 =================================================
@@ -20,18 +20,15 @@ We’ll explore these tools and concepts using the HYdrological MODel
 (HYMOD), a rainfall-runoff model developed and used for river flow
 forecasting. HYMOD was chosen for demonstration because its purpose is
 to abstract highly complex and non-linear systems. The methods
-demonstrated in thistutorial can be applied to numerical models that
+demonstrated in this tutorial can be applied to numerical models that
 simulate other complex non-linear systems.
 
 This tutorial will first introduce HYMOD and use it to simulate
 streamflows in a river basin. Next, we’ll employ sensitivity analysis
-concepets described in Section 3 of the main text to examine how values
-of HYMOD’s parameters impact streamflow predictions. We’ll then explore
-how the effects of these parameters may change over time using
-time-varying sensitivtiy analysis. Finally, we’ll demonstrate concepts
-presented in Chapter 7 through two ensemble-based methods of uncertainty
-quantification - Generalized Likelihood Uncertainty Estimation (GLUE)
-and Pre-Calibration.
+concepts described in Section 3 of the main text to examine how values
+of HYMOD’s parameters impact streamflow predictions. Finally, we'll
+explore how the effects of these parameters may change over time using
+time-varying sensitivity analysis.
 
 The tutorial includes the following steps:
 
@@ -76,8 +73,8 @@ and optimization (e.g., `Ye et al.,
 2014 <https://www.sciencedirect.com/science/article/pii/S0022169414006362?casa_token=IRqE19Hkfa8AAAAA:_fXOqfwpzxMpchvu8_0njCe0Ok9H29Gyw2F46l9PzG9UVODDTUg6wIOSiyp6uybGevNVnZ7N>`__)
 concepts.
 
-HYMOD accepts two inputs - daily precepitation and daily potential
-evapotranspiration (PET)- and generates predicitons of daily streamflow.
+HYMOD accepts two inputs - daily precipitation and daily potential
+evapotranspiration (PET)- and generates predictons of daily streamflow.
 HYMOD abstracts the highly non-linear process of runoff routing by
 dividing the flow into two components: quick flow, representing
 precipitation that quickly runs off the surface of the watershed into
@@ -136,7 +133,7 @@ runoff partitioned into quick flow and slow flow is determined by a
 parameter :math:`Alp`, which ranges between 0 and 1. Quick flow is
 routed through :math:`N` identical quick flow tanks :math:`Q1, Q2... QN`
 (shown above as :math:`N=3`). The rate at which runoff moves through the
-quick flow system is described by the residence time of the quick frlow
+quick flow system is described by the residence time of the quick flow
 tanks, :math:`Kq` (day). Slow flow is routed through a parallel slow
 flow tank and the rate at which slow flow is routed is described by the
 slow flow residences time, :math:`Ks` (day).
@@ -155,7 +152,7 @@ evapotranspiration as inputs. For this example, we’ll run HYMOD using
 data from the Leaf River, a humid catchment located north of Collins
 Mississippi that has been widely used to explore HYMOD. The dataset also
 includes daily observed runoff that we later use to evaluate the
-performace of each sensitvity analysis sample set.
+performance of each sensitivity analysis sample set.
 
 In the following section of code, we’ll load the necessary python
 libraries and read in the input file. For this exercise we’ll only use
@@ -164,17 +161,23 @@ are printed to show what they look like:
 
 .. code:: ipython3
 
+    import itertools
+    import math
     import msdbook
-
     import numpy as np
     import pandas as pd
     import seaborn as sns
+    import warnings
 
-    from sklearn import metrics
     from matplotlib import pyplot as plt
+    import msdbook.hymod
+    from msdbook.package_data import load_hymod_input_file, load_hymod_params, load_hymod_simulation, load_hymod_monthly_simulations, load_hymod_annual_simulations, load_hymod_varying_simulations
+    from SALib.analyze import sobol
+    from sklearn import metrics
 
     # load example data
-    msdbook.install_package_data()
+    from msdbook.install_supplement import install_package_data
+    install_package_data()
 
     # load the Leaf River HYMOD input file
     leaf_data = msdbook.load_hymod_input_file()
@@ -214,8 +217,6 @@ are printed to show what they look like:
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/hymod_simulations_256samples.csv
     Unzipped: /srv/conda/envs/notebook/lib/python3.7/site-packages/msdbook/data/Robustness.txt
     Leaf River Data structure:
-
-
 
 
 .. raw:: html
@@ -282,7 +283,7 @@ are printed to show what they look like:
 
 To visualize catchment hydrology, streamflow and precipitation data are
 usually plotted together as a combined hydrograph (streamflow ) and
-hyetograph (rainfall, from Greek.hyetos, “rain”). Streamflow is plotted
+hyetograph (rainfall, from Greek hyetos, “rain”). Streamflow is plotted
 as a time series, while rainfall is shown as an inverted bar plot along
 the top of the graph. Streamflow labels are shown on the left y-axis,
 while rainfall labels are shown on the right y-axis.
@@ -308,14 +309,9 @@ while rainfall labels are shown on the right y-axis.
     strmflw_ax.legend(['Streamflow'],bbox_to_anchor=(1, 0.48))
 
 
-
-
-
 .. parsed-literal::
 
     <matplotlib.legend.Legend at 0x7f53b95c6850>
-
-
 
 
 .. image:: _static/hymod1.png
@@ -338,7 +334,7 @@ parameters.
     B = 1.0 # Scaled distribution function shape parameter
 
     # Note that the number of years is 11. One year of model warm-up and ten years are used for actual simulation
-    model = msdbook.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
+    model = msdbook.hymod.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
 
 
 .. _outputs:
@@ -354,12 +350,10 @@ plot simulated streamflow against observed streamflow.
 
 .. code:: ipython3
 
-    ax = msdbook.plot_observed_vs_simulated_streamflow(df=leaf_data, hymod_dict=model)
-
+    ax = msdbook.hymod.plot_observed_vs_simulated_streamflow(df=leaf_data, hymod_dict=model)
 
 
 .. image:: _static/hymod2.png
-
 
 
 So how does our model perform? We can investigate model performance
@@ -416,12 +410,6 @@ HYMOD are to the model’s input parameters. We’ll perform global
 sensitivity analysis (see Section 3.1 of the main text) using the SALib
 Python library.
 
-.. code:: ipython3
-
-    from SALib.sample import saltelli
-    from SALib.analyze import sobol
-    from SALib.analyze import delta
-
 A first and critical step when conducting sensitivity analysis is
 determining the experimental design (see Design of Experiments, Section
 3.4 of the main text). Our experimental design involves defining the
@@ -441,7 +429,7 @@ variance based method (Section 3.4.5).
 To explore HYMOD’s behavoir, we’ll examine the sensitivity of four model
 ouputs to input parameters: 1) predicted flow, 2) Mean Absolute Error
 (compared with the calibaration data set), 3) Root Mean Square Error and
-4) Log Root Mean Square Error.
+1) Log Root Mean Square Error.
 
 This analysis will employ SALib, a Python implementation also utilized
 in the other SA tutorial (make this more formal).
@@ -462,13 +450,14 @@ model uncertainties and their ranges, this dictionary is named
                    [0, 1.9]]  # B
     }
 
-After defining our uncertainites and ranges, we’ll use SALib to sample
+
+After defining our uncertainties and ranges, we’ll use SALib to sample
 the uncertainty space and run the model for each of the sample sets. We
 will load a sample that has already been created ``param_values_hymod``
 for demonstration purposes. For HYMOD, literature recommends running at
 least N = 10,000 samples, to keep this demonstration easy to run
 however, we utilize only 256 sobol samples of uncertainties. To generate
-accurate approximations of second order sensitivity indicies SALib
+accurate approximations of second order sensitivity indices SALib
 generates N*(2k+2) sets of samples, where N=256 and k=5 (number of
 uncertainties). For the math behind why this is needed, see (Saltelli,
 A., 2002. Making best use of model evaluations to compute sensitivity
@@ -480,7 +469,6 @@ the simulation data from a previous run. The following demonstrates how
 to conduct this analysis:
 
 .. code:: python
-
 
    # generate 256 samples.
    param_values_hymod = saltelli.sample(problem_hymod, 256)
@@ -507,16 +495,17 @@ to conduct this analysis:
 
    Q_df_bw = pd.DataFrame(d_outputs)
 
+
 .. code:: ipython3
 
     # load previously generated parameter values
-    param_values_hymod = msdbook.load_hymod_params()
+    param_values_hymod = load_hymod_params()
 
     # number of samples
     n_samples = len(param_values_hymod)
 
     # load previously generated hymod simulated outputs
-    Q_df_bw = msdbook.load_hymod_simulation()
+    Q_df_bw = load_hymod_simulation()
 
     # column names of each sample simulation number
     sample_column_names = [i for i in Q_df_bw.columns if i[0] == 'Q']
@@ -583,14 +572,11 @@ observed streamflow.
 
 .. code:: ipython3
 
-    ax = msdbook.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean,
-                                                         df_sim=df_sim_mth_mean)
-
-
+    ax = msdbook.hymod.plot_observed_vs_sensitivity_streamflow(df_obs=df_obs_mth_mean,
+                                                               df_sim=df_sim_mth_mean)
 
 
 .. image:: _static/hymod3.png
-
 
 
 .. _sametrics:
@@ -599,7 +585,7 @@ observed streamflow.
 
 Now we’ll examine how each of HYMOD’s parameters impact the variance of
 simulated streamflows. Using SALib we’ll calculate the first order and
-total order sensitivity indicies of each model parameter. The first
+total order sensitivity indices of each model parameter. The first
 order sensitivity index measure’s the individual impact that a given
 parameter has on the variance of the simulated streamflows. The total
 order index measures the impact of a given parameter along with all
@@ -608,7 +594,7 @@ simulated streamflows.
 
 We’ll start with an matrix, Y, which contains our simulated streamflows
 for every uncertainty sample. We’ll then use the sobol.analyze function
-from SALib to calculate the sensitivity indicies (Si). The arguments for
+from SALib to calculate the sensitivity indices (Si). The arguments for
 this function are the problem dictionary defined in part 2.2 of this
 tutorial, and the matrix of simulated streamflows, Y.
 
@@ -627,7 +613,7 @@ order Si’s for each parameter, then visualize the results with bar plots
 
     print('First order indices = ', Si['S1'])
 
-    print('Total order indicies = ', Si['ST'])
+    print('Total order indices = ', Si['ST'])
 
     sns.set_style('white')
     fig = plt.figure(figsize=(8,4))
@@ -644,7 +630,6 @@ order Si’s for each parameter, then visualize the results with bar plots
     ax2.set_ylim([0,1])
 
 
-
 .. parsed-literal::
 
     First order indices =  [9.55550001e-05 7.49249463e-04 5.62386413e-04 7.03327551e-01
@@ -655,30 +640,17 @@ order Si’s for each parameter, then visualize the results with bar plots
 
 .. parsed-literal::
 
-    /srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: FixedFormatter should only be used together with FixedLocator
-      if __name__ == '__main__':
-    /srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel_launcher.py:15: UserWarning: FixedFormatter should only be used together with FixedLocator
-      from ipykernel import kernelapp as app
-
-
-
-
-.. parsed-literal::
-
     (0.0, 1.0)
-
-
 
 
 .. image:: _static/hymod4.png
 
 
-
 Our findings indicate that in this instance, the streamflow estimate
 from HYMOD is highly sensitive to soil moisture parameters Huz and B and
-hardly affected by the routing parameters. Notably, there is very little
-interactions between parameters causing the total order indicies to be
-nearly identical to the first order indicies.
+hardly affected by the routing parameters. Notably, there are very little
+interactions between parameters causing the total order indices to be
+nearly identical to the first order indices.
 
 
 .. _diffperformance:
@@ -742,7 +714,7 @@ visualize it.
     fig = plt.figure(figsize=(12,4))
     ax1 = fig.add_subplot(121)
     # labels for y-axis
-    y_axis_labels = ['Mean Absoulte Error', 'RSME', 'Log(RMSE)']
+    y_axis_labels = ['Mean Absolute Error', 'RSME', 'Log(RMSE)']
 
     # plot heatmap
     ax1 = sns.heatmap(df_metric_s1_result, yticklabels=y_axis_labels, annot=True,  cmap='inferno_r', cbar_kws={'label': 'Si'}, cbar=False)
@@ -755,21 +727,15 @@ visualize it.
     ax2.set_title('Total Order Sensitivity')
 
 
-
-
-
 .. parsed-literal::
 
     Text(0.5, 1.0, 'Total Order Sensitivity')
 
 
-
-
 .. image:: _static/hymod5.png
 
 
-
-The first order sensitivity indicies indicate that HYMOD’s sensitivity
+The first order sensitivity indices indicate that HYMOD’s sensitivity
 to its parameters is different depending on how its output is measured.
 Unsurprisingly, the mean absolute error is highly sensitive to the soil
 moisture accounting parameters Huz and B, just like the overall
@@ -783,11 +749,11 @@ important factor. While still the parameter with the highest most effect
 on all three measures, Huz is much less influential for RMSE and
 LOG(RMSE) than it is for MAE.
 
-The total order sensitivity indicies review a different, more complex
+The total order sensitivity indices review a different, more complex
 story. While the MAE sensitivity is relatively governed by first order
 effects (like the streamflow predictions above), the RMSE and LOG(RMSE)
 error metrics show significant interactions. Alp has the highest total
-order sensitivity for RMSE and is eqal to Huz for Log(RMSE). Kq, which
+order sensitivity for RMSE and is equal to Huz for Log(RMSE). Kq, which
 has a relatively low first order sensitivity index, shows strong
 contribution to variance when interactions are taken into account.
 
@@ -804,10 +770,6 @@ interaction between Alp and Ks.
 
 .. code:: ipython3
 
-    import numpy as np
-    import itertools
-    import seaborn as sns
-    import math
     sns.set_style('whitegrid', {'axes_linewidth': 0, 'axes.edgecolor': 'white'})
 
     def is_significant(value, confidence_interval, threshold="conf"):
@@ -815,6 +777,7 @@ interaction between Alp and Ks.
             return value - abs(confidence_interval) > 0
         else:
             return value - abs(float(threshold)) > 0
+
 
     def grouped_radial(SAresults, parameters, radSc=2.0, scaling=1, widthSc=0.5, STthick=1, varNameMult=1.3, colors=None, groups=None, gpNameMult=1.5, threshold="conf"):
         # Derived from https://github.com/calvinwhealton/SensitivityAnalysisPlots
@@ -834,8 +797,6 @@ interaction between Alp and Ks.
                 colors = sns.color_palette("deep", max(3, len(groups)))
 
             for i, key in enumerate(groups.keys()):
-                #parameters.extend(groups[key])
-
                 for parameter in groups[key]:
                     color_map[parameter] = colors[i % len(colors)]
 
@@ -846,9 +807,6 @@ interaction between Alp and Ks.
 
         # plot second-order indices
         for i, j in itertools.combinations(range(n), 2):
-            #key1 = parameters[i]
-            #key2 = parameters[j]
-
             if is_significant(SAresults["S2"][i][j], SAresults["S2_conf"][i][j], threshold):
                 angle = math.atan((y[j]-y[i])/(x[j]-x[i]))
 
@@ -900,8 +858,6 @@ interaction between Alp and Ks.
         ax.set_yticks([])
         plt.axis('equal')
         plt.axis([-2*radSc, 2*radSc, -2*radSc, 2*radSc])
-        #plt.show()
-
 
         return fig
 
@@ -919,7 +875,6 @@ interaction between Alp and Ks.
     Routing
 
 
-
 .. image:: _static/hymod6.png
 
 
@@ -928,9 +883,9 @@ interaction between Alp and Ks.
 .. _time:
 
 In section 2.5 we saw how performing sensitivity analysis on different
-measurements of model output can yeild in different results on the
+measurements of model output can yield in different results on the
 importance of each uncertain input. In this section we’ll examine how
-performing this analysis over time can yeild additional insight into the
+performing this analysis over time can yield additional insight into the
 performance of HYMOD. We’ll first examine how model sensitivities vary
 by month, then examine how they change across each year of the
 simulation.
@@ -991,15 +946,12 @@ parameter on model outputs.
     arr_mth_delta, arr_mth_s1 = msdbook.load_hymod_monthly_simulations()
 
     # plot figure
-    ax, ax2 = msdbook.plot_monthly_heatmap(arr_sim=arr_mth_s1.T,
-                                           df_obs=df_obs_by_mth_mean,
-                                           title='First Order - Mean Monthly SA')
-
-
+    ax, ax2 = msdbook.hymod.plot_monthly_heatmap(arr_sim=arr_mth_s1.T,
+                                                 df_obs=df_obs_by_mth_mean,
+                                                 title='First Order - Mean Monthly SA')
 
 
 .. image:: _static/hymod7.png
-
 
 
 This figure demonstrates the first order sensitivity indices when the
@@ -1018,15 +970,12 @@ first-order SA indices and interactions between parameters
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_monthly_heatmap(arr_sim=arr_mth_delta.T,
+    ax, ax2 = msdbook.hymod.plot_monthly_heatmap(arr_sim=arr_mth_delta.T,
                                            df_obs=df_obs_by_mth_mean,
                                            title='Total Order - Mean monthly SA')
 
 
-
-
 .. image:: _static/hymod8.png
-
 
 
 Notably, the total order sensitivity results are different than the
@@ -1083,12 +1032,12 @@ First-order indices
 .. code:: ipython3
 
     # load previously ran data
-    arr_yr_delta, arr_yr_s1 = msdbook.load_hymod_annual_simulations()
+    arr_yr_delta, arr_yr_s1 = load_hymod_annual_simulations()
 
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_s1.T,
-                                          df_obs=df_obs_by_yr_mean,
-                                          title='First Order - Mean Annual SA')
+    ax, ax2 = msdbook.hymod.plot_annual_heatmap(arr_sim=arr_yr_s1.T,
+                                                df_obs=df_obs_by_yr_mean,
+                                                title='First Order - Mean Annual SA')
 
 
 
@@ -1107,14 +1056,12 @@ Total-order indices
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_annual_heatmap(arr_sim=arr_yr_delta.T,
-                                          df_obs=df_obs_by_yr_mean,
-                                          title='Total Order - Mean Annual SA and Observed flow')
-
+    ax, ax2 = msdbook.hymod.plot_annual_heatmap(arr_sim=arr_yr_delta.T,
+                                                df_obs=df_obs_by_yr_mean,
+                                                title='Total Order - Mean Annual SA and Observed flow')
 
 
 .. image:: _static/hymod10.png
-
 
 
 Our results indicate that sensitivity analysis indices vary in different
@@ -1158,6 +1105,7 @@ the monthly TVSA.
    arr_vary_s1 = df_vary_s1.values
    arr_vary_delta = df_vary_delta.values
 
+
 First-order indices
 ^^^^^^^^^^^^^^^^^^^
 
@@ -1166,17 +1114,15 @@ First-order indices
 .. code:: ipython3
 
     # load in previously ran data
-    arr_vary_delta, arr_vary_s1 = msdbook.load_hymod_varying_simulations()
+    arr_vary_delta, arr_vary_s1 = load_hymod_varying_simulations()
 
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_s1.T,
-                                          df_obs=df_obs_mth_mean,
-                                          title='First Order - Time-Varying SA')
-
+    ax, ax2 = msdbook.hymod.plot_varying_heatmap(arr_sim=arr_vary_s1.T,
+                                                 df_obs=df_obs_mth_mean,
+                                                 title='First Order - Time-Varying SA')
 
 
 .. image:: _static/hymod11.png
-
 
 
 Compared to the TVSA when streamflow was aggregated, this figure
@@ -1189,15 +1135,12 @@ Total order - time varying sensitivity analysis
 .. code:: ipython3
 
     # plot figure
-    ax, ax2 = msdbook.plot_varying_heatmap(arr_sim=arr_vary_delta.T,
-                                          df_obs=df_obs_mth_mean,
-                                          title='Total Order - Time-Varying SA')
-
-
+    ax, ax2 = msdbook.hymod.plot_varying_heatmap(arr_sim=arr_vary_delta.T,
+                                                 df_obs=df_obs_mth_mean,
+                                                 title='Total Order - Time-Varying SA')
 
 
 .. image:: _static/hymod12.png
-
 
 
 As above, the total order sensitivities further indicate the importance
@@ -1209,7 +1152,7 @@ Tips to Apply this methodology to your own problem
 In this tutorial, we demonstrated how to use global sensitivtiy analysis
 to explore a complex, non-linear model. We showed how measuring
 sensitivity across multiple measures of model performance and temporal
-aggregations yeilding differing results about model
+aggregations yielding differing results about model
 sensitivity/behavoir. While these results may seem contraditory, they
 provide useful insight into the behavoir of HYMOD. Would we expect the
 same parameters to control high flow and low flow regimes within the

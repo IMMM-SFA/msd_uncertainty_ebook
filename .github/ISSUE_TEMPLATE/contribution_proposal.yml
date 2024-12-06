@@ -1,5 +1,5 @@
 name: Contribution Proposal
-description: 
+description:
   Want to contribute to our eBook?  Fill the following proposal form and we will review your contribution idea shortly.
 labels: ["needs triage"]
 
@@ -26,7 +26,7 @@ body:
       description: Please provide your email address
     validations:
       required: true
-        
+
   - type: textarea
     id: issue-institution
     attributes:
@@ -38,11 +38,11 @@ body:
   - type: textarea
     id: issue-source
     attributes:
-      label: Referral 
+      label: Referral
       description: How did you hear about the eBook?
     validations:
       required: true
-    
+
   - type: dropdown
     id: issue-category
     attributes:
