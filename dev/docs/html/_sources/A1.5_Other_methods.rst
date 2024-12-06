@@ -1,0 +1,6 @@
+Other Methods
+#############
+
+Other common methods for UQ exist. These include sequential Monte Carlo, otherwise known as particle filtering :cite:p:`del_moral_sequential_2006, doucet_sequential_2000, liu_combined_2001`, where a number of particles are used to evaluate samples. An advantage of sequential Monte Carlo is that the vast majority of the computation can be parallelized, unlike with standard MCMC. A major weakness is the potential for degeneracy :cite:p:`doucet_sequential_2000`, where many particles have extremely small weights, resulting in the effective use of only a few samples.
+
+Another method is approximate Bayesian computation (ABC) :cite:p:`cabras_approximate_2015, lintusaari_fundamentals_2017, sunnaker_approximate_2013`. ABC is a likelihood-free approach that compares model output to a set of summary statistics. ABC is therefore well-suited for models and residual structures which do not lend themselves to a computationally-tractable likelihood, but the resulting inferences are known to be biased if the set of summary statistics is not sufficient, which can be difficult to know a-priori.
