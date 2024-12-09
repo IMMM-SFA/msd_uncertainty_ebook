@@ -32,6 +32,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install .
 
+      - name: Install pytest-mock
+        run: |
+          pip install pytest-mock
+
       - name: Test and generate coverage report
         run: |
           pip install pytest
@@ -49,3 +53,10 @@ jobs:
         if: failure()  # This step will only run if any previous step fails
         run: |
           echo "Build or tests failed. Please check the logs."
+          
+      - name: Test and generate coverage report
+        run: |
+          pip install pytest
+          pip install pytest-cov
+          pip install pytest-mock  # Ensure pytest-mock is installed before testing
+          pytest --cov=./ --cov-report=xml  # Run tests and generate a coverage report
