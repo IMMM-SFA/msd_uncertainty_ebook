@@ -5,3 +5,4 @@ nbsphinx>=0.8.6
 sphinx>=4.0.2
 sphinx-book-theme>=0.2.0
 sphinxcontrib-bibtex>=2.4.1
+pytest-mock>=3.0.0
