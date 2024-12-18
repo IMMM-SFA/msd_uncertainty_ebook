@@ -1,0 +1,8 @@
+Low-Discrepancy Sequences
+*************************
+
+Low-discrepancy sequences is another sampling technique that employs a pseudo-random generator for Monte Carlo sampling :cite:p:`dalal2008low, zaremba1968mathematical`. These quasi-Monte Carlo methods eliminate 'lumpiness' across samples (i.e, the presence of gaps and clusters) by minimizing discrepancy across the hypercube samples. Discrepancy can be quantitatively measured using the deviations of sampled points from a uniform distribution :cite:`kucherenko2015exploring, dalal2008low`. Low-discrepancy sequences ensure that the number of samples in any subspace of the variability hypercube is approximately the same. This is not something guaranteed by Latin Hypercube sampling, and even though its design can be improved through optimization with various criteria, such adjustments are limited to small sample sizes and low dimensions :cite:`iooss2010numerical,jin2003efficient,kucherenko2015exploring,morris1995exploratory,park1994optimal`. In contrast, the Sobol sequence :cite:p:`sobol1976uniformly,sobol1967distribution`, one of the most widely used sampling techniques, utilizes the low-discrepancy approach to uniformly fill the sampled factor space. A core advantage of this style of sampling is that it takes far fewer samples (i.e., simulations) to attain a much lower level of error in estimating model output statistics (e.g., the mean and variance of outputs).
+
+.. note::
+
+    Put this into practice! Click the following link to try out an interactive tutorial which uses Sobol sequence sampling for the purposes of a Sobol sensitivity analysis:  `Sobol SA using SALib Jupyter Notebook <nb_saltelli_sobol_>`_
