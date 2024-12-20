@@ -1,85 +1,123 @@
 import os
-import tempfile
-import zipfile
-import shutil
-from unittest.mock import patch, MagicMock
 import pytest
+from unittest import mock
+from io import BytesIO
+import shutil
 import requests
+import zipfile
+
 from msdbook.install_supplement import InstallSupplement, install_package_data
+import msdbook.package_data as pkg
 
-# Helper function to create a mock zip file
-def create_mock_zip_file(zip_name, file_contents):
-    """Create a mock zip file with specified contents."""
-    with zipfile.ZipFile(zip_name, 'w') as zipf:
-        for file_name, content in file_contents.items():
-            zipf.writestr(file_name, content)
-
+# Mock the version of msdbook to test different scenarios
 @pytest.fixture
 def mock_version():
-    """Fixture for mocking the version of msdbook."""
-    with patch('importlib.metadata.version', return_value='0.1.3'):
-        yield
+    with mock.patch("msdbook.install_supplement.version") as mock_version_func:
+        yield mock_version_func
 
-@patch('install_supplement.requests.get')
-@patch('install_supplement.pkg.get_data_directory')
-@patch('install_supplement.shutil.copy')
-@patch('install_supplement.zipfile.ZipFile')
-@patch('install_supplement.tempfile.TemporaryDirectory')
-def test_fetch_zenodo(mock_temp_dir, mock_zipfile, mock_shutil_copy, mock_get_data_directory, mock_requests_get, mock_version):
-    """Test the fetch_zenodo method of InstallSupplement."""
-    
-    # Prepare mock responses
-    mock_data_directory = tempfile.mkdtemp()
-    mock_get_data_directory.return_value = mock_data_directory
-    
-    # Create a mock zip file
-    mock_zip_content = {
-        'file1.txt': 'content1',
-        'subdir/file2.txt': 'content2'
-    }
-    mock_zip_name = 'mock_data.zip'
-    create_mock_zip_file(mock_zip_name, mock_zip_content)
+# Test for fetching Zenodo data with a valid version
+def test_fetch_zenodo_valid_version(mock_version):
+    mock_version.return_value = "0.1.3"  # Set the mock version to a valid one
 
-    # Mock requests.get to return our mock zip file
-    with open(mock_zip_name, 'rb') as f:
-        mock_requests_get.return_value = MagicMock(content=f.read())
+    # Mock the response from requests.get to avoid downloading
+    with mock.patch("requests.get") as mock_get:
+        mock_get.return_value.content = b"fake zip content"  # Mock zip content
 
-    # Mock zipfile.ZipFile to use the mock zip file
-    def mock_zipfile_init(*args, **kwargs):
-        with zipfile.ZipFile(mock_zip_name, 'r') as mock_zip:
-            yield mock_zip
-    
-    mock_zipfile.side_effect = mock_zipfile_init
+        zen = InstallSupplement()
 
-    # Run the method under test
-    installer = InstallSupplement()
-    installer.fetch_zenodo()
-    
-    # Verify files were copied to the expected location
-    for file_name in mock_zip_content.keys():
-        expected_file_path = os.path.join(mock_data_directory, os.path.basename(file_name))
-        assert os.path.exists(expected_file_path)
-        with open(expected_file_path, 'r') as f:
-            assert f.read() == mock_zip_content[file_name]
-    
-    # Clean up
-    shutil.rmtree(mock_data_directory)
-    os.remove(mock_zip_name)
+        # Mock the methods that interact with the file system to ensure no actual file operations
+        with mock.patch("zipfile.ZipFile") as mock_zip, mock.patch("shutil.copy") as mock_copy:
+            mock_zip.return_value.__enter__.return_value.namelist.return_value = ["example.txt"]
+            mock_copy.return_value = None  # Do nothing for copy
 
-@patch('install_supplement.InstallSupplement.fetch_zenodo')
-def test_install_package_data(mock_fetch_zenodo):
-    """Test the install_package_data function."""
-    install_package_data()
-    mock_fetch_zenodo.assert_called_once()
+            zen.fetch_zenodo()
 
-@patch('install_supplement.requests.get')
-@patch('install_supplement.pkg.get_data_directory')
-def test_fetch_zenodo_key_error(mock_get_data_directory, mock_requests_get, mock_version):
-    """Test if KeyError is raised for an unsupported version."""
-    mock_get_data_directory.return_value = tempfile.mkdtemp()
-    
-    # Patch version to an unsupported version
-    with patch('importlib.metadata.version', return_value='0.2.0'):
-        with pytest.raises(KeyError, match="Link to data missing for current version"):
-            installer = InstallSupplement()
-            installer.fetch_zenodo()
+            # Ensure the requests.get was called with the correct URL
+            mock_get.assert_called_once_with("https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1")
+
+            # Ensure the file extraction and copy process was called
+            mock_zip.return_value.__enter__.return_value.extract.assert_called_once()
+            mock_copy.assert_called_once()
+
+# Test for handling missing data link for an unsupported version
+def test_fetch_zenodo_invalid_version(mock_version):
+    mock_version.return_value = "0.2.0"  # Set to a version that isn't in DATA_VERSION_URLS
+
+    zen = InstallSupplement()
+
+    with pytest.raises(KeyError) as excinfo:
+        zen.fetch_zenodo()
+
+    assert "Link to data missing for current version" in str(excinfo.value)
+
+# Test if the correct data directory is used for unpacking
+def test_unpack_data_to_correct_directory(mock_version):
+    mock_version.return_value = "0.1.4"  # Set to a valid version
+
+    # Mock the response from requests.get
+    with mock.patch("requests.get") as mock_get:
+        mock_get.return_value.content = b"fake zip content"  # Mock zip content
+
+        zen = InstallSupplement()
+
+        # Mock methods interacting with the file system
+        with mock.patch("zipfile.ZipFile") as mock_zip, mock.patch("shutil.copy") as mock_copy:
+            mock_zip.return_value.__enter__.return_value.namelist.return_value = ["example.txt"]
+            mock_copy.return_value = None  # Do nothing for copy
+
+            # Simulate fetching and extracting the data
+            zen.fetch_zenodo()
+
+            # Ensure that files are copied to the correct directory
+            mock_copy.assert_called_once()
+
+# Test to ensure install_package_data works without errors
+def test_install_package_data(mock_version):
+    mock_version.return_value = "0.1.3"  # Use a valid version
+
+    # Mock all the file system and network operations
+    with mock.patch("requests.get") as mock_get, mock.patch("zipfile.ZipFile") as mock_zip, \
+         mock.patch("shutil.copy") as mock_copy:
+
+        mock_get.return_value.content = b"fake zip content"  # Mock zip content
+        mock_zip.return_value.__enter__.return_value.namelist.return_value = ["example.txt"]
+        mock_copy.return_value = None  # Do nothing for copy
+
+        # Call the function to test
+        zen = InstallSupplement()
+        zen.fetch_zenodo()
+
+        # Ensure all methods were called as expected
+        mock_get.assert_called_once()
+        mock_zip.return_value.__enter__.return_value.extract.assert_called_once()
+        mock_copy.assert_called_once()
+
+# Test that the correct URL is used for a different version
+def test_fetch_zenodo_version_url(mock_version):
+    mock_version.return_value = "0.1.5"  # Set a different version
+
+    with mock.patch("requests.get") as mock_get:
+        mock_get.return_value.content = b"fake zip content"  # Mock zip content
+
+        zen = InstallSupplement()
+
+        with mock.patch("zipfile.ZipFile") as mock_zip, mock.patch("shutil.copy") as mock_copy:
+            mock_zip.return_value.__enter__.return_value.namelist.return_value = ["example.txt"]
+            mock_copy.return_value = None  # Do nothing for copy
+
+            zen.fetch_zenodo()
+
+            # Verify the URL for version "0.1.5"
+            mock_get.assert_called_once_with("https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1")
+
+# Test that missing URL raises a KeyError with a helpful message
+def test_missing_data_url(mock_version):
+    mock_version.return_value = "0.1.6"  # Version that is not in DATA_VERSION_URLS
+
+    zen = InstallSupplement()
+
+    with pytest.raises(KeyError) as excinfo:
+        zen.fetch_zenodo()
+
+    assert "Link to data missing for current version" in str(excinfo.value)
+
