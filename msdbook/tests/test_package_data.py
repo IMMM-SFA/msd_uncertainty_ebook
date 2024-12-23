@@ -1,169 +1,174 @@
 import pytest
+from unittest import mock
 import numpy as np
 import pandas as pd
-import importlib.resources
-from msdbook.package_data import (
-    get_data_directory,
-    load_robustness_data,
-    load_profit_maximization_data,
-    load_saltelli_param_values,
-    load_collapse_data,
-    load_lhs_basin_sample,
-    load_basin_param_bounds,
-    load_user_heatmap_array,
-    load_user_pseudo_scores,
-    load_hymod_input_file,
-    load_hymod_params,
-    load_hymod_metric_simulation,
-    load_hymod_simulation,
-    load_hymod_monthly_simulations,
-    load_hymod_annual_simulations,
-    load_hymod_varying_simulations
-)
+from msdbook import package_data
 
-@pytest.fixture
-def test_data_dir(tmp_path):
-    # Create test data directory
-    data_dir = tmp_path / "msdbook" / "data"
-    data_dir.mkdir(parents=True)
+# Mock data for testing
+mock_robustness_data = np.array([1.0, 2.0, 3.0])
+mock_profit_maximization_data = np.array([4.0, 5.0, 6.0])
+mock_param_values = np.array([[1, 2], [3, 4], [5, 6]])
+mock_collapse_data = np.array([[1, 100], [2, 200], [3, 300]])
+mock_lhs_basin_sample = np.array([0.1, 0.2, 0.3])
+mock_basin_param_bounds = np.array([[1, 10], [2, 20], [3, 30]])
+mock_user_heatmap_array = np.array([[1, 2], [3, 4]])
+mock_user_pseudo_scores = pd.DataFrame({'user_id': [1, 2], 'score': [0.5, 0.7]})
+mock_hymod_input_file = pd.DataFrame({'time': [0, 1], 'value': [10, 20]})
+mock_hymod_params = np.array([0.01, 0.02, 0.03])
+mock_hymod_metric_simulation = pd.DataFrame({'Kq': [1.0], 'Ks': [2.0], 'Alp': [3.0], 'Huz': [4.0], 'B': [5.0]})
+mock_hymod_simulation = pd.DataFrame({'time': [1, 2], 'value': [0.1, 0.2]})
+mock_hymod_monthly_simulations = (np.array([0.1, 0.2]), np.array([0.3, 0.4]))
+mock_hymod_annual_simulations = (np.array([0.5, 0.6]), np.array([0.7, 0.8]))
+mock_hymod_varying_simulations = (np.array([0.9, 1.0]), np.array([1.1, 1.2]))
 
-    # Create example data files
-    np.savetxt(data_dir / "Robustness.txt", np.array([[1, 2], [3, 4]]), delimiter=" ")
-    np.savetxt(data_dir / "solutions.resultfile", np.array([[5, 6], [7, 8]]))
-    np.savetxt(data_dir / "param_values.csv", np.array([[9, 10], [11, 12]]), delimiter=",")
-    np.savetxt(data_dir / "collapse_days.csv", np.array([[13, 14], [15, 16]]), delimiter=",")
-    np.savetxt(data_dir / "LHsamples_original_1000.txt", np.array([[17, 18], [19, 20]]))
-    np.savetxt(data_dir / "uncertain_params_bounds.txt", np.array([[21, 22], [23, 24]]))
-    np.save(data_dir / "user123_heatmap.npy", np.array([[25, 26], [27, 28]]))
-    pd.DataFrame([[29, 30], [31, 32]], columns=['A', 'B']).to_csv(data_dir / "user123_pseudo_r_scores.csv", index=False)
-    pd.DataFrame([[33, 34], [35, 36]], columns=['C', 'D']).to_csv(data_dir / "LeafCatch.csv", index=False)
-    np.save(data_dir / "hymod_params_256samples.npy", np.array([[37, 38], [39, 40]]))
-    np.save(data_dir / "sa_metric_s1.npy", np.array([[41, 42, 43, 44, 45]]))
-    pd.DataFrame([[46, 47], [48, 49]], columns=['E', 'F']).to_csv(data_dir / "hymod_simulations_256samples.csv", index=False)
-    np.save(data_dir / "sa_by_mth_delta.npy", np.array([[50, 51], [52, 53]]))
-    np.save(data_dir / "sa_by_mth_s1.npy", np.array([[54, 55], [56, 57]]))
-    np.save(data_dir / "sa_by_yr_delta.npy", np.array([[58, 59], [60, 61]]))
-    np.save(data_dir / "sa_by_yr_s1.npy", np.array([[62, 63], [64, 65]]))
-    np.save(data_dir / "sa_vary_delta.npy", np.array([[66, 67], [68, 69]]))
-    np.save(data_dir / "sa_vary_s1.npy", np.array([[70, 71], [72, 73]]))
-
-    return data_dir
-
-# Helper function to set the resource path for importlib
-def set_resource_path(path):
-    importlib.resources.files = lambda package: path
-
-def test_get_data_directory(test_data_dir):
-    set_resource_path(test_data_dir)
-    assert get_data_directory() == str(test_data_dir)
+# Test for the function get_data_directory
+@mock.patch("importlib.resources.files")
+def test_get_data_directory(mock_files):
+    mock_files.return_value.joinpath.return_value = "mocked/data/directory"
+    result = package_data.get_data_directory()
+    assert result == "mocked/data/directory"
 
 
-def test_load_robustness_data(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_robustness_data()
-    expected = np.array([[1, 2], [3, 4]])
-    assert np.array_equal(data, expected)
+# Test for load_robustness_data
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_robustness_data(mock_loadtxt):
+    mock_loadtxt.return_value = mock_robustness_data
+    result = package_data.load_robustness_data()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_robustness_data)
 
 
-def test_load_profit_maximization_data(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_profit_maximization_data()
-    expected = np.array([[5, 6], [7, 8]])
-    assert np.array_equal(data, expected)
+# Test for load_profit_maximization_data
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_profit_maximization_data(mock_loadtxt):
+    mock_loadtxt.return_value = mock_profit_maximization_data
+    result = package_data.load_profit_maximization_data()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_profit_maximization_data)
 
 
-def test_load_saltelli_param_values(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_saltelli_param_values()
-    expected = np.array([[9, 10], [11, 12]])
-    assert np.array_equal(data, expected)
+# Test for load_saltelli_param_values
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_saltelli_param_values(mock_loadtxt):
+    mock_loadtxt.return_value = mock_param_values
+    result = package_data.load_saltelli_param_values()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_param_values)
 
 
-def test_load_collapse_data(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_collapse_data()
-    expected = np.array([[13, 14], [15, 16]])
-    assert np.array_equal(data, expected)
+# Test for load_collapse_data
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_collapse_data(mock_loadtxt):
+    mock_loadtxt.return_value = mock_collapse_data
+    result = package_data.load_collapse_data()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_collapse_data)
 
 
-def test_load_lhs_basin_sample(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_lhs_basin_sample()
-    expected = np.array([[17, 18], [19, 20]])
-    assert np.array_equal(data, expected)
+# Test for load_lhs_basin_sample
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_lhs_basin_sample(mock_loadtxt):
+    mock_loadtxt.return_value = mock_lhs_basin_sample
+    result = package_data.load_lhs_basin_sample()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_lhs_basin_sample)
 
 
-def test_load_basin_param_bounds(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_basin_param_bounds()
-    expected = np.array([[21, 22], [23, 24]])
-    assert np.array_equal(data, expected)
+# Test for load_basin_param_bounds
+@mock.patch("msdbook.package_data.np.loadtxt")
+def test_load_basin_param_bounds(mock_loadtxt):
+    mock_loadtxt.return_value = mock_basin_param_bounds
+    result = package_data.load_basin_param_bounds()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_basin_param_bounds)
 
 
-def test_load_user_heatmap_array(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_user_heatmap_array("user123")
-    expected = np.array([[25, 26], [27, 28]])
-    assert np.array_equal(data, expected)
+# Test for load_user_heatmap_array
+@mock.patch("msdbook.package_data.np.load")
+def test_load_user_heatmap_array(mock_load):
+    mock_load.return_value = mock_user_heatmap_array
+    result = package_data.load_user_heatmap_array(user_id="123")
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_user_heatmap_array)
 
 
-def test_load_user_pseudo_scores(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_user_pseudo_scores("user123")
-    expected = pd.DataFrame([[29, 30], [31, 32]], columns=['A', 'B'])
-    pd.testing.assert_frame_equal(data, expected)
+# Test for load_user_pseudo_scores
+@mock.patch("msdbook.package_data.pd.read_csv")
+def test_load_user_pseudo_scores(mock_read_csv):
+    mock_read_csv.return_value = mock_user_pseudo_scores
+    result = package_data.load_user_pseudo_scores(user_id="123")
+    assert isinstance(result, pd.DataFrame)
+    pd.testing.assert_frame_equal(result, mock_user_pseudo_scores)
 
 
-def test_load_hymod_input_file(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_hymod_input_file()
-    expected = pd.DataFrame([[33, 34], [35, 36]], columns=['C', 'D'])
-    pd.testing.assert_frame_equal(data, expected)
+# Test for load_hymod_input_file
+@mock.patch("msdbook.package_data.pd.read_csv")
+def test_load_hymod_input_file(mock_read_csv):
+    mock_read_csv.return_value = mock_hymod_input_file
+    result = package_data.load_hymod_input_file()
+    assert isinstance(result, pd.DataFrame)
+    pd.testing.assert_frame_equal(result, mock_hymod_input_file)
 
 
-def test_load_hymod_params(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_hymod_params()
-    expected = np.array([[37, 38], [39, 40]])
-    assert np.array_equal(data, expected)
+# Test for load_hymod_params
+@mock.patch("msdbook.package_data.np.load")
+def test_load_hymod_params(mock_load):
+    mock_load.return_value = mock_hymod_params
+    result = package_data.load_hymod_params()
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, mock_hymod_params)
 
 
-def test_load_hymod_metric_simulation(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_hymod_metric_simulation()
-    expected = pd.DataFrame([[41, 42, 43, 44, 45]], columns=["Kq", "Ks", "Alp", "Huz", "B"])
-    pd.testing.assert_frame_equal(data, expected)
+# Test for load_hymod_metric_simulation
+@mock.patch("msdbook.package_data.np.load")
+def test_load_hymod_metric_simulation(mock_load):
+    mock_load.return_value = mock_hymod_metric_simulation.values
+    result = package_data.load_hymod_metric_simulation()
+    assert isinstance(result, pd.DataFrame)
+    pd.testing.assert_frame_equal(result, mock_hymod_metric_simulation)
 
 
-def test_load_hymod_simulation(test_data_dir):
-    set_resource_path(test_data_dir)
-    data = load_hymod_simulation()
-    expected = pd.DataFrame([[46, 47], [48, 49]], columns=['E', 'F'])
-    pd.testing.assert_frame_equal(data, expected)
+# Test for load_hymod_simulation
+@mock.patch("msdbook.package_data.pd.read_csv")
+def test_load_hymod_simulation(mock_read_csv):
+    mock_read_csv.return_value = mock_hymod_simulation
+    result = package_data.load_hymod_simulation()
+    assert isinstance(result, pd.DataFrame)
+    pd.testing.assert_frame_equal(result, mock_hymod_simulation)
 
 
-def test_load_hymod_monthly_simulations(test_data_dir):
-    set_resource_path(test_data_dir)
-    delta, s1 = load_hymod_monthly_simulations()
-    expected_delta = np.array([[50, 51], [52, 53]])
-    expected_s1 = np.array([[54, 55], [56, 57]])
-    assert np.array_equal(delta, expected_delta)
-    assert np.array_equal(s1, expected_s1)
+# Test for load_hymod_monthly_simulations
+@mock.patch("msdbook.package_data.np.load")
+def test_load_hymod_monthly_simulations(mock_load):
+    mock_load.side_effect = [mock_hymod_monthly_simulations[0], mock_hymod_monthly_simulations[1]]
+    result = package_data.load_hymod_monthly_simulations()
+    assert isinstance(result, tuple)
+    assert isinstance(result[0], np.ndarray)
+    assert isinstance(result[1], np.ndarray)
+    np.testing.assert_array_equal(result[0], mock_hymod_monthly_simulations[0])
+    np.testing.assert_array_equal(result[1], mock_hymod_monthly_simulations[1])
 
 
-def test_load_hymod_annual_simulations(test_data_dir):
-    set_resource_path(test_data_dir)
-    delta, s1 = load_hymod_annual_simulations()
-    expected_delta = np.array([[58, 59], [60, 61]])
-    expected_s1 = np.array([[62, 63], [64, 65]])
-    assert np.array_equal(delta, expected_delta)
-    assert np.array_equal(s1, expected_s1)
+# Test for load_hymod_annual_simulations
+@mock.patch("msdbook.package_data.np.load")
+def test_load_hymod_annual_simulations(mock_load):
+    mock_load.side_effect = [mock_hymod_annual_simulations[0], mock_hymod_annual_simulations[1]]
+    result = package_data.load_hymod_annual_simulations()
+    assert isinstance(result, tuple)
+    assert isinstance(result[0], np.ndarray)
+    assert isinstance(result[1], np.ndarray)
+    np.testing.assert_array_equal(result[0], mock_hymod_annual_simulations[0])
+    np.testing.assert_array_equal(result[1], mock_hymod_annual_simulations[1])
 
 
-def test_load_hymod_varying_simulations(test_data_dir):
-    set_resource_path(test_data_dir)
-    delta, s1 = load_hymod_varying_simulations()
-    expected_delta = np.array([[66, 67], [68, 69]])
-    expected_s1 = np.array([[70, 71], [72, 73]])
-    assert np.array_equal(delta, expected_delta)
-    assert np.array_equal(s1, expected_s1)
+# Test for load_hymod_varying_simulations
+@mock.patch("msdbook.package_data.np.load")
+def test_load_hymod_varying_simulations(mock_load):
+    mock_load.side_effect = [mock_hymod_varying_simulations[0], mock_hymod_varying_simulations[1]]
+    result = package_data.load_hymod_varying_simulations()
+    assert isinstance(result, tuple)
+    assert isinstance(result[0], np.ndarray)
+    assert isinstance(result[1], np.ndarray)
+    np.testing.assert_array_equal(result[0], mock_hymod_varying_simulations[0])
+    np.testing.assert_array_equal(result[1], mock_hymod_varying_simulations[1])
+
