@@ -5,7 +5,7 @@ import shutil
 
 import requests
 
-from pkg_resources import get_distribution
+from importlib.metadata import version
 from io import BytesIO as BytesIO
 
 import msdbook.package_data as pkg
@@ -18,9 +18,11 @@ class InstallSupplement:
     """
 
     # URL for DOI minted example data hosted on Zenodo
-    DATA_VERSION_URLS = {'0.1.3': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1',
-                         '0.1.4': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1',
-                         '0.1.5': 'https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1'}
+    DATA_VERSION_URLS = {
+        "0.1.3": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
+        "0.1.4": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
+        "0.1.5": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
+    }
 
     def fetch_zenodo(self):
         """Download and unpack the Zenodo example data supplement for the
@@ -30,7 +32,7 @@ class InstallSupplement:
         data_directory = pkg.get_data_directory()
 
         # get the current version of msdbook that is installed
-        current_version = get_distribution('msdbook').version
+        current_version = version("msdbook")
 
         try:
             data_link = InstallSupplement.DATA_VERSION_URLS[current_version]

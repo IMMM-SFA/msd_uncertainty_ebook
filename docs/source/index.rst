@@ -34,6 +34,7 @@ Addressing Uncertainty in MultiSector Dynamics Research
     * `Factor Mapping using Logistic Regression <nb_logistic_regression_>`_
     * `Time-evolving scenario discovery for infrastructure pathways <nb_discovery_>`_
     * `A Hidden-Markov Modeling Approach to Creating Synthetic Streamflow Scenarios <nb_hmm_>`_
+    * `Model Calibration with Markov chain Monte Carlo <nb_mcmc_>`_
 
     .. tip::
 
