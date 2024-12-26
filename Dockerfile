@@ -2,7 +2,7 @@ FROM ghcr.io/msd-live/jupyter/python-notebook:latest
 
 USER root
 
-RUN git clone https://github.com/IMMM-SFA/msd_uncertainty_ebook.git msd_uncertainty_ebook
+RUN git clone --depth=1 --branch=main https://github.com/IMMM-SFA/msd_uncertainty_ebook.git msd_uncertainty_ebook
 RUN cd msd_uncertainty_ebook && pip install .
 
 # Install msdbook data
