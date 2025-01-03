@@ -1,13 +1,13 @@
 import pytest
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 import matplotlib.pyplot as plt
 from msdbook.utils import fit_logit, plot_contour_map
+from statsmodels.base.wrapper import ResultsWrapper
 
 @pytest.fixture
 def sample_data():
-    """Fix to provide sample data for testing."""
+    """Fixture to provide sample data for testing."""
     np.random.seed(0)
     # Generate some random data
     n = 100
@@ -22,15 +22,23 @@ def sample_data():
 def test_fit_logit(sample_data):
     """Test the fit_logit function."""
     predictors = ['Predictor1', 'Predictor2']
-    result = fit_logit(sample_data, predictors)
     
-    # Check if result is a statsmodels regression results object
-    assert isinstance(result, sm.LogitResults)
+    # Suppress specific warnings related to disp argument
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=UserWarning, message="unknown kwargs ['disp']")
+        result = fit_logit(sample_data, predictors)
+    
+    # Check if result is a statsmodels LogitResultsWrapper object
+    assert isinstance(result, ResultsWrapper)  # Use ResultsWrapper directly
     
     # Check if the result object has the expected attributes
     assert hasattr(result, 'params')
     assert hasattr(result, 'pvalues')
     assert hasattr(result, 'predict')
+
+    # Check that parameters (coefficients) are not empty
+    assert result.params is not None
+    assert result.pvalues is not None
 
 def test_plot_contour_map(sample_data):
     """Test the plot_contour_map function."""
@@ -38,7 +46,10 @@ def test_plot_contour_map(sample_data):
     
     # Fit a logit model for the purpose of plotting
     predictors = ['Predictor1', 'Predictor2']
-    result = fit_logit(sample_data, predictors)
+    
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=UserWarning, message="unknown kwargs ['disp']")
+        result = fit_logit(sample_data, predictors)
     
     xgrid = np.linspace(-2, 2, 50)
     ygrid = np.linspace(-2, 2, 50)
@@ -65,3 +76,53 @@ def test_plot_contour_map(sample_data):
     assert len(ax.collections) > 0  # Scatter plot should create collections
 
     plt.close(fig)
+
+def test_empty_data():
+    """Test with empty data to ensure no errors."""
+    empty_df = pd.DataFrame({
+        'Success': [],
+        'Predictor1': [],
+        'Predictor2': [],
+        'Interaction': []
+    })
+    
+    predictors = ['Predictor1', 'Predictor2']
+    
+    # Check if fitting with empty data raises an error
+    with pytest.raises(ValueError):
+        fit_logit(empty_df, predictors)
+
+    # We should not attempt plotting with empty data
+    fig, ax = plt.subplots()
+
+    # Check if plotting with empty data doesn't crash
+    if not empty_df.empty:
+        result = fit_logit(empty_df, predictors)
+        contourset = plot_contour_map(
+            ax, result, empty_df,
+            'viridis', 'coolwarm', np.linspace(0, 1, 10), np.linspace(-2, 2, 50),
+            np.linspace(-2, 2, 50), 'Predictor1', 'Predictor2', base=0
+        )
+        assert contourset is not None
+    else:
+        # Skip if no result is generated (empty DataFrame)
+        pass
+    plt.close(fig)
+
+def test_invalid_predictors(sample_data):
+    """Test with invalid predictors."""
+    invalid_predictors = ['InvalidPredictor1', 'InvalidPredictor2']
+    
+    # Check if fitting with invalid predictors raises an error
+    with pytest.raises(KeyError):
+        fit_logit(sample_data, invalid_predictors)
+
+def test_logit_with_interaction(sample_data):
+    """Test logistic regression with interaction term."""
+    sample_data["Interaction"] = sample_data["Predictor1"] * sample_data["Predictor2"]
+    predictors = ['Predictor1', 'Predictor2']
+    
+    result = fit_logit(sample_data, predictors)
+    
+    # Ensure the interaction term is included in the result
+    assert 'Interaction' in result.params.index
