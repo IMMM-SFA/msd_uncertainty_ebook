@@ -1,0 +1,16 @@
+Derivative-based Methods
+************************
+
+Derivative-based methods explore how model outputs are affected by perturbations in a single model input around a particular input value. These methods are local and are performed using OAT sampling. For simplicity of mathematical notations, let us assume that the model :math:`g(X)` only returns one output. Following :cite:p:`borgonovo2008sensitivity` and :cite:p:`pianosi2016sensitivity`, the sensitivity index, :math:`S_i` , of the model’s *i*-th input factor, :math:`x_i` , can be measured using the partial derivative evaluated at a nominal value, :math:`\bar{x}`, of the vector of inputs:
+
+.. math::
+
+  S_i (\bar{x}) = \frac{\partial g}{\partial x} |_{\bar{x}{^c{_i}}}
+
+where *c*\ :sub:`i`\  is the scaling factor. In most applications however, the relationship :math:`g(X)` is not fully known in its analytical form, and therefore the above partial derivative is usually approximated:
+
+.. math::
+
+  S_i (\bar{x}) = \frac{g(\bar{x}_1,...\bar{x}_i+\Delta_i,...\bar{x}_N)-g(\bar{x}_1,...\bar{x}_i,...\bar{x}_N)}{\Delta_i}c_i
+
+Using this approximation, the *i*-th input factor is perturbed by a magnitude of :math:`\Delta_i`, and its relative importance is calculated. Derivative-based methods are some of the oldest sensitivity analysis methods as they only require :math:`N+1` model evaluations to estimate indices for :math:`N` uncertain factors. As described above, being computationally very cheap comes at the cost of not being able to explore the entire input space, but only (local) perturbations to the nominal value. Additionally, as these methods examine the effects of each input factor one at a time, they cannot assess parametric interactions or capture the interacting nature of many real systems and the models that abstract them.
