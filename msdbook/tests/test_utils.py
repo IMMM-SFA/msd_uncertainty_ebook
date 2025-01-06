@@ -25,7 +25,7 @@ def test_fit_logit(sample_data):
     result = fit_logit(sample_data, predictors)
     
     # Check if result is a statsmodels LogitResultsWrapper object
-    assert isinstance(result, ResultsWrapper)  # Use ResultsWrapper directly
+    assert isinstance(result, ResultsWrapper) 
     
     # Check if the result object has the expected attributes
     assert hasattr(result, 'params')
@@ -104,7 +104,6 @@ def test_empty_data():
 def test_invalid_predictors(sample_data):
     """Test with invalid predictors."""
     invalid_predictors = ['InvalidPredictor1', 'InvalidPredictor2']
-    
     
     with pytest.raises(KeyError):
         fit_logit(sample_data, invalid_predictors)
