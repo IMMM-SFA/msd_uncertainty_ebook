@@ -22,11 +22,7 @@ def sample_data():
 def test_fit_logit(sample_data):
     """Test the fit_logit function."""
     predictors = ['Predictor1', 'Predictor2']
-    
-    # Suppress specific warnings related to disp argument
-    with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", category=UserWarning, message="unknown kwargs ['disp']")
-        result = fit_logit(sample_data, predictors)
+    result = fit_logit(sample_data, predictors)
     
     # Check if result is a statsmodels LogitResultsWrapper object
     assert isinstance(result, ResultsWrapper)  # Use ResultsWrapper directly
@@ -46,10 +42,7 @@ def test_plot_contour_map(sample_data):
     
     # Fit a logit model for the purpose of plotting
     predictors = ['Predictor1', 'Predictor2']
-    
-    with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", category=UserWarning, message="unknown kwargs ['disp']")
-        result = fit_logit(sample_data, predictors)
+    result = fit_logit(sample_data, predictors)
     
     xgrid = np.linspace(-2, 2, 50)
     ygrid = np.linspace(-2, 2, 50)
@@ -73,8 +66,7 @@ def test_plot_contour_map(sample_data):
     assert ax.get_ylabel() == 'Predictor2'
     
     # Verify that scatter plot is present by checking number of points
-    assert len(ax.collections) > 0  # Scatter plot should create collections
-
+    assert len(ax.collections) > 0  
     plt.close(fig)
 
 def test_empty_data():
@@ -113,7 +105,7 @@ def test_invalid_predictors(sample_data):
     """Test with invalid predictors."""
     invalid_predictors = ['InvalidPredictor1', 'InvalidPredictor2']
     
-    # Check if fitting with invalid predictors raises an error
+    
     with pytest.raises(KeyError):
         fit_logit(sample_data, invalid_predictors)
 
