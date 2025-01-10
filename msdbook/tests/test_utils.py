@@ -8,17 +8,20 @@ from statsmodels.base.wrapper import ResultsWrapper
 @pytest.fixture
 def sample_data():
     """Fixture to provide sample data for testing."""
-    np.random.seed(0)
-    # Generate some random data
+    np.random.seed(0)  # For reproducibility
+    
+    # Number of samples
     n = 100
-    df = pd.DataFrame({
-        'Success': np.random.randint(0, 2, size=n),
-        'Predictor1': np.random.randn(n),
-        'Predictor2': np.random.randn(n),
-        'Interaction': np.random.randn(n)
-    })
-    return df
 
+    # Generate some random data
+    df = pd.DataFrame({
+        'Success': np.random.randint(0, 2, size=n),  # Binary outcome variable (0 or 1)
+        'Predictor1': np.random.randn(n),  # Random values for Predictor1
+        'Predictor2': np.random.randn(n),  # Random values for Predictor2
+        'Interaction': np.random.randn(n)  # Random values for Interaction term (not necessarily related)
+    })
+
+    return df 
 def test_fit_logit(sample_data):
     """Test the fit_logit function."""
     predictors = ['Predictor1', 'Predictor2']
@@ -44,12 +47,13 @@ def test_plot_contour_map(sample_data):
     predictors = ['Predictor1', 'Predictor2']
     result = fit_logit(sample_data, predictors)
     
-    xgrid = np.linspace(-2, 2, 50)
-    ygrid = np.linspace(-2, 2, 50)
+    # Dynamically generate grid and levels
+    xgrid = np.linspace(sample_data['Predictor1'].min() - 1, sample_data['Predictor1'].max() + 1, 50)
+    ygrid = np.linspace(sample_data['Predictor2'].min() - 1, sample_data['Predictor2'].max() + 1, 50)
+    levels = np.linspace(0, 1, 10)
     
     contour_cmap = 'viridis'
     dot_cmap = 'coolwarm'
-    levels = np.linspace(0, 1, 10)
     
     # Call the plot function
     contourset = plot_contour_map(
