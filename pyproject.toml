@@ -38,6 +38,8 @@ dependencies = [
     "scipy>=1.13.1",
     "seaborn>=0.13.2",
     "statsmodels>=0.14.2",
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10",
 ]
 
 [project.optional-dependencies]
