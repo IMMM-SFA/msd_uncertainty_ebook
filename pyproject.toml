@@ -48,6 +48,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pre-commit>=3.7.1",
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10",
 ]
 
 docs = [
@@ -61,11 +63,6 @@ docs = [
     "sphinx-book-theme>=0.2.0",
     "sphinxcontrib-bibtex>=2.4.1",
     "twine>=3.4.1",
-]
-
-test = [
-    "pytest>=7.0.0",
-    "pytest-mock>=3.10",
 ]
 
 [project.urls]
