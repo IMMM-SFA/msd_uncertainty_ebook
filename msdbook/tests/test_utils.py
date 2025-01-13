@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from msdbook.utils import fit_logit, plot_contour_map
 from statsmodels.base.wrapper import ResultsWrapper
 
+
 @pytest.fixture
 def sample_data():
     """Fixture to provide sample data for testing."""
@@ -12,6 +13,7 @@ def sample_data():
     
     # Number of samples
     n = 100
+
 
     # Generate some random data
     df = pd.DataFrame({
@@ -22,18 +24,22 @@ def sample_data():
     })
 
     return df 
+
+
 def test_fit_logit(sample_data):
     """Test the fit_logit function."""
-    predictors = ['Predictor1', 'Predictor2']
+    predictors = ["Predictor1", "Predictor2"]
     result = fit_logit(sample_data, predictors)
-    
+
     # Check if result is a statsmodels LogitResultsWrapper object
     assert isinstance(result, ResultsWrapper) 
     
+
     # Check if the result object has the expected attributes
-    assert hasattr(result, 'params')
-    assert hasattr(result, 'pvalues')
-    assert hasattr(result, 'predict')
+    assert hasattr(result, "params")
+    assert hasattr(result, "pvalues")
+    assert hasattr(result, "predict")
+
 
     # Check that parameters (coefficients) are not empty
     assert result.params is not None
@@ -42,11 +48,11 @@ def test_fit_logit(sample_data):
 def test_plot_contour_map(sample_data):
     """Test the plot_contour_map function."""
     fig, ax = plt.subplots()
-    
+
     # Fit a logit model for the purpose of plotting
-    predictors = ['Predictor1', 'Predictor2']
+    predictors = ["Predictor1", "Predictor2"]
     result = fit_logit(sample_data, predictors)
-    
+
     # Dynamically generate grid and levels
     xgrid = np.linspace(sample_data['Predictor1'].min() - 1, sample_data['Predictor1'].max() + 1, 50)
     ygrid = np.linspace(sample_data['Predictor2'].min() - 1, sample_data['Predictor2'].max() + 1, 50)
@@ -55,20 +61,31 @@ def test_plot_contour_map(sample_data):
     contour_cmap = 'viridis'
     dot_cmap = 'coolwarm'
     
+
     # Call the plot function
     contourset = plot_contour_map(
-        ax, result, sample_data, contour_cmap, dot_cmap, levels, xgrid, ygrid, 'Predictor1', 'Predictor2', base=0
+        ax,
+        result,
+        sample_data,
+        contour_cmap,
+        dot_cmap,
+        levels,
+        xgrid,
+        ygrid,
+        "Predictor1",
+        "Predictor2",
+        base=0,
     )
-    
+
     # Check if the contour plot is created
     assert contourset is not None
-    
+
     # Check if the axis limits and labels are set correctly
     assert ax.get_xlim() == (np.min(xgrid), np.max(xgrid))
     assert ax.get_ylim() == (np.min(ygrid), np.max(ygrid))
-    assert ax.get_xlabel() == 'Predictor1'
-    assert ax.get_ylabel() == 'Predictor2'
-    
+    assert ax.get_xlabel() == "Predictor1"
+    assert ax.get_ylabel() == "Predictor2"
+
     # Verify that scatter plot is present by checking number of points
     assert len(ax.collections) > 0  
     plt.close(fig)
