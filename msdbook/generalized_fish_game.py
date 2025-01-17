@@ -21,7 +21,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     a = inequality(b, m, h, K)
     a = a.clip(0, 2)
 
-    cmap = plt.get_cmap("RdBu_r")
+    cmap = plt.colormaps["RdBu_r"]
 
     fig = plt.figure(figsize=plt.figaspect(0.5), dpi=600, constrained_layout=True)
 
@@ -36,7 +36,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     )
     ax1.plot_surface(b, m, a, color="black", alpha=0.25, zorder=1)
     ax1.scatter(0.5, 0.7, 0.005, c="black", s=50, zorder=0)
-    sm = plt.cm.ScalarMappable(cmap=cmap)
+    sm1 = plt.cm.ScalarMappable(cmap=cmap)
     ax1.set_xlabel("b")
     ax1.set_ylabel("m")
     ax1.set_zlabel("a")
@@ -59,7 +59,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     )
     ax2.plot_surface(b, m, a, color="black", alpha=0.25, zorder=1)
     ax2.scatter(0.5, 0.7, 0.005, c="black", s=50, zorder=0)
-    sm = plt.cm.ScalarMappable(cmap=cmap)
+    sm2 = plt.cm.ScalarMappable(cmap=cmap)
     ax2.set_xlabel("b")
     ax2.set_ylabel("m")
     ax2.set_zlabel("a")
@@ -71,13 +71,12 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     ax2.view_init(12, -17)
     ax2.set_title("Robust policy")
 
-    sm = plt.cm.ScalarMappable(cmap=cmap)
-    sm.set_array([collapse_days.min(), collapse_days.max()])
-    cbar = fig.colorbar(sm, ax=ax1, pad=0.1)  # for the first subplot
+    cbar1 = fig.colorbar(sm1, ax=ax1, orientation="vertical", fraction=0.03, pad=0.04)
+    cbar1.set_label("Days with predator collapse")
     
-    cbar2 = fig.colorbar(sm, ax=ax2, pad=0.1)  # for the second subplot
+    cbar2 = fig.colorbar(sm2, ax=ax2, orientation="vertical", fraction=0.03, pad=0.04)
     cbar2.set_label("Days with predator collapse")
-    cbar.set_label("Days with predator collapse")
+
 
 
 def plot_solutions(objective_performance, profit_solution, robust_solution):
@@ -107,7 +106,7 @@ def plot_solutions(objective_performance, profit_solution, robust_solution):
         else:
             norm_reference[:, i] = 1
 
-    cmap = plt.get_cmap("Blues")
+    cmap = plt.colormaps["Blues"]
 
     # Plot all solutions
     for i in range(len(norm_reference[:, 0])):
@@ -140,7 +139,7 @@ def plot_solutions(objective_performance, profit_solution, robust_solution):
     # Colorbar
     sm = plt.cm.ScalarMappable(cmap=cmap)
     sm.set_array([objective_performance[:, 0].min(), objective_performance[:, 0].max()])
-    cbar = fig.colorbar(sm, ax=ax, pad=0.1)
+    cbar = fig.colorbar(sm, ax=ax, orientation="vertical", fraction=0.03, pad=0.04)
     cbar.ax.set_ylabel("\nNet present value (NPV)")
 
     # Tick values
@@ -238,7 +237,8 @@ def fish_game(vars, additional_inputs, N=100, tSteps=100, nObjs=5, nCnstr=1):
         # Initialize populations and values
         x[0] = prey[i, 0] = K
         y[0] = predator[i, 0] = 250
-        z[0] = effort[i, 0] = hrvSTR([x[0]], vars, [[0, K]], [[0, 1]])[0]
+        hrv_result = hrvSTR([x[0]], vars, [[0, K]], [[0, 1]])
+        z[0] = effort[i, 0] = hrv_result[0]
         NPVharvest = harvest[i, 0] = effort[i, 0] * x[0]
 
         # Go through all timesteps for prey, predator, and harvest
@@ -265,7 +265,9 @@ def fish_game(vars, additional_inputs, N=100, tSteps=100, nObjs=5, nCnstr=1):
                     if strategy == "Previous_Prey":
                         input_ranges = [[0, K]]  # Prey pop. range to use for normalization
                         output_ranges = [[0, 1]]  # Range to de-normalize harvest to
-                        z[t + 1] = hrvSTR([x[t]], vars, input_ranges, output_ranges)[0]
+                        hrv_result = hrvSTR([x[t]], vars, input_ranges, output_ranges)
+                        z[t + 1] = hrv_result[0]
+
             prey[i, t + 1] = x[t + 1]
             predator[i, t + 1] = y[t + 1]
             effort[i, t + 1] = z[t + 1]
