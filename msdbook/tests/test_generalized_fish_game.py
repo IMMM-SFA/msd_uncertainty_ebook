@@ -73,19 +73,20 @@ def test_plot_uncertainty_relationship():
 
     plot_uncertainty_relationship(param_values, collapse_days)
 
-    # Create a colorbar for the first subplot
+    # Colorbar for ax1
     sm1 = plt.cm.ScalarMappable(cmap="RdBu_r")
     sm1.set_array(collapse_days[:, 0])
-    cbar1 = fig.colorbar(sm1, ax=ax1, pad=0.1)
+    cbar1 = fig.colorbar(sm1, ax=ax1, orientation="vertical", fraction=0.03, pad=0.04)
     cbar1.set_label("Days with predator collapse")
-
-    # Create a colorbar for the second subplot
+    # Colorbar for ax2
     sm2 = plt.cm.ScalarMappable(cmap="RdBu_r")
     sm2.set_array(collapse_days[:, 1])
-    cbar2 = fig.colorbar(sm2, ax=ax2, pad=0.1)
+    cbar2 = fig.colorbar(sm2, ax=ax2, orientation="vertical", fraction=0.03, pad=0.04)
     cbar2.set_label("Days with predator collapse")
 
+    # Ensure that figure exists
     assert fig
+
 
 def test_plot_solutions():
     objective_performance = np.random.rand(100, 5)
@@ -98,7 +99,8 @@ def test_plot_solutions():
     # Create a colorbar for the first objective
     sm = plt.cm.ScalarMappable(cmap="Blues")
     sm.set_array(objective_performance[:, 0])
-    cbar = fig.colorbar(sm, ax=ax, pad=0.1)
+    cbar = fig.colorbar(sm, ax=ax, orientation="vertical", fraction=0.03, pad=0.04)
     cbar.ax.set_ylabel("\nNet present value (NPV)")
 
+    # Ensure that figure exists
     assert fig
