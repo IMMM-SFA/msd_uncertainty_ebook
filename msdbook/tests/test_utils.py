@@ -14,7 +14,6 @@ def sample_data():
     # Number of samples
     n = 100
 
-
     # Generate some random data
     df = pd.DataFrame({
         'Success': np.random.randint(0, 2, size=n),  # Binary outcome variable (0 or 1)
@@ -32,18 +31,45 @@ def test_fit_logit(sample_data):
     result = fit_logit(sample_data, predictors)
 
     # Check if result is a statsmodels LogitResultsWrapper object
-    assert isinstance(result, ResultsWrapper) 
+    assert isinstance(result, ResultsWrapper)
     
-
     # Check if the result object has the expected attributes
     assert hasattr(result, "params")
     assert hasattr(result, "pvalues")
     assert hasattr(result, "predict")
 
-
     # Check that parameters (coefficients) are not empty
     assert result.params is not None
     assert result.pvalues is not None
+
+    # Check that parameters (coefficients) are reasonable (e.g., non-zero)
+    assert np.all(np.abs(result.params) > 0)  # Coefficients should not be zero
+
+    # Check that the p-values are reasonable (not NaN, not infinity)
+    assert np.all(np.isfinite(result.pvalues))  # P-values should be finite numbers
+    assert np.any(result.pvalues < 0.05)  # At least one coefficient should be statistically significant (p-value < 0.05)
+
+
+def test_fit_logit_with_expected_values(sample_data):
+    """Test fit_logit function and check specific values."""
+    predictors = ["Predictor1", "Predictor2"]
+    result = fit_logit(sample_data, predictors)
+
+    # Check if result is a statsmodels LogitResultsWrapper object
+    assert isinstance(result, ResultsWrapper)
+
+    # Check that coefficients are reasonable (for example, not too large or small)
+    # We don't know the exact values, but we can expect them to fall within a certain range.
+    assert np.all(np.abs(result.params) < 10)  # Coefficients should not be excessively large
+
+    # Check if p-values are reasonable (not NaN or Inf)
+    assert np.all(np.isfinite(result.pvalues))  # Ensure p-values are finite numbers
+    assert np.any(result.pvalues < 0.05)  # At least one coefficient should be statistically significant (p-value < 0.05)
+
+    # Optional: Check that the interaction term (if applicable) exists
+    if 'Interaction' in sample_data.columns:
+        assert 'Interaction' in result.params.index # Allowing small tolerance
+
 
 def test_plot_contour_map(sample_data):
     """Test the plot_contour_map function."""
@@ -61,7 +87,6 @@ def test_plot_contour_map(sample_data):
     contour_cmap = 'viridis'
     dot_cmap = 'coolwarm'
     
-
     # Call the plot function
     contourset = plot_contour_map(
         ax,
@@ -89,6 +114,7 @@ def test_plot_contour_map(sample_data):
     # Verify that scatter plot is present by checking number of points
     assert len(ax.collections) > 0  
     plt.close(fig)
+
 
 def test_empty_data():
     """Test with empty data to ensure no errors."""
@@ -122,12 +148,14 @@ def test_empty_data():
         pass
     plt.close(fig)
 
+
 def test_invalid_predictors(sample_data):
     """Test with invalid predictors."""
     invalid_predictors = ['InvalidPredictor1', 'InvalidPredictor2']
     
     with pytest.raises(KeyError):
         fit_logit(sample_data, invalid_predictors)
+
 
 def test_logit_with_interaction(sample_data):
     """Test logistic regression with interaction term."""
