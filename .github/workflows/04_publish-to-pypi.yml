@@ -101,7 +101,7 @@ jobs:
 
   publish-to-testpypi:
     name: Publish to TestPyPI
-    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    if: startsWith(github.ref, 'refs/tags/')  # only publish to test PyPI on tag pushes
     needs:
     - build
     runs-on: ubuntu-latest

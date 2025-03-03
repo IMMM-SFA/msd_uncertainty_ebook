@@ -48,7 +48,7 @@ The following is the recommended workflow for contributing:
       pre-commit install
 
 
-1. Add your changes and commit them:
+3. Add your changes and commit them:
 
   .. code-block:: bash
 
@@ -57,18 +57,22 @@ The following is the recommended workflow for contributing:
     git commit -m "<my short message>"
 
 
-1. Ensure all tests pass:
+4. Ensure all 
 
-    Ensure your tests pass locally before pushing to your remote branch where GitHub actions will launch CI services to build the package, run the test suite, and evaluate code coverage. To do this, ensure that ``pytest`` has been installed then navigate to the root of your cloned directory (e.g., <my-path>/msd_uncertainty_ebook) and run ``pytest`` in the terminal.
+
+s pass:
+
+  Ensure your tests pass locally before pushing to your remote branch where GitHub actions will launch CI services to build the package, run the test suite, and evaluate code coverage. To do this, ensure that ``pytest`` is installed then navigate to the root of your cloned directory (e.g., <my-path>/msd_uncertainty_ebook) and run ``pytest`` in the terminal.
 
   .. code-block:: bash
 
       pip install -e ".[dev]"
-
       pytest
 
 
-  Changes to the documentation can be made in the ``msd_uncertainty_ebook/docs/source`` directory containing the RST files. To view your changes, ensure you have the development dependencies of **msd_uncertainty_ebook** installed and run the following from the ``msd_uncertainty_ebook/docs/source`` directory:
+5. Update the Documentation:
+
+  Changes to the documentation can be made in the ``msd_uncertainty_ebook/docs/source`` directory containing the RST files. To view your changes, ensure you have the documentation dependencies of **msd_uncertainty_ebook** installed and run the following from the ``msd_uncertainty_ebook/docs/source`` directory:
 
   .. code-block:: bash
 
@@ -79,13 +83,13 @@ The following is the recommended workflow for contributing:
 
   This will generate your new documentation in a directory named ``msd_uncertainty_ebook/docs/build/html``. You can open the ``index.html`` in your browser to view the documentation site locally. If your changes are merged into the main branch of **msd_uncertainty_ebook**, changes in your documentation will go live on the `uc-ebook.org documentation <https://uc-ebook.org/docs/html/index.html>`_. If your changes are merged into the dev branch of **msd_uncertainty_ebook**, changes in your documentation will go live on the `dev site <https://uc-ebook.org/dev/docs/html/index.html>`_.
 
-1. Push your changes to the remote
+6. Push your changes to the remote
 
   .. code-block:: bash
 
     git push origin <my-branch-name>
 
 
-4. Submit a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out.
+7. Submit a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out.
 
-5. If approved, your pull request will be merged first into the dev, and then into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service automatically.
+8. If approved, your pull request will be merged first into the dev, and then into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service automatically.
