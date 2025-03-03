@@ -45,7 +45,7 @@ walkthrough.
     # Import relevant libraries
     import matplotlib.pyplot as plt
 
-    from SALib.sample import saltelli
+    import SALib.sample.sobol as sobol_sample
     from SALib.analyze import sobol
     from SALib.test_functions import Ishigami
 
@@ -85,8 +85,9 @@ resulting Saltelli sample.
 
 .. code:: ipython3
 
-    #Generate parmeter values using the saltelli.sample function
-    param_values = saltelli.sample(problem, 256)
+    # Generate parmeter values using the saltelli.sample function
+    param_values = sobol_sample.sample(problem, 256)
+
 
     print(f"`param_values` shape:  {param_values.shape}")
 
@@ -98,7 +99,7 @@ resulting Saltelli sample.
 
 .. code:: ipython3
 
-    #Plot the 2048 samples of the parameters
+    # Plot the 2048 samples of the parameters
 
     fig = plt.figure(figsize = (7, 5))
     ax = plt.axes(projection ="3d")
