@@ -63,7 +63,7 @@ The following is the recommended workflow for contributing:
 
   .. code-block:: bash
 
-      pip install -e ".[test]"
+      pip install -e ".[dev]"
 
       pytest
 
