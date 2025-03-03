@@ -10,13 +10,14 @@ msdbook = ["*.txt", "*.csv", "*.npy", "*.resultfile"]
 
 [project]
 name = "msdbook"
-version = "0.1.5"
+version = "0.1.6"
 description = "Jupyter notebook support for the MSD uncertainty ebook."
 readme = "README.md"
-requires-python = ">=3.9, <3.13"
+requires-python = ">=3.9"
 keywords = ["uncertainty characterization", "MSD", "MultiSector Dynamics"]
 authors = [
   { name="Chris R. Vernon", email="chris.vernon@pnnl.gov" },
+  { name="Travis Thurber", email="travis.thurber@pnnl.gov" },
   { name="Em Rexer", email="emily.rexer@pnnl.gov" },
 ]
 

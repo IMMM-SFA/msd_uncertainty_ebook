@@ -57,12 +57,16 @@ The following is the recommended workflow for contributing:
     git commit -m "<my short message>"
 
 
-4. Ensure all tests pass:
+4. Ensure all 
+
+
+s pass:
 
   Ensure your tests pass locally before pushing to your remote branch where GitHub actions will launch CI services to build the package, run the test suite, and evaluate code coverage. To do this, ensure that ``pytest`` is installed then navigate to the root of your cloned directory (e.g., <my-path>/msd_uncertainty_ebook) and run ``pytest`` in the terminal.
 
   .. code-block:: bash
 
+      pip install -e ".[dev]"
       pytest
 
 
