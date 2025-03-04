@@ -2,7 +2,7 @@
 Contribution Guide
 ******************
 
-Our eBook is a living product that we hope continues to grow over time to stay relevant with methodological and technological advancements in the field of uncertainty quantification and MultiSector Dynamics at large. We extend an invitation to you the reader to contribute to one of our interactive Jupyter notebook tutorials. If you feel you have a contribution that would be relevant and generalizable to the MSD community, please submit a proposal idea `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?assignees=thurber%2C+crvernon&labels=triage&projects=&template=contribution_proposal.yml&title=Contribution+Proposal>`_. Your proposal will be reviewing by our team and feedback and/or a decision will be provided shortly. Any contribution accepted will receive it's own DOI and citation so that you may provide an independent reference to your work as you see fit.
+Our eBook is a living product that we hope continues to grow over time to stay relevant with methodological and technological advancements in the field of uncertainty quantification and MultiSector Dynamics at large. We extend an invitation to you, the reader, to contribute to our interactive Jupyter notebook tutorials. If you feel you have a contribution that would be relevant and generalizable to the MSD community, please submit a proposal idea `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues/new?assignees=thurber%2C+crvernon&labels=triage&projects=&template=contribution_proposal.yml&title=Contribution+Proposal>`_. Your proposal will be reviewed by our team, and feedback and/or a decision will be provided shortly. Any accepted contribution will receive it's own DOI and citation so that you may provide an independent reference to your work as you see fit.
 
 Please consider the following requirements for contribution:
 
@@ -57,7 +57,7 @@ The following is the recommended workflow for contributing:
     git commit -m "<my short message>"
 
 
-4. Ensure all 
+4. Ensure all
 
 
 s pass:
@@ -67,6 +67,7 @@ s pass:
   .. code-block:: bash
 
       pip install -e ".[dev]"
+
       pytest
 
 
@@ -93,3 +94,10 @@ s pass:
 7. Submit a pull request with the submission `template <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/.github/PULL_REQUEST_TEMPLATE/contribution_checklist.md>`_ copied into the pull request description and filled out.
 
 8. If approved, your pull request will be merged first into the dev, and then into the main branch by a **msd_uncertainty_ebook** admin and a release will be conducted subsequently. **msd_uncertainty_ebook** uses `semantic naming <https://semver.org/>`_ for versioned releases. Each release receives a DOI via a linked Zenodo service automatically.
+
+
+Miscellaneous Developer Notes
+_____________________________
+
+- `Dockerfile for the uc-ebook site <https://github.com/MSD-LIVE/jupyter-notebook-uc-ebook>`_.
+-  `Dockerfile for the uc-ebook dev site <https://github.com/MSD-LIVE/jupyter-notebook-uc-ebook-dev>`_.
