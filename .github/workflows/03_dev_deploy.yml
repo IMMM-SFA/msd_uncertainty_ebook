@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@master
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
       - name: Install latex dependencies
@@ -31,33 +31,11 @@ jobs:
         run: |
           mv docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf docs/build/latex/ebook_content.pdf
           gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=docs/build/latex/addressinguncertaintyinmultisectordynamicsresearch.pdf -dBATCH docs/ebook_cover.pdf docs/build/latex/ebook_content.pdf
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'npm'
           cache-dependency-path: landing/package-lock.json
-      - uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --delete
-        env:
-          SOURCE_DIR: 'notebooks'
-          DEST_DIR: 'notebooks'
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_DEV }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
-          AWS_REGION: ${{ secrets.AWS_REGION_DEV }}
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile_dev
-          push: true
-          tags: thurber/uc-ebook.org:dev
       - name: Install landing page dependencies
         working-directory: 'landing/'
         run: npm install
