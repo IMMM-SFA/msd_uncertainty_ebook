@@ -67,7 +67,9 @@ def test_fit_logit(sample_data, df_resid, df_model, llf, expected_params):
 
     # Check p-values are valid, skipping checks if model did not converge or has NaN p-values.
     if result.mle_retvals['converged'] and np.all(np.isfinite(result.pvalues)):
-        assert np.any(result.pvalues < 0.1)
+        # Check if any coefficient (excluding the intercept) has a p-value less than 0.1
+        if len(result.pvalues) > 1:
+            assert np.any(result.pvalues[1:] < 0.1) # Exclude intercept
 
 def test_plot_contour_map(sample_data):
     """Test the plot_contour_map function."""
@@ -139,8 +141,7 @@ def test_fit_logit_invalid_predictors(sample_data):
 def test_fit_logit_comprehensive(sample_data):
     """Comprehensive test for fit_logit checking various aspects."""
     # Check valid predictors
-    result = fit_logit(sample_data, [predictor1, predictor2]) 
-    
+    result = fit_logit(sample_data, [predictor1, predictor2])
     
     # Check if specific expected values are close (if known from actual model output)
     EXPECTED_PARAMS = np.array([0.34060709, -0.26968773, 0.31551482, 0.45824332])  # Update with actual expected values
@@ -148,4 +149,6 @@ def test_fit_logit_comprehensive(sample_data):
 
     # Check p-values are valid
     if result.mle_retvals['converged'] and np.all(np.isfinite(result.pvalues)):
-        assert np.any(result.pvalues < 0.1)
+        # Check if any coefficient (excluding the intercept) has a p-value less than 0.1
+        if len(result.pvalues) > 1:
+            assert np.any(result.pvalues[1:] < 0.1)
