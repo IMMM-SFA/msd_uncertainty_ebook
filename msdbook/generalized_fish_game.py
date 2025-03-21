@@ -73,7 +73,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
 
     sm = plt.cm.ScalarMappable(cmap=cmap)
     sm.set_array([collapse_days.min(), collapse_days.max()])
-    cbar = fig.colorbar(sm)
+    cbar = fig.colorbar(sm, ax=[ax1, ax2])  # Adjusted this line to link colorbar to both axes
     cbar.set_label("Days with predator collapse")
 
 
@@ -137,7 +137,7 @@ def plot_solutions(objective_performance, profit_solution, robust_solution):
     # Colorbar
     sm = plt.cm.ScalarMappable(cmap=cmap)
     sm.set_array([objective_performance[:, 0].min(), objective_performance[:, 0].max()])
-    cbar = fig.colorbar(sm)
+    cbar = fig.colorbar(sm, ax=ax)  # Link colorbar to ax
     cbar.ax.set_ylabel("\nNet present value (NPV)")
 
     # Tick values
