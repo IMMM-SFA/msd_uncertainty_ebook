@@ -294,13 +294,13 @@ accepted, :math:`X_{t+1} = Y_t` and the new proposal is centered on
 :math:`Y_t`, while if it is rejected, :math:`X_{t+1} = x_t` and the
 value is repeated in the resulting Markov chain.
 
-|Figure xxa: Metropolis-Hastings step where the proposal is always
-accepted as it has higher probability according to the target density
-:math:`\pi` than the current value| |Figure xxb: Metropolis-Hastings
-step where the proposal may not be accepted as it has lower probability
-according to the target density :math:`\pi` than the current value. In
-this case, :math:`\pi(y) / \pi(x) \approx 0.30`, so the proposal will be
-accepted with probability 30%.|
+.. figure:: _static/mh-1.png
+
+    Metropolis-Hastings step where the proposal is always accepted as it has higher probability according to the target density :math:`\pi` than the current value
+
+.. figure:: _static/mh-2.png
+
+    Metropolis-Hastings step where the proposal may not be accepted as it has lower probability according to the target density :math:`\pi` than the current value. In this case, :math:`\pi(y) / \pi(x) \approx 0.30`, so the proposal will be accepted with probability 30%.
 
 The sequential accept-reject step and the localization of the proposal
 density on the current sample :math:`X_t` is what results in the
@@ -489,9 +489,6 @@ values.
 
 
 .. figure:: _static/mcmc_22_0.png
-   :alt: Figure 1
-
-   Figure 1
 
 We can see that this HYMOD parameterization generally does well, but
 tends to underestimate the peak streamflows. Can we do better?
@@ -570,9 +567,6 @@ overfit.
     plt.hist(stats.lognorm(s=0.05, scale=0.5).rvs(1000))
 
 .. figure:: _static/mcmc_25_1.png
-   :alt: Figure 2
-
-   Figure 2
 
 .. code:: ipython3
 
@@ -615,9 +609,6 @@ overfit.
     strmflw_ax.legend(['Observations', 'Prior Predictive Median', '90% Prior Predictive Interval'], loc='upper right')
 
 .. figure:: _static/mcmc_27_1.png
-   :alt: Figure 3
-
-   Figure 3
 
 This looks reasonable as a starting point; we may not be capturing the
 most extreme data in our 90% interval, but we also wouldn’t expect to,
@@ -712,9 +703,6 @@ roughly stationary for the rest of the chain).
 
 
 .. figure:: _static/mcmc_37_1.png
-   :alt: Figure 4
-
-   Figure 4
 
 
 We can see that we might have converged by 10,000 iterations (or
@@ -734,9 +722,6 @@ Let’s zoom in on the samples from after this point.
 
 
 .. figure:: _static/mcmc_39_1.png
-   :alt: Figure 5
-
-   Figure 5
 
 
 These chains look like a “hairy caterpillar”, which is the ideal pattern
@@ -809,10 +794,6 @@ Let’s look at the resulting parameter distributions.
 
 
 .. figure:: _static/mcmc_43_1.png
-   :alt: Figure 6
-
-   Figure 6
-
 
 Now, let’s simulate from the posterior distribution to see how well we
 capture the observed streamflow.
@@ -841,9 +822,6 @@ capture the observed streamflow.
 
 
 .. figure:: _static/mcmc_46_1.png
-   :alt: Figure 7
-
-   Figure 7
 
 
 We can visually see that we fail to capture some of the extremes in the
