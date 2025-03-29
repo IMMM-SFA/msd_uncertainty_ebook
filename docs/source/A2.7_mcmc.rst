@@ -268,35 +268,35 @@ ensure that the resulting Markov transition probabilities have the right
 properties to ensure convergence to the target distribution :math:`\pi`.
 This requires the specification of a *proposal distribution* :math:`q`.
 
-0. Start from an initial parameter value
+0\. Start from an initial parameter value
 
 .. math::
     
-    `x_0`.
+    x_0.
 
 Given
 
 .. math::
     
-    `X_t = x_t`:
+    X_t = x_t:
 
-1. Generate
-
-.. math::
-    
-    `Y_t \sim q(y | x_t)`;
-
-2. Set
+1\. Generate
 
 .. math::
     
-    `X_{t+1} = Y_t`
+    Y_t \sim q(y | x_t);
+
+2\. Set
+
+.. math::
+    
+    X_{t+1} = Y_t
     
 with probability
 
 .. math::
     
-    `\rho(x_t, Y_t)`
+    \rho(x_t, Y_t)
     
 where
 
@@ -308,7 +308,7 @@ else set
 
 .. math::
     
-    `X_{t+1} = x_t`.
+    X_{t+1} = x_t.
 
 Often the proposal distribution is chosen to be symmetric,
 :math:`q(y | x) = q(x | y)`, so the accept-reject probability
@@ -875,7 +875,7 @@ points outside of the projection interval.
 
 
 
-The surprise index is 9.3%, when we would expect it to be 10%. That’s
+The surprise index is 9.4%, when we would expect it to be 10%. That’s
 not bad (actually, it’s quite good), and means that the model is well
 calibrated. If we wanted to dial the calibration in further (or if the
 surprise index were far off, like 20% or 2%), we could change the priors
