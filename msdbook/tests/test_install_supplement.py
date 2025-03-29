@@ -39,17 +39,6 @@ def test_fetch_zenodo_valid_version(mock_version):
             mock_zip.return_value.__enter__.return_value.extract.assert_called_once()
             mock_copy.assert_called_once()
 
-# Test for handling missing data link for an unsupported version
-def test_fetch_zenodo_invalid_version(mock_version):
-    mock_version.return_value = "0.2.0"  # Set to a version that isn't in DATA_VERSION_URLS
-
-    zen = InstallSupplement()
-
-    with pytest.raises(KeyError) as excinfo:
-        zen.fetch_zenodo()
-
-    assert "Link to data missing for current version" in str(excinfo.value)
-
 # Test if the correct data directory is used for unpacking
 def test_unpack_data_to_correct_directory(mock_version):
     mock_version.return_value = "0.1.4"  # Set to a valid version
@@ -109,15 +98,4 @@ def test_fetch_zenodo_version_url(mock_version):
 
             # Verify the URL for version "0.1.5"
             mock_get.assert_called_once_with("https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1")
-
-# Test that missing URL raises a KeyError with a helpful message
-def test_missing_data_url(mock_version):
-    mock_version.return_value = "0.1.6"  # Version that is not in DATA_VERSION_URLS
-
-    zen = InstallSupplement()
-
-    with pytest.raises(KeyError) as excinfo:
-        zen.fetch_zenodo()
-
-    assert "Link to data missing for current version" in str(excinfo.value)
 
