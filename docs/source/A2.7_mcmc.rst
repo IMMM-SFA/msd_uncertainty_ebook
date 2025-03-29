@@ -18,7 +18,7 @@ Model Calibration with Markov chain Monte Carlo
 The purpose of this tutorial is to demonstrate how to use Markov chain
 Monte Carlo (MCMC) to calibrate a model. By calibration, we mean the
 selection of model parameters (and, when relevant, structures). This
-tutorial notebook will build on the :doc:`HYMOD sensitivity analysis notebook <A2.4_hymod>`.
+tutorial notebook will build on the `HYMOD sensitivity analysis notebook <#hymod-dynamics-tutorial>`__.
 
 .. code:: ipython3
 
@@ -140,7 +140,7 @@ the *support*). We can see an example of this in the figure below.
     fig, axs = plt.subplots(1, 2, figsize=(14, 6))
     
     axs[0].plot(x, mixture_pdf(x), lw=2, color='red', label='Target')
-    axs[0].plot(x, 2.5 * norm.pdf(x, loc=0, scale=1.5), lw=2, color='blue', label='Proposal (M=2.5)')
+    axs[0].plot(x, 2.5 * stats.norm.pdf(x, loc=0, scale=1.5), lw=2, color='blue', label='Proposal (M=2.5)')
     axs[0].set_xlabel(r'$x$', size=16)
     axs[0].set_ylabel('Density', size=16)
     
@@ -155,6 +155,11 @@ the *support*). We can see an example of this in the figure below.
     axs[1].legend(loc='upper left')
     
     plt.show()
+
+
+
+
+.. figure:: _static/mcmc_9_0.png
 
 
 The rejection sampling algorithm is then:
@@ -228,6 +233,11 @@ An illustration of rejection sampling can be seen below.
     plt.show()
 
 
+
+
+.. figure:: _static/mcmc_11_0.png
+
+
 There are several downsides and practical challenges associated with
 rejection sampling, which helps motivate the use of Markov chain Monte
 Carlo methods, such as the Metropolis-Hastings algorithm. In particular,
@@ -258,24 +268,47 @@ ensure that the resulting Markov transition probabilities have the right
 properties to ensure convergence to the target distribution :math:`\pi`.
 This requires the specification of a *proposal distribution* :math:`q`.
 
-0. Start from an initial parameter value :math:`x_0`.
+0. Start from an initial parameter value
 
-Given :math:`X_t = x_t`:
+.. math::
+    
+    `x_0`.
+
+Given
+
+.. math::
+    
+    `X_t = x_t`:
 
 1. Generate
 
-:math:`Y_t \sim q(y | x_t)`;
+.. math::
+    
+    `Y_t \sim q(y | x_t)`;
 
 2. Set
 
-:math:`X_{t+1} = Y_t` with probability :math:`\rho(x_t, Y_t)`, where
+.. math::
+    
+    `X_{t+1} = Y_t`
+    
+with probability
+
+.. math::
+    
+    `\rho(x_t, Y_t)`
+    
+where
 
 .. math::
 
-
    \rho(x, y) = \min \left\{\frac{\pi(y)}{\pi(x)}\frac{q(x | y)}{q(y | x)}, 1\right\},
 
-else set :math:`X_{t+1} = x_t`.
+else set
+
+.. math::
+    
+    `X_{t+1} = x_t`.
 
 Often the proposal distribution is chosen to be symmetric,
 :math:`q(y | x) = q(x | y)`, so the accept-reject probability
@@ -566,6 +599,16 @@ overfit.
 
     plt.hist(stats.lognorm(s=0.05, scale=0.5).rvs(1000))
 
+
+.. parsed-literal::
+
+    (array([ 13.,  59., 139., 255., 264., 159.,  85.,  21.,   4.,   1.]),
+     array([0.43029764, 0.44725484, 0.46421203, 0.48116923, 0.49812642,
+            0.51508362, 0.53204081, 0.54899801, 0.5659552 , 0.5829124 ,
+            0.59986959]),
+     <BarContainer object of 10 artists>)
+
+
 .. figure:: _static/mcmc_25_1.png
 
 .. code:: ipython3
@@ -671,13 +714,6 @@ What is the acceptance rate? Both too high and too low of an acceptance
 rate suggest something is off with how our sampler is balancing
 exploration and exploitation. The theoretical “ideal” is between 24-45%.
 
-.. code:: ipython3
-
-    out[2]
-
-
-
-
 .. parsed-literal::
 
     0.27565
@@ -761,12 +797,16 @@ which passes this convergence check.
 .. code:: ipython3
 
     fig, axs = plt.subplots(1, 2, figsize=[12,6], sharey=True)
-    axs[0].hist(out[0][(nburn+1):(niter/2), i])
+    axs[0].hist(out[0][(nburn+1):int(niter/2), i])
     axs[1].hist(out[0][(nburn+1):niter, i])
     axs[0].set_xlabel("Kq")
     axs[0].set_ylabel("Count")
     axs[1].set_xlabel("Kq")
     axs[1].set_ylabel("Count")
+
+
+.. figure:: _static/mcmc_41_1.png
+
 
 A more systematic generalization of this convergence check would involve
 generating multiple chains starting at different initial conditions to
@@ -782,15 +822,6 @@ Let’s look at the resulting parameter distributions.
         axs[i].hist(out[0][(nburn+1):niter, i])
         axs[i].set_xlabel(parnames[i])
     axs[0].set_ylabel("Count")
-
-
-
-
-.. parsed-literal::
-
-    Text(0, 0.5, 'Count')
-
-
 
 
 .. figure:: _static/mcmc_43_1.png
