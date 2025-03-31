@@ -12,9 +12,6 @@ Model Calibration with Markov chain Monte Carlo Tutorial
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
 
-Model Calibration with Markov chain Monte Carlo
-=========================================================
-
 The purpose of this tutorial is to demonstrate how to use Markov chain
 Monte Carlo (MCMC) to calibrate a model. By calibration, we mean the
 selection of model parameters (and, when relevant, structures). This
