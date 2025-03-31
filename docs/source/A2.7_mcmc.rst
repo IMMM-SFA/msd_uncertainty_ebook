@@ -43,7 +43,7 @@ tutorial notebook will build on the `HYMOD sensitivity analysis notebook <#hymod
     # install_package_data()
 
 MCMC for Model Calibration and Uncertainty Quantification
-------------------------------------------------------------
+=========================================================
 
 Bayesian Uncertainty Quantification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -407,7 +407,7 @@ In code form, the Metropolis-Hastings algorithm looks like this.
         return parameters[1:], lp[1:], accept_rate
 
 HYMOD Calibration
---------------------
+=========================================================
 
 Let’s look at how well HYMOD with some default parameters explain the
 streamflow data. This example may take a while to converge; HYMOD is
@@ -882,7 +882,7 @@ deviation from the target calibration level, but in general, being
 within a few percentage points is acceptable.
 
 Challenges and Next Steps
-----------------------------
+=========================================================
 
 Two of the main challenges in implementing MCMC are:
 
@@ -926,7 +926,7 @@ is based on comparing summary statistics, rather than computing the
 posterior density.
 
 Tips for Using MCMC
-----------------------
+=========================================================
 
 In this tutorial, we saw how to implement the Metropolis-Hastings
 algorithm for HYMOD. In order to use Metropolis-Hastings or other MCMC
