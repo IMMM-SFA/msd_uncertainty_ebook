@@ -735,7 +735,7 @@ roughly stationary for the rest of the chain).
         axs[i].plot(out[0][:, i])
         axs[i].axvline(x=nburn, color="red") # modify x to look at other burnin lengths
         axs[i].set_ylabel(parnames[i])
-    axs[6].set_xlabel("Iteration")
+    axs[6].set_xlabel("Iteration");
 
 
 .. figure:: _static/mcmc_37_1.png
@@ -754,7 +754,7 @@ Let’s zoom in on the samples from after this point.
     for i in range(0, 7):   
         axs[i].plot(out[0][(nburn+1):niter, i])
         axs[i].set_ylabel(parnames[i])
-    axs[6].set_xlabel("Iteration")
+    axs[6].set_xlabel("Iteration");
 
 
 .. figure:: _static/mcmc_39_1.png
@@ -797,12 +797,12 @@ which passes this convergence check.
 .. code:: ipython3
 
     fig, axs = plt.subplots(1, 2, figsize=[12,6], sharey=True)
-    axs[0].hist(out[0][(nburn+1):int(niter/2), i])
-    axs[1].hist(out[0][(nburn+1):niter, i])
-    axs[0].set_xlabel("Kq")
-    axs[0].set_ylabel("Count")
-    axs[1].set_xlabel("Kq")
-    axs[1].set_ylabel("Count")
+    axs[0].hist(out[0][(nburn+1):int(niter/2), i], density=True)
+    axs[1].hist(out[0][(nburn+1):niter, i], density=True)
+    axs[0].set_xlabel("Kq");
+    axs[0].set_ylabel("Density");
+    axs[1].set_xlabel("Kq");
+    axs[1].set_ylabel("Density");
 
 
 .. figure:: _static/mcmc_41_1.png
@@ -821,7 +821,7 @@ Let’s look at the resulting parameter distributions.
     for i in range(0, 7):
         axs[i].hist(out[0][(nburn+1):niter, i])
         axs[i].set_xlabel(parnames[i])
-    axs[0].set_ylabel("Count")
+    axs[0].set_ylabel("Count");
 
 
 .. figure:: _static/mcmc_43_1.png
@@ -849,7 +849,7 @@ capture the observed streamflow.
     strmflw_ax.scatter(range(0, ndays), leaf_data.Strmflw, color="red", s=3)
     strmflw_ax.plot(range(0, ndays), hymod_q[1, :], color="black")
     strmflw_ax.fill_between(range(0, ndays), hymod_q[0, :], hymod_q[2, :], color="blue", alpha=0.3)
-    strmflw_ax.legend(['Observations', 'Posterior Predictive Median', '90% Posterior Predictive Interval'], loc='upper right')
+    strmflw_ax.legend(['Observations', 'Posterior Predictive Median', '90% Posterior Predictive Interval'], loc='upper right');
 
 
 .. figure:: _static/mcmc_46_1.png
