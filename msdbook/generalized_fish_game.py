@@ -21,7 +21,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     a = inequality(b, m, h, K)
     a = a.clip(0, 2)
 
-    cmap = plt.cm.get_cmap("RdBu_r")
+    cmap = plt.get_cmap("RdBu_r")
 
     fig = plt.figure(figsize=plt.figaspect(0.5), dpi=600, constrained_layout=True)
 
@@ -104,7 +104,7 @@ def plot_solutions(objective_performance, profit_solution, robust_solution):
         else:
             norm_reference[:, i] = 1
 
-    cmap = plt.cm.get_cmap("Blues")
+    cmap = plt.get_cmap("Blues")
 
     # Plot all solutions
     for i in range(len(norm_reference[:, 0])):
@@ -235,7 +235,7 @@ def fish_game(vars, additional_inputs, N=100, tSteps=100, nObjs=5, nCnstr=1):
         # Initialize populations and values
         x[0] = prey[i, 0] = K
         y[0] = predator[i, 0] = 250
-        z[0] = effort[i, 0] = hrvSTR([x[0]], vars, [[0, K]], [[0, 1]])
+        z[0] = effort[i, 0] = hrvSTR([x[0]], vars, [[0, K]], [[0, 1]])[0]
         NPVharvest = harvest[i, 0] = effort[i, 0] * x[0]
 
         # Go through all timesteps for prey, predator, and harvest
@@ -262,7 +262,15 @@ def fish_game(vars, additional_inputs, N=100, tSteps=100, nObjs=5, nCnstr=1):
                     if strategy == "Previous_Prey":
                         input_ranges = [[0, K]]  # Prey pop. range to use for normalization
                         output_ranges = [[0, 1]]  # Range to de-normalize harvest to
-                        z[t + 1] = hrvSTR([x[t]], vars, input_ranges, output_ranges)
+                        xt_scalar = float(np.asarray(x[t]).item())  # Safely extract a pure Python float
+                        z[t + 1] = hrvSTR([xt_scalar], vars, input_ranges, output_ranges)[0]
+
+
+
+
+
+
+
 
             prey[i, t + 1] = x[t + 1]
             predator[i, t + 1] = y[t + 1]
