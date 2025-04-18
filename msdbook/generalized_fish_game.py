@@ -21,7 +21,7 @@ def plot_uncertainty_relationship(param_values, collapse_days):
     a = inequality(b, m, h, K)
     a = a.clip(0, 2)
 
-    cmap = plt.get_cmap("RdBu_r")
+    cmap = plt.colormaps["RdBu_r"]
 
     fig = plt.figure(figsize=plt.figaspect(0.5), dpi=600, constrained_layout=True)
 
@@ -104,7 +104,7 @@ def plot_solutions(objective_performance, profit_solution, robust_solution):
         else:
             norm_reference[:, i] = 1
 
-    cmap = plt.get_cmap("Blues")
+    cmap = plt.colormaps["Blues"]
 
     # Plot all solutions
     for i in range(len(norm_reference[:, 0])):
