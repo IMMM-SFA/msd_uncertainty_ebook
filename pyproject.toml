@@ -60,3 +60,8 @@ dev = [
 Homepage = "https://uc-ebook.org/"
 Repository = "https://github.com/IMMM-SFA/msd_uncertainty_ebook"
 Issues = "https://github.com/IMMM-SFA/msd_uncertainty_ebook/issues"
+
+[tool.pytest.ini_options]
+markers = [
+    "mpl_image_compare: mark test to use matplotlib image comparison"
+]
