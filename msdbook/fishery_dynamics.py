@@ -48,7 +48,7 @@ def plot_objective_performance(
             norm_reference[:, i] = 1
 
     # colormap from matplotlib
-    cmap = plt.cm.get_cmap("Blues")
+    cmap = plt.colormaps["Blues"]
 
     # plot all solutions
     for i in range(len(norm_reference[:, 0])):
@@ -131,7 +131,7 @@ def plot_factor_performance(param_values, collapse_days, b, m, a):
     """
 
     # set colormap
-    cmap = plt.cm.get_cmap("RdBu_r")
+    cmap = plt.colormaps["RdBu_r"]
 
     # build figure object
     fig = plt.figure(figsize=plt.figaspect(0.5), dpi=600, constrained_layout=True)
