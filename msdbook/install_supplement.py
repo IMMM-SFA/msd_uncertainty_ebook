@@ -19,9 +19,7 @@ class InstallSupplement:
 
     # URL for DOI minted example data hosted on Zenodo
     DATA_VERSION_URLS = {
-        "0.1.3": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
-        "0.1.4": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
-        "0.1.5": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
+        "*": "https://zenodo.org/record/5294124/files/msdbook_package_data.zip?download=1",
     }
 
     def fetch_zenodo(self):
@@ -38,9 +36,7 @@ class InstallSupplement:
             data_link = InstallSupplement.DATA_VERSION_URLS[current_version]
 
         except KeyError:
-            msg = f"Link to data missing for current version:  {current_version}.  Please contact admin."
-
-            raise KeyError(msg)
+            data_link = InstallSupplement.DATA_VERSION_URLS["*"]
 
         # retrieve content from URL
         print("Downloading example data for msdbook version {}...".format(current_version))
