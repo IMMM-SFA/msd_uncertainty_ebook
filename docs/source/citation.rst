@@ -28,7 +28,7 @@ Suggested Citation
             </a>
         </div>
 
-Supplemental Appedices Citations
+Supplemental Appendices Citations
 ********************************
 
     Srikrishnan, V. (2025). Model Calibration with Markov Chain Monte Carlo Tutorial (v1.0.0). MSD-LIVE Data Repository. https://doi.org/10.57931/2565322
