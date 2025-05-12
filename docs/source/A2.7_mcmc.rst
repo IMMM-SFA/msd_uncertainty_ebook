@@ -11,6 +11,10 @@ Model Calibration with Markov chain Monte Carlo Tutorial
     | Please be aware that notebooks can take a couple minutes to launch.
     | To run the notebooks yourself, download the files `here <https://github.com/IMMM-SFA/msd_uncertainty_ebook/tree/main/notebooks>`_ and use these `requirements <https://github.com/IMMM-SFA/msd_uncertainty_ebook/blob/main/pyproject.toml>`_.
 
+.. admonition:: Community Contribution
+
+   | This tutorial was contributed by the community. Use the citation below in additional to the main citation when referencing this code.
+   | Srikrishnan, V. (2025). Model Calibration with Markov Chain Monte Carlo Tutorial (v1.0.0). MSD-LIVE Data Repository. https://doi.org/10.57931/2565322
 
 Model Calibration with Markov chain Monte Carlo
 =========================================================
@@ -27,7 +31,7 @@ tutorial notebook will build on the `HYMOD sensitivity analysis notebook <#hymod
     import numpy as np
     import random
     from scipy import stats
-    
+
     import msdbook
     import msdbook.hymod
     from msdbook.package_data import load_hymod_input_file
@@ -112,48 +116,48 @@ the *support*). We can see an example of this in the figure below.
     # This represents a 50/50 mixture of N(-1, 0.75) and N(1, 0.4).
     def mixture_pdf(x):
         return 0.5 * stats.norm.pdf(x, loc=-1, scale=0.75) + 0.5 * stats.norm.pdf(x, loc=1, scale=0.4)
-    
+
     # Create an array of x values from -5 to 5 with a step of 0.01.
     x = np.arange(-5, 5, 0.01)
-    
+
     # Set the number of samples and the constant M for rejection sampling.
     nsamp = 10000
     M = 2.5
-    
+
     # Draw nsamp samples from the proposal distribution (Normal(0, 1.5)).
     u = np.random.uniform(0, 1, nsamp)
     y = np.random.normal(0, 1.5, nsamp)
-    
+
     # Calculate the proposal density g and target density f at y.
     g = stats.norm.pdf(y, loc=0, scale=1.5)
     f = mixture_pdf(y)
-    
+
     # Acceptance criterion: u < f / (M * g)
     keep_samp = u < (f / (M * g))
     accepted = y[keep_samp]
-    
+
     # Estimate density using Gaussian KDE.
     kde = stats.gaussian_kde(accepted)
     y_vals = np.linspace(accepted.min(), accepted.max(), 200)
-    
+
     # Plot the target mixture model and the proposal distribution.
     fig, axs = plt.subplots(1, 2, figsize=(14, 6))
-    
+
     axs[0].plot(x, mixture_pdf(x), lw=2, color='red', label='Target')
     axs[0].plot(x, 2.5 * stats.norm.pdf(x, loc=0, scale=1.5), lw=2, color='blue', label='Proposal (M=2.5)')
     axs[0].set_xlabel(r'$x$', size=16)
     axs[0].set_ylabel('Density', size=16)
-    
+
     axs[0].legend()
-    
+
     axs[1].hist(accepted, bins=30, density=True, alpha=0.7, edgecolor='black', label='Kept Samples')
     axs[1].plot(x, mixture_pdf(x), lw=2, color='black', label='True Target')
-    
+
     axs[1].plot(y_vals, kde(y_vals), color='red', label='Sampled Density')
     axs[1].set_xlabel(r'$x$', size=16)
     axs[1].set_ylabel('Density', size=16)
     axs[1].legend(loc='upper left')
-    
+
     plt.show()
 
 
@@ -182,32 +186,32 @@ An illustration of rejection sampling can be seen below.
     # Set parameters
     nsamp = 500
     M = 3.5
-    
+
     # Generate nsamp samples from Uniform(0, 1) for u and y
     u = np.random.uniform(0, 1, nsamp)
     y = np.random.uniform(0, 1, nsamp)
-    
+
     # Compute the Beta(5, 10) pdf at each y value
     f = stats.beta.pdf(y, 5, 10)
-    
+
     # Determine which samples to keep: condition (M * u) < f
     keep_samp = (M * u) < f
-    
+
     # Create the figure with the desired size.
     fig, axs = plt.subplots(1, 2, figsize=(14, 6))
     fig.suptitle("Rejection Sampling Efficiency", fontsize=20)
-    
-    # First plot 
+
+    # First plot
     axs[0].set_xlim(0, 1)
     axs[0].set_ylim(0, 3.5)
     axs[0].set_xlabel(r'$X$', fontsize=16)
     axs[0].set_ylabel('Density', fontsize=16)
-    
+
     # Plot the Beta(5, 10) density line
     x_vals = np.linspace(0, 1, 200)
     axs[0].plot(x_vals, stats.beta.pdf(x_vals, 5, 10), color='black', lw=2, label='Beta(5,10)')
-    
-    for i in range(len(y)): 
+
+    for i in range(len(y)):
         if keep_samp[i]:
             marker = 'o'
             color = 'blue'
@@ -215,21 +219,21 @@ An illustration of rejection sampling can be seen below.
             marker = 'x'
             color = 'red'
         axs[0].scatter(y[i], M * u[i], color=color, marker=marker, s=40)
-    
+
     # Second plot
     accepted = y[keep_samp]
     # Create a density estimate using Gaussian KDE.
     kde = stats.gaussian_kde(accepted)
-    
+
     # Define x values for the density plot.
     x1_vals = np.linspace(0, 1, 200)
     density_vals = kde(x1_vals)
-    
+
     axs[1].plot(x1_vals, density_vals, linewidth=2, color='blue')
     axs[1].set_xlabel(r'$X$', fontsize=16)
     axs[1].set_ylabel("Sample Density Estimate", fontsize=16)
     axs[1].set_xlim(0, 1)
-    
+
     plt.show()
 
 
@@ -271,33 +275,33 @@ This requires the specification of a *proposal distribution* :math:`q`.
 0\. Start from an initial parameter value
 
 .. math::
-    
+
     x_0.
 
 Given
 
 .. math::
-    
+
     X_t = x_t:
 
 1\. Generate
 
 .. math::
-    
+
     Y_t \sim q(y | x_t);
 
 2\. Set
 
 .. math::
-    
+
     X_{t+1} = Y_t
-    
+
 with probability
 
 .. math::
-    
+
     \rho(x_t, Y_t)
-    
+
 where
 
 .. math::
@@ -307,7 +311,7 @@ where
 else set
 
 .. math::
-    
+
     X_{t+1} = x_t.
 
 Often the proposal distribution is chosen to be symmetric,
@@ -371,7 +375,7 @@ In code form, the Metropolis-Hastings algorithm looks like this.
     #   - parameters: matrix of sampled parameters, num_iter x num_parameters
     #   - lp: vector of log-posterior values for the sampled parameters
     #   - accept_rate: Float of the percentage of proposals which were accepted.
-    
+
     def metropolis(num_iter, proposal_sd, p0, logposterior):
         # Initialize our lists for sampled parameters and log-posterior values
         # Create empty array
@@ -380,7 +384,7 @@ In code form, the Metropolis-Hastings algorithm looks like this.
         # Set initial values
         parameters[0, :] = p0
         lp[0] = logposterior(p0)
-        # Set up proposal covariance matrix 
+        # Set up proposal covariance matrix
         cov = stats.Covariance.from_diagonal(np.square(proposal_sd))
         acceptances = 0
         for i in range(1, num_iter + 1):
@@ -423,12 +427,12 @@ of models in Section 3 (`Diagnostics <#4-tips-for-using-mcmc>`__).
 
     # load the Leaf River HYMOD input file
     leaf_data = load_hymod_input_file()
-    
+
     # extract the first eleven years of data
     leaf_data = leaf_data.iloc[0:4015].copy()
-    
+
     print('Leaf River Data structure:')
-    
+
     # There are only three columns in the file including precipitation, potential evapotranspiration, and streamflow
     leaf_data.head()
 
@@ -447,11 +451,11 @@ of models in Section 3 (`Diagnostics <#4-tips-for-using-mcmc>`__).
         .dataframe tbody tr th:only-of-type {
             vertical-align: middle;
         }
-    
+
         .dataframe tbody tr th {
             vertical-align: top;
         }
-    
+
         .dataframe thead th {
             text-align: right;
         }
@@ -508,13 +512,13 @@ values.
 .. code:: ipython3
 
     # assign input parameters to generate a baseline simulated streamflow
-    Nq = 3  # Number of quickflow routing tanks 
-    Kq = 0.5 # Quickflow routing tanks' rate parameter    
-    Ks =  0.001 # Slowflow routing tank's rate parameter           
-    Alp = 0.5 # Quick/slow split parameter   
-    Huz = 100 # Maximum height of soil moisture accounting tank  
-    B = 1.0 # Scaled distribution function shape parameter    
-    
+    Nq = 3  # Number of quickflow routing tanks
+    Kq = 0.5 # Quickflow routing tanks' rate parameter
+    Ks =  0.001 # Slowflow routing tank's rate parameter
+    Alp = 0.5 # Quick/slow split parameter
+    Huz = 100 # Maximum height of soil moisture accounting tank
+    B = 1.0 # Scaled distribution function shape parameter
+
     # Note that the number of years is 11. One year of model warm-up and ten years are used for actual simulation
     model = msdbook.hymod.hymod(Nq, Kq, Ks, Alp, Huz, B, leaf_data, ndays=4015)
     ax = msdbook.hymod.plot_observed_vs_simulated_streamflow(df=leaf_data, hymod_dict=model)
@@ -615,7 +619,7 @@ overfit.
 
     ndays = 4015
     nsamples = 1000
-    
+
     # generate prior samples
     Kq_prior = stats.lognorm(s=0.25, scale=0.5)
     Ks_prior = stats.lognorm(s=0.95, scale=0.003)
@@ -624,7 +628,7 @@ overfit.
     B_prior = stats.lognorm(s=0.1, scale=1)
     beta_prior = stats.lognorm(s=0.05, scale=0.25)
     sigma_prior = stats.lognorm(s=0.25, scale=0.25)
-    
+
     Kq = Kq_prior.rvs(nsamples)
     Ks = Ks_prior.rvs(nsamples)
     Alp = Alp_prior.rvs(nsamples)
@@ -632,10 +636,10 @@ overfit.
     B = B_prior.rvs(nsamples)
     beta = beta_prior.rvs(nsamples)
     sigma = sigma_prior.rvs(nsamples)
-    
+
     # preallocate output storage
     prior_out = np.zeros((ndays, nsamples))
-    
+
     # note that we include the error/noise in these simulations
     for i in range(nsamples):
         prior_out[:, i] = np.exp(np.log(msdbook.hymod.hymod(3, Kq[i], Ks[i], Alp[i], Huz[i], B[i], leaf_data, ndays=ndays)['Q'] + beta[i]) + stats.norm(0, sigma[i]).rvs(ndays))
@@ -676,15 +680,15 @@ functions to compute the log-posterior of the probability model.
         lp += stats.lognorm.logpdf(beta, s=0.05, scale=0.25)
         lp += stats.lognorm.logpdf(sigma, s=0.5, scale=0.25)
         return lp
-    
-    
+
+
     def log_likelihood(Kq, Ks, Alp, Huz, B, beta, sigma, leaf_data, ndays):
         hymod_out = msdbook.hymod.hymod(3, Kq, Ks, Alp, Huz, B, leaf_data, ndays=ndays)['Q']
         residuals = np.log(leaf_data['Strmflw']) - np.log(hymod_out + beta) # compute residuals
         ll = np.sum(stats.norm.logpdf(residuals, scale=sigma))
         return ll
-    
-    
+
+
     def log_posterior(params, leaf_data=leaf_data, ndays=4015):
         Kq, Ks, Alp, Huz, B, beta, sigma = tuple(params[0])
         lp = log_prior(Kq, Ks, Alp, Huz, B, beta, sigma)
@@ -702,7 +706,7 @@ speed this up, reduce the ``niter`` parameter (ex. ``niter = 1000``).
 .. code:: ipython3
 
     niter = 100000
-    
+
     init_params = np.array([[1.0, 0.5, 0.5, 100, 1.0, 0.1, 0.5]])
     proposal_sd = [0.005, 0.001, 0.005, 1.0, 0.005, 0.001, 0.005]
 
@@ -751,7 +755,7 @@ Let’s zoom in on the samples from after this point.
 .. code:: ipython3
 
     fig, axs = plt.subplots(7, 1, sharex=True, figsize=[12, 10])
-    for i in range(0, 7):   
+    for i in range(0, 7):
         axs[i].plot(out[0][(nburn+1):niter, i])
         axs[i].set_ylabel(parnames[i])
     axs[6].set_xlabel("Iteration");
@@ -816,7 +820,7 @@ skip that for now.
 Let’s look at the resulting parameter distributions.
 
 .. code:: ipython3
-    
+
     fig, axs = plt.subplots(1, 7, figsize=[12,6], sharey=True)
     for i in range(0, 7):
         axs[i].hist(out[0][(nburn+1):niter, i])
@@ -833,12 +837,12 @@ capture the observed streamflow.
 
     nsamp = 2000
     idx = random.choices(range((nburn+1), niter), k=nsamp)
-    
+
     # simulate
     hymod_sim = np.zeros((ndays, nsamp))
     for index, i in enumerate(idx):
         hymod_sim[:, index] = np.exp(np.log(msdbook.hymod.hymod(3, out[0][i, 0], out[0][i, 1], out[0][i, 2], out[0][i, 3], out[0][i, 4], leaf_data, ndays=ndays)['Q'] + out[0][i, 5]) + stats.norm(0, out[0][i, 6]).rvs(ndays))
-    
+
     # compute quantiles
     hymod_q = np.quantile(hymod_sim, [0.05, 0.5, 0.95], axis=1)
 
