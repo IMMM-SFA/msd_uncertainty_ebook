@@ -69,42 +69,6 @@ def test_fit_logit(sample_data, df_resid, df_model, llf):
     assert result.df_model == df_model
     assert result.llf == llf
 
-# def test_fit_logit(sample_data, predictors, expected_params, min_coeff, max_coeff):
-#     """Test the fit_logit function and ensure model coefficients are valid."""
-#     result = fit_logit(sample_data, predictors)
-
-#     # Check if result is a statsmodels LogitResultsWrapper object
-#     assert isinstance(result, ResultsWrapper)
-
-#     # Ensure the result contains necessary attributes
-#     assert hasattr(result, "params")
-#     assert hasattr(result, "pvalues")
-#     assert hasattr(result, "predict")
-
-#     # Check that coefficients are reasonable (e.g., non-zero and within range)
-#     assert np.all(np.abs(result.params) > min_coeff)  # Coefficients should not be too close to zero
-#     assert np.all(np.abs(result.params) < max_coeff)  # Coefficients should not exceed the maximum allowed
-
-#     # Check that the p-values are reasonable (not NaN, not infinity)
-#     assert np.all(np.isfinite(result.pvalues))  # P-values should be finite numbers
-#     # Check if any coefficient has a p-value less than 0.1 (10% significance level)
-#     assert np.any(result.pvalues < 0.1)
-
-
-# def test_fit_logit_with_expected_values(sample_data):
-#     """Test fit_logit function and check specific coefficient values."""
-#     result = fit_logit(sample_data, ['Predictor1', 'Predictor2'])
-
-#     # Check if result is a statsmodels LogitResultsWrapper object
-#     assert isinstance(result, ResultsWrapper)
-
-#     # Define the expected coefficients (adjusted based on actual model output)
-#     EXPECTED_PARAMS = np.array([0.34060709, -0.26968773, 0.31551482, 0.45824332])  # Update with actual expected values
-
-#     # Check that coefficients are close to the expected values
-#     assert np.allclose(result.params.values, EXPECTED_PARAMS, atol=0.1)  # Increased tolerance to 0.1
-
-
 def test_plot_contour_map(sample_data):
     """Test the plot_contour_map function."""
     fig, ax = plt.subplots()
