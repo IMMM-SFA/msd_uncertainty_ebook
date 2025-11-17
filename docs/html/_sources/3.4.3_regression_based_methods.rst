@@ -1,0 +1,27 @@
+Regression-based Methods
+************************
+Regression analysis is one of the oldest ways of investigating parametric importance and sensitivity :cite:p:`saltelli2004sensitivity`. Here, we describe some of the most popular regression-based sensitivity indices. One of the main sensitivity indices of this category is the standardized regression coefficient (SRC). To calculate SRC, a linear regression relationship needs to be fitted between the input vector, :math:`x`, and the model output of interest by using a least-square minimizing method:
+
+.. math::
+  y = b_0 + \sum_{i=1}^N b_ix_i
+
+where :math:`b_0` and :math:`b_i` (corresponding to the *i*-th model input) are regression coefficients. The following relationship can then be used to calculate the SRCs for different input values:
+
+.. math::
+  S_i=SRC_i=b_i\frac{\sigma_i}{\sigma_y}
+
+where :math:`\sigma_i` and :math:`\sigma_y` are standard deviations of *i*-th model input and output, respectively.
+
+Several other regression-based indices explore the correlation between input and output parameters as a proxy to model parametric sensitivity :cite:`helton1993uncertainty,iooss2015review,manache2008identification`. The Pearson correlation coefficient (PCC) can be used when a linear relationship exists between an uncertain factor, :math:`x_i`, and the output :math:`y`:
+
+.. math::
+  S_i=PCC=\frac{cov(x_i,y)}{\sigma_i\sigma_y}
+
+In cases when there are outliers in the data or the relationship between the uncertain factors and the output is not linear, rank-based correlation coefficients are preferred, for example, Spearman’s rank correlation coefficient (SRCC):
+
+.. math::
+  S_i=SRCC=\frac{cov(rx_i,ryi)}{\sigma_{ri}\sigma_{ry}}
+
+where the raw values of :math:`x_i` and :math:`y` and converted to ranks :math:`rx_i` and :math:`ry` respectively, which instead represent a measurement of the strength of the monotonic relationship, rather than linear relationship, between the input and output. Other regression-based metrics include the partial correlations coefficient, the partial rank correlations coefficient, and the Nash-Sutcliffe coefficient, more discussion on which can be found in :cite:p:`iooss2015review,borgonovo2016sensitivity`.
+
+Tree-based regression techniques have also been used for sensitivity analysis in an effort to address the challenges faced with nonlinear models :cite:p:`pappenberger2006ignorance`. Examples of these methods include the Patient Rule Induction Method (PRIM; :cite:p:`friedman1999bump`) and Classification And Regression Trees (CART; :cite:p:`breiman1984classification`). CART-based approaches also include boosting and bagging extensions :cite:p:`freund1999short,breiman1996bagging`. These methods are particularly useful when sensitivity analysis is used for factor mapping (i.e., when trying to identify which uncertain model factors produce a certain model behavior). :numref:`consequential_scenarios` elaborates on the use of these methods. Regression-based sensitivity analysis methods are global by nature and can explore the entire space of variables. However, the true level of comprehensiveness depends on the design of experiments and the number of simulations providing data to establish the regression relationships. Although they are usually computationally efficient, they do not produce significant information about parametric interactions :cite:p:`borgonovo2016sensitivity,saltelli2004sensitivity`.

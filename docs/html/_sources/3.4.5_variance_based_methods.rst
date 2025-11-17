@@ -1,0 +1,32 @@
+.. _variance-based_methods:
+
+Variance-based Methods
+**********************
+Variance-based sensitivity analysis methods hypothesize that various specified model factors contribute differently to the variation of model outputs; therefore, decomposition and analysis of output variance can determine a model’s sensitivity to input parameters :cite:p:`sobol2001global,saltelli2004sensitivity`. The most popular variance-based method is the Sobol method, which is a global sensitivity analysis method that takes into account complex and nonlinear factor interaction when calculating sensitivity indices, and employs more sophisticated sampling methods (e.g., the Sobol sampling method). The Sobol method is able to calculate three types of sensitivity indices that provide different types of information about model sensitivities. These indices include first-order, higher-order (e.g., second-, third-, etc. orders), and total-order sensitivities.
+
+The first-order sensitivity index indicates the percent of model output variance contributed by a factor individually (i.e., the effect of varying :math:`x_i` alone) and is obtained using the following :cite:p:`sobol2001global,saltelli2002making`:
+
+.. math::
+  S_i^1=\frac{V_{x_i}[E_{x_{\sim i}}(x_i)]}{V(y)}
+
+with :math:`E` and :math:`V` denoting the expected value and the variance, respectively. :math:`x_{\sim i}` denotes all factors expect for :math:`x_i`. The first-order sensitivity index (:math:`S_i^1`) can therefore also be thought of as the portion of total output variance (:math:`V_y`) that can be reduced if the uncertainty in factor :math:`x_i` is eliminated :cite:p:`saltelli2002sensitivity`. First-order sensitivity indices are usually used to understand the independent effect of a factor and to distinguish its individual versus interactive influence. It would be expected for linearly independent factors that they would only have first order indices (no interactions) that should correspond well with sensitivities obtained from simpler methods using OAT sampling.
+
+Higher-order sensitivity indices explore the interaction between two or more parameters that contribute to model output variations. For example, a second-order index indicates how interactions between a pair of factors can lead to change in model output variance and is calculated using the following relationship:
+
+.. math::
+  S_{ij}^2=\frac{V_{x_{i,j}}[E_{x_{\sim i,j}}(x_i,x_j)]}{V(y)}
+
+with :math:`i \ne j`. Higher order indices can be calculated by similar extensions (i.e., fixing additional operators together), but it is usually computationally expensive in practice.
+
+The total sensitivity analysis index represents the entire influence of an input factor on model outputs including all of its interactions with other factors :cite:p:`homma1996importance`. In other words, total-order indices include first-order and all higher-order interactions associated with each factor and can be estimated calculated using the following:
+
+.. math::
+  S_i^T= \frac{E_{x_{\sim i}}[V_{x_i}(x_{\sim i})]}{V(y)} = 1 - \frac{V_{x_{\sim i}}[E_{x_{i}}(x_{\sim i})]}{V(y)}
+
+This index reveals the expected portion of variance that remains if uncertainty is eliminated in all factors but :math:`x_i` :cite:p:`saltelli2002sensitivity`. The total sensitivity index is the overall best measure of sensitivity as it captures the full individual and interactive effects of model factors.
+
+Besides the Sobol method, there are some other variance-based sensitivity analysis methods, such as the Fourier amplitude sensitivity test (FAST; :cite:`cukier1973study, mcrae1982development`) and extended-FAST :cite:`saltelli1998alternative,vazquez2014global`, that have been used by the scientific community. However, Sobol remains by far the most common method of this class. Variance-based techniques have been widely used and have proved to be powerful in a variety of applications. Despite their popularity, some authors have expressed concerns about the methods’ appropriateness in some settings. Specifically, the presence of heavy-tailed distributions or outliers, or when model outputs are multimodal can bias the sensitivity indices produced by these methods :cite:p:`auder2008global,zadeh2017comparison,pianosi2015simple`. Moment-independent measures, discussed below, attempt to overcome these challenges.
+
+.. note::
+
+    Put this into practice! Click the following link to try out an interactive tutorial which demonstrates the application of a Sobol sensitivity analysis:  `Sobol SA using SALib Jupyter Notebook <nb_saltelli_sobol_>`_
