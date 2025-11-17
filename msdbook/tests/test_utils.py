@@ -179,4 +179,31 @@ def test_fit_logit_comprehensive(sample_data):
     assert np.all(np.isfinite(result.pvalues))  # P-values should be finite numbers
     # Check if any coefficient has a p-value less than 0.1 (10% significance level)
     assert np.any(result.pvalues < 0.1)
+
+
+def test_fit_logit_without_interaction():
+    """Test that fit_logit works without an Interaction column."""
+    np.random.seed(42)
+    n = 100
+    
+    # Create data WITHOUT an Interaction column
+    df_no_interaction = pd.DataFrame({
+        'Success': np.random.randint(0, 2, size=n),
+        'Predictor1': np.random.randn(n),
+        'Predictor2': np.random.randn(n)
+    })
+    
+    # This should work without raising a KeyError
+    result = fit_logit(df_no_interaction, ['Predictor1', 'Predictor2'])
+    
+    # Verify the result is valid
+    assert result is not None
+    assert hasattr(result, 'params')
+    
+    # Should have 3 parameters: Intercept, Predictor1, Predictor2 (no Interaction)
+    assert len(result.params) == 3
+    assert 'Intercept' in result.params.index
+    assert 'Predictor1' in result.params.index
+    assert 'Predictor2' in result.params.index
+    assert 'Interaction' not in result.params.index
     
