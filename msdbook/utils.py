@@ -23,9 +23,6 @@ def plot_contour_map(
 ):
     """Plot the contour map"""
 
-    # Ignore tight layout warnings
-    warnings.filterwarnings("ignore")
-
     # Generate probability of success for x=xgrid, y=ygrid
     X, Y = np.meshgrid(xgrid, ygrid)
     x = X.flatten()
@@ -35,7 +32,10 @@ def plot_contour_map(
     z = result.predict(grid)
     Z = np.reshape(z, np.shape(X))
 
-    contourset = ax.contourf(X, Y, Z, levels, cmap=contour_cmap, aspect="auto")
+    # Temporarily suppress warnings about unused kwargs in this scope only
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message="The following kwargs were not used by contour")
+        contourset = ax.contourf(X, Y, Z, levels, cmap=contour_cmap, aspect="auto")
     
     # Plot scatter points based on the data
     xpoints = np.mean(dta[xvar].values.reshape(-1, 10), axis=1)
