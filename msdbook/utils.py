@@ -5,15 +5,16 @@ import statsmodels.api as sm
 
 def fit_logit(dta, predictors):
     """Logistic regression"""
-
-    # Add intercept column of 1s
-    dta["Intercept"] = np.ones(np.shape(dta)[0])
     
-    # Get columns of predictors
-    cols = dta.columns.tolist()[-1:] + predictors + ["Interaction"]
+    # Get columns of predictors including interaction term
+    cols = predictors + ["Interaction"]
+    
+    # Add constant (intercept) using statsmodels standard approach
+    # This creates a new DataFrame without modifying the input
+    X = sm.add_constant(dta[cols])
     
     # Fit logistic regression without the deprecated 'disp' argument
-    logit = sm.Logit(dta["Success"], dta[cols])
+    logit = sm.Logit(dta["Success"], X)
     result = logit.fit(method='bfgs')  # Use method='bfgs' or another supported method
     
     return result
