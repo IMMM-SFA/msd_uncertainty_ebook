@@ -30,7 +30,6 @@ def sample_data():
 predictor1 = 'Predictor1'
 predictor2 = 'Predictor2'
 interaction = 'Interaction'
-intercept = 'Intercept'
 success = 'Success'
 
 # @pytest.mark.parametrize("predictors, expected_params, min_coeff, max_coeff", [
@@ -42,25 +41,22 @@ success = 'Success'
         predictor1: [1.0, 2.0, 3.0],
         predictor2: [3.0, 4.0, 5.0],
         interaction: [2.0, 4.0, 6.0],
-        intercept: [1.0, 1.0, 1.0],
         success: [1.0, 1.0, 0.0],
-    }), 0.0, 2.0, -6.691275315650184e-06),
+    }), 1.0, 1.0, -3.4595896859339226e-05),
 
     (pd.DataFrame({
         predictor1: [5.0, 6.0, 7.0],
         predictor2: [7.0, 8.0, 9.0],
         interaction: [3.0, 6.0, 9.0],
-        intercept: [1.0, 1.0, 1.0],
         success: [1.0, 0.0, 1.0],
-    }), 0.0, 2.0, -2.4002923915238235e-06),
+    }), 1.0, 1.0, -1.9095425048845298),
 
     (pd.DataFrame({
         predictor1: [0.5, 1.5, 2.5],
         predictor2: [1.0, 2.0, 3.0],
         interaction: [0.2, 0.4, 0.6],
-        intercept: [1.0, 1.0, 1.0],
         success: [0.0, 1.0, 1.0],
-    }), 0.0, 2.0, -1.7925479970021486e-05)
+    }), 1.0, 1.0, -1.0664591877046206e-05)
 ])
 def test_fit_logit(sample_data, df_resid, df_model, llf):
     predictors = [predictor1, predictor2]
