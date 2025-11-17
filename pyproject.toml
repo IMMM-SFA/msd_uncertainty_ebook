@@ -10,7 +10,7 @@ msdbook = ["*.txt", "*.csv", "*.npy", "*.resultfile"]
 
 [project]
 name = "msdbook"
-version = "0.1.6"
+version = "0.1.7"
 description = "Jupyter notebook support for the MSD uncertainty ebook."
 readme = "README.md"
 requires-python = ">=3.9"
