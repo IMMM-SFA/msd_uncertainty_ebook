@@ -5,7 +5,27 @@ import statsmodels.api as sm
 
 
 def fit_logit(dta, predictors):
-    """Logistic regression"""
+    """Logistic regression with optional interaction term.
+    
+    Parameters
+    ----------
+    dta : pandas.DataFrame
+        Input data containing the 'Success' column and predictor columns.
+        If an 'Interaction' column is present, it will be included in the model.
+    predictors : list of str
+        List of predictor column names to include in the model.
+    
+    Returns
+    -------
+    statsmodels.discrete.discrete_model.BinaryResultsWrapper
+        Fitted logistic regression model.
+    
+    Notes
+    -----
+    The function automatically adds an intercept column. If the data contains
+    an 'Interaction' column, it will be included in the model alongside the
+    specified predictors.
+    """
 
     # Add intercept column of 1s
     dta["Intercept"] = np.ones(np.shape(dta)[0])
